@@ -1,0 +1,95 @@
+import Phaser from 'phaser';
+import LostAndPhone from 'lib/GameLib';
+import { setBackgroundPicture } from 'lib/Screen';
+
+class Handler extends LostAndPhone.Scene {
+
+    gameScene?: LostAndPhone.Scene;
+
+    constructor() {
+        super({ key : 'handler' });
+        this.sceneRunning = undefined;
+    }
+
+    create() {
+        this.cameras.main.setBackgroundColor('#f00');
+        this.launchScene('boot');
+    }
+
+    launchScene(scene: string, data = undefined) {
+        this.scene.launch(scene, data);
+        let gameScene = this.scene.get(scene);
+
+        if (gameScene instanceof LostAndPhone.Scene) {
+            this.gameScene = gameScene;
+        }
+    }
+
+    updateResize(scene: LostAndPhone.Scene) {
+        scene.scale.on('resize', this.resize, scene);
+
+        const scaleWidth = scene.scale.gameSize.width;
+        const scaleHeight = scene.scale.gameSize.height;
+
+        scene.parent = new Phaser.Structs.Size(scaleWidth, scaleHeight);
+        scene.sizer = new Phaser.Structs.Size(
+            scene.width, scene.height,
+            Phaser.Structs.Size.FIT,
+            scene.parent
+        );
+
+        scene.parent.setSize(scaleWidth, scaleHeight);
+        scene.sizer.setSize(scaleWidth, scaleHeight);
+
+        this.updateCamera(scene);
+    }
+
+    resize(gameSize: LostAndPhone.Scene) {
+        // 'this' means current scene that is running
+        if (!this.sceneStopped) {
+            const width = gameSize.width;
+            const height = gameSize.height;
+
+            this.parent?.setSize(width, height);
+            this.sizer?.setSize(width, height);
+
+            // updateCamera - TO DO: Improve the next code because it is duplicated
+            const camera = this.cameras.main;
+
+            if (this.game instanceof LostAndPhone.Game) {
+                if (this.sizer?.width !== undefined && this.game.screenBaseSize !== undefined) {
+                    const scaleX = this.sizer.width / this.game.screenBaseSize?.width;
+                    const scaleY = this.sizer.height / this.game.screenBaseSize?.height;
+
+                    let zoom = Math.max(scaleX, scaleY);
+                    camera.setZoom(zoom);
+                }
+
+                // Remove background picture if inner width screen is less than base width
+                setBackgroundPicture(this);
+
+                if (this.game.screenBaseSize !== undefined) {
+                    camera.centerOn(this.game.screenBaseSize.width / 2, this.game.screenBaseSize.height / 2);
+                }
+            }
+        }
+    }
+
+    updateCamera(scene: LostAndPhone.Scene) {
+        const camera = scene.cameras.main;
+        if (this.game instanceof LostAndPhone.Game) {
+            if (scene.sizer?.width !== undefined && this.game.screenBaseSize !== undefined) {
+                const scaleX = scene.sizer.width / this.game.screenBaseSize.width;
+                const scaleY = scene.sizer.height / this.game.screenBaseSize.height;
+
+                let zoom = Math.max(scaleX, scaleY);
+                camera.setZoom(zoom);
+
+                camera.centerOn(this.game.screenBaseSize.width / 2, this.game.screenBaseSize.height / 2);
+            }
+        }
+    }
+
+}
+
+export default Handler;

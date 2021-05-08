@@ -1,12 +1,42 @@
 import 'phaser';
-import Main from 'scenes/main';
+import LostAndPhone from 'lib/GameLib';
 
-const config = {
-    type: Phaser.AUTO,
-    backgroundColor: '#000000',
-    width: 800,
-    height: 600,
-    scene: Main
-};
+import {
+    config,
+    MAX_SIZE_WIDTH_SCREEN,
+    MAX_SIZE_HEIGHT_SCREEN,
+    MIN_SIZE_WIDTH_SCREEN,
+    MIN_SIZE_HEIGHT_SCREEN,
+    SIZE_WIDTH_SCREEN,
+    SIZE_HEIGHT_SCREEN
+} from 'config';
 
-const game = new Phaser.Game(config);
+function newGame(gameConfig: object) {
+    game = new LostAndPhone.Game(gameConfig);
+
+    game.screenBaseSize = {
+      maxWidth: MAX_SIZE_WIDTH_SCREEN,
+      maxHeight: MAX_SIZE_HEIGHT_SCREEN,
+      minWidth: MIN_SIZE_WIDTH_SCREEN,
+      minHeight: MIN_SIZE_HEIGHT_SCREEN,
+      width: SIZE_WIDTH_SCREEN,
+      height: SIZE_HEIGHT_SCREEN
+    };
+    game.orientation = "portrait-primary";
+
+    return game;
+}
+
+function destroyGame() {
+    if (game === undefined) return;
+    game.destroy(true);
+    game.runDestroy();
+    game = undefined;
+}
+
+let game: LostAndPhone.Game | undefined = undefined;
+
+if (game === undefined) {
+    game = newGame(config);
+}
+

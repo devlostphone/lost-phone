@@ -19,7 +19,6 @@ class Preloader extends LostAndPhone.Scene {
         // load assets here
         let imageSize = dpr * 128; // 64, 128, 256, 512
         this.load.image('app', 'assets/app@' + imageSize + 'x.png');
-        //this.load.image('guide', 'assets/540x960-guide.png');
         this.load.image('guide', 'assets/720x1280-guide.png');
         // ---------------------------------------------------------
 
@@ -69,10 +68,20 @@ class Preloader extends LostAndPhone.Scene {
                     this.sceneStopped = true;
                     this.scene.stop('preload');
                     this.handlerScene?.cameras.main.setBackgroundColor("#020079");
-                    this.handlerScene?.launchScene('playground');
+                    this.handlerScene?.launchScene('fakeOS');
                 }
             });
         });
+
+        // Load json config files
+        let config = ['config', 'apps', 'tracks', 'wifi', 'mail', 'colors'];
+        for (var i = 0; i < config.length; i++) {
+            this.load.json(config[i], `config/${config[i]}.json`);
+        }
+
+        // Load languages
+        this.load.json('language-ca', 'lang/ca.json');
+        this.load.json('language-en', 'lang/en.json');
     }
 
   create() {

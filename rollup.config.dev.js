@@ -3,6 +3,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import typescript from 'rollup-plugin-typescript2';
+import copy from "rollup-plugin-copy-assets";
 
 export default {
 
@@ -24,6 +25,13 @@ export default {
     },
 
     plugins: [
+
+        copy({
+            assets: [
+              "src/config",
+              "src/lang",
+            ],
+        }),
 
         //  Toggle the booleans here to enable / disable Phaser 3 features:
         replace({

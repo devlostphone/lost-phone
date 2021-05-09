@@ -2,6 +2,7 @@ import Handler from 'scenes/Handler';
 import Preloader from 'scenes/Preloader';
 import Boot from 'scenes/Boot';
 import PlayGround from 'scenes/PlayGround';
+import FakeOS from 'scenes/FakeOS';
 
 // Default Vertical Aspect Ratio: 9:16 (1:1.77)
 // 0,5625
@@ -37,6 +38,6 @@ export const config:  Phaser.Types.Core.GameConfig = {
     Handler,
     Boot,
     Preloader,
-    PlayGround
+    FakeOS
   ],
 };

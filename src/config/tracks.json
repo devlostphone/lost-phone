@@ -1,0 +1,20 @@
+[
+  {
+    "key" : "track01",
+    "name" : "SantPoort -- LOFI Essentials",
+    "url" : "assets/audio/tracks/santpoort - you left a trace in the sand.mp3",
+    "artist" : "Sant Poort",
+    "title" : "You left a trace in the sand",
+    "thumbnail" : "santpoort - you left a trace in the sand.png",
+    "volume" : 0.75
+  },
+  {
+    "key" : "track02",
+    "name" : "Albedo -- LOFI Essentials",
+    "url" : "assets/audio/tracks/Albedo __Winter Essentials 2017 Out Now__.mp3",
+    "artist" : "Albedo",
+    "title" : "Out now",
+    "thumbnail" : "Albedo __Winter Essentials 2017 Out Now__.png",
+    "volume" : 0.15
+  }
+]

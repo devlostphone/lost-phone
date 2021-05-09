@@ -1,0 +1,27 @@
+{
+  "title" : "Configuració Wi-Fi",
+  "wallpaper" : "wifi-wallpaper",
+  "password" : "12345",
+  "limitPasswordCharacters" : 5,
+  "networks" :
+  [
+    [
+      "Xarxa Wifi pública biblioteca",
+      "Protegida",
+      "La xarxa està protegida amb contransenya",
+      true
+    ],
+    [
+      "MyBoX-ONE",
+      "Fora de l'abast",
+      "Fora de l'abast. Connexió no disponible",
+      false
+    ],
+    [
+      "MiWiFi_2dcX",
+      "Fora de l'abast",
+      "Fora de l'abast. Connexió no disponible",
+      false
+    ]
+  ]
+}

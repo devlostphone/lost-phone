@@ -25,6 +25,13 @@ export default {
 
     plugins: [
 
+        copy({
+            assets: [
+              "src/config",
+              "src/lang",
+            ],
+        }),
+
         //  Toggle the booleans here to enable / disable Phaser 3 features:
         replace({
             preventAssignment: true,

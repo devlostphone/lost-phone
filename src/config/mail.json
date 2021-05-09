@@ -1,0 +1,89 @@
+{
+  "style" : { "background-color" : "#333" },
+  "locale"  : {
+    "subject":"Assumpte: ",
+    "from":"De: "
+  },
+  "mails" : [
+    {
+      "id" : "m001",
+      "from" : "Persona 1",
+      "title": "Llegeix",
+      "subject" : "Llegeix",
+      "date" : "22/11/2020",
+      "body" : "Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam.",
+      "attach" :null,
+      "condition" : null
+    },
+    {
+      "id" : "m002",
+      "from" : "Persona 2",
+      "title": "De que va aquest miniop?",
+      "subject" : "De que va aquest miniop?",
+      "date" : "28/11/2020",
+      "body" : "Ut pharetra ipsum sodales nunc ultrices, \nnon aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. \n Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. Ut pharetra ipsum sodales nunc ultrices, \nnon aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. \n Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. Ut pharetra ipsum sodales nunc ultrices, \nnon aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. \n Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. Ut pharetra ipsum sodales nunc ultrices, \nnon aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam. \n Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum. Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam.",
+      "attach" :null,
+      "condition" : "m001"
+    },
+    {
+      "id" : "m003",
+      "from" : "Persona 3",
+      "title": "Instruccions de l'IOC",
+      "subject" : "Instruccions de l'IOC",
+      "date" : "8/12/2020",
+      "body" : "Vestibulum elementum est",
+      "attach" :null,
+      "condition" : "m002"
+    },
+    {
+      "id" : "m004",
+      "from" : "Persona 4",
+      "title": "Normes de convivència lectora",
+      "subject" : "Normes de convivència lectora",
+      "date" : "10/12/2020",
+      "body" : "Vestibulum elementum est",
+      "attach" :null,
+      "condition" : ["m001", "m002", "m003"]
+    },
+    {
+      "id" : "m005",
+      "from" : "Persona 5",
+      "title": "05 - Més mails",
+      "subject" : "05 - Més mails",
+      "date" : "10/12/2020",
+      "body" : "Vestibulum elementum est",
+      "attach" :null,
+      "condition" : "m003"
+    },
+    {
+      "id" : "m006",
+      "from" : "Persona 5",
+      "title": "06 - Més mails",
+      "subject" : "06 - Més mails",
+      "date" : "10/12/2020",
+      "body" : "Vestibulum elementum est",
+      "attach" :null,
+      "condition" : "m003"
+    },
+    {
+      "id" : "m007",
+      "from" : "Persona 5",
+      "title": "07 - Més mails",
+      "subject" : "07 - Més mails",
+      "date" : "10/12/2020",
+      "body" : "Vestibulum elementum est",
+      "attach" :null,
+      "condition" : "m003"
+    },
+    {
+      "id" : "m008",
+      "from" : "Persona 5",
+      "title": "08 - Més mails",
+      "subject" : "08 - Més mails",
+      "date" : "10/12/2020",
+      "body" : "Vestibulum elementum est",
+      "attach" :null,
+      "condition" : "m003"
+    }
+  ]
+}

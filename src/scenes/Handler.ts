@@ -1,22 +1,20 @@
 import Phaser from 'phaser';
 import LostAndPhone from 'lib/GameLib';
-import { setBackgroundPicture } from 'lib/Screen';
 
-class Handler extends LostAndPhone.Scene {
+export default class Handler extends LostAndPhone.Scene {
 
-    gameScene?: LostAndPhone.Scene;
+    public gameScene?: LostAndPhone.Scene;
 
     constructor() {
         super({ key : 'handler' });
-        this.sceneRunning = undefined;
     }
 
-    create() {
+    public create() {
         this.cameras.main.setBackgroundColor('#f00');
         this.launchScene('boot');
     }
 
-    launchScene(scene: string, data = undefined) {
+    public launchScene(scene: string, data = undefined) {
         this.scene.launch(scene, data);
         let gameScene = this.scene.get(scene);
 
@@ -25,7 +23,7 @@ class Handler extends LostAndPhone.Scene {
         }
     }
 
-    updateResize(scene: LostAndPhone.Scene) {
+    public updateResize(scene: LostAndPhone.Scene) {
         scene.scale.on('resize', this.resize, scene);
 
         const scaleWidth = scene.scale.gameSize.width;
@@ -44,7 +42,7 @@ class Handler extends LostAndPhone.Scene {
         this.updateCamera(scene);
     }
 
-    resize(gameSize: LostAndPhone.Scene) {
+    public resize(gameSize: LostAndPhone.Scene) {
         // 'this' means current scene that is running
         if (!this.sceneStopped) {
             const width = gameSize.width;
@@ -65,9 +63,6 @@ class Handler extends LostAndPhone.Scene {
                     camera.setZoom(zoom);
                 }
 
-                // Remove background picture if inner width screen is less than base width
-                setBackgroundPicture(this);
-
                 if (this.game.screenBaseSize !== undefined) {
                     camera.centerOn(this.game.screenBaseSize.width / 2, this.game.screenBaseSize.height / 2);
                 }
@@ -75,7 +70,7 @@ class Handler extends LostAndPhone.Scene {
         }
     }
 
-    updateCamera(scene: LostAndPhone.Scene) {
+    public updateCamera(scene: LostAndPhone.Scene) {
         const camera = scene.cameras.main;
         if (this.game instanceof LostAndPhone.Game) {
             if (scene.sizer?.width !== undefined && this.game.screenBaseSize !== undefined) {
@@ -84,12 +79,9 @@ class Handler extends LostAndPhone.Scene {
 
                 let zoom = Math.max(scaleX, scaleY);
                 camera.setZoom(zoom);
-
                 camera.centerOn(this.game.screenBaseSize.width / 2, this.game.screenBaseSize.height / 2);
             }
         }
     }
 
 }
-
-export default Handler;

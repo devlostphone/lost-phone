@@ -2,37 +2,28 @@ import {dpr} from 'lib/Screen';
 import LostAndPhone from 'lib/GameLib';
 import Handler from 'scenes/Handler';
 
-class Preloader extends LostAndPhone.Scene {
+export default class Preloader extends LostAndPhone.Scene {
 
-    handlerScene?: Handler;
     canvasWidth?: integer;
     canvasHeight?: integer;
 
     constructor() {
         super({ key : 'preloader' });
-        this.width = undefined;
-        this.height = undefined;
-        this.handlerScene = undefined;
     }
 
-    preload() {
+    public preload() {
+        super.preload();
         // load assets here
         let imageSize = dpr * 128; // 64, 128, 256, 512
         this.load.image('app', 'assets/app@' + imageSize + 'x.png');
         this.load.image('guide', 'assets/720x1280-guide.png');
-        // ---------------------------------------------------------
+
+        this.load.image('lorem-appsum', `assets/iconApp-@2.png`);
 
         this.canvasWidth = this.sys.game.canvas.width;
         this.canvasHeight = this.sys.game.canvas.height;
 
-        if (this.game instanceof LostAndPhone.Game) {
-            this.width = this.game.screenBaseSize?.width;
-            this.height = this.game.screenBaseSize?.height;
-        }
-
-        let handler = this.scene.get('handler');
-        if (handler instanceof Handler) {
-            this.handlerScene = handler;
+        if (this.handlerScene instanceof Handler) {
             this.handlerScene.sceneRunning = 'preload';
         }
         this.sceneStopped = false;
@@ -68,7 +59,9 @@ class Preloader extends LostAndPhone.Scene {
                     this.sceneStopped = true;
                     this.scene.stop('preload');
                     this.handlerScene?.cameras.main.setBackgroundColor("#020079");
-                    this.handlerScene?.launchScene('fakeOS');
+                    if (this.handlerScene instanceof Handler) {
+                        this.handlerScene?.launchScene('fakeOS');
+                    }
                 }
             });
         });
@@ -84,12 +77,12 @@ class Preloader extends LostAndPhone.Scene {
         this.load.json('language-en', 'lang/en.json');
     }
 
-  create() {
-    const { width, height } = this;
-    // CONFIG SCENE
-    this.handlerScene?.updateResize(this);
-  }
+    public create() {
+        const { width, height } = this;
+        // CONFIG SCENE
+        if (this.handlerScene instanceof Handler) {
+            this.handlerScene?.updateResize(this);
+        }
+    }
 
 }
-
-export default Preloader;

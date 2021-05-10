@@ -1,1 +1,5 @@
-{}
+{
+    "ui": {
+        "UIBarsColor": "0x9c9c9c"
+    }
+}

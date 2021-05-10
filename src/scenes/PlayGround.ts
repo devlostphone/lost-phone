@@ -5,16 +5,12 @@ import Handler from './Handler';
 
 class PlayGround extends LostAndPhone.Scene {
 
-    app: undefined;
+    app?: any;
     sampleText?: string;
     graphics?: undefined;
-    handlerScene?: Handler;
 
     constructor() {
         super({ key : 'playground'});
-        this.app = undefined;
-        this.graphics;
-        this.handlerScene = undefined;
     }
 
     preload() {

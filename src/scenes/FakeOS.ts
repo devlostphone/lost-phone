@@ -8,6 +8,7 @@ export default class FakeOS extends LostAndPhone.Scene {
 
     protected UI?: UI;
     protected activeApp: App;
+    protected background?: Phaser.GameObjects.Image;
 
     public debug: boolean = false;
     public lang: string = 'en';
@@ -29,6 +30,11 @@ export default class FakeOS extends LostAndPhone.Scene {
         this.debug = this.cache.json.get('config').debug == 'dev';
         this.colors = this.cache.json.get('colors');
         this.apps = this.cache.json.get('apps');
+
+        let wallpapers = this.cache.json.get('config').wallpapers;
+        for (let i = 0; i < wallpapers.length; i++) {
+            this.load.image(wallpapers[i]+ '-wallpaper', `assets/img/wallpapers/${wallpapers[i]}.png`);
+        }
     }
 
     create() {
@@ -37,12 +43,23 @@ export default class FakeOS extends LostAndPhone.Scene {
             this.handlerScene?.updateResize(this);
         }
 
+        this.setBackground();
+
         // Render the UI
         this.UI = new UI(this);
         this.UI.render();
 
         // Render the homescreen
         this.activeApp.render();
+    }
+
+    setBackground() {
+        this.background = this.add.image(
+            this.width / 2,
+            this.height / 2,
+            'background'
+        ).setOrigin(0.5, 0.5)
+        .setScale(1.5);
     }
 
     getLang(key: string, additions?: string[]) {

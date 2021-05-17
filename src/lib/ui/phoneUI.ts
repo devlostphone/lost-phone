@@ -19,9 +19,25 @@ export default class phoneUI {
 
     render() {
         this.scene.log('Loading UI');
+        this.setWallpaper();
         this.createBars();
         this.createButtons();
         this.createClock();
+    }
+
+    setWallpaper() {
+        let wallpapers = this.scene.cache.json.get('config').wallpapers;
+        let wallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)] + '-wallpaper';
+        let scale = this.scene.textures.get(wallpaper).getSourceImage();
+        this.scene.add.image(
+            Math.round(this.scene.width / 2),
+            Math.round(this.scene.height / 2),
+            wallpaper)
+        .setOrigin(0.5, 0.5)
+        .setScale(
+            this.scene.width / scale.width,
+            this.scene.height / scale.height
+        );
     }
 
     createBars() {

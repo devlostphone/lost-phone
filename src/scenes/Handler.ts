@@ -10,7 +10,6 @@ export default class Handler extends LostAndPhone.Scene {
     }
 
     public create() {
-        this.cameras.main.setBackgroundColor('#f00');
         this.launchScene('boot');
     }
 

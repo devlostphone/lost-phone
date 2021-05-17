@@ -15,7 +15,6 @@ export const SIZE_HEIGHT_SCREEN = 1280;
 
 export const config:  Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
-  backgroundColor: '#ff00ff',
   title: 'Lost & Phone',
 
   // Here's the trick

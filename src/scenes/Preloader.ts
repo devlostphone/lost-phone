@@ -19,6 +19,7 @@ export default class Preloader extends LostAndPhone.Scene {
         this.load.image('guide', 'assets/720x1280-guide.png');
 
         this.load.image('lorem-appsum', `assets/iconApp-@2.png`);
+        this.load.image('button-homescreen', 'assets/button-homescreen.png');
 
         this.canvasWidth = this.sys.game.canvas.width;
         this.canvasHeight = this.sys.game.canvas.height;

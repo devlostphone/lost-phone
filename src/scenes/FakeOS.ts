@@ -1,5 +1,5 @@
 import App from 'lib/apps/App';
-import Homescreen from 'lib/apps/Homescreen';
+import AppFactory from 'lib/apps/AppFactory';
 import LostAndPhone from 'lib/GameLib';
 import UI from 'lib/ui/phoneUI';
 import Handler from 'scenes/Handler';
@@ -7,7 +7,7 @@ import Handler from 'scenes/Handler';
 export default class FakeOS extends LostAndPhone.Scene {
 
     protected UI?: UI;
-    protected activeApp?: App;
+    protected activeApp: App;
 
     public debug: boolean = false;
     public lang: string = 'en';
@@ -16,6 +16,7 @@ export default class FakeOS extends LostAndPhone.Scene {
 
     constructor() {
         super({ key : 'fakeOS'});
+        this.activeApp = AppFactory.createInstance('HomescreenApp', this);
     }
 
     preload() {
@@ -41,7 +42,6 @@ export default class FakeOS extends LostAndPhone.Scene {
         this.UI.render();
 
         // Render the homescreen
-        this.activeApp = new Homescreen(this);
         this.activeApp.render();
     }
 
@@ -54,5 +54,21 @@ export default class FakeOS extends LostAndPhone.Scene {
         if (this.debug) {
             console.log('[Scene: '+this.scene.key+'] '+message);
         }
+    }
+
+    update(delta: any, time: any) {
+        this.UI?.update(delta, time);
+        if (typeof this.activeApp.update === 'function') {
+            this.activeApp.update(delta, time);
+        }
+    }
+
+    launchApp(key: string) {
+        this.log('Shutting down: ' + this.activeApp.constructor.name);
+        this.activeApp.destroy();
+
+        this.log('Launching App: '+key);
+        this.activeApp = AppFactory.createInstance(key, this);
+        this.activeApp.render();
     }
 }

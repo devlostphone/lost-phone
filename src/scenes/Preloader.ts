@@ -4,22 +4,18 @@ import Handler from 'scenes/Handler';
 
 export default class Preloader extends LostAndPhone.Scene {
 
-    canvasWidth?: integer;
-    canvasHeight?: integer;
+    canvasWidth: integer;
+    canvasHeight: integer;
 
     constructor() {
         super({ key : 'preloader' });
+        this.canvasWidth = 0;
+        this.canvasHeight = 0;
     }
 
     public preload() {
         super.preload();
-        // load assets here
-        let imageSize = dpr * 128; // 64, 128, 256, 512
-        this.load.image('app', 'assets/app@' + imageSize + 'x.png');
-        this.load.image('guide', 'assets/720x1280-guide.png');
-
-        this.load.image('lorem-appsum', `assets/iconApp-@2.png`);
-        this.load.image('button-homescreen', 'assets/button-homescreen.png');
+        this.preload_images();
 
         this.canvasWidth = this.sys.game.canvas.width;
         this.canvasHeight = this.sys.game.canvas.height;
@@ -29,6 +25,38 @@ export default class Preloader extends LostAndPhone.Scene {
         }
         this.sceneStopped = false;
 
+        this.progressBar();
+
+        // Load json config files
+        let config = ['config', 'apps', 'tracks', 'wifi', 'mail', 'colors'];
+        for (var i = 0; i < config.length; i++) {
+            this.load.json(config[i], `config/${config[i]}.json`);
+        }
+
+        // Load languages
+        this.load.json('language-ca', 'lang/ca.json');
+        this.load.json('language-en', 'lang/en.json');
+    }
+
+    public preload_images() {
+        let imageSize = dpr * 128; // 64, 128, 256, 512
+        this.load.image('app', 'assets/app@' + imageSize + 'x.png');
+        this.load.image('guide', 'assets/720x1280-guide.png');
+
+        this.load.image('lorem-appsum', `assets/iconApp-@2.png`);
+        this.load.image('button-homescreen', 'assets/button-homescreen.png');
+        this.load.image('background', 'assets/img/backgrounds/library.png');
+    }
+
+    public create() {
+        const { width, height } = this;
+        // CONFIG SCENE
+        if (this.handlerScene instanceof Handler) {
+            this.handlerScene?.updateResize(this);
+        }
+    }
+
+    public progressBar() {
         // simple preload again
         let progressBox = this.add.graphics();
         progressBox.fillStyle(0x0, 0.8);
@@ -59,31 +87,11 @@ export default class Preloader extends LostAndPhone.Scene {
                 callback: () => {
                     this.sceneStopped = true;
                     this.scene.stop('preload');
-                    this.handlerScene?.cameras.main.setBackgroundColor("#020079");
                     if (this.handlerScene instanceof Handler) {
                         this.handlerScene?.launchScene('fakeOS');
                     }
                 }
             });
         });
-
-        // Load json config files
-        let config = ['config', 'apps', 'tracks', 'wifi', 'mail', 'colors'];
-        for (var i = 0; i < config.length; i++) {
-            this.load.json(config[i], `config/${config[i]}.json`);
-        }
-
-        // Load languages
-        this.load.json('language-ca', 'lang/ca.json');
-        this.load.json('language-en', 'lang/en.json');
     }
-
-    public create() {
-        const { width, height } = this;
-        // CONFIG SCENE
-        if (this.handlerScene instanceof Handler) {
-            this.handlerScene?.updateResize(this);
-        }
-    }
-
 }

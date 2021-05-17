@@ -2,7 +2,7 @@ import App from 'lib/apps/App';
 import AppIcon from 'lib/ui/gameObjects/AppIcon';
 import FakeOS from 'scenes/FakeOS';
 
-export default class Homescreen extends App {
+export default class HomescreenApp extends App {
 
     protected icons: any[];
 
@@ -44,4 +44,5 @@ export default class Homescreen extends App {
 
         this.addGrid(apps, { columns:3, rows: 5 , position: Phaser.Display.Align.BOTTOM_CENTER});
     };
+
 }

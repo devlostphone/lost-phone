@@ -1,4 +1,5 @@
-// --- App icon
+import FakeOS from 'scenes/FakeOS';
+
 export default class AppIcon extends Phaser.GameObjects.Container
 {
     public icon: Phaser.GameObjects.Image;
@@ -6,7 +7,7 @@ export default class AppIcon extends Phaser.GameObjects.Container
     public balloon: any;
 
     constructor(
-        scene: Phaser.Scene,
+        scene: FakeOS,
         appConfig: any,
         x: number, y: number,
         texture: any,
@@ -40,13 +41,9 @@ export default class AppIcon extends Phaser.GameObjects.Container
         });
 
         this.icon.on('pointerup', function(event:any) {
-            if (t.scene.scene.isSleeping(t.config.key)) {
-                t.scene.scene.wake(t.config.key);
-            } else {
-                t.scene.scene.launch(t.config.key);
-            }
-            t.scene.scene.sleep('Homescreen');
-           // t.scene.scene.get('PhoneUI').homeButton.setVisible(true);
+           if(t.scene instanceof FakeOS) {
+            t.scene.launchApp(t.config.key);
+           }
         });
 
     }

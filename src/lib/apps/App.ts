@@ -3,6 +3,8 @@ import FakeOS from 'scenes/FakeOS';
 export default abstract class App {
     protected scene: FakeOS;
 
+    public elements: Phaser.GameObjects.Group;
+
     public rows:number = 12;
     public columns:number = 4;
 
@@ -14,15 +16,21 @@ export default abstract class App {
 
     constructor(scene: FakeOS) {
         this.scene = scene;
+        this.elements = new Phaser.GameObjects.Group(scene);
     }
 
     public abstract render():void;
+    public update(delta: any, time: any): void {
+
+    }
 
     addRow(elements: any, options:any = {}) {
         // Accept single elements
         if (!Array.isArray(elements)) {
             elements = [elements];
         }
+
+        this.elements.addMultiple(elements);
 
         // Check defaults
         if (options['height'] === undefined) {
@@ -65,6 +73,8 @@ export default abstract class App {
         if (!Array.isArray(elements)) {
             elements = [elements];
         }
+
+        this.elements.addMultiple(elements);
 
         if (options['offsetY'] === undefined) {
             options['offsetY'] = 0;
@@ -122,5 +132,9 @@ export default abstract class App {
           rowNumber = this.rows + rowNumber;
         }
         return this.scene.height / 10 + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
+    }
+
+    destroy() {
+        this.elements.clear(true, true);
     }
 }

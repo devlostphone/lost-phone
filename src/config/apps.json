@@ -16,7 +16,7 @@
   {
     "type" : "calculator",
     "class": "CalculatorApp",
-    "key"  : "calculatorApp",
+    "key"  : "CalculatorApp",
     "name" : "Calculadora",
     "icon" : "calculatorApp.png"
   },

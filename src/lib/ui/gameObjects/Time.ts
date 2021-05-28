@@ -1,20 +1,27 @@
-// Time Object (clock)
+/**
+ * Clock object.
+ */
 export default class Time extends Phaser.GameObjects.Text {
-    constructor(scene: Phaser.Scene, x: number, y: number, font: any) {
+
+    /**
+     * Class constructor.
+     *
+     * @param scene
+     * @param x
+     * @param y
+     * @param font
+     */
+    public constructor(scene: Phaser.Scene, x: number, y: number, font: any) {
         super(scene, x, y, '', font);
-        this.init();
+        this.update();
         this.scene.add.existing(this);
     }
 
-    init() {
-        let t = this;
+    /**
+     * Updates the clock text.
+     */
+    public update(): void {
         let date = new Date();
-        t.text = `${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}:${('0' + date.getSeconds()).slice(-2)}`;
-    }
-
-    update() {
-        let t = this
-        let date = new Date();
-        t.text = `${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}:${('0' + date.getSeconds()).slice(-2)}`;
+        this.text = `${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}:${('0' + date.getSeconds()).slice(-2)}`;
     }
 }

@@ -1,16 +1,31 @@
-import HomescreenApp from 'lib/apps/HomescreenApp';
 import ClockApp from 'lib/apps/ClockApp';
+import HomescreenApp from 'lib/apps/HomescreenApp';
 
+
+/**
+ * Contains all app definitions.
+ */
 const Store: any = {
-    HomescreenApp,
-    ClockApp
+    ClockApp,
+    HomescreenApp
 }
 
+/**
+ * Class used by FakeOS to retrieve apps based on their key.
+ */
 export default class AppFactory {
-    static createInstance(key: string, data: any) {
+
+    /**
+     * Creates an instance of the app specified by a key.
+     *
+     * @param key   The name of the app.
+     * @param data  Any additional parameters to pass on to the class.
+     * @returns     An instance of the specified app.
+     */
+    public static createInstance(key: string, data: any): any {
 
         if (Store[key] === undefined || Store[key] === null) {
-            throw new Error("Class type of "+key+" was not found");
+            throw new Error("Class type of "+key+" was not found.");
         }
 
         return new Store[key](data);

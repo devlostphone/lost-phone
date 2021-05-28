@@ -1,12 +1,37 @@
 import FakeOS from 'scenes/FakeOS';
 
+/**
+ * App icon.
+ * @todo: review this.
+ */
 export default class AppIcon extends Phaser.GameObjects.Container
 {
+    /**
+     * The icon image.
+     */
     public icon: Phaser.GameObjects.Image;
+
+    /**
+     * Config.
+     */
     public config: any;
+
+    /**
+     * The notification balloon.
+     */
     public balloon: any;
 
-    constructor(
+    /**
+     * Class constructor.
+     *
+     * @param scene
+     * @param appConfig
+     * @param x
+     * @param y
+     * @param texture
+     * @param frame
+     */
+    public constructor(
         scene: FakeOS,
         appConfig: any,
         x: number, y: number,
@@ -29,7 +54,10 @@ export default class AppIcon extends Phaser.GameObjects.Container
         scene.add.existing(this);
     };
 
-    init() {
+    /**
+     *  Sets the icons behaviour.
+     */
+    public init(): void {
         // --- Interaction with the icon
         let t = this;
         this.icon.on('pointerover', function(event: any) {
@@ -40,7 +68,7 @@ export default class AppIcon extends Phaser.GameObjects.Container
             t.setAlpha(1.0);
         });
 
-        this.icon.on('pointerup', function(event:any) {
+        this.icon.on('pointerup', function(event: any) {
            if(t.scene instanceof FakeOS) {
             t.scene.launchApp(t.config.key);
            }
@@ -48,8 +76,12 @@ export default class AppIcon extends Phaser.GameObjects.Container
 
     }
 
-    addLabel(appname: string)
-    {
+    /**
+     * Adds a label below the icon.
+     *
+     * @returns This object for chaining.
+     */
+    public addLabel(): AppIcon {
         let label = this.scene.add.text(
             this.x,
             this.y + this.icon.displayHeight / 2 + 5,
@@ -66,7 +98,13 @@ export default class AppIcon extends Phaser.GameObjects.Container
         return this;
     }
 
-    addBalloon(counter: number) {
+    /**
+     * Adds a balloon notification with the specified number.
+     *
+     * @param counter   The number of notifications.
+     * @returns This object for chaining.
+     */
+    public addBalloon(counter: number): AppIcon {
         let offset = 5;
 
         if (this.balloon !== undefined) {

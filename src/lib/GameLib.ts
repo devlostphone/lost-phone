@@ -1,3 +1,6 @@
+/**
+ * LostAndPhone module.
+ */
 module LostAndPhone {
     interface ScreenBaseSize {
         width: number;
@@ -8,19 +11,29 @@ module LostAndPhone {
         minHeight: number;
     }
 
+    /**
+     * Extended Phaser Game.
+     */
     export class Game extends Phaser.Game {
         public screenBaseSize?: ScreenBaseSize;
         public orientation?: string;
 
-        constructor(config:  Phaser.Types.Core.GameConfig) {
+        /**
+         * Class constructor.
+         *
+         * @param config
+         */
+        public constructor(config:  Phaser.Types.Core.GameConfig) {
             super(config);
         }
 
-        public runDestroy() {
-
-        }
+        // TODO: review this.
+        public runDestroy(): void {}
     }
 
+    /**
+     * Extended Phaser Scene.
+     */
     export class Scene extends Phaser.Scene {
         public handlerScene?: Phaser.Scene;
         public sceneRunning?: string;
@@ -31,14 +44,22 @@ module LostAndPhone {
         public width: number;
         public height: number;
 
-        constructor(config:string | Phaser.Types.Scenes.SettingsConfig) {
+        /**
+         * Class constructor.
+         *
+         * @param config
+         */
+        public constructor(config:string | Phaser.Types.Scenes.SettingsConfig) {
             super(config);
             this.sceneStopped = false;
             this.width = 0;
             this.height = 0;
         }
 
-        public preload() {
+        /**
+         * Scene preload method.
+         */
+        public preload(): void {
             if (this.game instanceof Game && this.game.screenBaseSize !== undefined) {
                 this.width = this.game.screenBaseSize.width;
                 this.height = this.game.screenBaseSize.height;

@@ -2,18 +2,34 @@ import {dpr} from 'lib/Screen';
 import LostAndPhone from 'lib/GameLib';
 import Handler from 'scenes/Handler';
 
+/**
+ * Preloader scene.
+ */
 export default class Preloader extends LostAndPhone.Scene {
 
-    canvasWidth: integer;
-    canvasHeight: integer;
+    /**
+     * Canvas width.
+     */
+    canvasWidth: number;
 
-    constructor() {
+    /**
+     * Canvas height.
+     */
+    canvasHeight: number;
+
+    /**
+     * Class constructor.
+     */
+    public constructor() {
         super({ key : 'preloader' });
         this.canvasWidth = 0;
         this.canvasHeight = 0;
     }
 
-    public preload() {
+    /**
+     * Preload method.
+     */
+    public preload(): void {
         super.preload();
         this.preload_images();
 
@@ -38,7 +54,10 @@ export default class Preloader extends LostAndPhone.Scene {
         this.load.json('language-en', 'lang/en.json');
     }
 
-    public preload_images() {
+    /**
+     * Preload images method.
+     */
+    public preload_images(): void {
         let imageSize = dpr * 128; // 64, 128, 256, 512
         this.load.image('app', 'assets/app@' + imageSize + 'x.png');
         this.load.image('guide', 'assets/720x1280-guide.png');
@@ -48,7 +67,10 @@ export default class Preloader extends LostAndPhone.Scene {
         this.load.image('background', 'assets/img/backgrounds/library.png');
     }
 
-    public create() {
+    /**
+     * Create method.
+     */
+    public create(): void {
         const { width, height } = this;
         // CONFIG SCENE
         if (this.handlerScene instanceof Handler) {
@@ -56,7 +78,10 @@ export default class Preloader extends LostAndPhone.Scene {
         }
     }
 
-    public progressBar() {
+    /**
+     * Prints a progress bar.
+     */
+    public progressBar(): void {
         // simple preload again
         let progressBox = this.add.graphics();
         progressBox.fillStyle(0x0, 0.8);

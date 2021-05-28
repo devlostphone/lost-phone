@@ -1,19 +1,37 @@
 import Phaser from 'phaser';
 import LostAndPhone from 'lib/GameLib';
 
+/**
+ * Scene for handling resizing.
+ */
 export default class Handler extends LostAndPhone.Scene {
 
+    /**
+     * Game scene.
+     */
     public gameScene?: LostAndPhone.Scene;
 
-    constructor() {
+    /**
+     * Class constructor.
+     */
+    public constructor() {
         super({ key : 'handler' });
     }
 
-    public create() {
+    /**
+     * Create method.
+     */
+    public create(): void {
         this.launchScene('boot');
     }
 
-    public launchScene(scene: string, data = undefined) {
+    /**
+     * Launch scene method.
+     *
+     * @param scene
+     * @param data
+     */
+    public launchScene(scene: string, data = undefined): void {
         this.scene.launch(scene, data);
         let gameScene = this.scene.get(scene);
 
@@ -22,7 +40,12 @@ export default class Handler extends LostAndPhone.Scene {
         }
     }
 
-    public updateResize(scene: LostAndPhone.Scene) {
+    /**
+     * Update resize method.
+     *
+     * @param scene
+     */
+    public updateResize(scene: LostAndPhone.Scene): void {
         scene.scale.on('resize', this.resize, scene);
 
         const scaleWidth = scene.scale.gameSize.width;
@@ -41,7 +64,12 @@ export default class Handler extends LostAndPhone.Scene {
         this.updateCamera(scene);
     }
 
-    public resize(gameSize: LostAndPhone.Scene) {
+    /**
+     * Resize method.
+     *
+     * @param gameSize
+     */
+    public resize(gameSize: LostAndPhone.Scene): void {
         // 'this' means current scene that is running
         if (!this.sceneStopped) {
             const width = gameSize.width;
@@ -69,7 +97,12 @@ export default class Handler extends LostAndPhone.Scene {
         }
     }
 
-    public updateCamera(scene: LostAndPhone.Scene) {
+    /**
+     * Update camera method.
+     *
+     * @param scene
+     */
+    public updateCamera(scene: LostAndPhone.Scene): void {
         const camera = scene.cameras.main;
         if (this.game instanceof LostAndPhone.Game) {
             if (scene.sizer?.width !== undefined && this.game.screenBaseSize !== undefined) {
@@ -82,5 +115,4 @@ export default class Handler extends LostAndPhone.Scene {
             }
         }
     }
-
 }

@@ -1,18 +1,30 @@
-import Phaser from 'phaser';
 import {dpr} from 'lib/Screen';
 import LostAndPhone from 'lib/GameLib';
 
+/**
+ * Boot scene.
+ */
 export default class Boot extends LostAndPhone.Scene {
-    constructor() {
+
+    /**
+     * Class constructor.
+     */
+    public constructor() {
         super({ key: 'boot'});
     }
 
-    create() {
+    /**
+     * Create method.
+     */
+    public create(): void {
         // window.addEventListener('resize', this.resize.bind(this));
         this.scene.start('preloader');
     }
 
-    resize() {
+    /**
+     * Resize method.
+     */
+    public resize(): void {
         let w = window.innerWidth * dpr;
         let h = window.innerHeight * dpr;
         // manually resize the game with the Phaser 3.16 scalemanager

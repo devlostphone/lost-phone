@@ -1,36 +1,103 @@
-import App from 'lib/apps/App';
 import FakeOS from 'scenes/FakeOS';
+import App from 'lib/apps/App';
 
+/**
+ * Clock app
+ */
 export default class ClockApp extends App {
 
+    /**
+     * Clock size.
+     */
     clockSize: number;
+
+    /**
+     * Graphics object.
+     */
     graphics?: Phaser.GameObjects.Graphics;
+
+    /**
+     * Angle.
+     */
     angle?: number;
+
+    /**
+     * Size.
+     */
     size?: number;
+
+    /**
+     * Dest.
+     */
     dest?: any;
+
+    /**
+     * P1.
+     */
     p1?: any;
+
+    /**
+     * P2.
+     */
     p2?: any;
+
+    /**
+     * Date.
+     */
     date?: Date;
+
+    /**
+     * Hours.
+     */
     hours?: number;
+
+    /**
+     * Mins.
+     */
     mins?: number;
+
+    /**
+     * Seconds.
+     */
     seconds?: number;
 
+    /**
+     * X.
+     */
     x: number;
+
+    /**
+     * Y.
+     */
     y: number;
 
-    constructor(scene: FakeOS) {
+    /**
+     * Class constructor.
+     *
+     * @param scene
+     */
+    public constructor(scene: FakeOS) {
         super(scene);
         this.x = scene.width / 2;
         this.y = scene.height / 2;
         this.clockSize = Math.round(this.scene.width / 2.5);
     }
 
-    public render() {
+    /**
+     * Render method.
+     */
+    public render(): void {
         this.graphics = this.scene.add.graphics();
         this.elements.add(this.graphics);
     }
 
-    public update(delta: any, time: any) {
+    /**
+     * Update method.
+     *
+     * @param delta
+     * @param time
+     */
+    public update(delta: any, time: any): void {
         let p1;
         let p2;
 

@@ -1,30 +1,84 @@
 import FakeOS from 'scenes/FakeOS';
 
+/**
+ * Abstract class App.
+ * Every FakeOS app needs to extend this class.
+ */
 export default abstract class App {
+
+    /**
+     * FakeOS
+     */
     protected scene: FakeOS;
 
+    /**
+     * Group of elements of the app.
+     */
     public elements: Phaser.GameObjects.Group;
 
-    public rows:number = 12;
-    public columns:number = 4;
+    /**
+     * Number of rows to divide the app into.
+     */
+    public rows: number = 12;
 
-    public lastX = 0;
-    public lastY = 0;
-    public biggestY = 0;
+    /**
+     * Row where the last content was placed.
+     */
+    public lastY: number = 0;
 
+    /**
+     * Number of columns to divide the app into.
+     */
+    public columns: number = 4;
+
+    /**
+     * UNUSED: Column where the last content was placed.
+     */
+    public lastX: number = 0;
+
+    /**
+     * Biggest row number where content was ever placed.
+     */
+    public biggestY: number = 0;
+
+    /**
+     * A drag zone created when the last row added surpasses
+     * the total rows.
+     */
     public dragZone?: any;
 
-    constructor(scene: FakeOS) {
+    /**
+     * Class constructor.
+     *
+     * @param scene FakeOS
+     */
+    public constructor(scene: FakeOS) {
         this.scene = scene;
         this.elements = new Phaser.GameObjects.Group(scene);
     }
 
+    /**
+     * Renders the app. Needs to be overriden.
+     */
     public abstract render():void;
-    public update(delta: any, time: any): void {
 
-    }
+    /**
+     * Updates render. Will be called on every Scene update.
+     * Optionally overriden.
+     *
+     * @param delta
+     * @param time
+     */
+    public update(delta: any, time: any): void {}
 
-    addRow(elements: any, options:any = {}) {
+    /**
+     * Arranges content in a new row.
+     * The elements must already be in the scene.
+     *
+     * @param elements  A single Phaser GameObject or an array of them
+     * @param options   Additional options for rendering the content
+     */
+    public addRow(elements: any, options:any = {}): void {
         // Accept single elements
         if (!Array.isArray(elements)) {
             elements = [elements];
@@ -68,12 +122,21 @@ export default abstract class App {
         this.lastY += options['height'];
     }
 
-    addGrid(elements: any, options:any = {}) {
+    /**
+     * Arranges content in a grid.
+     * The elements must be already in the scene.
+     *
+     * @param elements  A single Phaser GameObject or an array of them
+     * @param options   Additional options for rendering the content
+     */
+    public addGrid(elements: any, options:any = {}): void {
         // Accept single elements
         if (!Array.isArray(elements)) {
             elements = [elements];
         }
 
+        // The elements are stored in the class so they can be easily
+        // cleared when needed.
         this.elements.addMultiple(elements);
 
         if (options['offsetY'] === undefined) {
@@ -121,20 +184,36 @@ export default abstract class App {
         }
 
         this.lastY += Math.floor(elements.length / options['columns'] * options['height']);
-      }
+    }
 
-    rowHeight() {
+    /**
+     * Returns the row height.
+     *
+     * @returns The total height divided by the number of rows
+     */
+    protected rowHeight(): number {
         return this.scene.height / this.rows;
     }
 
-    atRow(rowNumber: number) {
+    /**
+     * Returns the y position of the specified row.
+     *
+     * @param rowNumber The row number
+     * @returns         The y position of the specified row
+     */
+    protected atRow(rowNumber: number): number {
+
+        // If rowNumber is negative, start from the bottom
         if (rowNumber < 0) {
           rowNumber = this.rows + rowNumber;
         }
-        return this.scene.height / 10 + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
+        return this.scene.getUI().elements.topBar.height + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
     }
 
-    destroy() {
+    /**
+     * Clears all the elements stored in the app.
+     */
+    public destroy(): void {
         this.elements.clear(true, true);
     }
 }

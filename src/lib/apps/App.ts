@@ -1,4 +1,4 @@
-import FakeOS from 'scenes/FakeOS';
+import { FakeOS } from 'scenes/FakeOS';
 
 /**
  * Abstract class App.
@@ -9,7 +9,7 @@ export default abstract class App {
     /**
      * FakeOS
      */
-    protected scene: FakeOS;
+    protected fakeOS: FakeOS;
 
     /**
      * Group of elements of the app.
@@ -50,11 +50,11 @@ export default abstract class App {
     /**
      * Class constructor.
      *
-     * @param scene FakeOS
+     * @param fakeOS FakeOS
      */
-    public constructor(scene: FakeOS) {
-        this.scene = scene;
-        this.elements = new Phaser.GameObjects.Group(scene);
+    public constructor(fakeOS: FakeOS) {
+        this.fakeOS = fakeOS;
+        this.elements = new Phaser.GameObjects.Group(fakeOS);
     }
 
     /**
@@ -100,11 +100,11 @@ export default abstract class App {
         }
 
         Phaser.Actions.GridAlign(elements, {
-            x: this.scene.width / elements.length / 2,
+            x: this.fakeOS.width / elements.length / 2,
             y: this.atRow(this.lastY),
             width: -1,
             height: 1,
-            cellWidth: this.scene.width / elements.length,
+            cellWidth: this.fakeOS.width / elements.length,
             cellHeight: this.rowHeight() * options['height'],
             position: options['position']
         });
@@ -113,7 +113,7 @@ export default abstract class App {
             this.biggestY = this.lastY;
             if (this.biggestY > this.rows) {
                 this.dragZone.input.hitArea.setSize(
-                    this.scene.width,
+                    this.fakeOS.width,
                     this.atRow(this.biggestY+1)
                 );
             }
@@ -164,12 +164,12 @@ export default abstract class App {
         }
 
         Phaser.Actions.GridAlign(elements, {
-            x: (this.scene.width / elements.length / 2) +  (this.scene.width / options['columns']) / options['columns'],
+            x: (this.fakeOS.width / elements.length / 2) +  (this.fakeOS.width / options['columns']) / options['columns'],
             y: this.atRow(this.lastY) + options['offsetY'],
             width: options['columns'],
             height: options['rows'],
-            cellWidth: this.scene.width / options['columns'],
-            cellHeight: (this.scene.height / options['rows']) * options['height'],
+            cellWidth: this.fakeOS.width / options['columns'],
+            cellHeight: (this.fakeOS.height / options['rows']) * options['height'],
             position: options['position']
         });
 
@@ -177,7 +177,7 @@ export default abstract class App {
             this.biggestY = this.lastY;
             if (this.biggestY > this.rows) {
                 this.dragZone.input.hitArea.setSize(
-                    this.scene.width,
+                    this.fakeOS.width,
                     this.atRow(this.biggestY+1)
                 );
             }
@@ -192,7 +192,7 @@ export default abstract class App {
      * @returns The total height divided by the number of rows
      */
     protected rowHeight(): number {
-        return this.scene.height / this.rows;
+        return this.fakeOS.height / this.rows;
     }
 
     /**
@@ -207,7 +207,7 @@ export default abstract class App {
         if (rowNumber < 0) {
           rowNumber = this.rows + rowNumber;
         }
-        return this.scene.getUI().elements.topBar.height + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
+        return this.fakeOS.getUI().elements.topBar.height + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
     }
 
     /**

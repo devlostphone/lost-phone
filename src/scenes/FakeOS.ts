@@ -7,7 +7,7 @@ import AppFactory from 'lib/apps/AppFactory';
 /**
  * FakeOS.
  */
-export default class FakeOS extends LostAndPhone.Scene {
+export class FakeOS extends LostAndPhone.Scene {
 
     /**
      * FakeOS UI.
@@ -30,11 +30,6 @@ export default class FakeOS extends LostAndPhone.Scene {
     public debug: boolean = false;
 
     /**
-     * FakeOS language.
-     */
-    public lang: string = 'en';
-
-    /**
      * Colors.
      */
     public colors?: any ;
@@ -51,6 +46,7 @@ export default class FakeOS extends LostAndPhone.Scene {
         super({ key : 'fakeOS'});
         this.activeApp = AppFactory.createInstance('HomescreenApp', this);
         this.UI = new UI(this);
+        //this.initSettings();;
     }
 
     /**
@@ -114,15 +110,12 @@ export default class FakeOS extends LostAndPhone.Scene {
     }
 
     /**
-     * Get a string translation.
+     * Returns Phaser.Game object.
      *
-     * @param key
-     * @param additions
-     * @returns     The translated string
+     * @returns Phaser.Game
      */
-    public getLang(key: string, additions?: string[]): string {
-        let strings = this.cache.json.get('language-'+this.lang);
-        return strings[key];
+    public getGame(): Phaser.Game {
+        return this.game;
     }
 
     /**

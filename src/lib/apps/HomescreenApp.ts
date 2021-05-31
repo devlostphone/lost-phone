@@ -1,4 +1,4 @@
-import FakeOS from 'scenes/FakeOS';
+import { FakeOS } from 'scenes/FakeOS';
 import App from 'lib/apps/App';
 import AppIcon from 'lib/ui/gameObjects/AppIcon';
 
@@ -16,10 +16,10 @@ export default class HomescreenApp extends App {
     /**
      * Class constructor.
      *
-     * @param scene FakeOS
+     * @param fakeOS FakeOS
      */
-    public constructor(scene: FakeOS) {
-        super(scene);
+    public constructor(fakeOS: FakeOS) {
+        super(fakeOS);
         this.icons = [];
     }
 
@@ -37,24 +37,24 @@ export default class HomescreenApp extends App {
 
         let apps = [];
         let app = undefined;
-        for (let index in this.scene.apps) {
-            if (this.scene.debug) {
+        for (let index in this.fakeOS.apps) {
+            if (this.fakeOS.debug) {
                 app = new AppIcon(
-                    this.scene,
-                    this.scene.apps[index],
+                    this.fakeOS,
+                    this.fakeOS.apps[index],
                     0, 0,
                     'lorem-appsum'
                 ).addLabel();
             } else {
                 app = new AppIcon(
-                    this.scene,
-                    this.scene.apps[index],
+                    this.fakeOS,
+                    this.fakeOS.apps[index],
                     0, 0,
-                    this.scene.apps[index].key
+                    this.fakeOS.apps[index].key
                 ).addLabel();
             };
 
-            this.icons[this.scene.apps[index]['type']] = app;
+            this.icons[this.fakeOS.apps[index]['type']] = app;
             apps.push(app);
         };
 

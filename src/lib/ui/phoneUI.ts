@@ -1,4 +1,4 @@
-import FakeOS from 'scenes/FakeOS';
+import { FakeOS } from 'scenes/FakeOS';
 import Time from 'lib/ui/gameObjects/Time';
 
 /**
@@ -9,7 +9,7 @@ export default class phoneUI {
     /**
      * FakeOS
      */
-    public scene: FakeOS;
+    public fakeOS: FakeOS;
 
     /**
      * UI elements.
@@ -24,10 +24,10 @@ export default class phoneUI {
     /**
      * Class constructor.
      *
-     * @param scene FakeOS
+     * @param fakeOS FakeOS
      */
-    public constructor(scene: FakeOS) {
-        this.scene = scene;
+    public constructor(fakeOS: FakeOS) {
+        this.fakeOS = fakeOS;
         this.elements = {};
     }
 
@@ -35,7 +35,7 @@ export default class phoneUI {
      * Renders the UI.
      */
     public render(): void {
-        this.scene.log('Loading UI');
+        this.fakeOS.log('Loading UI');
         this.setWallpaper();
         this.createBars();
         this.createButtons();
@@ -46,17 +46,17 @@ export default class phoneUI {
      * Sets the FakeOS wallpaper.
      */
     protected setWallpaper(): void {
-        let wallpapers = this.scene.cache.json.get('config').wallpapers;
+        let wallpapers = this.fakeOS.cache.json.get('config').wallpapers;
         let wallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)] + '-wallpaper';
-        let scale = this.scene.textures.get(wallpaper).getSourceImage();
-        this.scene.add.image(
-            Math.round(this.scene.width / 2),
-            Math.round(this.scene.height / 2),
+        let scale = this.fakeOS.textures.get(wallpaper).getSourceImage();
+        this.fakeOS.add.image(
+            Math.round(this.fakeOS.width / 2),
+            Math.round(this.fakeOS.height / 2),
             wallpaper)
         .setOrigin(0.5, 0.5)
         .setScale(
-            this.scene.width / scale.width,
-            this.scene.height / scale.height
+            this.fakeOS.width / scale.width,
+            this.fakeOS.height / scale.height
         );
     }
 
@@ -64,24 +64,24 @@ export default class phoneUI {
      * Creates the top and bottom bars.
      */
     protected createBars(): void {
-        this.scene.log('Creating top bar');
+        this.fakeOS.log('Creating top bar');
         // Display top and bottom bars
-        this.elements.topBar = this.scene.add.rectangle(
+        this.elements.topBar = this.fakeOS.add.rectangle(
             0,
             0,
-            this.scene.width,
-            this.scene.height * 0.05,
-            this.scene.colors.ui.UIBarsColor,
+            this.fakeOS.width,
+            this.fakeOS.height * 0.05,
+            this.fakeOS.colors.ui.UIBarsColor,
             1.0
         ).setOrigin(0);
 
-        this.scene.log('Creating bottom bar');
-        this.elements.bottomBar = this.scene.add.rectangle(
+        this.fakeOS.log('Creating bottom bar');
+        this.elements.bottomBar = this.fakeOS.add.rectangle(
             0,
-            this.scene.height - this.scene.height * 0.1,
-            this.scene.width,
-            this.scene.height * 0.1,
-            this.scene.colors.ui.UIBarsColor,
+            this.fakeOS.height - this.fakeOS.height * 0.1,
+            this.fakeOS.width,
+            this.fakeOS.height * 0.1,
+            this.fakeOS.colors.ui.UIBarsColor,
           1.0
         ).setOrigin(0);
     }
@@ -91,24 +91,24 @@ export default class phoneUI {
      */
      protected createButtons(): void {
         let t = this;
-        this.elements.homeButton = this.scene.add.image(
-            this.scene.width / 2,
-            this.scene.height - this.scene.height * 0.05,
+        this.elements.homeButton = this.fakeOS.add.image(
+            this.fakeOS.width / 2,
+            this.fakeOS.height - this.fakeOS.height * 0.05,
             'button-homescreen'
         ).setInteractive()
         .setOrigin(0.5, 0.5)
-        .on('pointerup', () => t.scene.launchApp('HomescreenApp'));
+        .on('pointerup', () => t.fakeOS.launchApp('HomescreenApp'));
     }
 
     /**
      * Creates the clock at the top bar
      */
     protected createClock(): void {
-        this.scene.log('Creating clock');
+        this.fakeOS.log('Creating clock');
         this.elements.clock = new Time(
-            this.scene,
-            this.scene.width / 2,
-            this.scene.height * 0.025,
+            this.fakeOS,
+            this.fakeOS.width / 2,
+            this.fakeOS.height * 0.025,
             {
                 fontFamily: 'Roboto',
                 fontSize : 32,

@@ -1,4 +1,4 @@
-import FakeOS from 'scenes/FakeOS';
+import { FakeOS } from 'scenes/FakeOS';
 import App from 'lib/apps/App';
 
 /**
@@ -74,20 +74,20 @@ export default class ClockApp extends App {
     /**
      * Class constructor.
      *
-     * @param scene
+     * @param fakeOS
      */
-    public constructor(scene: FakeOS) {
-        super(scene);
-        this.x = scene.width / 2;
-        this.y = scene.height / 2;
-        this.clockSize = Math.round(this.scene.width / 2.5);
+    public constructor(fakeOS: FakeOS) {
+        super(fakeOS);
+        this.x = this.fakeOS.width / 2;
+        this.y = this.fakeOS.height / 2;
+        this.clockSize = Math.round(this.fakeOS.width / 2.5);
     }
 
     /**
      * Render method.
      */
     public render(): void {
-        this.graphics = this.scene.add.graphics();
+        this.graphics = this.fakeOS.add.graphics();
         this.elements.add(this.graphics);
     }
 
@@ -108,8 +108,8 @@ export default class ClockApp extends App {
         // Clear the graphics every frame
         this.graphics.clear();
         // The frame
-        this.graphics.fillStyle(this.scene.colors.blue, 0.5);
-        this.graphics.lineStyle(10, this.scene.colors.white, 0.5);
+        this.graphics.fillStyle(this.fakeOS.colors.blue, 0.5);
+        this.graphics.lineStyle(10, this.fakeOS.colors.white, 0.5);
         this.graphics.fillCircle(this.x, this.y, this.clockSize);
         this.graphics.strokeCircle(this.x, this.y, this.clockSize);
 

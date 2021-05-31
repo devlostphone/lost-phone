@@ -1,4 +1,3 @@
-
 import HomescreenApp from '~/lib/apps/HomescreenApp';
 import ClockApp from '~/lib/apps/ClockApp';
 import SettingsApp from '~/lib/apps/SettingsApp';

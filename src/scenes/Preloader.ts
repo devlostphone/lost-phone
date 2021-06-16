@@ -67,7 +67,8 @@ export default class Preloader extends FakeOSScene {
         this.load.image('background', 'assets/img/backgrounds/library.png');
 
         // add dank Disco animated emote for testing purposes
-        this.load.image('dankDisco', 'assets/dankDisco.png');
+        // src: https://betterttv.com/emotes/shared/search?query=dankdisco
+        this.load.spritesheet('dankDisco', 'assets/dankDisco.png',  { frameWidth: 112, frameHeight: 112, endFrame: 144});
     }
 
     /**

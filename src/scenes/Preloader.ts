@@ -65,6 +65,9 @@ export default class Preloader extends FakeOSScene {
         this.load.image('lorem-appsum', `assets/iconApp-@2.png`);
         this.load.image('button-homescreen', 'assets/button-homescreen.png');
         this.load.image('background', 'assets/img/backgrounds/library.png');
+
+        // add dank Disco animated emote for testing purposes
+        this.load.image('dankDisco', 'assets/dankDisco.png');
     }
 
     /**

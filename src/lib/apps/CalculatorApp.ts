@@ -1,6 +1,7 @@
-import { FakeOS } from '~/scenes/FakeOS';
+
+import { FakeOS } from '~/libscenes/FakeOS';
 import App from '~/lib/apps/App';
-import FeelsDankMan from '~/lib/ui/gameObjects/ButtonUI';
+import '~/lib/ui/gameObjects/CustomObjTemplate';
 export default class CalculatorApp extends App {
 
     /**
@@ -11,15 +12,6 @@ export default class CalculatorApp extends App {
     public constructor(scene: FakeOS) {
         super(scene);
 
-        // TODO: Needs to place it on a new file that handles custom objects list
-        Phaser.GameObjects.GameObjectFactory.register('dank', function (
-            this: Phaser.GameObjects.GameObjectFactory,
-            x: number,
-            y: number) {
-            const dank = new FeelsDankMan(scene, x, y)
-            scene.sys.displayList.add(dank)
-            return dank
-        })
     }
 
     /**

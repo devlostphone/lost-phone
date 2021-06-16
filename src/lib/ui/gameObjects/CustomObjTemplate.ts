@@ -1,13 +1,3 @@
-import { FakeOS } from '~/scenes/FakeOS';
-
-// TODO:
-
-/**
- * INFO: Explore how to create UIbutton following this tutorial:
- * https://blog.ourcade.co/posts/2020/container-button-phaser-3-typescript-rxjs/
- * The concept is define a button as a container to hold a Button (image) and Text object.
- */
-
 declare global
 {
     interface IButton extends Phaser.GameObjects.GameObject, Phaser.GameObjects.Components.Transform
@@ -18,7 +8,7 @@ declare global
 
 export default class FeelsDankMan extends Phaser.GameObjects.Image {
     public constructor (
-        scene: FakeOS,
+        scene: Phaser.Scene,
         x: number,
         y: number
     ) {
@@ -35,3 +25,13 @@ declare global {
         }
     }
 }
+
+Phaser.GameObjects.GameObjectFactory.register('dank', function (
+    this: Phaser.GameObjects.GameObjectFactory,
+    x: number,
+    y: number) {
+    const scene = this.scene
+    const dank = new FeelsDankMan(scene, x, y)
+    scene.sys.displayList.add(dank)
+    return dank
+})

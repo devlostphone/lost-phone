@@ -16,14 +16,14 @@ declare global
     }
 }
 
-export default class Button extends Phaser.GameObjects.Image implements IButton {
-    public constructor(
-        scene: Phaser.Scene,
+export default class FeelsDankMan extends Phaser.GameObjects.Image {
+    public constructor (
+        scene: FakeOS,
         x: number,
-        y: number) {
-      super(scene, x, y)
-      this.fillStyle(0x770000).fillRect(x, y, 100, 100)
-  }
+        y: number
+    ) {
+        super(scene, x, y, 'dankDisco')
+    }
 }
 
 declare global {
@@ -31,16 +31,7 @@ declare global {
     {
         interface GameObjectFactory
         {
-            button(x: number, y: number): Button
+            dank(x: number, y: number): FeelsDankMan
         }
     }
 }
-
-Phaser.GameObjects.GameObjectFactory.register('button', function (x, y) {
-    const button = new Button(this.scene, x, y)
-
-    this.displayList.add(button)
-    this.updateList.add(button)
-
-    return button
-})

@@ -1,3 +1,8 @@
+/**
+ * Simple custom object
+ * @todo: need to be documented
+ */
+
 declare global
 {
     interface IFeelsDankMan extends Phaser.GameObjects.GameObject, Phaser.GameObjects.Components.Transform

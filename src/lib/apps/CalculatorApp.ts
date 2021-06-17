@@ -1,25 +1,43 @@
+/**
+ * Calculator App
+ * @todo:
+ */
 
-import { FakeOS } from '~/libscenes/FakeOS';
+import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
 import '~/lib/ui/gameObjects/CustomObjTemplate';
+import '~/lib/ui/gameObjects/Button';
 export default class CalculatorApp extends App {
 
+    /**
+     * Feels dank man custom object
+     */
     dank: any
+    button: any
+
     /**
      * Class constructor.
      *
-     * @param scene
+     * @param fakeOS
      */
-    public constructor(scene: FakeOS) {
-        super(scene);
-
+    public constructor(fakeOS: FakeOS) {
+        super(fakeOS);
     }
 
     /**
      * Render method.
      */
     public render(): void {
-        this.dank = this.fakeOS.add.dank(0, 0).setOrigin(0.5).setScale(1)
+
+        // Add a simple purple square button
+        this.button = this.fakeOS.add.button(
+            this.fakeOS.width / 2,
+            this.fakeOS.height / 2
+        )
+        this.button.log()
+
+        // Add a "Feels dank man" emote
+        this.dank = this.fakeOS.add.dank(0, 0).setOrigin(0).setScale(1)
         this.dank.play('spinning')
         this.dank.x = this.fakeOS.width / 2
         this.dank.y = this.fakeOS.height / 2
@@ -35,8 +53,11 @@ export default class CalculatorApp extends App {
         this.updateDank()
     }
 
+    /**
+     * Update dank location and direction
+     *
+     */
     private updateDank() {
-        // TODO:
         this.dank.x += this.dank.vx
         this.dank.y += this.dank.vy
 

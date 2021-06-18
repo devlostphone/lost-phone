@@ -6,7 +6,8 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
 import '~/lib/ui/gameObjects/CustomObjTemplate';
-import '~/lib/ui/gameObjects/Button';
+import '~/lib/ui/gameObjects/ButtonUI';
+
 export default class CalculatorApp extends App {
 
     /**
@@ -32,9 +33,9 @@ export default class CalculatorApp extends App {
         // Add a simple purple square button
         this.button = this.fakeOS.add.button(
             this.fakeOS.width / 2,
-            this.fakeOS.height / 2
+            this.fakeOS.height / 2,
+            this.sayHello
         )
-        this.button.log()
 
         // Add a "Feels dank man" emote
         this.dank = this.fakeOS.add.dank(0, 0).setOrigin(0).setScale(1)
@@ -52,6 +53,11 @@ export default class CalculatorApp extends App {
     public update(delta: any, time: any): void {
         this.updateDank()
     }
+
+    private sayHello() {
+        console.log("Click!")
+    }
+
 
     /**
      * Update dank location and direction

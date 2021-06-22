@@ -10,21 +10,16 @@ declare global
         // onClick(): Phaser.Input.Pointer;
     }
 
-    interface AmazingInput {
-        name: string
-        callback: (arg0: string) => void  // defining the callback
-    }
+    interface aCallbackType { (): void }
 
     namespace Phaser.GameObjects
     {
         interface GameObjectFactory
         {
-            button(x: number, y: number): ButtonUI
+            button(x: number, y: number, aCallback: aCallbackType): ButtonUI
         }
     }
 }
-
-
 
 export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IButton
 {
@@ -34,7 +29,8 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
     public constructor (
         scene: Phaser.Scene,
         x: number,
-        y: number
+        y: number,
+        aCallback: aCallbackType
     ) {
         super(scene, x, y)
         this.scene = scene
@@ -49,17 +45,7 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
         this.on('pointerout', () => {
             this.setFillStyle(ColorBackgroundOut)
         })
-        this.on('pointerdown', () => {
-            this.log(this)
-        })
-    }
-
-    public sayHello() {
-        console.log("Hello!")
-    }
-
-    private log(obj: object) {
-        console.log(obj)
+        this.on('pointerdown', () => aCallback())
     }
 }
 
@@ -67,9 +53,10 @@ Phaser.GameObjects.GameObjectFactory.register('button', function (
 
     this: Phaser.GameObjects.GameObjectFactory,
     x: number,
-    y: number){
+    y: number,
+    aCallback: aCallbackType){
     const scene = this.scene
-    const button = new ButtonUI(scene, x, y)
+    const button = new ButtonUI(scene, x, y, aCallback)
     scene.sys.displayList.add(button)
 
     return button

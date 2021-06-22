@@ -38,37 +38,29 @@ export default class CalculatorApp extends App {
      */
     public render(): void {
 
-        let input: AmazingInput = {
-            name: "Feels Dank Man",
-            callback: (message) => {
-                console.log('Mistery message: ' + message)
-            }
-        }
-
-        this.saySomethingAmazing(input)
         /**
          * Add a "Feels dank man" emote to scene
          */
-        this.dank = this.fakeOS.add.dank(0, 0).setOrigin(0).setScale(1)
-        this.dank.play('spinning')
-        this.dank.x = this.fakeOS.width / 2
-        this.dank.y = this.fakeOS.height / 2
+        let newFeelsDankMan = () => {
+            this.dank = this.fakeOS.add.dank(0, 0).setOrigin(0).setScale(1)
+            this.dank.play('spinning')
+            this.dank.x = Math.floor(Math.random() * this.fakeOS.width)
+            this.dank.y = Math.floor(Math.random() * this.fakeOS.height)
+
+            if (this.dank.x + this.dank.width >= this.fakeOS.width)
+                this.dank.x -= this.dank.width
+        }
 
         /**
          * Add a simple purple square button
          */
         this.button = this.fakeOS.add.button(
             this.fakeOS.width / 2,
-            this.fakeOS.height / 2
+            this.fakeOS.height / 2,
+            newFeelsDankMan
         )
-        this.button.sayHello()
     }
 
-    // method being called
-
-    private saySomethingAmazing(data: AmazingInput) {
-        data.callback(data.name + ' this is amazing')
-    }
     /**
      * Update method.
      *
@@ -76,7 +68,7 @@ export default class CalculatorApp extends App {
      * @param time
      */
     public update(delta: any, time: any): void {
-        this.updateDank()
+        // this.updateDank()
     }
 
     /**

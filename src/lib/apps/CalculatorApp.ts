@@ -14,6 +14,12 @@ export default class CalculatorApp extends App {
      * Feels dank man custom object
      */
     dank: any
+
+    /**
+     * Array of danks
+     */
+    danks: any[] = []
+
     /**
      * A simple button
      */
@@ -39,26 +45,17 @@ export default class CalculatorApp extends App {
     public render(): void {
 
         /**
-         * Add a "Feels dank man" emote to scene
-         */
-        let newFeelsDankMan = () => {
-            this.dank = this.fakeOS.add.dank(0, 0).setOrigin(0).setScale(1)
-            this.dank.play('spinning')
-            this.dank.x = Math.floor(Math.random() * this.fakeOS.width)
-            this.dank.y = Math.floor(Math.random() * this.fakeOS.height)
-
-            if (this.dank.x + this.dank.width >= this.fakeOS.width)
-                this.dank.x -= this.dank.width
-        }
-
-        /**
          * Add a simple purple square button
          */
         this.button = this.fakeOS.add.button(
             this.fakeOS.width / 2,
-            this.fakeOS.height / 2,
-            newFeelsDankMan
+            this.fakeOS.height / 2
         )
+
+        /**
+         * Assign function to button callback
+         */
+        this.button.doSomething = this.newFeelsDankMan
     }
 
     /**
@@ -68,36 +65,24 @@ export default class CalculatorApp extends App {
      * @param time
      */
     public update(delta: any, time: any): void {
-        // this.updateDank()
+        for (var i in this.danks) {
+            if (this.danks[i] !== undefined)
+                this.danks[i].updateLocation(this.fakeOS)
+        }
     }
 
     /**
-     * Update dank location and direction
-     *
+     * Add a "Feels dank man" emote to scene
      */
-    private updateDank() {
-        this.dank.x += this.dank.vx
-        this.dank.y += this.dank.vy
+    private newFeelsDankMan = () => {
+        this.dank = this.fakeOS.add.dank(0, 0).setOrigin(0).setScale(1)
+        this.dank.play('spinning')
+        this.dank.x = Math.floor(Math.random() * this.fakeOS.width)
+        this.dank.y = Math.floor(Math.random() * this.fakeOS.height)
 
-        if (this.dank.y < 0) {
-            this.dank.y = 0
-            this.dank.vy *= -1
-        }
+        if (this.dank.x + this.dank.width >= this.fakeOS.width)
+            this.dank.x -= this.dank.width
 
-        if (this.dank.y + 112 >= this.fakeOS.height) {
-            this.dank.y = this.fakeOS.height - 112 - 1
-            this.dank.vy *= -1
-        }
-
-        if (this.dank.x < 0) {
-            this.dank.x = 0
-            this.dank.vx *= -1
-        }
-        if (this.dank.x + 112 >= this.fakeOS.width) {
-            this.dank.x = this.fakeOS.width - 112 - 1
-            this.dank.vx *= -1
-        }
-
+        this.danks.push(this.dank)
     }
-
 }

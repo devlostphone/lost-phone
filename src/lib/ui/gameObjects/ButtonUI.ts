@@ -10,13 +10,11 @@ declare global
         // onClick(): Phaser.Input.Pointer;
     }
 
-    interface aCallbackType { (): void }
-
     namespace Phaser.GameObjects
     {
         interface GameObjectFactory
         {
-            button(x: number, y: number, aCallback: aCallbackType): ButtonUI
+            button(x: number, y: number): ButtonUI
         }
     }
 }
@@ -24,15 +22,14 @@ declare global
 export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IButton
 {
     scene: Phaser.Scene
-    target: any
 
     public constructor (
         scene: Phaser.Scene,
         x: number,
         y: number,
-        aCallback: aCallbackType
     ) {
         super(scene, x, y)
+
         this.scene = scene
         let ColorBackgroundOut: number = 0xff00ff
         let ColorBackgroundOver: number = 0xffff00
@@ -45,18 +42,20 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
         this.on('pointerout', () => {
             this.setFillStyle(ColorBackgroundOut)
         })
-        this.on('pointerdown', () => aCallback())
+        this.on('pointerdown', () => this.doSomething())
     }
+
+    public doSomething!: { (): void }
+
 }
 
 Phaser.GameObjects.GameObjectFactory.register('button', function (
 
     this: Phaser.GameObjects.GameObjectFactory,
     x: number,
-    y: number,
-    aCallback: aCallbackType){
+    y: number ){
     const scene = this.scene
-    const button = new ButtonUI(scene, x, y, aCallback)
+    const button = new ButtonUI(scene, x, y)
     scene.sys.displayList.add(button)
 
     return button

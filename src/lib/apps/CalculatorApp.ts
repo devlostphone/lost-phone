@@ -1,29 +1,31 @@
 /**
  * Calculator App
- * @todo:
+ * @todo: create file of imports of classes
+ * @todo: add object files to elements from App.ts
  */
+
 
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
-import '~/lib/ui/gameObjects/CustomObjTemplate';
-import '~/lib/ui/gameObjects/ButtonUI';
+import FeelsDankMan from '~/lib/ui/gameObjects/CustomObjTemplate';
+import ButtonUI from '~/lib/ui/gameObjects/ButtonUI';
 
 export default class CalculatorApp extends App {
 
     /**
      * Feels dank man custom object
      */
-    dank: any
+    dank!: FeelsDankMan
 
     /**
      * Array of danks
      */
-    danks: any[] = []
+    danks: FeelsDankMan[] = []
 
     /**
      * A simple button
      */
-    button: any
+    button!: ButtonUI
     /**
      * Scene
      */
@@ -56,6 +58,9 @@ export default class CalculatorApp extends App {
          * Assign function to button callback
          */
         this.button.doSomething = this.newFeelsDankMan
+
+
+        this.elements.add(this.button)
     }
 
     /**
@@ -67,7 +72,7 @@ export default class CalculatorApp extends App {
     public update(delta: any, time: any): void {
         for (var i in this.danks) {
             if (this.danks[i] !== undefined)
-                this.danks[i].updateLocation(this.fakeOS)
+                this.danks[i].updateLocation()
         }
     }
 
@@ -84,5 +89,6 @@ export default class CalculatorApp extends App {
             this.dank.x -= this.dank.width
 
         this.danks.push(this.dank)
+        this.elements.add(this.dank)
     }
 }

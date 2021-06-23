@@ -46,28 +46,31 @@ export default class FeelsDankMan extends Phaser.GameObjects.Sprite implements I
         this.vy = -0.5
     }
 
-    public updateLocation = (fakeOS: FakeOS) => {
-        this.x += this.vx
-        this.y += this.vy
+    public updateLocation = () => {
+        if (this.scene instanceof FakeOS) {
+            this.x += this.vx
+            this.y += this.vy
 
-        if (this.y < 0) {
-            this.y = 0
-            this.vy *= -1
+            if (this.y < 0) {
+                this.y = 0
+                this.vy *= -1
+            }
+
+            if (this.y + 112 >= this.scene.height) {
+                this.y = this.scene.height - 112 - 1
+                this.vy *= -1
+            }
+
+            if (this.x < 0) {
+                this.x = 0
+                this.vx *= -1
+            }
+            if (this.x + 112 >= this.scene.width) {
+                this.x = this.scene.width - 112 - 1
+                this.vx *= -1
+            }
         }
 
-        if (this.y + 112 >= fakeOS.height) {
-            this.y = fakeOS.height - 112 - 1
-            this.vy *= -1
-        }
-
-        if (this.x < 0) {
-            this.x = 0
-            this.vx *= -1
-        }
-        if (this.x + 112 >= fakeOS.width) {
-            this.x = fakeOS.width - 112 - 1
-            this.vx *= -1
-        }
 
     }
 

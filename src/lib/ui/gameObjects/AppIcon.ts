@@ -72,11 +72,11 @@ export default class AppIcon extends Phaser.GameObjects.Container
      *
      * @returns This object for chaining.
      */
-    public addLabel(): AppIcon {
+    public addLabel(text: string): AppIcon {
         let label = this.scene.add.text(
             this.x,
             this.y + this.icon.displayHeight / 2 + 5,
-            this.config.name
+            text
         );
         this.add(label);
         label.setOrigin(0.5, 0);

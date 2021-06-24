@@ -1,3 +1,11 @@
 {
+    "calculator": "Calculadora",
+    "calendar": "Calendari",
+    "clock": "Rellotge",
+    "mail": "Correu",
+    "notes": "Notes",
+    "podcast": "Podcast",
+    "sandbox": "Sandbox",
+    "settings": "Configuració",
     "title": "Títol"
 }

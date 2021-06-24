@@ -1,3 +1,11 @@
 {
+    "calculator": "Calculator",
+    "calendar": "Calendar",
+    "clock": "Clock",
+    "mail": "Mail",
+    "notes": "Notes",
+    "podcast": "Podcast",
+    "sandbox": "Sandbox",
+    "settings": "Settings",
     "title": "Title"
 }

@@ -1,13 +1,14 @@
 import ClockApp from '~/lib/apps/ClockApp';
 import HomescreenApp from '~/lib/apps/HomescreenApp';
-
+import SettingsApp from '~/lib/apps/SettingsApp';
 
 /**
  * Contains all app definitions.
  */
 const Store: any = {
     ClockApp,
-    HomescreenApp
+    HomescreenApp,
+    SettingsApp
 }
 
 /**

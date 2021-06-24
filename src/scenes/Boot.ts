@@ -1,10 +1,11 @@
+
 import {dpr} from '~/lib/Screen';
-import LostAndPhone from '~/lib/GameLib';
+import {FakeOSScene} from '~/lib/GameLib';
 
 /**
  * Boot scene.
  */
-export default class Boot extends LostAndPhone.Scene {
+export default class Boot extends FakeOSScene {
 
     /**
      * Class constructor.

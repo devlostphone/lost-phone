@@ -43,7 +43,7 @@ export default class HomescreenApp extends App {
                 this.fakeOS.apps[index],
                 0, 0,
                 this.fakeOS.debug ? 'lorem-appsum' : this.fakeOS.apps[index].key
-            ).addLabel();
+            ).addLabel(this.fakeOS.getString(this.fakeOS.apps[index]['type']));
 
             this.fakeOS.addInputEvent('pointerup', function(this: any, event: any) {
                 home.fakeOS.launchApp(home.fakeOS.apps[index].key);

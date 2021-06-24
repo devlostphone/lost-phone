@@ -14,5 +14,11 @@ declare module "scenes/FakeOS" {
 }
 
 FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, object: Phaser.GameObjects.GameObject): void {
-    object.on(eventType, func);
+    let fakeOS = this;
+
+    object.setInteractive();
+    object.on(eventType, function(this: any, event: any) {
+        fakeOS.log('Launching event '+eventType+' on '+object.constructor.name);
+        func(this, event);
+    });
 }

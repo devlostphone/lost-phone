@@ -1,5 +1,4 @@
 import 'phaser';
-import LostAndPhone from '~/lib/GameLib';
 
 import {
     config,
@@ -11,8 +10,8 @@ import {
     SIZE_HEIGHT_SCREEN
 } from '~/config';
 
-function newGame(gameConfig: object) {
-    game = new LostAndPhone.Game(gameConfig);
+function newGame(gameConfig: object): Phaser.Game {
+    game = new Phaser.Game(gameConfig);
 
     game.screenBaseSize = {
       maxWidth: MAX_SIZE_WIDTH_SCREEN,
@@ -27,16 +26,6 @@ function newGame(gameConfig: object) {
     return game;
 }
 
-function destroyGame() {
-    if (game === undefined) return;
-    game.destroy(true);
-    game.runDestroy();
-    game = undefined;
-}
+let game = newGame(config);
 
-let game: LostAndPhone.Game | undefined = undefined;
-
-if (game === undefined) {
-    game = newGame(config);
-}
 

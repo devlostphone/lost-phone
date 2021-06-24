@@ -96,8 +96,12 @@ export default class phoneUI {
             this.fakeOS.height - this.fakeOS.height * 0.05,
             'button-homescreen'
         ).setInteractive()
-        .setOrigin(0.5, 0.5)
-        .on('pointerup', () => t.fakeOS.launchApp('HomescreenApp'));
+        .setOrigin(0.5, 0.5);
+
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => t.fakeOS.launchApp('HomescreenApp'),
+        this.elements.homeButton);
     }
 
     /**

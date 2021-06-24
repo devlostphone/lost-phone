@@ -8,6 +8,7 @@ import 'lib/lang/FakeOSLang';
 import 'lib/state/FakeOSState';
 import 'lib/state/FakeOSPassword';
 import 'lib/settings/FakeOSSettings';
+import 'lib/events/FakeOSEvents';
 
 export const MAX_SIZE_WIDTH_SCREEN = 1920;
 export const MAX_SIZE_HEIGHT_SCREEN = 1920;

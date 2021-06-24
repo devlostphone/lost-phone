@@ -1,5 +1,3 @@
-import { FakeOS } from 'scenes/FakeOS';
-
 /**
  * App icon.
  * @todo: review this.
@@ -32,7 +30,7 @@ export default class AppIcon extends Phaser.GameObjects.Container
      * @param frame
      */
     public constructor(
-        scene: FakeOS,
+        scene: Phaser.Scene,
         appConfig: any,
         x: number, y: number,
         texture: any,
@@ -67,13 +65,6 @@ export default class AppIcon extends Phaser.GameObjects.Container
         this.icon.on('pointerout', function(event: any) {
             t.setAlpha(1.0);
         });
-
-        this.icon.on('pointerup', function(event: any) {
-           if(t.scene instanceof FakeOS) {
-            t.scene.launchApp(t.config.key);
-           }
-        });
-
     }
 
     /**

@@ -36,23 +36,19 @@ export default class HomescreenApp extends App {
     protected addIconApps(): void {
 
         let apps = [];
-        let app = undefined;
+        let home = this;
         for (let index in this.fakeOS.apps) {
-            if (this.fakeOS.debug) {
-                app = new AppIcon(
-                    this.fakeOS,
-                    this.fakeOS.apps[index],
-                    0, 0,
-                    'lorem-appsum'
-                ).addLabel();
-            } else {
-                app = new AppIcon(
-                    this.fakeOS,
-                    this.fakeOS.apps[index],
-                    0, 0,
-                    this.fakeOS.apps[index].key
-                ).addLabel();
-            };
+            let app = new AppIcon(
+                this.fakeOS,
+                this.fakeOS.apps[index],
+                0, 0,
+                this.fakeOS.debug ? 'lorem-appsum' : this.fakeOS.apps[index].key
+            ).addLabel();
+
+            this.fakeOS.addInputEvent('pointerup', function(this: any, event: any) {
+                home.fakeOS.launchApp(home.fakeOS.apps[index].key);
+            },
+            app.icon);
 
             this.icons[this.fakeOS.apps[index]['type']] = app;
             apps.push(app);

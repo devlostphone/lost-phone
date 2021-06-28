@@ -28,18 +28,19 @@ declare global
 export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IButton
 {
     scene: Phaser.Scene
-    kind: ButtonType;
+    kind: ButtonType
 
     public constructor (
         scene: Phaser.Scene,
         kind: ButtonType,
         x: number,
-        y: number,
+        y: number
     ) {
         super(scene, x, y)
 
         this.scene = scene
         this.kind = kind
+
         let ColorBackgroundOut: number = 0xff00ff
         let ColorBackgroundOver: number = 0xffff00
         this.setSize(128, 128)
@@ -59,7 +60,6 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
 }
 
 Phaser.GameObjects.GameObjectFactory.register('button', function (
-
     this: Phaser.GameObjects.GameObjectFactory,
     kind: ButtonType,
     x: number,

@@ -5,5 +5,5 @@ import '~/lib/state/FakeOSState';
 import '~/lib/state/FakeOSPassword';
 import '~/lib/settings/FakeOSSettings';
 import '~/lib/events/FakeOSEvents';
-import '~/lib/ui/gameObjects/CustomObjTgemplate';
+import '~/lib/ui/gameObjects/CustomObjTemplate';
 import '~/lib/ui/gameObjects/ButtonUI';

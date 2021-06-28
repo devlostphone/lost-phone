@@ -4,11 +4,11 @@
  * @todo: add object files to elements from App.ts
  */
 
-
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
 import FeelsDankMan from '~/lib/ui/gameObjects/CustomObjTemplate';
 import ButtonUI from '~/lib/ui/gameObjects/ButtonUI';
+import { ButtonType } from '~/lib/ui/gameObjects/ButtonUI';
 
 export default class CalculatorApp extends App {
 
@@ -50,8 +50,9 @@ export default class CalculatorApp extends App {
          * Add a simple purple square button
          */
         this.button = this.fakeOS.add.button(
+            ButtonType.Emoji,
             this.fakeOS.width / 2,
-            this.fakeOS.height / 2
+            this.fakeOS.height / 2,
         )
 
         /**

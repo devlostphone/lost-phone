@@ -20,7 +20,7 @@ declare global
     {
         interface GameObjectFactory
         {
-            button(kind: ButtonType, x: number, y: number): ButtonUI
+            button(kind: ButtonType, x: number, y: number, onClick: any): ButtonUI
         }
     }
 }
@@ -29,12 +29,16 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
 {
     scene: Phaser.Scene
     kind: ButtonType
+    onInputOver = () => {}
+    onInputOut = () => {}
+    onInputUp = () => {}
 
     public constructor (
         scene: Phaser.Scene,
         kind: ButtonType,
         x: number,
-        y: number
+        y: number,
+        onClick = () => {}
     ) {
         super(scene, x, y)
 
@@ -48,24 +52,29 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
         this.setInteractive()
         this.on('pointerover', () => {
             this.setFillStyle(ColorBackgroundOver)
+            this.onInputOver()
         })
         this.on('pointerout', () => {
             this.setFillStyle(ColorBackgroundOut)
+            this.onInputOut()
         })
-        this.on('pointerdown', () => this.doSomething())
+        this.on('pointerup', () => {
+            this.onInputUp()
+        })
+        this.on('pointerdown', () => {
+            onClick()
+        })
     }
-
-    public doSomething!: { (): void }
-
 }
 
 Phaser.GameObjects.GameObjectFactory.register('button', function (
     this: Phaser.GameObjects.GameObjectFactory,
     kind: ButtonType,
     x: number,
-    y: number ){
+    y: number,
+    onClick = () => {} ){
     const scene = this.scene
-    const button = new ButtonUI(scene, kind, x, y)
+    const button = new ButtonUI(scene, kind, x, y, onClick)
     scene.sys.displayList.add(button)
 
     return button

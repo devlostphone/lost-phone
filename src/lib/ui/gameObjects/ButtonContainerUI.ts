@@ -12,7 +12,7 @@ declare global
     {
         interface GameObjectFactory
         {
-            buttonContainer(kind: ButtonType, x: number, y: number): ButtonContainerUI
+            buttonContainer(kind: ButtonType, x: number, y: number, onClick: any): ButtonContainerUI
         }
     }
 }
@@ -22,11 +22,10 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
     public button : ButtonUI
     private text: Phaser.GameObjects.Text
 
-    public constructor (scene: Phaser.Scene, kind: ButtonType, x: number, y: number)
+    public constructor (scene: Phaser.Scene, kind: ButtonType, x: number, y: number, onClick = () => {})
     {
         super(scene, x, y)
-        this.button = new ButtonUI(scene, kind, 0, 0)
-        this.button.doSomething = this.doSomething
+        this.button = new ButtonUI(scene, kind, 0, 0, onClick)
 
         let text = "Undefined Type"
         switch (kind) {
@@ -57,18 +56,17 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
         this.add(this.button)
         this.add(this.text)
     }
-
-    public doSomething!: { () : void }
 }
 
 Phaser.GameObjects.GameObjectFactory.register('buttonContainer', function (
     this: Phaser.GameObjects.GameObjectFactory,
     kind: ButtonType,
     x: number,
-    y: number
+    y: number,
+    onClick = () => {}
 ){
     const scene = this.scene
-    const buttonContainer = new ButtonContainerUI(scene, kind, x, y)
+    const buttonContainer = new ButtonContainerUI(scene, kind, x, y, onClick)
     scene.sys.displayList.add(buttonContainer)
 
     return buttonContainer

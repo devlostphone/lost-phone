@@ -58,8 +58,9 @@ export default class CalculatorApp extends App {
             ButtonType.Emoji,
             this.fakeOS.width / 2,
             this.fakeOS.height / 2,
+            this.newFeelsDankMan
         )
-        this.button.doSomething = this.newFeelsDankMan
+
         /**
          * Add a simple emoji buttonContainer
          */
@@ -67,8 +68,8 @@ export default class CalculatorApp extends App {
             ButtonType.Emoji,
             this.fakeOS.width / 4,
             this.fakeOS.height / 4,
+            this.newFeelsDankMan
         )
-        this.buttonContainer.button.doSomething = this.newFeelsDankMan
 
         this.elements.add(this.button)
         this.elements.add(this.buttonContainer)

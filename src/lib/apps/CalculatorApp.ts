@@ -1,15 +1,8 @@
-/**
- * Calculator App
- * @todo: create file of imports of classes
- * @todo: add object files to elements from App.ts
- */
-
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
 import FeelsDankMan from '~/lib/ui/gameObjects/CustomObjTemplate';
-import ButtonUI from '~/lib/ui/gameObjects/ButtonUI';
-import { ButtonType } from '~/lib/ui/gameObjects/ButtonUI';
 import ButtonContainerUI from '~/lib/ui/gameObjects/ButtonContainerUI';
+import { ButtonType } from '~/lib/ui/gameObjects/ButtonUI';
 
 export default class CalculatorApp extends App {
 
@@ -23,14 +16,6 @@ export default class CalculatorApp extends App {
      */
     danks: FeelsDankMan[] = []
 
-    /**
-     * A simple button
-     */
-    button!: ButtonUI
-    /**
-     * A simple button
-     */
-    buttonContainer!: ButtonContainerUI
     /**
      * Scene
      */
@@ -53,7 +38,7 @@ export default class CalculatorApp extends App {
         /**
          * Add a simple emoji buttonContainer
          */
-        this.buttonContainer = this.fakeOS.add.buttonContainer(
+        let emojiButton = this.fakeOS.add.buttonContainer(
             ButtonType.Emoji,
             '\ud83d\ude03',
             this.fakeOS.width / 4,
@@ -63,17 +48,16 @@ export default class CalculatorApp extends App {
         /**
          * Add a simple number buttonContainer
          */
-        this.buttonContainer = this.fakeOS.add.buttonContainer(
+        let numberButton = this.fakeOS.add.buttonContainer(
             ButtonType.Number,
             '0',
             this.fakeOS.width / 6,
             this.fakeOS.height / 6,
-            () => { console.log(this.buttonContainer.value)}
+            () => { console.log(numberButton.value)}
         )
 
-
-        this.elements.add(this.button)
-        this.elements.add(this.buttonContainer)
+        this.elements.add(emojiButton)
+        this.elements.add(numberButton)
     }
 
     /**

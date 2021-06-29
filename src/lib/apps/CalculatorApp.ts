@@ -50,26 +50,27 @@ export default class CalculatorApp extends App {
      * Render method.
      */
     public render(): void {
-
-        /**
-         * Add a simple purple square button
-         */
-        this.button = this.fakeOS.add.button(
-            ButtonType.Emoji,
-            this.fakeOS.width / 2,
-            this.fakeOS.height / 2,
-            this.newFeelsDankMan
-        )
-
         /**
          * Add a simple emoji buttonContainer
          */
         this.buttonContainer = this.fakeOS.add.buttonContainer(
             ButtonType.Emoji,
+            '\ud83d\ude03',
             this.fakeOS.width / 4,
             this.fakeOS.height / 4,
             this.newFeelsDankMan
         )
+        /**
+         * Add a simple number buttonContainer
+         */
+        this.buttonContainer = this.fakeOS.add.buttonContainer(
+            ButtonType.Number,
+            '0',
+            this.fakeOS.width / 6,
+            this.fakeOS.height / 6,
+            () => { console.log(this.buttonContainer.value)}
+        )
+
 
         this.elements.add(this.button)
         this.elements.add(this.buttonContainer)

@@ -47,6 +47,8 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
 
         let ColorBackgroundOut: number = 0xff00ff
         let ColorBackgroundOver: number = 0xffff00
+        let ColorBackgroundUp: number = 0xff0000
+
         this.setSize(128, 128)
         this.setFillStyle(0xff00ff) // set purple color
         this.setInteractive()
@@ -59,6 +61,7 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
             this.onInputOut()
         })
         this.on('pointerup', () => {
+            this.setFillStyle(ColorBackgroundUp)
             this.onInputUp()
         })
         this.on('pointerdown', () => {

@@ -51,7 +51,7 @@ export default class CalculatorApp extends App {
         /**
          * Add grid of number buttons
          */
-        let nums:number[] = [0, 1, 2, 3, 4, 5, 7, 8, 9]
+        let nums: number[] = [0, 1, 2, 3, 4, 5, 7, 8, 9]
         let gridButtons:ButtonContainerUI[] = []
         for (let num of nums) {
             let numberButton = this.fakeOS.add.buttonContainer(
@@ -67,9 +67,18 @@ export default class CalculatorApp extends App {
             this.elements.add(numberButton)
         }
 
+        let cellWidth: number = gridButtons[0]._width;
+        let cellHeight: number = gridButtons[0]._height;
+        let columns: number = 3
+        let rows: number = 3
+
         this.addGrid(gridButtons, {
-            columns: 3,
-            rows: 3,
+            x: (this.fakeOS.width / 2) - (cellWidth * columns / columns),
+            offsetY: (this.fakeOS.height / 2) - (cellHeight * rows),
+            columns: columns,
+            rows: rows,
+            cellWidth: cellWidth,
+            cellHeight: cellHeight,
             position: Phaser.Display.Align.BOTTOM_CENTER
         })
 

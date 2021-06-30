@@ -54,6 +54,9 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
         this.add(this.button)
         this.add(this.text)
     }
+
+    get _width(): number { return this.button.width }
+    get _height(): number { return this.button.height }
 }
 
 Phaser.GameObjects.GameObjectFactory.register('buttonContainer', function (

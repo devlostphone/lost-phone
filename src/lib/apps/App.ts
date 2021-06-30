@@ -143,10 +143,6 @@ export default abstract class App {
             options['offsetY'] = 0;
         }
 
-        if (options['y'] !== undefined) {
-            this.lastY = options['y'];
-        }
-
         if (options['height'] === undefined) {
             options['height'] = 1;
         }
@@ -159,17 +155,33 @@ export default abstract class App {
             options['rows'] = this.rows;
         }
 
+        if (options['cellWidth'] === undefined) {
+            options['cellWidth'] = this.fakeOS.width / options['columns'];
+        }
+
+        if (options['cellHeight'] === undefined) {
+            options['cellHeight'] = (this.fakeOS.height / options['rows']) * options['height'];
+        }
+
         if (options['position'] === undefined) {
             options['position'] = Phaser.Display.Align.CENTER;
         }
 
+        if (options['y'] !== undefined) {
+            this.lastY = options['y'];
+        }
+
+        if (options['x'] === undefined) {
+            options['x'] = (this.fakeOS.width / elements.length / 2) +  (this.fakeOS.width / options['columns']) / options['columns'];
+        }
+
         Phaser.Actions.GridAlign(elements, {
-            x: (this.fakeOS.width / elements.length / 2) +  (this.fakeOS.width / options['columns']) / options['columns'],
+            x: options['x'],
             y: this.atRow(this.lastY) + options['offsetY'],
             width: options['columns'],
             height: options['rows'],
-            cellWidth: this.fakeOS.width / options['columns'],
-            cellHeight: (this.fakeOS.height / options['rows']) * options['height'],
+            cellWidth: options['cellWidth'],
+            cellHeight: options['cellHeight'],
             position: options['position']
         });
 

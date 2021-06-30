@@ -38,26 +38,41 @@ export default class CalculatorApp extends App {
         /**
          * Add a simple emoji buttonContainer
          */
-        let emojiButton = this.fakeOS.add.buttonContainer(
-            ButtonType.Emoji,
-            '\ud83d\ude03',
-            this.fakeOS.width / 4,
-            this.fakeOS.height / 4,
-            this.newFeelsDankMan
-        )
-        /**
-         * Add a simple number buttonContainer
-         */
-        let numberButton = this.fakeOS.add.buttonContainer(
-            ButtonType.Number,
-            '0',
-            this.fakeOS.width / 6,
-            this.fakeOS.height / 6,
-            () => { console.log(numberButton.value)}
-        )
 
-        this.elements.add(emojiButton)
-        this.elements.add(numberButton)
+        // let emojiButton = this.fakeOS.add.buttonContainer(
+        //     ButtonType.Emoji,
+        //     '\ud83d\ude03',
+        //     this.fakeOS.width / 4,
+        //     this.fakeOS.height / 4,
+        //     this.newFeelsDankMan
+        // )
+        // this.elements.add(emojiButton)
+
+        /**
+         * Add grid of number buttons
+         */
+        let nums:number[] = [0, 1, 2, 3, 4, 5, 7, 8, 9]
+        let gridButtons:ButtonContainerUI[] = []
+        for (let num of nums) {
+            let numberButton = this.fakeOS.add.buttonContainer(
+                ButtonType.Number,
+                num as unknown as string, // What the hell is that!?
+                0,
+                0,
+                num === 0 ?
+                    this.newFeelsDankMan :
+                    () => { console.log(numberButton.value)}
+            )
+            gridButtons.push(numberButton)
+            this.elements.add(numberButton)
+        }
+
+        this.addGrid(gridButtons, {
+            columns: 3,
+            rows: 3,
+            position: Phaser.Display.Align.BOTTOM_CENTER
+        })
+
     }
 
     /**

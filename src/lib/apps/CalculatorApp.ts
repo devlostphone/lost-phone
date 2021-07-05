@@ -3,6 +3,8 @@ import App from '~/lib/apps/App';
 import FeelsDankMan from '~/lib/ui/gameObjects/CustomObjTemplate';
 import ButtonContainerUI from '~/lib/ui/gameObjects/ButtonContainerUI';
 import { ButtonType } from '~/lib/ui/gameObjects/ButtonUI';
+import PadUI from '~/lib/ui/gameObjects/PadUI';
+
 
 export default class CalculatorApp extends App {
 
@@ -35,52 +37,42 @@ export default class CalculatorApp extends App {
      * Render method.
      */
     public render(): void {
-        /**
-         * Add a simple emoji buttonContainer
-         */
 
-        // let emojiButton = this.fakeOS.add.buttonContainer(
-        //     ButtonType.Emoji,
-        //     '\ud83d\ude03',
-        //     this.fakeOS.width / 4,
-        //     this.fakeOS.height / 4,
-        //     this.newFeelsDankMan
-        // )
-        // this.elements.add(emojiButton)
+        let samplePad = this.fakeOS.add.numpad(256, 256)
 
         /**
          * Add grid of number buttons
          */
-        let nums: number[] = [0, 1, 2, 3, 4, 5, 7, 8, 9]
-        let gridButtons:ButtonContainerUI[] = []
-        for (let num of nums) {
-            let numberButton = this.fakeOS.add.buttonContainer(
-                ButtonType.Number,
-                num as unknown as string, // What the hell is that!?
-                0,
-                0,
-                num === 0 ?
-                    this.newFeelsDankMan :
-                    () => { console.log(numberButton.value)}
-            )
-            gridButtons.push(numberButton)
-            this.elements.add(numberButton)
-        }
+        // let nums: number[] = [0, 1, 2, 3, 4, 5, 7, 8, 9]
+        // let gridButtons:ButtonContainerUI[] = []
+        // for (let num of nums) {
+        //     let numberButton = this.fakeOS.add.buttonContainer(
+        //         ButtonType.Number,
+        //         num as unknown as string, // What the hell is that!?
+        //         0,
+        //         0,
+        //         num === 0 ?
+        //             this.newFeelsDankMan :
+        //             () => { console.log(numberButton.value)}
+        //     )
+        //     gridButtons.push(numberButton)
+        //     this.elements.add(numberButton)
+        // }
 
-        let cellWidth: number = gridButtons[0]._width;
-        let cellHeight: number = gridButtons[0]._height;
-        let columns: number = 3
-        let rows: number = 3
+        // let cellWidth: number = gridButtons[0]._width;
+        // let cellHeight: number = gridButtons[0]._height;
+        // let columns: number = 3
+        // let rows: number = 3
 
-        this.addGrid(gridButtons, {
-            x: (this.fakeOS.width / 2) - (cellWidth * columns / columns),
-            offsetY: (this.fakeOS.height / 2) - (cellHeight * rows),
-            columns: columns,
-            rows: rows,
-            cellWidth: cellWidth,
-            cellHeight: cellHeight,
-            position: Phaser.Display.Align.BOTTOM_CENTER
-        })
+        // this.addGrid(gridButtons, {
+        //     x: (this.fakeOS.width / 2) - (cellWidth * columns / columns),
+        //     offsetY: (this.fakeOS.height / 2) - (cellHeight * rows),
+        //     columns: columns,
+        //     rows: rows,
+        //     cellWidth: cellWidth,
+        //     cellHeight: cellHeight,
+        //     position: Phaser.Display.Align.BOTTOM_CENTER
+        // })
 
     }
 

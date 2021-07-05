@@ -38,7 +38,17 @@ export default class CalculatorApp extends App {
      */
     public render(): void {
 
-        let samplePad = this.fakeOS.add.numpad(256, 256)
+        let samplePad = this.fakeOS.add.numpad(128, 256)
+        this.fakeOS.tweens.add({
+            targets: samplePad,
+            x: 250,
+            duration: 3000,
+            ease: 'Power2',
+            yoyo: true,
+            repeat: 2
+        });
+
+        this.elements.add(samplePad)
 
         /**
          * Add grid of number buttons

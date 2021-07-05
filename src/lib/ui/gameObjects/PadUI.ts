@@ -15,17 +15,38 @@ declare global
 
 export default class PadUI extends Phaser.GameObjects.Container
 {
-    private button : ButtonContainerUI
+    private buttons: ButtonContainerUI[] = []
+    private rows: number = 3
+    private columns: number = 4
 
     public constructor (scene: Phaser.Scene, x: number, y: number) {
         super(scene, x, y)
-        // this.button = new ButtonUI(scene, ButtonType.Number, 0, 0, () => {})
-        this.button = new ButtonContainerUI(scene, ButtonType.Number, 0, 0, 0, this.say_hello)
-        this.add(this.button)
+        let nums: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        for (let num of nums) {
+            let button: ButtonContainerUI = new ButtonContainerUI(scene, ButtonType.Number, num, 0, 0, this.say_hello)
+            this.buttons.push(button)
+        }
+
+        let count = 0
+        for (let y = 0; y < this.rows; ++y) {
+            for (let x = 0; x < this.columns; ++x) {
+                let button = this.buttons[count]
+                if (button !== undefined) {
+                    let width: number = button._width
+                    let height: number = button._height
+                    let value: number = +button.value
+                    button.x = width * x
+                    button.y = height * y
+                }
+                count++
+            }
+        }
+
+        this.add(this.buttons)
     }
 
     private say_hello = () => {
-        console.log("Say your value:" +  this.button.value)
+        console.log("Show your bones!:" +  JSON.stringify(this, null, 3))
     }
 }
 

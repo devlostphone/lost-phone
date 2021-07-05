@@ -38,7 +38,7 @@ export default class CalculatorApp extends App {
      */
     public render(): void {
 
-        let samplePad = this.fakeOS.add.numpad(128, 256)
+        let samplePad = this.fakeOS.add.numpad(0, 0)
         this.fakeOS.tweens.add({
             targets: samplePad,
             x: 250,
@@ -48,6 +48,7 @@ export default class CalculatorApp extends App {
             repeat: 2
         });
 
+        this.addGrid(samplePad, {x: 0, y: 0})
         this.elements.add(samplePad)
 
         /**

@@ -34,10 +34,12 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
                 // Do nothing at the moment
                 break
             case ButtonType.Number:
-                // Do nothing at the moment
+                // Do something
+                this.button.setFillStyle(0x00ff00)
                 break
             case ButtonType.Character:
-                // Do nothing at the moment
+                // Do something
+                this.button.setFillStyle(0x0000ff)
                 break
         }
 

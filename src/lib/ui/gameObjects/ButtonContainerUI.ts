@@ -20,13 +20,13 @@ declare global
 export default class ButtonContainerUI extends Phaser.GameObjects.Container implements IButtonContainer
 {
     public value: string
-    private button : ButtonUI
-    private text: Phaser.GameObjects.Text
+    public button : ButtonUI
+    public text: Phaser.GameObjects.Text
 
-    public constructor (scene: Phaser.Scene, kind: ButtonType, value: any, x: number, y: number, onClick = () => {})
+    public constructor (scene: Phaser.Scene, kind: ButtonType, value: any, x: number, y: number, onClickCallback: any)
     {
         super(scene, x, y)
-        this.button = new ButtonUI(scene, kind, 0, 0, onClick)
+        this.button = new ButtonUI(scene, kind, 0, 0, onClickCallback)
         this.value = value
 
         switch (kind) {
@@ -48,17 +48,9 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
         this.text.setFontSize(96)
         this.text.setScale(1)
 
-        // Define interactive button methods here
-        this.button.onInputUp = () => {
-            console.log('value:' + this.value)
-        }
-
         this.add(this.button)
         this.add(this.text)
     }
-
-    get _width(): number { return this.button.width }
-    get _height(): number { return this.button.height }
 }
 
 Phaser.GameObjects.GameObjectFactory.register('buttonContainer', function (

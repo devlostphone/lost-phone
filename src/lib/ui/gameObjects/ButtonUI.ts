@@ -29,9 +29,10 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
 {
     scene: Phaser.Scene
     kind: ButtonType
-    onInputOver = () => {}
-    onInputOut = () => {}
-    onInputUp = () => {}
+    public onInputOver = () => {}
+    public onInputOut = () => {}
+    public onInputUp = () => {}
+    public onClick = (val: any) => {}
 
     public constructor (
         scene: Phaser.Scene,
@@ -65,7 +66,8 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
             this.onInputUp()
         })
         this.on('pointerdown', () => {
-            onClick()
+            let val: any
+            this.onClick(val)
         })
     }
 }

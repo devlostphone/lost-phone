@@ -8,6 +8,8 @@ import PadUI from '~/lib/ui/gameObjects/PadUI';
 
 export default class CalculatorApp extends App {
 
+    sampleText!: Phaser.GameObjects.Text
+
     /**
      * Feels dank man custom object
      */
@@ -38,53 +40,13 @@ export default class CalculatorApp extends App {
      */
     public render(): void {
 
-        let samplePad = this.fakeOS.add.numpad(0, 0)
-        this.fakeOS.tweens.add({
-            targets: samplePad,
-            x: 250,
-            duration: 3000,
-            ease: 'Power2',
-            yoyo: true,
-            repeat: 2
-        });
+        this.sampleText = this.fakeOS.add.text(0, 0, '', { fontFamily: 'Arial', fontSize: '64px', color: '#00ff00' })
+        this.addGrid(this.sampleText, {x: 64, y: 0})
+        this.elements.add(this.sampleText)
 
-        this.addGrid(samplePad, {x: 0, y: 0})
+        let samplePad = this.fakeOS.add.numpad(0, 0, this.sampleText)
+        this.addGrid(samplePad, {x: 64, y: 4})
         this.elements.add(samplePad)
-
-        /**
-         * Add grid of number buttons
-         */
-        // let nums: number[] = [0, 1, 2, 3, 4, 5, 7, 8, 9]
-        // let gridButtons:ButtonContainerUI[] = []
-        // for (let num of nums) {
-        //     let numberButton = this.fakeOS.add.buttonContainer(
-        //         ButtonType.Number,
-        //         num as unknown as string, // What the hell is that!?
-        //         0,
-        //         0,
-        //         num === 0 ?
-        //             this.newFeelsDankMan :
-        //             () => { console.log(numberButton.value)}
-        //     )
-        //     gridButtons.push(numberButton)
-        //     this.elements.add(numberButton)
-        // }
-
-        // let cellWidth: number = gridButtons[0]._width;
-        // let cellHeight: number = gridButtons[0]._height;
-        // let columns: number = 3
-        // let rows: number = 3
-
-        // this.addGrid(gridButtons, {
-        //     x: (this.fakeOS.width / 2) - (cellWidth * columns / columns),
-        //     offsetY: (this.fakeOS.height / 2) - (cellHeight * rows),
-        //     columns: columns,
-        //     rows: rows,
-        //     cellWidth: cellWidth,
-        //     cellHeight: cellHeight,
-        //     position: Phaser.Display.Align.BOTTOM_CENTER
-        // })
-
     }
 
     /**

@@ -20,12 +20,12 @@ declare global
     {
         interface GameObjectFactory
         {
-            button(kind: ButtonType, x: number, y: number, onClick: any): ButtonUI
+            buttonRect(kind: ButtonType, x: number, y: number, onClick: any): ButtonRectUI
         }
     }
 }
 
-export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IButton
+export default class ButtonRectUI extends Phaser.GameObjects.Rectangle implements IButton
 {
     scene: Phaser.Scene
     kind: ButtonType
@@ -70,15 +70,15 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
     }
 }
 
-Phaser.GameObjects.GameObjectFactory.register('button', function (
+Phaser.GameObjects.GameObjectFactory.register('buttonRect', function (
     this: Phaser.GameObjects.GameObjectFactory,
     kind: ButtonType,
     x: number,
     y: number,
     onClick = () => {} ){
     const scene = this.scene
-    const button = new ButtonUI(scene, kind, x, y, onClick)
-    scene.sys.displayList.add(button)
+    const buttonRect = new ButtonRectUI(scene, kind, x, y, onClick)
+    scene.sys.displayList.add(buttonRect)
 
-    return button
+    return buttonRect
 })

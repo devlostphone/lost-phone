@@ -2,7 +2,7 @@ import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
 import FeelsDankMan from '~/lib/ui/gameObjects/CustomObjTemplate';
 import ButtonContainerUI from '~/lib/ui/gameObjects/ButtonContainerUI';
-import { ButtonType } from '~/lib/ui/gameObjects/ButtonUI';
+import { ButtonType } from '~/lib/ui/gameObjects/ButtonRectUI';
 import ButtonCircleUI from '~/lib/ui/gameObjects/ButtonArcUI';
 import PadUI from '~/lib/ui/gameObjects/PadUI';
 

@@ -1,5 +1,5 @@
-import ButtonUI from './ButtonUI'
-import { ButtonType } from './ButtonUI'
+import ButtonRectUI from './ButtonRectUI'
+import { ButtonType } from './ButtonRectUI'
 
 declare global
 {
@@ -20,13 +20,13 @@ declare global
 export default class ButtonContainerUI extends Phaser.GameObjects.Container implements IButtonContainer
 {
     public value: string
-    public button : ButtonUI
+    public button : ButtonRectUI
     public text: Phaser.GameObjects.Text
 
     public constructor (scene: Phaser.Scene, kind: ButtonType, value: any, x: number, y: number, onClickCallback: any)
     {
         super(scene, x, y)
-        this.button = new ButtonUI(scene, kind, 0, 0, onClickCallback)
+        this.button = new ButtonRectUI(scene, kind, 0, 0, onClickCallback)
         this.value = value
 
         switch (kind) {

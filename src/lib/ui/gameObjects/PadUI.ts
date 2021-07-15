@@ -1,5 +1,5 @@
-import { ButtonType } from './ButtonUI'
-import ButtonUI from './ButtonUI'
+import { ButtonType } from './ButtonRectUI'
+import ButtonRectUI from './ButtonRectUI'
 import ButtonContainerUI from './ButtonContainerUI'
 
 declare global

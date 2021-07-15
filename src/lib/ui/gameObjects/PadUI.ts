@@ -23,7 +23,7 @@ export default class PadUI extends Phaser.GameObjects.Container
     public constructor (scene: Phaser.Scene, x: number, y: number, target: any) {
         super(scene, x, y)
         this.target = target
-        let key_values: any[] = ['AC', '%', '/', 7, 8, 9, 'x', 4, 5, 6, '-', 1, 2, 3, '+', 0, ',', '=']
+        let key_values: any[] = ['AC', '+/-', '%', '/', 7, 8, 9, 'x', 4, 5, 6, '-', 1, 2, 3, '+', 0, ',', '=']
         for (let key of key_values) {
             let buttonContainer: ButtonContainerUI = new ButtonContainerUI(
                 scene,

@@ -9,7 +9,7 @@ declare global
     {
         interface GameObjectFactory
         {
-            buttonCircle(x: number, y: number, onClick: any): ButtonCircleUI
+            buttonCircle(x: number, y: number, radius: number, onClick: any): ButtonCircleUI
         }
     }
 }
@@ -21,36 +21,42 @@ export default class ButtonCircleUI extends Phaser.GameObjects.Arc
     public onInputOut = () => {}
     public onInputUp = () => {}
     public onClick = () => {}
+    private ColorBackgroundOut: number = 0x3c3c3c
+    private ColorBackgroundOver: number = 0xafafaf
+    private ColorBackgroundUp: number = 0xffffff
 
     public constructor (
         scene: Phaser.Scene,
         x: number,
         y: number,
+        radius: number,
         onClick = () => {}
     ) {
-        super(scene, x, y)
+        super(scene, x, y, radius)
 
         this.scene = scene
         this.onClick = onClick
+        this.setFillStyle(this.ColorBackgroundOut)
 
-        let ColorBackgroundOut: number = 0x0
-        let ColorBackgroundOver: number = 0xffff00
-        let ColorBackgroundUp: number = 0xff0000
+        // Set circle hit area
+        let shape = new Phaser.Geom.Circle(radius, radius, radius);
+        this.setInteractive(shape, Phaser.Geom.Circle.Contains);
 
         this.setInteractive()
         this.on('pointerover', () => {
-            this.setFillStyle(ColorBackgroundOver)
+            this.setFillStyle(this.ColorBackgroundOver)
             this.onInputOver()
         })
         this.on('pointerout', () => {
-            this.setFillStyle(ColorBackgroundOut)
+            this.setFillStyle(this.ColorBackgroundOut)
             this.onInputOut()
         })
         this.on('pointerup', () => {
-            this.setFillStyle(ColorBackgroundUp)
+            this.setFillStyle(this.ColorBackgroundUp)
             this.onInputUp()
         })
         this.on('pointerdown', () => {
+            this.setFillStyle(this.ColorBackgroundOut)
             this.onClick()
         })
     }
@@ -60,9 +66,10 @@ Phaser.GameObjects.GameObjectFactory.register('buttonCircle', function (
     this: Phaser.GameObjects.GameObjectFactory,
     x: number,
     y: number,
+    radius: number,
     onClick = () => {} ){
     const scene = this.scene
-    const buttonCircle = new ButtonCircleUI(scene, x, y, onClick)
+    const buttonCircle = new ButtonCircleUI(scene, x, y, radius, onClick)
     scene.sys.displayList.add(buttonCircle)
 
     return buttonCircle

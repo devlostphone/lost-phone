@@ -40,10 +40,7 @@ export default class CalculatorApp extends App {
      */
     public render(): void {
 
-        let buttonCircle = this.fakeOS.add.buttonCircle(0, 0, this.newFeelsDankMan)
-        buttonCircle.radius = 64
-        buttonCircle.x = 72
-        buttonCircle.y = 128
+        let buttonCircle = this.fakeOS.add.buttonCircle(128, 192, 64, this.newFeelsDankMan)
         this.elements.add(buttonCircle)
 
         this.sampleText = this.fakeOS.add.text(0, 0, '', { fontFamily: 'Arial', fontSize: '64px', color: '#00ff00' })

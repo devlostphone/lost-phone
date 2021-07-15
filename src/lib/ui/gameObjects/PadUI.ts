@@ -16,23 +16,25 @@ declare global
 export default class PadUI extends Phaser.GameObjects.Container
 {
     private buttons: ButtonContainerUI[] = []
-    private rows: number = 3
-    private columns: number = 5
+    private rows: number = 5
+    private columns: number = 4
     private target: any
 
     public constructor (scene: Phaser.Scene, x: number, y: number, target: any) {
         super(scene, x, y)
         this.target = target
-        let val: any[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd']
-        for (let some of val) {
-            let button: ButtonContainerUI = new ButtonContainerUI(
+        let key_values: any[] = ['AC', '%', '/', 7, 8, 9, 'x', 4, 5, 6, '-', 1, 2, 3, '+', 0, ',', '=']
+        for (let key of key_values) {
+            let buttonContainer: ButtonContainerUI = new ButtonContainerUI(
                 scene,
-                some >= 0 && some <= 9 ? ButtonType.Number : ButtonType.Character,
-                some,
+                key >= 0 && key <= 9 ? ButtonType.Number : ButtonType.Character,
+                key,
                 0, 0,
-                (val: any) => {})
-            button.button.onClick = this.saysomething.bind(this, button)
-            this.buttons.push(button)
+                (key_values: any) => {})
+            buttonContainer.button.width = scene.width / this.columns
+            buttonContainer.button.height = (scene.height / 2) / this.rows
+            buttonContainer.button.onClick = this.saysomething.bind(this, buttonContainer)
+            this.buttons.push(buttonContainer)
         }
 
         let count = 0

@@ -43,7 +43,7 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
                 break
         }
 
-        this.text = scene.add.text(0, 0, value).setOrigin(0.5)
+        this.text = scene.add.text(0, 0, value).setOrigin(0, 0.5)
         this.text.setFontFamily('Arial')
         this.text.setFontSize(96)
         this.text.setScale(1)

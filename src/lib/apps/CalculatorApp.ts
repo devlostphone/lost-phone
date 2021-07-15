@@ -3,7 +3,7 @@ import App from '~/lib/apps/App';
 import FeelsDankMan from '~/lib/ui/gameObjects/CustomObjTemplate';
 import ButtonContainerUI from '~/lib/ui/gameObjects/ButtonContainerUI';
 import { ButtonType } from '~/lib/ui/gameObjects/ButtonUI';
-import ButtonCircleUI from '~/lib/ui/gameObjects/ButtonCircleUI';
+import ButtonCircleUI from '~/lib/ui/gameObjects/ButtonArcUI';
 import PadUI from '~/lib/ui/gameObjects/PadUI';
 
 export default class CalculatorApp extends App {
@@ -40,8 +40,8 @@ export default class CalculatorApp extends App {
      */
     public render(): void {
 
-        let buttonCircle = this.fakeOS.add.buttonCircle(128, 192, 64, this.newFeelsDankMan)
-        this.elements.add(buttonCircle)
+        let buttonArc = this.fakeOS.add.buttonArc(128, 192, 64, this.newFeelsDankMan)
+        this.elements.add(buttonArc)
 
         this.sampleText = this.fakeOS.add.text(0, 0, '', { fontFamily: 'Arial', fontSize: '64px', color: '#00ff00' })
         this.addGrid(this.sampleText, {x: 64, y: 0})

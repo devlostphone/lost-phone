@@ -7,6 +7,6 @@ import '~/lib/settings/FakeOSSettings';
 import '~/lib/events/FakeOSEvents';
 import '~/lib/ui/gameObjects/CustomObjTemplate';
 import '~/lib/ui/gameObjects/ButtonUI';
-import '~/lib/ui/gameObjects/ButtonCircleUI';
+import '~/lib/ui/gameObjects/ButtonArcUI';
 import '~/lib/ui/gameObjects/ButtonContainerUI';
 import '~/lib/ui/gameObjects/PadUI';

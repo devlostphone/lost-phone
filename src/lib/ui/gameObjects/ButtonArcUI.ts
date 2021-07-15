@@ -9,12 +9,12 @@ declare global
     {
         interface GameObjectFactory
         {
-            buttonCircle(x: number, y: number, radius: number, onClick: any): ButtonCircleUI
+            buttonArc(x: number, y: number, radius: number, onClick: any): ButtonArcUI
         }
     }
 }
 
-export default class ButtonCircleUI extends Phaser.GameObjects.Arc
+export default class ButtonArcUI extends Phaser.GameObjects.Arc
 {
     scene: Phaser.Scene
     public onInputOver = () => {}
@@ -62,15 +62,15 @@ export default class ButtonCircleUI extends Phaser.GameObjects.Arc
     }
 }
 
-Phaser.GameObjects.GameObjectFactory.register('buttonCircle', function (
+Phaser.GameObjects.GameObjectFactory.register('buttonArc', function (
     this: Phaser.GameObjects.GameObjectFactory,
     x: number,
     y: number,
     radius: number,
     onClick = () => {} ){
     const scene = this.scene
-    const buttonCircle = new ButtonCircleUI(scene, x, y, radius, onClick)
-    scene.sys.displayList.add(buttonCircle)
+    const buttonArc = new ButtonArcUI(scene, x, y, radius, onClick)
+    scene.sys.displayList.add(buttonArc)
 
-    return buttonCircle
+    return buttonArc
 })

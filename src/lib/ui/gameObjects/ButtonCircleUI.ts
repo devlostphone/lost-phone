@@ -1,42 +1,29 @@
 /**
- * Custom button object
- * @todo: need to be documented
+ * Button Circle shape UI
+ *
  */
-
-export enum ButtonType {
-    Number = '10',
-    Character = '11',
-    Symbol = '20',
-    Emoji = '21'
-}
 
 declare global
 {
-    interface IButton extends Phaser.GameObjects.GameObject, Phaser.GameObjects.Components.Transform
-    {
-
-    }
     namespace Phaser.GameObjects
     {
         interface GameObjectFactory
         {
-            button(kind: ButtonType, x: number, y: number, onClick: any): ButtonUI
+            buttonCircle(x: number, y: number, onClick: any): ButtonCircleUI
         }
     }
 }
 
-export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IButton
+export default class ButtonCircleUI extends Phaser.GameObjects.Arc
 {
     scene: Phaser.Scene
-    kind: ButtonType
     public onInputOver = () => {}
     public onInputOut = () => {}
     public onInputUp = () => {}
-    public onClick = (val: any) => {}
+    public onClick = () => {}
 
     public constructor (
         scene: Phaser.Scene,
-        kind: ButtonType,
         x: number,
         y: number,
         onClick = () => {}
@@ -44,7 +31,7 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
         super(scene, x, y)
 
         this.scene = scene
-        this.kind = kind
+        this.onClick = onClick
 
         let ColorBackgroundOut: number = 0x0
         let ColorBackgroundOver: number = 0xffff00
@@ -64,21 +51,19 @@ export default class ButtonUI extends Phaser.GameObjects.Rectangle implements IB
             this.onInputUp()
         })
         this.on('pointerdown', () => {
-            let val: any
-            this.onClick(val)
+            this.onClick()
         })
     }
 }
 
-Phaser.GameObjects.GameObjectFactory.register('button', function (
+Phaser.GameObjects.GameObjectFactory.register('buttonCircle', function (
     this: Phaser.GameObjects.GameObjectFactory,
-    kind: ButtonType,
     x: number,
     y: number,
     onClick = () => {} ){
     const scene = this.scene
-    const button = new ButtonUI(scene, kind, x, y, onClick)
-    scene.sys.displayList.add(button)
+    const buttonCircle = new ButtonCircleUI(scene, x, y, onClick)
+    scene.sys.displayList.add(buttonCircle)
 
-    return button
+    return buttonCircle
 })

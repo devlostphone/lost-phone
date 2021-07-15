@@ -3,8 +3,8 @@ import App from '~/lib/apps/App';
 import FeelsDankMan from '~/lib/ui/gameObjects/CustomObjTemplate';
 import ButtonContainerUI from '~/lib/ui/gameObjects/ButtonContainerUI';
 import { ButtonType } from '~/lib/ui/gameObjects/ButtonUI';
+import ButtonCircleUI from '~/lib/ui/gameObjects/ButtonCircleUI';
 import PadUI from '~/lib/ui/gameObjects/PadUI';
-
 
 export default class CalculatorApp extends App {
 
@@ -40,6 +40,12 @@ export default class CalculatorApp extends App {
      */
     public render(): void {
 
+        let buttonCircle = this.fakeOS.add.buttonCircle(0, 0, this.newFeelsDankMan)
+        buttonCircle.radius = 64
+        buttonCircle.x = 72
+        buttonCircle.y = 128
+        this.elements.add(buttonCircle)
+
         this.sampleText = this.fakeOS.add.text(0, 0, '', { fontFamily: 'Arial', fontSize: '64px', color: '#00ff00' })
         this.addGrid(this.sampleText, {x: 64, y: 0})
         this.elements.add(this.sampleText)
@@ -66,6 +72,7 @@ export default class CalculatorApp extends App {
      * Add a "Feels dank man" emote to scene
      */
     private newFeelsDankMan = () => {
+        console.log("Surgar Dank Man");
         this.dank = this.fakeOS.add.dank(0, 0).setOrigin(0).setScale(1)
         this.dank.play('spinning')
         this.dank.x = Math.floor(Math.random() * this.fakeOS.width)

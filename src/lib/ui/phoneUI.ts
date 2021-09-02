@@ -1,5 +1,5 @@
-import { FakeOS } from 'scenes/FakeOS';
-import Time from 'lib/ui/gameObjects/Time';
+import { FakeOS } from '~/scenes/FakeOS';
+import Time from '~/lib/ui/gameObjects/Time';
 
 /**
  * FakeOS UI.

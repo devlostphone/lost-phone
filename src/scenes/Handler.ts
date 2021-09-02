@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import LostAndPhone from 'lib/GameLib';
+import LostAndPhone from '~/lib/GameLib';
 
 /**
  * Scene for handling resizing.

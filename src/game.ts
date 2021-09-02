@@ -1,5 +1,5 @@
 import 'phaser';
-import LostAndPhone from 'lib/GameLib';
+import LostAndPhone from '~/lib/GameLib';
 
 import {
     config,
@@ -9,7 +9,7 @@ import {
     MIN_SIZE_HEIGHT_SCREEN,
     SIZE_WIDTH_SCREEN,
     SIZE_HEIGHT_SCREEN
-} from 'config';
+} from '~/config';
 
 function newGame(gameConfig: object) {
     game = new LostAndPhone.Game(gameConfig);

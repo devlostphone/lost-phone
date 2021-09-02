@@ -1,6 +1,6 @@
-import {dpr} from 'lib/Screen';
-import LostAndPhone from 'lib/GameLib';
-import Handler from 'scenes/Handler';
+import {dpr} from '~/lib/Screen';
+import LostAndPhone from '~/lib/GameLib';
+import Handler from '~/scenes/Handler';
 
 /**
  * Preloader scene.

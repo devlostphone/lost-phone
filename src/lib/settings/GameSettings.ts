@@ -1,5 +1,5 @@
-import { PhoneEvents } from 'lib/events/GameEvents';
-import { FakeOS } from 'scenes/FakeOS';
+import { PhoneEvents } from '~/lib/events/GameEvents';
+import { FakeOS } from '~/scenes/FakeOS';
 
 /**
  * Game settings class.

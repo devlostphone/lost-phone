@@ -1,5 +1,5 @@
-import { FakeOS } from 'scenes/FakeOS';
-import App from 'lib/apps/App';
+import { FakeOS } from '~/scenes/FakeOS';
+import App from '~/lib/apps/App';
 
 /**
  * Clock app

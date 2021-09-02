@@ -1,5 +1,5 @@
-import {dpr} from 'lib/Screen';
-import LostAndPhone from 'lib/GameLib';
+import {dpr} from '~/lib/Screen';
+import LostAndPhone from '~/lib/GameLib';
 
 /**
  * Boot scene.

@@ -1,5 +1,5 @@
-import ClockApp from 'lib/apps/ClockApp';
-import HomescreenApp from 'lib/apps/HomescreenApp';
+import ClockApp from '~/lib/apps/ClockApp';
+import HomescreenApp from '~/lib/apps/HomescreenApp';
 
 
 /**

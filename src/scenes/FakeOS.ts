@@ -1,8 +1,8 @@
-import LostAndPhone from 'lib/GameLib';
-import Handler from 'scenes/Handler';
-import UI from 'lib/ui/phoneUI';
-import App from 'lib/apps/App';
-import AppFactory from 'lib/apps/AppFactory';
+import LostAndPhone from '~/lib/GameLib';
+import Handler from '~/scenes/Handler';
+import UI from '~/lib/ui/phoneUI';
+import App from '~/lib/apps/App';
+import AppFactory from '~/lib/apps/AppFactory';
 
 /**
  * FakeOS.

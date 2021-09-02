@@ -3,7 +3,7 @@
  * @todo: comment code
  */
 
-import { FakeOS } from 'scenes/FakeOS';
+import { FakeOS } from '~/scenes/FakeOS';
 
 declare global
 {

@@ -1,5 +1,5 @@
-import { PhoneEvents } from 'lib/events/GameEvents';
-import { FakeOS } from 'scenes/FakeOS';
+import { PhoneEvents } from '~/lib/events/GameEvents';
+import { FakeOS } from '~/scenes/FakeOS';
 
 /**
  * Game settings class.
@@ -55,6 +55,7 @@ export default class GameSettings {
      * @param value
      */
     public setSettingValue(key: string, value: any) {
+        this.fakeOS.log('Changing key ' + key + ' to value ' + value);
         let settings = this.fakeOS.getGame().registry.get('settings');
 
         if (key in this.options) {

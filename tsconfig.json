@@ -1,22 +1,31 @@
 {
-    "compilerOptions": {
-        "sourceMap": true,
-        "strict": true,
-        "noImplicitReturns": true,
-        "noImplicitAny": true,
-        "module": "es6",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "target": "es5",
-        "allowJs": true,
-        "baseUrl": "src/",
-    },
-    "include": [
-        "**/*.ts"
-    ],
-    "exclude": [
-        "node_modules",
-        "./dist/"
-    ]
-  }
+	"compilerOptions": {
+		"target": "es2016",
+		"module": "es6",
+		"strict": true,
+		"noImplicitAny": true,
+		"noEmit": true,
+		"allowJs": true,
+		"jsx": "preserve",
+		"importHelpers": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+		"baseUrl": "src/",
+		"paths": {
+		  "~/*": ["./*"]
+		},
+		"typeRoots": [
+			"node_modules/@types",
+			"node_module/phaser/types"
+		],
+		"types": [
+			"phaser"
+		]
+	},
+	"include": [
+		"src/**/*.ts"
+	]
+}

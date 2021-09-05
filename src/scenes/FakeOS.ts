@@ -1,13 +1,13 @@
-import LostAndPhone from 'lib/GameLib';
-import Handler from 'scenes/Handler';
-import UI from 'lib/ui/phoneUI';
-import App from 'lib/apps/App';
-import AppFactory from 'lib/apps/AppFactory';
+import {FakeOSScene} from '~/lib/GameLib';
+import Handler from '~/scenes/Handler';
+import UI from '~/lib/ui/phoneUI';
+import App from '~/lib/apps/App';
+import AppFactory from '~/lib/apps/AppFactory';
 
 /**
  * FakeOS.
  */
-export class FakeOS extends LostAndPhone.Scene {
+export class FakeOS extends FakeOSScene {
 
     /**
      * FakeOS UI.
@@ -43,10 +43,9 @@ export class FakeOS extends LostAndPhone.Scene {
      * Class constructor.
      */
     public constructor() {
-        super({ key : 'fakeOS'});
+        super('fakeOS');
         this.activeApp = AppFactory.createInstance('HomescreenApp', this);
         this.UI = new UI(this);
-        //this.initSettings();;
     }
 
     /**
@@ -54,9 +53,16 @@ export class FakeOS extends LostAndPhone.Scene {
      */
     public preload(): void {
         super.preload();
-        if (this.handlerScene instanceof Handler) {
-            this.handlerScene.sceneRunning = 'fakeOS';
+        this.cleanState();
+
+        let password = this.getPassword();
+        if (password !== null) {
+            this.loadState(password[1]);
+            this.saveState();
         }
+
+        this.handlerScene.sceneRunning = 'fakeOS';
+
         // Setup basic config
         this.lang = this.cache.json.get('config').language;
         this.debug = this.cache.json.get('config').debug == 'dev';
@@ -86,6 +92,8 @@ export class FakeOS extends LostAndPhone.Scene {
 
         // Render the homescreen
         this.activeApp.render();
+
+        // Start listening to events
     }
 
     /**

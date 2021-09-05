@@ -5,13 +5,20 @@ Object.defineProperty(Phaser.Structs.List.prototype, 'current', {
     }
 });
 
-function resolvePropertyInPath(path: string, obj: any) {
+export {}
+declare global {
+    function resolvePropertyInPath(path: string, obj: any): any;
+    function setPropertyInPath(path: string, obj: any, value: any): void;
+}
+
+const _global = (window /* browser */ || global /* node */) as any;
+_global.resolvePropertyInPath = function(path: string, obj: any): any {
     return path.split('.').reduce(function(prev, curr) {
         return prev ? prev[curr] : null
     }, obj || self)
 }
 
-function setPropertyInPath(path: string, obj: any, value: any) {
+_global.setPropertyInPath = function(path: string, obj: any, value: any): void {
     var schema = obj;
     var pList = path.split('.');
     var len = pList.length;

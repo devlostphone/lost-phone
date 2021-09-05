@@ -1,11 +1,11 @@
-import {dpr} from 'lib/Screen';
-import LostAndPhone from 'lib/GameLib';
-import Handler from 'scenes/Handler';
+import {dpr} from '~/lib/Screen';
+import {FakeOSScene} from '~/lib/GameLib';
+import Handler from '~/scenes/Handler';
 
 /**
  * Preloader scene.
  */
-export default class Preloader extends LostAndPhone.Scene {
+export default class Preloader extends FakeOSScene {
 
     /**
      * Canvas width.

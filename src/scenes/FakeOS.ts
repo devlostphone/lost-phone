@@ -59,6 +59,9 @@ export class FakeOS extends FakeOSScene {
         if (password !== null) {
             this.loadState(password[1]);
             this.saveState();
+            this.clearURL();
+        } else {
+            this.loadState();
         }
 
         this.handlerScene.sceneRunning = 'fakeOS';

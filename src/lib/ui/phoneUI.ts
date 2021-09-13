@@ -43,6 +43,20 @@ export default class phoneUI {
     }
 
     /**
+     * Returns app rendering area dimensions
+     *
+     * @returns {width, height}
+     */
+    public getAppRenderSize(): any {
+        return {
+            x: 0,
+            y: this.elements.topBar.height,
+            width: this.fakeOS.width,
+            height: this.fakeOS.height - this.elements.topBar.height - this.elements.bottomBar.height
+        }
+    }
+
+    /**
      * Sets the FakeOS wallpaper.
      */
     protected setWallpaper(): void {

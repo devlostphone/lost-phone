@@ -16,6 +16,7 @@ FakeOS.prototype.setDone = function(id: string): void {
 
     save[id] = true;
     this.registry.set('complete', save);
+    this.saveState();
 }
 
 FakeOS.prototype.checkDone = function(conditions: any): boolean {

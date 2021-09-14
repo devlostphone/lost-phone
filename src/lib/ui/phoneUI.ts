@@ -18,7 +18,8 @@ export default class phoneUI {
         topBar?: any,
         bottomBar?: any,
         clock?: any,
-        homeButton?: any
+        homeButton?: any,
+        backButton?: any
     };
 
     /**
@@ -105,6 +106,8 @@ export default class phoneUI {
      */
      protected createButtons(): void {
         let t = this;
+
+        // Create home button
         this.elements.homeButton = this.fakeOS.add.image(
             this.fakeOS.width / 2,
             this.fakeOS.height - this.fakeOS.height * 0.05,
@@ -115,7 +118,21 @@ export default class phoneUI {
         this.fakeOS.addInputEvent(
             'pointerup',
             () => t.fakeOS.launchApp('HomescreenApp'),
-        this.elements.homeButton);
+            this.elements.homeButton
+        );
+
+        // Create back button
+        this.elements.backButton = this.fakeOS.add.text(
+            this.fakeOS.width / 4,
+            this.fakeOS.height - this.fakeOS.height * 0.05,
+            '<-'
+        ).setVisible(false);
+
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => t.fakeOS.useBackFunction(),
+            this.elements.backButton
+        );
     }
 
     /**
@@ -144,5 +161,12 @@ export default class phoneUI {
      */
     public update(delta:any, time: any): void {
         this.elements.clock.update(delta);
+
+        // Only showing back button when functions available.
+        if (this.fakeOS.getBackFunction().length > 0) {
+            this.elements.backButton.setVisible(true);
+        } else {
+            this.elements.backButton.setVisible(false);
+        }
     }
 }

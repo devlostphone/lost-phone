@@ -54,6 +54,8 @@ import App from '~/lib/apps/App';
     }
 
     public openMail(mail: any): void {
+
+        // Adding a new layer for displaying mail contents.
         this.addLayer();
         let text = this.fakeOS.add.text(0,0,
             mail['body'],
@@ -62,5 +64,9 @@ import App from '~/lib/apps/App';
         this.addRow(text);
 
         this.fakeOS.setDone(mail['id']);
+
+        this.fakeOS.addBackFunction(() => {
+            this.fakeOS.launchApp('MailApp');
+        });
     }
  }

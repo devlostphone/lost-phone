@@ -27,12 +27,19 @@ import App from '~/lib/apps/App';
 
         for (let i=0; i < this.mails.length; i++) {
             let id = this.mails[i]['id'];
+
+            // Check if can be shown
+            if (!this.fakeOS.checkDone(this.mails[i]['condition'])) {
+                continue;
+            }
+
+            // Check if already read
             if(this.fakeOS.checkDone(id)) {
                 style = { color: '#FFF' };
             } else {
                 style = { color: '#F00' };
             }
-            let title = this.fakeOS.add.text(0,0, this.mails[i]['title'], style);
+            let title = this.fakeOS.add.text(0,0, this.mails[i]['date'] + ' - ' +this.mails[i]['title'], style);
 
             this.addRow(title);
 
@@ -51,7 +58,7 @@ import App from '~/lib/apps/App';
         let text = this.fakeOS.add.text(0,0,
             mail['body'],
             {wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }}
-        );
+        ).setOrigin(0,0);
         this.addRow(text);
 
         this.fakeOS.setDone(mail['id']);

@@ -1,5 +1,6 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import Time from '~/lib/ui/gameObjects/Time';
+import { width } from '../Screen';
 
 /**
  * FakeOS UI.
@@ -19,7 +20,8 @@ export default class phoneUI {
         bottomBar?: any,
         clock?: any,
         homeButton?: any,
-        backButton?: any
+        backButton?: any,
+        drawer?: any
     };
 
     /**
@@ -41,6 +43,7 @@ export default class phoneUI {
         this.createBars();
         this.createButtons();
         this.createClock();
+        this.createDrawer();
     }
 
     /**
@@ -105,6 +108,7 @@ export default class phoneUI {
      * Adds the UI main buttons.
      */
      protected createButtons(): void {
+        this.fakeOS.log('Creating back button');
         let t = this;
 
         // Create home button
@@ -136,7 +140,7 @@ export default class phoneUI {
     }
 
     /**
-     * Creates the clock at the top bar
+     * Creates the clock at the top bar.
      */
     protected createClock(): void {
         this.fakeOS.log('Creating clock');
@@ -151,6 +155,102 @@ export default class phoneUI {
                 align: 'center'
             }
         ).setOrigin(0.5, 0.5);
+    }
+
+    /**
+     * Creates the drawer.
+     */
+    protected createDrawer(): void {
+        this.fakeOS.log('Creating drawer');
+        this.elements.drawer = {};
+
+        // Create drawer area, off camera
+        this.elements.drawer.drawerArea = this.fakeOS.add.container(
+            0, -this.fakeOS.height
+        );
+
+        this.elements.drawer.drawerArea.add(
+            this.fakeOS.add.rectangle(
+                0, 0,
+                this.fakeOS.width, this.fakeOS.height,
+                0x333333
+            ).setOrigin(0,0)
+        );
+
+        // Create drawer launcher
+        this.elements.drawer.drawerLauncher = this.fakeOS.add.container(
+            this.fakeOS.width - 25,
+            this.fakeOS.height + 15 + this.elements.topBar.height / 2
+        ).setSize(50,this.elements.topBar.height + 30);
+
+        this.elements.drawer.drawerLauncher.add([
+            this.fakeOS.add.rectangle(
+                0, -15,
+                50, this.elements.topBar.height,
+                0x333333
+            ),
+            this.fakeOS.add.triangle(
+                0,this.elements.topBar.height - 30,
+                0, 0,
+                50, 0,
+                25, 30,
+                0x333333
+            )
+        ]);
+
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => {
+                this.fakeOS.log('Launching drawer');
+                this.fakeOS.tweens.add({
+                    targets: this.elements.drawer.drawerArea,
+                    y: 0,
+                    duration: 700
+                });
+            },
+            this.elements.drawer.drawerLauncher
+        );
+
+        this.elements.drawer.drawerArea.add(this.elements.drawer.drawerLauncher);
+
+        // Create drawer hide button
+        this.elements.drawer.drawerHide = this.fakeOS.add.container(
+            this.fakeOS.width - 25,
+            this.fakeOS.height - 15 - this.elements.topBar.height / 2
+        ).setSize(50,this.elements.topBar.height + 30);
+
+        this.elements.drawer.drawerHide.add([
+            this.fakeOS.add.rectangle(
+                0, 15,
+                50, this.elements.topBar.height,
+                0x666666
+            ),
+            this.fakeOS.add.triangle(
+                0, 0,
+                0, 0,
+                50, 0,
+                25, - 30,
+                0x666666
+            )
+        ]);
+
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => {
+                this.fakeOS.log('Hiding drawer');
+                this.fakeOS.tweens.add({
+                    targets: this.elements.drawer.drawerArea,
+                    y: -this.fakeOS.height,
+                    duration: 700
+                });
+            },
+            this.elements.drawer.drawerHide
+        );
+
+        this.elements.drawer.drawerArea.add(this.elements.drawer.drawerHide);
+
+        //this.fakeOS.input.enableDebug(this.elements.drawer.drawerLauncher);
+        //this.fakeOS.input.enableDebug(this.elements.drawer.drawerHide);
     }
 
     /**

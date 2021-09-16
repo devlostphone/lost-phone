@@ -30,6 +30,7 @@ export default class SettingsApp extends App {
 
     public showOptions(): void {
         this.addRow(this.notificationOption());
+        this.addRow(this.showResetOption());
         this.addRow(this.showQROption());
     }
 
@@ -49,6 +50,21 @@ export default class SettingsApp extends App {
         );
 
         return [text, toggle];
+    }
+
+    protected showResetOption(): any[] {
+        let text = this.fakeOS.add.text(0,0, this.fakeOS.getString('reset_data'));
+
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => {
+                this.fakeOS.cleanState();
+                this.fakeOS.launchApp('HomescreenApp');
+            },
+            text
+        );
+
+        return [text];
     }
 
     protected showQROption(): any[] {

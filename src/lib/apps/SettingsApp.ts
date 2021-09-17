@@ -1,10 +1,14 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
+import QRCode from 'qrcode';
 
 /**
  * Settings app
  */
 export default class SettingsApp extends App {
+
+    protected qr: any;
+    protected qrtext: any;
 
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
@@ -26,9 +30,11 @@ export default class SettingsApp extends App {
 
     public showOptions(): void {
         this.addRow(this.notificationOption());
+        this.addRow(this.showResetOption());
+        this.addRow(this.showQROption());
     }
 
-    protected notificationOption(): any[]    {
+    protected notificationOption(): any[] {
 
         let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('showNotifications'));
         let notificationSetting = this.fakeOS.getSettings().getSettingValue('notificationPopup');
@@ -44,5 +50,73 @@ export default class SettingsApp extends App {
         );
 
         return [text, toggle];
+    }
+
+    protected showResetOption(): any[] {
+        let text = this.fakeOS.add.text(0,0, this.fakeOS.getString('reset_data'));
+
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => {
+                this.fakeOS.cleanState();
+                this.fakeOS.launchApp('HomescreenApp');
+            },
+            text
+        );
+
+        return [text];
+    }
+
+    protected showQROption(): any[] {
+        let settingsapp = this;
+        let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('getQR'));
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => {
+                QRCode.toDataURL(this.fakeOS.generateURL(
+                    this.fakeOS.getURL(),
+                    this.fakeOS.getState()
+                ))
+                .then(url => {
+                    this.fakeOS.log('Generating QR');
+                    if (this.qr !== undefined) {
+                        this.qr.destroy();
+                        this.qrtext.destroy();
+                    }
+                    if (this.fakeOS.textures.exists('url')) {
+                        this.fakeOS.textures.remove('url');
+                    }
+                    this.fakeOS.textures.addBase64('url', url);
+                    this.fakeOS.textures.on('onload', () => this.showQR());
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+            },
+            text
+        );
+
+        return [text];
+    }
+
+    protected showQR(): void {
+        let url = this.fakeOS.generateURL(
+            this.fakeOS.getURL(),
+            this.fakeOS.getState()
+        );
+        this.qr = this.fakeOS.add.image(0,0,'url');
+        this.addRow(this.qr, {'y': 5});
+
+        this.qrtext = this.fakeOS.add.text(0,0,url,{
+            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+        });
+        this.addRow(this.qrtext,{'y': 7});
+
+        // TODO: make text selectable as an input
+        // TODO: copy URL to clipboard
+        /*this.fakeOS.add.dom(0,0)
+            .createFromHTML('<input type="text" value="'+url+'" />');*/
+
+        this.fakeOS.textures.off('onload');
     }
 }

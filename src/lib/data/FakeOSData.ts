@@ -16,6 +16,7 @@ FakeOS.prototype.setDone = function(id: string): void {
 
     save[id] = true;
     this.registry.set('complete', save);
+    this.saveState();
 }
 
 FakeOS.prototype.checkDone = function(conditions: any): boolean {
@@ -32,8 +33,8 @@ FakeOS.prototype.checkDone = function(conditions: any): boolean {
     let save = this.registry.get('complete');
     for (let i=0; i<conditions.length; i++) {
         if (!save[conditions[i]]) {
-        complete = false;
-        break;
+            complete = false;
+            break;
         }
     }
 

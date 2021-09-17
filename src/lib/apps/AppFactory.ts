@@ -1,5 +1,6 @@
-import HomescreenApp from '~/lib/apps/HomescreenApp';
 import ClockApp from '~/lib/apps/ClockApp';
+import HomescreenApp from '~/lib/apps/HomescreenApp';
+import MailApp from '~/lib/apps/MailApp';
 import SettingsApp from '~/lib/apps/SettingsApp';
 import CalculatorApp from '~/lib/apps/CalculatorApp';
 
@@ -7,9 +8,10 @@ import CalculatorApp from '~/lib/apps/CalculatorApp';
  * Contains all app definitions.
  */
 const Store: any = {
-    HomescreenApp,
-    SettingsApp,
     ClockApp,
+    HomescreenApp,
+    MailApp,
+    SettingsApp,
     CalculatorApp
 }
 

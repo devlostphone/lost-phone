@@ -3,6 +3,8 @@ import { FakeOS } from "~/scenes/FakeOS";
 declare module "scenes/FakeOS" {
     interface FakeOS {
         cleanState(): void;
+        deleteState(): void;
+        getState(): any;
         saveState(): void;
         loadState(password?: any): void;
     }
@@ -17,8 +19,14 @@ FakeOS.prototype.cleanState = function() {
     this.registry.set('settings',{});
 
     this.initSettings();
+}
 
+FakeOS.prototype.deleteState = function(): void {
     localStorage.setItem('lostandphone','');
+}
+
+FakeOS.prototype.getState = function(): any {
+    return localStorage.getItem('lostandphone');
 }
 
 FakeOS.prototype.saveState = function() {
@@ -26,7 +34,6 @@ FakeOS.prototype.saveState = function() {
 
     let state = btoa(JSON.stringify(this.registry.getAll()));
     localStorage.setItem('lostandphone', state);
-    this.updateURL(state);
 }
 
 FakeOS.prototype.loadState = function(password?: any) {
@@ -40,13 +47,12 @@ FakeOS.prototype.loadState = function(password?: any) {
 
     this.log('Loading state: '+state);
 
-    if (state !== null) {
+    if (state !== null && state !== '') {
         let values = JSON.parse(atob(state));
         for (let key in values) {
             this.registry.set(key, values[key]);
         }
     }
 
-    this.updateURL(state);
     this.settings.fullSync();
 }

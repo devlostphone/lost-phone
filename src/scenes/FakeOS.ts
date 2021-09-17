@@ -40,6 +40,11 @@ export class FakeOS extends FakeOSScene {
     public apps?: any;
 
     /**
+     * Function called when pressed "back" button
+     */
+    protected backFunction: any = [];
+
+    /**
      * Class constructor.
      */
     public constructor() {
@@ -59,6 +64,9 @@ export class FakeOS extends FakeOSScene {
         if (password !== null) {
             this.loadState(password[1]);
             this.saveState();
+            this.clearURL();
+        } else {
+            this.loadState();
         }
 
         this.handlerScene.sceneRunning = 'fakeOS';
@@ -127,6 +135,33 @@ export class FakeOS extends FakeOSScene {
     }
 
     /**
+     * Returns the back button function.
+     *
+     * @returns any
+     */
+    public getBackFunction(): any {
+        return this.backFunction;
+    }
+
+    /**
+     * Appends a new function to the back button function stack.
+     *
+     * @param func
+     */
+    public addBackFunction(func: any): any {
+        this.backFunction.push(func);
+    }
+
+    /**
+     * Uses the last back button function from the stack and removes it.
+     */
+    public useBackFunction(): void {
+        if (this.backFunction.length > 0) {
+            this.backFunction.pop()();
+        }
+    }
+
+    /**
      * Logs a message into the console.
      * Only works if debug is enabled.
      *
@@ -163,5 +198,14 @@ export class FakeOS extends FakeOSScene {
         this.log('Launching App: '+key);
         this.activeApp = AppFactory.createInstance(key, this);
         this.activeApp.render();
+
+        // Delete back function when in homescreen.
+        if (key == 'HomescreenApp') {
+            this.backFunction = [];
+        } else {
+            this.addBackFunction(() => {
+                this.launchApp('HomescreenApp');
+            });
+        }
     }
 }

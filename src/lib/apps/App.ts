@@ -214,12 +214,28 @@ export default abstract class App {
      * @returns         The y position of the specified row
      */
     protected atRow(rowNumber: number): number {
+        let area = this.fakeOS.getUI().getAppRenderSize();
 
         // If rowNumber is negative, start from the bottom
         if (rowNumber < 0) {
           rowNumber = this.rows + rowNumber;
         }
-        return this.fakeOS.getUI().elements.topBar.height + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
+        return area.y + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
+    }
+
+    public addLayer(): void {
+        let area = this.fakeOS.getUI().getAppRenderSize();
+        let layer = this.fakeOS.add.rectangle(
+            area.x,
+            area.y,
+            area.width,
+            area.height,
+            0x333333
+        ).setOrigin(0,0);
+        this.elements.add(layer);
+
+        // Reset position
+        this.lastY = 0;
     }
 
     /**

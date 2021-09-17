@@ -33,12 +33,17 @@ export default class CalculatorApp extends App {
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.scene = fakeOS
+        // TODO: Set a specific background depending of active app
+        this.fakeOS.setBackground('flatcolor', 0xff0000);
     }
 
     /**
      * Render method.
      */
     public render(): void {
+        // TODO: Remove backbutton from phoneUI.ts
+        console.log(this.fakeOS.getBackFunction());
+
 
         let buttonArc = this.fakeOS.add.buttonArc(128, 192, 64, this.newFeelsDankMan)
         this.elements.add(buttonArc)
@@ -50,6 +55,7 @@ export default class CalculatorApp extends App {
         let samplePad = this.fakeOS.add.numpad(0, 0, this.sampleText)
         this.addGrid(samplePad, {x: 64, y: 4})
         this.elements.add(samplePad)
+
     }
 
     /**

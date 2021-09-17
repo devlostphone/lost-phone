@@ -22,7 +22,7 @@ export class FakeOS extends FakeOSScene {
     /**
      * Background image.
      */
-    protected background?: Phaser.GameObjects.Image;
+    protected background?: any;
 
     /**
      * Debug mode.
@@ -92,7 +92,7 @@ export class FakeOS extends FakeOSScene {
             this.handlerScene?.updateResize(this);
         }
 
-        this.setBackground();
+        this.setBackground('wallpaper');
 
         // Render the UI
         this.UI = new UI(this);
@@ -107,13 +107,25 @@ export class FakeOS extends FakeOSScene {
     /**
      * Sets the background.
      */
-    public setBackground(): void {
-        this.background = this.add.image(
-            this.width / 2,
-            this.height / 2,
-            'background'
-        ).setOrigin(0.5, 0.5)
-        .setScale(1.5);
+    public setBackground(kind: string, color?: number): void {
+        if (kind === 'wallpaper') {
+            this.background = this.add.image(
+                this.width / 2,
+                this.height / 2,
+                'background'
+            ).setOrigin(0.5, 0.5)
+                .setScale(1.5);
+        }
+
+        if (kind === 'flatcolor') {
+            this.background = this.add.rectangle(
+                0,
+                0,
+                this.width,
+                this.height,
+                color
+            ).setOrigin(0);
+        }
     }
 
     /**

@@ -1,5 +1,5 @@
-import ButtonRectUI from './ButtonRectUI'
-import { ButtonType } from './ButtonRectUI'
+import ButtonRectUI from '~/lib/ui/gameObjects/ButtonRectUI'
+import ButtonArcUI from '~/lib/ui/gameObjects/ButtonArcUI'
 
 declare global
 {
@@ -12,7 +12,7 @@ declare global
     {
         interface GameObjectFactory
         {
-            buttonContainer(kind: ButtonType, value: string, x: number, y: number, onClick: any): ButtonContainerUI
+            buttonContainer(shape: object, value: string, x: number, y: number, onClick: any): ButtonContainerUI
         }
     }
 }
@@ -23,25 +23,14 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
     public button : ButtonRectUI
     public text: Phaser.GameObjects.Text
 
-    public constructor (scene: Phaser.Scene, kind: ButtonType, value: any, x: number, y: number, onClickCallback: any)
+    public constructor (scene: Phaser.Scene, shape: object, value: any, x: number, y: number, onClickCallback: any)
     {
         super(scene, x, y)
-        this.button = new ButtonRectUI(scene, kind, 0, 0, onClickCallback)
-        this.value = value
+        console.log('shape.kind? ' + shape.kind)
+        if (shape.kind == 'rect')
+            this.button = new ButtonRectUI(scene, 0, 0, onClickCallback)
 
-        switch (kind) {
-            case ButtonType.Emoji:
-                // Do nothing at the moment
-                break
-            case ButtonType.Number:
-                // Do something
-                this.button.setFillStyle(0x00ff00)
-                break
-            case ButtonType.Character:
-                // Do something
-                this.button.setFillStyle(0x0000ff)
-                break
-        }
+        this.value = value
 
         this.text = scene.add.text(0, 0, value).setOrigin(0, 0.5)
         this.text.setFontFamily('Arial')
@@ -55,7 +44,7 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
 
 Phaser.GameObjects.GameObjectFactory.register('buttonContainer', function (
     this: Phaser.GameObjects.GameObjectFactory,
-    kind: ButtonType,
+    kind: any,
     value: string,
     x: number,
     y: number,

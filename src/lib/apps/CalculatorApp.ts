@@ -4,7 +4,7 @@ import FeelsDankMan from '~/lib/ui/gameObjects/CustomObjTemplate';
 import ButtonContainerUI from '~/lib/ui/gameObjects/ButtonContainerUI';
 import { ButtonType } from '~/lib/ui/gameObjects/ButtonRectUI';
 import ButtonCircleUI from '~/lib/ui/gameObjects/ButtonArcUI';
-import PadUI from '~/lib/ui/gameObjects/PadUI';
+import CalculatorPadUI from '~/lib/ui/gameObjects/CalculatorPadUI';
 
 export default class CalculatorApp extends App {
 
@@ -52,9 +52,9 @@ export default class CalculatorApp extends App {
         this.addGrid(this.sampleText, {x: 64, y: 0})
         this.elements.add(this.sampleText)
 
-        let samplePad = this.fakeOS.add.numpad(0, 0, this.sampleText)
-        this.addGrid(samplePad, {x: 64, y: 4})
-        this.elements.add(samplePad)
+        let CalculatorPad = this.fakeOS.add.calcpad(0, 0, this.sampleText)
+        this.addGrid(CalculatorPad, {x: 64, y: 4})
+        this.elements.add(CalculatorPad)
 
     }
 

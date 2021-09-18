@@ -10,4 +10,4 @@ import '~/lib/ui/gameObjects/CustomObjTemplate';
 import '~/lib/ui/gameObjects/ButtonRectUI';
 import '~/lib/ui/gameObjects/ButtonArcUI';
 import '~/lib/ui/gameObjects/ButtonContainerUI';
-import '~/lib/ui/gameObjects/PadUI';
+import '~/lib/ui/gameObjects/CalculatorPadUI';

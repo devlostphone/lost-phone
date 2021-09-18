@@ -3,13 +3,6 @@
  * @todo: need to be documented
  */
 
-export enum ButtonType {
-    Number = '10',
-    Character = '11',
-    Symbol = '20',
-    Emoji = '21'
-}
-
 declare global
 {
     interface IButton extends Phaser.GameObjects.GameObject, Phaser.GameObjects.Components.Transform
@@ -20,7 +13,7 @@ declare global
     {
         interface GameObjectFactory
         {
-            buttonRect(kind: ButtonType, x: number, y: number, onClick: any): ButtonRectUI
+            buttonRect(x: number, y: number, onClick: any): ButtonRectUI
         }
     }
 }
@@ -28,7 +21,6 @@ declare global
 export default class ButtonRectUI extends Phaser.GameObjects.Rectangle implements IButton
 {
     scene: Phaser.Scene
-    kind: ButtonType
     public onInputOver = () => {}
     public onInputOut = () => {}
     public onInputUp = () => {}
@@ -36,7 +28,6 @@ export default class ButtonRectUI extends Phaser.GameObjects.Rectangle implement
 
     public constructor (
         scene: Phaser.Scene,
-        kind: ButtonType,
         x: number,
         y: number,
         onClick = () => {}
@@ -44,7 +35,6 @@ export default class ButtonRectUI extends Phaser.GameObjects.Rectangle implement
         super(scene, x, y)
 
         this.scene = scene
-        this.kind = kind
 
         let ColorBackgroundOut: number = 0x0
         let ColorBackgroundOver: number = 0xffff00
@@ -72,12 +62,11 @@ export default class ButtonRectUI extends Phaser.GameObjects.Rectangle implement
 
 Phaser.GameObjects.GameObjectFactory.register('buttonRect', function (
     this: Phaser.GameObjects.GameObjectFactory,
-    kind: ButtonType,
     x: number,
     y: number,
     onClick = () => {} ){
     const scene = this.scene
-    const buttonRect = new ButtonRectUI(scene, kind, x, y, onClick)
+    const buttonRect = new ButtonRectUI(scene, x, y, onClick)
     scene.sys.displayList.add(buttonRect)
 
     return buttonRect

@@ -46,26 +46,10 @@ export default class AppIcon extends Phaser.GameObjects.Container
         ).setInteractive();
         this.add(this.icon);
 
-        this.init();
         this.config = appConfig;
 
         scene.add.existing(this);
     };
-
-    /**
-     *  Sets the icons behaviour.
-     */
-    public init(): void {
-        // --- Interaction with the icon
-        let t = this;
-        this.icon.on('pointerover', function(event: any) {
-            t.setAlpha(0.7);
-        });
-
-        this.icon.on('pointerout', function(event: any) {
-            t.setAlpha(1.0);
-        });
-    }
 
     /**
      * Adds a label below the icon.

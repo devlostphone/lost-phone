@@ -87,6 +87,9 @@ export class FakeOS extends FakeOSScene {
      * Create method.
      */
     public create(): void {
+
+        this.input.setTopOnly(true);
+
         this.cameras.main.setRoundPixels(true);
         if (this.handlerScene instanceof Handler) {
             this.handlerScene?.updateResize(this);

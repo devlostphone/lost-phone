@@ -17,8 +17,8 @@ FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, obj
     let fakeOS = this;
 
     object.setInteractive();
-    object.on(eventType, function(this: any, event: any) {
+    object.on(eventType, function(...args: any[]) {
         fakeOS.log('Launching event '+eventType+' on '+object.constructor.name);
-        func(this, event);
+        func(...args);
     });
 }

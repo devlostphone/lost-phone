@@ -167,36 +167,37 @@ export default class phoneUI {
         // Create drawer area, off camera
         this.elements.drawer.drawerArea = this.fakeOS.add.container(
             0, -this.fakeOS.height
+        ).setDepth(100)
+        .setSize(this.fakeOS.width,this.fakeOS.height);
+
+        this.elements.drawer.drawerBox = this.fakeOS.add.rectangle(
+            0, 0,
+            this.fakeOS.width, this.fakeOS.height,
+            0x333333
+        ).setOrigin(0,0);
+
+        // Stops events from going below the box
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => {},
+            this.elements.drawer.drawerBox
         );
 
-        this.elements.drawer.drawerArea.add(
-            this.fakeOS.add.rectangle(
-                0, 0,
-                this.fakeOS.width, this.fakeOS.height,
-                0x333333
-            ).setOrigin(0,0)
-        );
+        this.elements.drawer.drawerArea.add(this.elements.drawer.drawerBox);
 
         // Create drawer launcher
-        this.elements.drawer.drawerLauncher = this.fakeOS.add.container(
-            this.fakeOS.width - 25,
-            this.fakeOS.height + 15 + this.elements.topBar.height / 2
-        ).setSize(50,this.elements.topBar.height + 30);
-
-        this.elements.drawer.drawerLauncher.add([
-            this.fakeOS.add.rectangle(
-                0, -15,
-                50, this.elements.topBar.height,
-                0x333333
-            ),
-            this.fakeOS.add.triangle(
-                0,this.elements.topBar.height - 30,
-                0, 0,
-                50, 0,
-                25, 30,
-                0x333333
-            )
-        ]);
+        this.elements.drawer.drawerLauncher = this.fakeOS.add.polygon(
+            this.fakeOS.width - 50,
+            this.fakeOS.height,
+            [
+                [0,0],
+                [0, this.elements.topBar.height],
+                [25, this.elements.topBar.height + 25],
+                [50, this.elements.topBar.height],
+                [50, 0]
+            ],
+            0x333333
+        ).setOrigin(0,0);
 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -210,29 +211,36 @@ export default class phoneUI {
             },
             this.elements.drawer.drawerLauncher
         );
+        this.fakeOS.addInputEvent(
+            'pointerover',
+            () => {
+                this.elements.drawer.drawerLauncher.setFillStyle(0x666666)
+            },
+            this.elements.drawer.drawerLauncher
+        );
+        this.fakeOS.addInputEvent(
+            'pointerout',
+            () => {
+                this.elements.drawer.drawerLauncher.setFillStyle(0x333333)
+            },
+            this.elements.drawer.drawerLauncher
+        );
 
         this.elements.drawer.drawerArea.add(this.elements.drawer.drawerLauncher);
 
         // Create drawer hide button
-        this.elements.drawer.drawerHide = this.fakeOS.add.container(
-            this.fakeOS.width - 25,
-            this.fakeOS.height - 15 - this.elements.topBar.height / 2
-        ).setSize(50,this.elements.topBar.height + 30);
-
-        this.elements.drawer.drawerHide.add([
-            this.fakeOS.add.rectangle(
-                0, 15,
-                50, this.elements.topBar.height,
-                0x666666
-            ),
-            this.fakeOS.add.triangle(
-                0, 0,
-                0, 0,
-                50, 0,
-                25, - 30,
-                0x666666
-            )
-        ]);
+        this.elements.drawer.drawerHide = this.fakeOS.add.polygon(
+            this.fakeOS.width - 50,
+            this.fakeOS.height - this.elements.topBar.height - 25,
+            [
+                [0, this.elements.topBar.height + 25],
+                [0, 25],
+                [25, 0],
+                [50, 25],
+                [50, this.elements.topBar.height + 25]
+            ],
+            0xcccccc
+        ).setOrigin(0,0);
 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -246,11 +254,22 @@ export default class phoneUI {
             },
             this.elements.drawer.drawerHide
         );
+        this.fakeOS.addInputEvent(
+            'pointerover',
+            () => {
+                this.elements.drawer.drawerHide.setFillStyle(0x999999)
+            },
+            this.elements.drawer.drawerHide
+        );
+        this.fakeOS.addInputEvent(
+            'pointerout',
+            () => {
+                this.elements.drawer.drawerHide.setFillStyle(0xcccccc)
+            },
+            this.elements.drawer.drawerHide
+        );
 
         this.elements.drawer.drawerArea.add(this.elements.drawer.drawerHide);
-
-        //this.fakeOS.input.enableDebug(this.elements.drawer.drawerLauncher);
-        //this.fakeOS.input.enableDebug(this.elements.drawer.drawerHide);
     }
 
     /**

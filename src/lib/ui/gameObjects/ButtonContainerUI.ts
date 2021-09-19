@@ -5,36 +5,42 @@ declare global
 {
 
     interface IButtonContainer extends Phaser.GameObjects.GameObject {
-        // Nothing at this moment
+        // Do nothing at this moment
     }
 
     namespace Phaser.GameObjects
     {
         interface GameObjectFactory
         {
-            buttonContainer(shape: object, value: string, x: number, y: number, onClick: any): ButtonContainerUI
+            buttonContainer(shape: string, label: string, x: number, y: number, size: number, color: number): ButtonContainerUI
         }
     }
 }
 
 export default class ButtonContainerUI extends Phaser.GameObjects.Container implements IButtonContainer
 {
-    public value: string
-    public button : ButtonRectUI
+    public label: string
+    public button: any
     public text: Phaser.GameObjects.Text
 
-    public constructor (scene: Phaser.Scene, shape: object, value: any, x: number, y: number, onClickCallback: any)
+    public constructor (scene: Phaser.Scene,
+                        shape: string = 'rect',
+                        label: string = 'label',
+                        x: number = 0, y: number = 0,
+                        size: number = 64,
+                        color: number = 0xff00ff)
     {
         super(scene, x, y)
-        console.log('shape.kind? ' + shape.kind)
-        if (shape.kind == 'rect')
-            this.button = new ButtonRectUI(scene, 0, 0, onClickCallback)
 
-        this.value = value
+        if (shape === 'rect')
+            this.button = new ButtonRectUI(scene, 0, 0)
+        if (shape === 'arc')
+            this.button = new ButtonArcUI(scene, 0, 0, size, color)
 
-        this.text = scene.add.text(0, 0, value).setOrigin(0, 0.5)
+        // By default we set label at center of shape
+        this.text = scene.add.text(0, 0, label).setOrigin(0.5)
         this.text.setFontFamily('Arial')
-        this.text.setFontSize(96)
+        this.text.setFontSize(32)
         this.text.setScale(1)
 
         this.add(this.button)
@@ -44,14 +50,15 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
 
 Phaser.GameObjects.GameObjectFactory.register('buttonContainer', function (
     this: Phaser.GameObjects.GameObjectFactory,
-    kind: any,
-    value: string,
+    shape: string,
+    label: string,
     x: number,
     y: number,
-    onClick = () => {}
+    size: number,
+    onClick: () => {}
 ){
     const scene = this.scene
-    const buttonContainer = new ButtonContainerUI(scene, kind, value, x, y, onClick)
+    const buttonContainer = new ButtonContainerUI(scene, shape, label, x, y, size, onClick)
     scene.sys.displayList.add(buttonContainer)
 
     return buttonContainer

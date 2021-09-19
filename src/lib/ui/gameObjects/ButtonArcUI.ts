@@ -9,7 +9,7 @@ declare global
     {
         interface GameObjectFactory
         {
-            buttonArc(x: number, y: number, radius: number, onClick: any): ButtonArcUI
+            buttonArc(x: number, y: number, radius: number, color: number, onClick = () => {}): ButtonArcUI
         }
     }
 }
@@ -21,22 +21,24 @@ export default class ButtonArcUI extends Phaser.GameObjects.Arc
     public onInputOut = () => {}
     public onInputUp = () => {}
     public onClick = () => {}
-    private ColorBackgroundOut: number = 0x3c3c3c
-    private ColorBackgroundOver: number = 0xafafaf
-    private ColorBackgroundUp: number = 0xffffff
+    // Set by default a weird colors
+    public colorBackgroundOut: number = color
+    public colorBackgroundOver: number = 0xffaaff
+    public colorBackgroundUp: number = 0x000000
 
     public constructor (
         scene: Phaser.Scene,
         x: number,
         y: number,
         radius: number,
+        color: number,
         onClick = () => {}
     ) {
         super(scene, x, y, radius)
 
         this.scene = scene
         this.onClick = onClick
-        this.setFillStyle(this.ColorBackgroundOut)
+        this.setFillStyle(this.colorBackgroundOut)
 
         // Set circle hit area
         let shape = new Phaser.Geom.Circle(radius, radius, radius);
@@ -44,19 +46,19 @@ export default class ButtonArcUI extends Phaser.GameObjects.Arc
 
         this.setInteractive()
         this.on('pointerover', () => {
-            this.setFillStyle(this.ColorBackgroundOver)
+            this.setFillStyle(this.colorBackgroundOver)
             this.onInputOver()
         })
         this.on('pointerout', () => {
-            this.setFillStyle(this.ColorBackgroundOut)
+            this.setFillStyle(this.colorBackgroundOut)
             this.onInputOut()
         })
         this.on('pointerup', () => {
-            this.setFillStyle(this.ColorBackgroundUp)
+            this.setFillStyle(this.colorBackgroundUp)
             this.onInputUp()
         })
         this.on('pointerdown', () => {
-            this.setFillStyle(this.ColorBackgroundOut)
+            this.setFillStyle(this.colorBackgroundOut)
             this.onClick()
         })
     }
@@ -67,9 +69,10 @@ Phaser.GameObjects.GameObjectFactory.register('buttonArc', function (
     x: number,
     y: number,
     radius: number,
-    onClick = () => {} ){
+    color: number,
+    onClick = () => {}){
     const scene = this.scene
-    const buttonArc = new ButtonArcUI(scene, x, y, radius, onClick)
+    const buttonArc = new ButtonArcUI(scene, x, y, radius, color, onClick)
     scene.sys.displayList.add(buttonArc)
 
     return buttonArc

@@ -44,17 +44,22 @@ export default class CalculatorApp extends App {
         // TODO: Remove backbutton from phoneUI.ts
         console.log(this.fakeOS.getBackFunction());
 
-
-        let buttonArc = this.fakeOS.add.buttonArc(128, 192, 64, this.newFeelsDankMan)
+        let buttonArc = this.fakeOS.add.buttonArc(128, 192, 64, 0xc3c3c3, this.newFeelsDankMan)
+        buttonArc.colorBackgroundOver = 0xffff00
         this.elements.add(buttonArc)
 
-        this.sampleText = this.fakeOS.add.text(0, 0, '', { fontFamily: 'Arial', fontSize: '64px', color: '#00ff00' })
-        this.addGrid(this.sampleText, {x: 64, y: 0})
-        this.elements.add(this.sampleText)
+        let buttonContainer = this.fakeOS.add.buttonContainer('arc', 'poggers', 128, 360, 64, 0xc3c3c3)
+        buttonContainer.button.onClick = this.newFeelsDankMan
+        buttonContainer.text.setText('ayaya')
+        this.elements.add(buttonContainer)
 
-        let CalculatorPad = this.fakeOS.add.calcpad(0, 0, this.sampleText)
-        this.addGrid(CalculatorPad, {x: 64, y: 4})
-        this.elements.add(CalculatorPad)
+        // this.sampleText = this.fakeOS.add.text(0, 0, '', { fontFamily: 'Arial', fontSize: '64px', color: '#00ff00' })
+        // this.addGrid(this.sampleText, {x: 64, y: 0})
+        // this.elements.add(this.sampleText)
+
+        // let CalculatorPad = this.fakeOS.add.calcpad(0, 0, this.sampleText)
+        // this.addGrid(CalculatorPad, {x: 64, y: 4})
+        // this.elements.add(CalculatorPad)
 
     }
 

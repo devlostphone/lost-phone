@@ -12,7 +12,7 @@ declare global
     {
         interface GameObjectFactory
         {
-            buttonContainer(shape: string, label: string, x: number, y: number, size: number, color: number): ButtonContainerUI
+            buttonContainer(shape: string, label: string, x: number, y: number, size: number, color: number, callback = () => {}): ButtonContainerUI
         }
     }
 }
@@ -28,19 +28,21 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
                         label: string = 'label',
                         x: number = 0, y: number = 0,
                         size: number = 64,
-                        color: number = 0xff00ff)
+                        color: number = 0xff00ff,
+                        callback =  () => {})
     {
         super(scene, x, y)
 
         if (shape === 'rect')
+            // TODO: Unfinsihed constructor
             this.button = new ButtonRectUI(scene, 0, 0)
         if (shape === 'arc')
-            this.button = new ButtonArcUI(scene, 0, 0, size, color)
+            this.button = new ButtonArcUI(scene, 0, 0, size, color, callback)
 
         // By default we set label at center of shape
         this.text = scene.add.text(0, 0, label).setOrigin(0.5)
         this.text.setFontFamily('Arial')
-        this.text.setFontSize(32)
+        this.text.setFontSize(48)
         this.text.setScale(1)
 
         this.add(this.button)
@@ -55,10 +57,11 @@ Phaser.GameObjects.GameObjectFactory.register('buttonContainer', function (
     x: number,
     y: number,
     size: number,
-    onClick: () => {}
+    color: number,
+    onClick = () => {}
 ){
     const scene = this.scene
-    const buttonContainer = new ButtonContainerUI(scene, shape, label, x, y, size, onClick)
+    const buttonContainer = new ButtonContainerUI(scene, shape, label, x, y, size, color, onClick)
     scene.sys.displayList.add(buttonContainer)
 
     return buttonContainer

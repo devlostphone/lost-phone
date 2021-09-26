@@ -2,13 +2,13 @@ import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
 import FeelsDankMan from '~/lib/ui/gameObjects/CustomObjTemplate';
 import ButtonContainerUI from '~/lib/ui/gameObjects/ButtonContainerUI';
-import { ButtonType } from '~/lib/ui/gameObjects/ButtonRectUI';
 import ButtonCircleUI from '~/lib/ui/gameObjects/ButtonArcUI';
-import CalculatorPadUI from '~/lib/ui/gameObjects/CalculatorPadUI';
 
 export default class CalculatorApp extends App {
 
-    sampleText!: Phaser.GameObjects.Text
+    Display: Phaser.GameObjects.Text;
+
+    // button: ButtonContainerUI;
 
     /**
      * Feels dank man custom object
@@ -33,7 +33,6 @@ export default class CalculatorApp extends App {
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.scene = fakeOS
-        // TODO: Set a specific background depending of active app
         fakeOS.UI.render({ background: 'color', color: 0x000000});
     }
 
@@ -41,26 +40,7 @@ export default class CalculatorApp extends App {
      * Render method.
      */
     public render(): void {
-        // TODO: Remove backbutton from phoneUI.ts
-        console.log(this.fakeOS.getBackFunction());
-
-        let buttonArc = this.fakeOS.add.buttonArc(128, 192, 64, 0xc3c3c3, this.newFeelsDankMan)
-        buttonArc.colorBackgroundOver = 0xffff00
-        this.elements.add(buttonArc)
-
-        let buttonContainer = this.fakeOS.add.buttonContainer('arc', 'poggers', 128, 360, 64, 0xc3c3c3)
-        buttonContainer.button.onClick = this.newFeelsDankMan
-        buttonContainer.text.setText('ayaya')
-        this.elements.add(buttonContainer)
-
-        // this.sampleText = this.fakeOS.add.text(0, 0, '', { fontFamily: 'Arial', fontSize: '64px', color: '#00ff00' })
-        // this.addGrid(this.sampleText, {x: 64, y: 0})
-        // this.elements.add(this.sampleText)
-
-        // let CalculatorPad = this.fakeOS.add.calcpad(0, 0, this.sampleText)
-        // this.addGrid(CalculatorPad, {x: 64, y: 4})
-        // this.elements.add(CalculatorPad)
-
+        this.showNumericPad();
     }
 
     /**
@@ -74,6 +54,30 @@ export default class CalculatorApp extends App {
             if (this.danks[i] !== undefined)
                 this.danks[i].updateLocation()
         }
+    }
+    protected showNumericPad(): void {
+        // TODO: Rewrite this using grid instead of hardcoding buttons and display positions
+        var row: number = 0;
+        ['0', '1', '2', '4', '5', '6', '7', '8', '9'].forEach( (value, index) => {
+            if ((index % 4) === 0) row +=1;
+            let button = this.fakeOS.add.buttonContainer('arc', value, 72 + ((index % 4) * 150), 280  + (row * 150), 64, 0x3c3c3c);
+            button.button.onClick = this.updateDisplay.bind(this, button);
+            this.elements.add(button);
+        });
+        // this.addGrid(this.buttons, {x: 64, y: 4});
+
+        // Display
+        this.Display = this.fakeOS.add.text(0, 0, '', { fontFamily: 'Arial', fontSize: '92px', color: '#ffffff' });
+        this.Display.x = 32;
+        this.Display.y = 128;
+        this.elements.add(this.Display)
+    }
+
+    /**
+    /* Write something on the Display screen
+     */
+    private updateDisplay = (val: any) => {
+        this.Display.text += val.text.text;
     }
 
     /**

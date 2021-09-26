@@ -15,6 +15,7 @@ export default class phoneUI {
      * UI elements.
      */
     public elements: {
+        background?: any,
         topBar?: any,
         bottomBar?: any,
         clock?: any,
@@ -35,9 +36,9 @@ export default class phoneUI {
     /**
      * Renders the UI.
      */
-    public render(): void {
+    public render(data?: object): void {
         this.fakeOS.log('Loading UI');
-        this.setWallpaper();
+        this.setBackground(data);
         this.createBars();
         this.createButtons();
         this.createClock();
@@ -60,19 +61,33 @@ export default class phoneUI {
     /**
      * Sets the FakeOS wallpaper.
      */
-    protected setWallpaper(): void {
-        let wallpapers = this.fakeOS.cache.json.get('config').wallpapers;
-        let wallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)] + '-wallpaper';
-        let scale = this.fakeOS.textures.get(wallpaper).getSourceImage();
-        this.fakeOS.add.image(
-            Math.round(this.fakeOS.width / 2),
-            Math.round(this.fakeOS.height / 2),
-            wallpaper)
-        .setOrigin(0.5, 0.5)
-        .setScale(
-            this.fakeOS.width / scale.width,
-            this.fakeOS.height / scale.height
-        );
+    protected setBackground(data?: object): void {
+        this.elements.background?.destroy();
+        if (data === undefined) {
+        } else {
+            if (data.background === 'wallpaper') {
+                let wallpapers = this.fakeOS.cache.json.get('config').wallpapers;
+                let wallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)] + '-wallpaper';
+                let scale = this.fakeOS.textures.get(wallpaper).getSourceImage();
+                this.elements.background = this.fakeOS.add.image(
+                    Math.round(this.fakeOS.width / 2),
+                    Math.round(this.fakeOS.height / 2),
+                    wallpaper)
+                    .setOrigin(0.5, 0.5)
+                    .setScale(
+                        this.fakeOS.width / scale.width,
+                        this.fakeOS.height / scale.height
+                    );
+            } else if (data.background === 'color'){
+                this.elements.background = this.fakeOS.add.rectangle(
+                    0,
+                    0,
+                    this.fakeOS.width,
+                    this.fakeOS.height,
+                    data.color
+                ).setOrigin(0);
+            }
+        }
     }
 
     /**

@@ -34,7 +34,7 @@ export default class CalculatorApp extends App {
         super(fakeOS);
         this.scene = fakeOS
         // TODO: Set a specific background depending of active app
-        this.fakeOS.setBackground('flatcolor', 0xff0000);
+        fakeOS.UI.render({ background: 'color', color: 0x000000});
     }
 
     /**

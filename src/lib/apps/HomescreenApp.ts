@@ -21,6 +21,9 @@ export default class HomescreenApp extends App {
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.icons = [];
+        // refresh UI render
+        // TODO: Ask why first time UI is null?
+        fakeOS.UI?.render({ background: 'wallpaper'});
     }
 
     /**

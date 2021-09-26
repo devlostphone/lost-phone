@@ -20,11 +20,6 @@ export class FakeOS extends FakeOSScene {
     protected activeApp: App;
 
     /**
-     * Background image.
-     */
-    protected background?: any;
-
-    /**
      * Debug mode.
      */
     public debug: boolean = false;
@@ -88,44 +83,19 @@ export class FakeOS extends FakeOSScene {
      */
     public create(): void {
         this.cameras.main.setRoundPixels(true);
+
         if (this.handlerScene instanceof Handler) {
             this.handlerScene?.updateResize(this);
         }
 
-        this.setBackground('wallpaper');
-
         // Render the UI
         this.UI = new UI(this);
-        this.UI.render();
+        this.UI.render({ background: 'wallpaper' });
 
         // Render the homescreen
         this.activeApp.render();
 
         // Start listening to events
-    }
-
-    /**
-     * Sets the background.
-     */
-    public setBackground(kind: string, color?: number): void {
-        if (kind === 'wallpaper') {
-            this.background = this.add.image(
-                this.width / 2,
-                this.height / 2,
-                'background'
-            ).setOrigin(0.5, 0.5)
-                .setScale(1.5);
-        }
-
-        if (kind === 'flatcolor') {
-            this.background = this.add.rectangle(
-                0,
-                0,
-                this.width,
-                this.height,
-                color
-            ).setOrigin(0);
-        }
     }
 
     /**

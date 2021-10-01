@@ -10,7 +10,7 @@ import App from '~/lib/apps/App';
 
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
-        this.mails = this.fakeOS.cache.json.get('mail')['mails'];
+        this.mails = this.fakeOS.cache.json.get('mail');
     }
 
     public render(): void {

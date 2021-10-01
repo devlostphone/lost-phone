@@ -59,7 +59,8 @@ export default class SettingsApp extends App {
             'pointerup',
             () => {
                 this.fakeOS.cleanState();
-                this.fakeOS.launchApp('HomescreenApp');
+                this.fakeOS.saveState();
+                location.reload();
             },
             text
         );

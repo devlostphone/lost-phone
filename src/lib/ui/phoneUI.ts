@@ -1,6 +1,7 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import Time from '~/lib/ui/gameObjects/Time';
-import { width } from '../Screen';
+import NotificationDrawer from '~/lib/ui/gameObjects/notifications/NotificationDrawer';
+import { PhoneEvents } from '../events/GameEvents';
 
 /**
  * FakeOS UI.
@@ -25,6 +26,11 @@ export default class phoneUI {
     };
 
     /**
+     * Is the notification drawer open?
+     */
+    public isDrawerOpen: boolean;
+
+    /**
      * Class constructor.
      *
      * @param fakeOS FakeOS
@@ -32,6 +38,7 @@ export default class phoneUI {
     public constructor(fakeOS: FakeOS) {
         this.fakeOS = fakeOS;
         this.elements = {};
+        this.isDrawerOpen = false;
     }
 
     /**
@@ -44,6 +51,16 @@ export default class phoneUI {
         this.createButtons();
         this.createClock();
         this.createDrawer();
+
+        this.fakeOS.log('Setting up UI listeners');
+        this.fakeOS.addEventListener(
+            PhoneEvents.ActivityFinished,
+            () => {
+                this.fakeOS.log('Refreshing notifications');
+                this.fakeOS.checkNew();
+                this.elements.drawer.refreshNotifications();
+            }
+        );
     }
 
     /**
@@ -162,114 +179,8 @@ export default class phoneUI {
      */
     protected createDrawer(): void {
         this.fakeOS.log('Creating drawer');
-        this.elements.drawer = {};
-
-        // Create drawer area, off camera
-        this.elements.drawer.drawerArea = this.fakeOS.add.container(
-            0, -this.fakeOS.height
-        ).setDepth(100)
-        .setSize(this.fakeOS.width,this.fakeOS.height);
-
-        this.elements.drawer.drawerBox = this.fakeOS.add.rectangle(
-            0, 0,
-            this.fakeOS.width, this.fakeOS.height,
-            0x333333
-        ).setOrigin(0,0);
-
-        // Stops events from going below the box
-        this.fakeOS.addInputEvent(
-            'pointerup',
-            () => {},
-            this.elements.drawer.drawerBox
-        );
-
-        this.elements.drawer.drawerArea.add(this.elements.drawer.drawerBox);
-
-        // Create drawer launcher
-        this.elements.drawer.drawerLauncher = this.fakeOS.add.polygon(
-            this.fakeOS.width - 50,
-            this.fakeOS.height,
-            [
-                [0,0],
-                [0, this.elements.topBar.height],
-                [25, this.elements.topBar.height + 25],
-                [50, this.elements.topBar.height],
-                [50, 0]
-            ],
-            0x333333
-        ).setOrigin(0,0);
-
-        this.fakeOS.addInputEvent(
-            'pointerup',
-            () => {
-                this.fakeOS.log('Launching drawer');
-                this.fakeOS.tweens.add({
-                    targets: this.elements.drawer.drawerArea,
-                    y: 0,
-                    duration: 700
-                });
-            },
-            this.elements.drawer.drawerLauncher
-        );
-        this.fakeOS.addInputEvent(
-            'pointerover',
-            () => {
-                this.elements.drawer.drawerLauncher.setFillStyle(0x666666)
-            },
-            this.elements.drawer.drawerLauncher
-        );
-        this.fakeOS.addInputEvent(
-            'pointerout',
-            () => {
-                this.elements.drawer.drawerLauncher.setFillStyle(0x333333)
-            },
-            this.elements.drawer.drawerLauncher
-        );
-
-        this.elements.drawer.drawerArea.add(this.elements.drawer.drawerLauncher);
-
-        // Create drawer hide button
-        this.elements.drawer.drawerHide = this.fakeOS.add.polygon(
-            this.fakeOS.width - 50,
-            this.fakeOS.height - this.elements.topBar.height - 25,
-            [
-                [0, this.elements.topBar.height + 25],
-                [0, 25],
-                [25, 0],
-                [50, 25],
-                [50, this.elements.topBar.height + 25]
-            ],
-            0xcccccc
-        ).setOrigin(0,0);
-
-        this.fakeOS.addInputEvent(
-            'pointerup',
-            () => {
-                this.fakeOS.log('Hiding drawer');
-                this.fakeOS.tweens.add({
-                    targets: this.elements.drawer.drawerArea,
-                    y: -this.fakeOS.height,
-                    duration: 700
-                });
-            },
-            this.elements.drawer.drawerHide
-        );
-        this.fakeOS.addInputEvent(
-            'pointerover',
-            () => {
-                this.elements.drawer.drawerHide.setFillStyle(0x999999)
-            },
-            this.elements.drawer.drawerHide
-        );
-        this.fakeOS.addInputEvent(
-            'pointerout',
-            () => {
-                this.elements.drawer.drawerHide.setFillStyle(0xcccccc)
-            },
-            this.elements.drawer.drawerHide
-        );
-
-        this.elements.drawer.drawerArea.add(this.elements.drawer.drawerHide);
+        this.elements.drawer = new NotificationDrawer(this.fakeOS, 0, 0);
+        this.elements.drawer.refreshNotifications();
     }
 
     /**

@@ -20,7 +20,8 @@ declare global
 export default class ButtonContainerUI extends Phaser.GameObjects.Container implements IButtonContainer
 {
     public label: string
-    public button: any
+    public value: number | string;
+    public button: ButtonArcUI | ButtonRectUI;
     public text: Phaser.GameObjects.Text
 
     public constructor (scene: Phaser.Scene,
@@ -61,8 +62,21 @@ Phaser.GameObjects.GameObjectFactory.register('buttonContainer', function (
     onClick = () => {}
 ){
     const scene = this.scene
-    const buttonContainer = new ButtonContainerUI(scene, shape, label, x, y, size, color, onClick)
+    const buttonContainer = new ButtonContainerUI(scene, shape, label, x, y, size, color, onClick);
+
+    // TODO: Ask why we dont do this inside the class?
+    buttonContainer.label = label;
+    if (isNumber(buttonContainer.label)) buttonContainer.value = Number(buttonContainer.label);
+
     scene.sys.displayList.add(buttonContainer)
 
     return buttonContainer
 })
+
+// Stolen from: https://stackoverflow.com/a/50376498/553803
+private function isNumber(value: string): boolean
+{
+    return ((value != null) &&
+        (value !== '') &&
+        !isNaN(Number(value.toString())));
+}

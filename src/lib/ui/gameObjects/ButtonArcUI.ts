@@ -17,6 +17,7 @@ declare global
 export default class ButtonArcUI extends Phaser.GameObjects.Arc
 {
     scene: Phaser.Scene
+    public value: number | string;
     public onInputOver = () => {}
     public onInputOut = () => {}
     public onInputUp = () => {}
@@ -35,7 +36,6 @@ export default class ButtonArcUI extends Phaser.GameObjects.Arc
         onClick = () => {}
     ) {
         super(scene, x, y, radius)
-
         this.scene = scene
         this.onClick = onClick
         this.setFillStyle(this.colorBackgroundOut)

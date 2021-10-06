@@ -43,7 +43,7 @@ export default class ButtonContainerUI extends Phaser.GameObjects.Container impl
         // By default we set label at center of shape
         this.text = scene.add.text(0, 0, label).setOrigin(0.5)
         this.text.setFontFamily('Arial')
-        this.text.setFontSize(48)
+        this.text.setFontSize(72)
         this.text.setScale(1)
 
         this.add(this.button)
@@ -66,7 +66,11 @@ Phaser.GameObjects.GameObjectFactory.register('buttonContainer', function (
 
     // TODO: Ask why we dont do this inside the class?
     buttonContainer.label = label;
-    if (isNumber(buttonContainer.label)) buttonContainer.value = Number(buttonContainer.label);
+    if (isNumber(buttonContainer.label)) {
+        buttonContainer.value = Number(buttonContainer.label);
+    } else {
+        buttonContainer.value = buttonContainer.label;
+    }
 
     scene.sys.displayList.add(buttonContainer)
 

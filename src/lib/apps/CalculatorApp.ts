@@ -76,23 +76,44 @@ export default class CalculatorApp extends App {
         var decimalAdded:boolean = false;
         var sizeButton:number = 64
         var container = this.fakeOS.add.container(0, 0);
-        var button0 = this.fakeOS.add.buttonContainer('arc', '0', 0, 0, sizeButton, 0x3c3c3c);
-        button0.button.onClick = this.buttonPressed.bind(this, button0, 'number');
-        var button1 = this.fakeOS.add.buttonContainer('arc', '1', sizeButton * 2.5, 0, sizeButton, 0x3c3c3c);
+        var colorNumberBackground:number = 0x313131;
+        var colorOperatorBackground:number = 0xf69826;
+
+        // 7, 8, 9, x
+        var button7 = this.fakeOS.add.buttonContainer('arc', '7', 0, 0, sizeButton, colorNumberBackground);
+        button7.button.onClick = this.buttonPressed.bind(this, button7, 'number');
+        var button8 = this.fakeOS.add.buttonContainer('arc', '8', sizeButton * 2.5, 0, sizeButton, colorNumberBackground);
+        button8.button.onClick = this.buttonPressed.bind(this, button8, 'number');
+        var button9 = this.fakeOS.add.buttonContainer('arc', '9', sizeButton * 2.5 * 2, 0, sizeButton, colorNumberBackground);
+        button9.button.onClick = this.buttonPressed.bind(this, button9, 'number');
+        var buttonMultiply = this.fakeOS.add.buttonContainer('arc', 'x', sizeButton * 2.5 * 3, 0 sizeButton, colorOperatorBackground);
+        buttonMultiply.button.onClick = this.buttonPressed.bind(this, buttonMultiply, 'operator');
+
+        // 4, 5, 6, -
+        var button4 = this.fakeOS.add.buttonContainer('arc', '4', 0, sizeButton * 2.5, sizeButton, colorNumberBackground);
+        button4.button.onClick = this.buttonPressed.bind(this, button4, 'number');
+        var button5 = this.fakeOS.add.buttonContainer('arc', '5', sizeButton * 2.5, sizeButton * 2.5, sizeButton, colorNumberBackground);
+        button5.button.onClick = this.buttonPressed.bind(this, button5, 'number');
+        var button6 = this.fakeOS.add.buttonContainer('arc', '6', sizeButton * 2.5 * 2, sizeButton * 2.5, sizeButton, colorNumberBackground);
+        button6.button.onClick = this.buttonPressed.bind(this, button6, 'number');
+        var buttonMinus = this.fakeOS.add.buttonContainer('arc', '-', sizeButton * 2.5 * 3, sizeButton * 2.5, sizeButton, colorOperatorBackground);
+        buttonMinus.button.onClick = this.buttonPressed.bind(this, buttonMinus, 'operator');
+
+        // 1, 2, 3, +
+        var button3 = this.fakeOS.add.buttonContainer('arc', '3', 0, sizeButton * 2.5 * 2, sizeButton, colorNumberBackground);
+        button3.button.onClick = this.buttonPressed.bind(this, button3, 'number');
+        var button2 = this.fakeOS.add.buttonContainer('arc', '2', sizeButton * 2.5, sizeButton * 2.5 * 2, sizeButton, colorNumberBackground);
+        button2.button.onClick = this.buttonPressed.bind(this, button2, 'number');
+        var button1 = this.fakeOS.add.buttonContainer('arc', '1', sizeButton * 2.5 * 2, sizeButton * 2.5 * 2, sizeButton, colorNumberBackground);
         button1.button.onClick = this.buttonPressed.bind(this, button1, 'number');
+        var buttonAdd = this.fakeOS.add.buttonContainer('arc', '+', sizeButton * 2.5 * 3, sizeButton * 2.5 * 2, sizeButton, colorOperatorBackground);
+        buttonAdd.button.onClick = this.buttonPressed.bind(this, buttonAdd, 'operator');
 
-        container.add([ button0, button1]);
+        // Set container position
+        container.add([ button9, button8, button7, button6, button5, button4, button3, button2, button1, buttonMultiply, buttonMinus, buttonAdd]);
         this.elements.add(container);
-        container.x = sizeButton * 1.333;
-        container.y = (this.fakeOS.height / 2) - (sizeButton * 4);
-
-        // var row: number = 0;
-        // ['0', '1', '2', '4', '5', '6', '7', '8', '9'].forEach( (value, index) => {
-        //     if ((index % 4) === 0) row +=1;
-        //     let button = this.fakeOS.add.buttonContainer('arc', value, 72 + ((index % 4) * 150), 280  + (row * 150), 64, 0x3c3c3c);
-        //     button.button.onClick = this.updateDisplay.bind(this, button);
-        //     this.elements.add(button);
-        // });x
+        container.x = sizeButton * 1.75;
+        container.y = (this.fakeOS.height / 2) - (sizeButton * 2.5);
 
         // Display
         this.Display = this.fakeOS.add.text(0, 0, '', { fontFamily: 'Arial', fontSize: '92px', color: '#ffffff' });
@@ -109,12 +130,12 @@ export default class CalculatorApp extends App {
         switch(btn.value) {
             case '+':
             case '-':
-            case '*':
+            case 'x':
             case '÷':
                 this.currentOperator = btn.value;
                 break;
         }
-
+        console.log(this.currentOperator);
     }
 
     private buttonPressed = (btn: buttonContainer, kind) => {

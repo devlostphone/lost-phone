@@ -1,7 +1,8 @@
+import { PhoneEvents } from '~/lib/events/GameEvents';
 import { FakeOS } from '~/scenes/FakeOS';
 import NotificationList from './NotificationList';
 /**
- * Notification drawer.
+ * Notification Drawer.
  * @todo: review this.
  */
 export default class NotificationDrawer extends Phaser.GameObjects.Container
@@ -15,6 +16,8 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
     public drawerHide?: Phaser.GameObjects.Polygon;
 
     public notificationList: NotificationList;
+    public pendingNotifications: any[];
+    public isNotificationYoyoing: boolean;
 
     /**
      * Class constructor.
@@ -42,6 +45,17 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             this.UI.elements.topBar.height
         );
         this.drawerArea?.add(this.notificationList);
+        this.pendingNotifications = [];
+        this.isNotificationYoyoing = false;
+
+        this.fakeOS.addEventListener(
+            PhoneEvents.NotificationFinished,
+            () => {
+                setTimeout(() => {
+                    this.isNotificationYoyoing = false;
+                }, 1000);
+            }
+        );
     }
 
     /**
@@ -180,5 +194,31 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
      */
     public refreshNotifications(): void {
         this.notificationList.refreshNotifications();
+    }
+
+    /**
+     * Stores a notification to be launched.
+     * @param notification
+     */
+    public launchNotification(notification: any): void {
+        this.pendingNotifications.push(notification);
+    }
+
+    /**
+     * Update method.
+     *
+     * @param delta
+     * @returns
+     */
+    public update(delta: any): void {
+        if (this.isNotificationYoyoing) {
+            return;
+        }
+        if (this.pendingNotifications.length > 0) {
+            if (this.notificationList.launchNotification(this.pendingNotifications[0])) {
+                this.isNotificationYoyoing = true;
+                this.pendingNotifications.shift();
+            }
+        }
     }
 }

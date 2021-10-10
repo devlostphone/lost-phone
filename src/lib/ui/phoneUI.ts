@@ -22,7 +22,7 @@ export default class phoneUI {
         clock?: any,
         homeButton?: any,
         backButton?: any,
-        drawer?: any
+        drawer?: NotificationDrawer
     };
 
     /**
@@ -58,7 +58,15 @@ export default class phoneUI {
             () => {
                 this.fakeOS.log('Refreshing notifications');
                 this.fakeOS.checkNew();
-                this.elements.drawer.refreshNotifications();
+                this.elements.drawer?.refreshNotifications();
+            }
+        );
+
+        this.fakeOS.addEventListener(
+            PhoneEvents.NotificationLaunched,
+            (notification: any) => {
+                this.fakeOS.log('Launching notification ' + notification.id + ':' + notification.title);
+                this.elements.drawer?.launchNotification(notification);
             }
         );
     }
@@ -191,6 +199,7 @@ export default class phoneUI {
      */
     public update(delta:any, time: any): void {
         this.elements.clock.update(delta);
+        this.elements.drawer?.update(delta);
 
         // Only showing back button when functions available.
         if (this.fakeOS.getBackFunction().length > 0) {

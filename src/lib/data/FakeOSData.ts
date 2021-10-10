@@ -87,6 +87,10 @@ FakeOS.prototype.checkNew = function(): void {
         }
     }
 
+    for (let i = 0; i < items.length; i++) {
+        this.launchEvent(PhoneEvents.NotificationLaunched, items[i]);
+    }
+
     notifications = [...items, ...notifications];
     this.registry.set('notifications', notifications);
 }

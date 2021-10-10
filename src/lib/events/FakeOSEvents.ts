@@ -24,7 +24,7 @@ declare module "scenes/FakeOS" {
          *
          * @param eventType
          */
-        launchEvent(eventType: string): void;
+        launchEvent(eventType: string, args?: any): void;
     }
 }
 
@@ -47,7 +47,7 @@ FakeOS.prototype.addEventListener = function(eventType: string, func: Function):
     });
 }
 
-FakeOS.prototype.launchEvent = function(eventType: string): void {
+FakeOS.prototype.launchEvent = function(eventType: string, args?: any): void {
     this.log('Launched event ' + eventType);
-    this.game.events.emit(eventType);
+    this.game.events.emit(eventType, args);
 }

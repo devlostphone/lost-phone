@@ -31,8 +31,6 @@ export default class Preloader extends FakeOSScene {
      */
     public preload(): void {
         super.preload();
-        this.preload_images();
-
         this.canvasWidth = this.sys.game.canvas.width;
         this.canvasHeight = this.sys.game.canvas.height;
 
@@ -41,17 +39,33 @@ export default class Preloader extends FakeOSScene {
         }
         this.sceneStopped = false;
 
+        this.preload_images();
+        this.preload_app_config();
+        this.preload_languages();
+
         this.progressBar();
+    }
 
-        // Load json config files
-        let config = ['config', 'apps', 'tracks', 'wifi', 'mail', 'colors'];
-        for (var i = 0; i < config.length; i++) {
-            this.load.json(config[i], `config/${config[i]}.json`);
+    /**
+     * Preloads app-specific config file.
+     */
+    protected preload_app_config(): void {
+        // Load json app files
+        let apps = this.cache.json.get('apps');
+        for (var i = 0; i < apps.length; i++) {
+            if (apps[i].configFile) {
+                this.load.json(apps[i].type, `config/${apps[i].type}.json`);
+            }
         }
+    }
 
-        // Load languages
-        this.load.json('language-ca', 'lang/ca.json');
-        this.load.json('language-en', 'lang/en.json');
+    /**
+     * Preloads lang files.
+     */
+    protected preload_languages(): void {
+        // Load language
+        let lang = this.cache.json.get('config')['language'];
+        this.load.json(`lang-${lang}`, `lang/${lang}.json`);
     }
 
     /**

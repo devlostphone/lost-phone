@@ -14,6 +14,12 @@ export default class Boot extends FakeOSScene {
         super({ key: 'boot'});
     }
 
+    public preload(): void {
+        this.load.json('config', 'config/config.json');
+        this.load.json('apps', 'config/apps.json');
+        this.load.json('colors', 'config/colors.json');
+    }
+
     /**
      * Create method.
      */

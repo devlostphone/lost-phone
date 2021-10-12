@@ -1,0 +1,27 @@
+[
+    {
+        "id": "g001",
+        "type": "picture",
+        "source" : "img/pictures/pic1.jpg"
+    },
+    {
+        "id": "g002",
+        "type": "picture",
+        "source": "img/pictures/pic2.jpg"
+    },
+    {
+        "id": "g003",
+        "type": "picture",
+        "source": "img/pictures/pic3.jpg"
+    },
+    {
+        "id": "g004",
+        "type": "picture",
+        "source": "img/pictures/pic4.jpg"
+    },
+    {
+        "id": "g005",
+        "type": "picture",
+        "source": "img/pictures/pic5.jpg"
+    }
+]

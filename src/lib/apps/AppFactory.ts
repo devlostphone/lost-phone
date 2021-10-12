@@ -1,4 +1,5 @@
 import ClockApp from '~/lib/apps/ClockApp';
+import GalleryApp from '~/lib/apps/GalleryApp';
 import HomescreenApp from '~/lib/apps/HomescreenApp';
 import MailApp from '~/lib/apps/MailApp';
 import SettingsApp from '~/lib/apps/SettingsApp';
@@ -8,6 +9,7 @@ import SettingsApp from '~/lib/apps/SettingsApp';
  */
 const Store: any = {
     ClockApp,
+    GalleryApp,
     HomescreenApp,
     MailApp,
     SettingsApp

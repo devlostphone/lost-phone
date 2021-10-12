@@ -90,6 +90,17 @@ export default class Preloader extends FakeOSScene {
         if (this.handlerScene instanceof Handler) {
             this.handlerScene?.updateResize(this);
         }
+
+        // More specific preloads.
+        this.preload_gallery_images();
+    }
+
+    public preload_gallery_images(): void {
+        let media = this.cache.json.get('gallery');
+
+        for (let i = 0; i < media.length; i++) {
+            this.load.image(media[i].id, 'assets/' + media[i].source);
+        }
     }
 
     /**

@@ -1,19 +1,24 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
+import PicGrid from '~/lib/ui/gameObjects/PicGrid';
 
 /**
  * Gallery app
  */
 export default class GalleryApp extends App {
 
-    protected multimedia: any;
+    protected media: any;
 
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
-        this.multimedia = this.fakeOS.cache.json.get('gallery');
+        this.media = this.fakeOS.cache.json.get('gallery');
     }
 
     public render(): void {
-        console.log(this.multimedia);
+        this.fakeOS.add.existing(new PicGrid(
+            this.fakeOS,
+            0, 0,
+            this.media
+        ));
     }
 }

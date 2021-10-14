@@ -88,8 +88,8 @@ export class FakeOS extends FakeOSScene {
      */
     public create(): void {
 
-        this.input.setTopOnly(false);
-        this.input.setGlobalTopOnly(false);
+        this.input.setTopOnly(true);
+        this.input.setGlobalTopOnly(true);
 
         this.cameras.main.setRoundPixels(true);
         if (this.handlerScene instanceof Handler) {

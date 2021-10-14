@@ -42,11 +42,8 @@ export default abstract class App {
     public biggestY: number = 0;
 
     /**
-     * A drag zone created when the last row added surpasses
-     * the total rows.
+     * Renderable area (inside UI).
      */
-    public dragZone?: any;
-
     public area: any;
 
     /**
@@ -125,9 +122,6 @@ export default abstract class App {
 
         if (this.lastY > this.biggestY) {
             this.biggestY = this.lastY;
-            if (this.biggestY > this.rows) {
-                //this.createDragZone();
-            }
         }
     }
 
@@ -188,50 +182,6 @@ export default abstract class App {
 
         if (this.lastY > this.biggestY) {
             this.biggestY = this.lastY;
-            if (this.biggestY > this.rows) {
-                //this.createDragZone();
-            }
-        }
-    }
-
-    protected createDragZone(): void {
-        this.fakeOS.log('Too many elements. Creating drag zone...');
-        this.fakeOS.input.dragDistanceThreshold = 16;
-
-        this.dragZone = this.fakeOS.add.rectangle(
-            this.area.x,
-            this.area.y,
-            this.area.width,
-            this.area.height
-        ).setName('SceneDragZone')
-        .setOrigin(0, 0)
-        .setDepth(1001);
-
-        this.fakeOS.addInputEvent(
-            'drag',
-            (pointer:any, gameobject: any) => { this.dragEvent(pointer, gameobject)},
-            this.dragZone
-        );
-
-        this.dragZone.input.hitArea.setSize(
-            this.area.width,
-            this.atRow(this.biggestY+1)
-        );
-    }
-
-    protected dragEvent(pointer: any, gameobject: any): void {
-        console.log(gameobject);
-        if (typeof gameobject !== 'object') {
-            return;
-          }
-        if (gameobject.name = 'SceneDragZone') {
-            this.fakeOS.cameras.main.scrollY -= (pointer.position.y - pointer.prevPosition.y);
-
-            this.fakeOS.cameras.main.scrollY = Phaser.Math.Clamp(
-            this.fakeOS.cameras.main.scrollY,
-            0,
-            this.biggestY >= this.rows ? this.atRow(this.biggestY+1) - this.area.height : 0
-            );
         }
     }
 

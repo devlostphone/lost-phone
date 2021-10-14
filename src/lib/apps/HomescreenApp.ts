@@ -67,7 +67,7 @@ export default class HomescreenApp extends App {
         this.addGrid(apps, {
             columns: 3,
             rows: 5 ,
-            position: Phaser.Display.Align.BOTTOM_CENTER
+            offsetY: this.fakeOS.getUI().getAppRenderSize().height * 0.05
         });
     };
 

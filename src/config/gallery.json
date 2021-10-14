@@ -23,5 +23,30 @@
         "id": "g005",
         "type": "picture",
         "source": "img/pictures/pic5.jpg"
+    },
+    {
+        "id": "g006",
+        "type": "picture",
+        "source" : "img/pictures/pic1.jpg"
+    },
+    {
+        "id": "g007",
+        "type": "picture",
+        "source": "img/pictures/pic2.jpg"
+    },
+    {
+        "id": "g008",
+        "type": "picture",
+        "source": "img/pictures/pic3.jpg"
+    },
+    {
+        "id": "g009",
+        "type": "picture",
+        "source": "img/pictures/pic4.jpg"
+    },
+    {
+        "id": "g010",
+        "type": "picture",
+        "source": "img/pictures/pic5.jpg"
     }
 ]

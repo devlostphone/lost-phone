@@ -116,7 +116,7 @@ export default class phoneUI {
             this.fakeOS.height * 0.05,
             this.fakeOS.colors.ui.UIBarsColor,
             1.0
-        ).setOrigin(0);
+        ).setOrigin(0).setDepth(1000);
 
         this.fakeOS.log('Creating bottom bar');
         this.elements.bottomBar = this.fakeOS.add.rectangle(
@@ -126,7 +126,7 @@ export default class phoneUI {
             this.fakeOS.height * 0.1,
             this.fakeOS.colors.ui.UIBarsColor,
           1.0
-        ).setOrigin(0);
+        ).setOrigin(0).setDepth(1000);
     }
 
     /**
@@ -142,7 +142,8 @@ export default class phoneUI {
             this.fakeOS.height - this.fakeOS.height * 0.05,
             'button-homescreen'
         ).setInteractive()
-        .setOrigin(0.5, 0.5);
+        .setOrigin(0.5, 0.5)
+        .setDepth(1001);
 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -155,7 +156,8 @@ export default class phoneUI {
             this.fakeOS.width / 4,
             this.fakeOS.height - this.fakeOS.height * 0.05,
             '<-'
-        ).setVisible(false);
+        ).setVisible(false)
+        .setDepth(1001);
 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -179,7 +181,7 @@ export default class phoneUI {
                 color: '#ffffff',
                 align: 'center'
             }
-        ).setOrigin(0.5, 0.5);
+        ).setOrigin(0.5, 0.5).setDepth(1001);
     }
 
     /**
@@ -187,7 +189,7 @@ export default class phoneUI {
      */
     protected createDrawer(): void {
         this.fakeOS.log('Creating drawer');
-        this.elements.drawer = new NotificationDrawer(this.fakeOS, 0, 0);
+        this.elements.drawer = new NotificationDrawer(this.fakeOS, 0, 0).setDepth(1001);
         this.elements.drawer.refreshNotifications();
     }
 

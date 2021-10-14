@@ -29,18 +29,22 @@ export default class PicGrid extends Phaser.GameObjects.Container
         this.printMedia();
     }
 
+    /**
+     * Prints media collection from the gallery.
+     *
+     */
     public printMedia(): void {
-        console.log(this.media);
         let renderArea = this.fakeOS.getUI().getAppRenderSize();
         for (let i = 0; i < this.media.length; i++) {
             let element = this.fakeOS.add.image(
-                i % 2 == 0 ? 0 : renderArea.width / 2,
-                renderArea.y + (renderArea.height / 4) * (Math.floor(i / 2)),
+                0,
+                0,
                 this.media[i].id
-            ).setOrigin(0,0);
+            );
             element.displayWidth = renderArea.width / 2;
             element.displayHeight = renderArea.height / 4;
 
+            this.add(element);
             this.fakeOS.addInputEvent(
                 'pointerdown',
                 () => {
@@ -65,14 +69,27 @@ export default class PicGrid extends Phaser.GameObjects.Container
                 },
                 element
             );
-
-            this.add(element);
         }
+
+        let elements = this.getAll();
+
+        this.fakeOS.getActiveApp().addGrid(
+            elements,
+            {
+                columns: 2,
+                rows: 4
+            });
     }
 
+    /**
+     * Opens a media element from the gallery.
+     * @TODO: add video
+     *
+     * @param element
+     */
     public openMedia(element: Phaser.GameObjects.Image): void {
         this.fakeOS.getActiveApp().addLayer();
-        let dimensions = this.fakeOS.getUI().getAppRenderSize();
+        const dimensions = this.fakeOS.getUI().getAppRenderSize();
 
         element.displayWidth = dimensions.width;
         element.displayHeight = dimensions.height / 2;

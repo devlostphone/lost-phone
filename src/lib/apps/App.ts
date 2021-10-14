@@ -47,6 +47,8 @@ export default abstract class App {
      */
     public dragZone?: any;
 
+    public area: any;
+
     /**
      * Class constructor.
      *
@@ -71,6 +73,10 @@ export default abstract class App {
      */
     public update(delta: any, time: any): void {}
 
+    /**
+     * Returns app key.
+     * @returns Key
+     */
     public getKey(): string {
         return this.constructor.name;
     }
@@ -83,6 +89,8 @@ export default abstract class App {
      * @param options   Additional options for rendering the content
      */
     public addRow(elements: any, options:any = {}): void {
+        this.area = this.fakeOS.getUI().getAppRenderSize();
+
         // Accept single elements
         if (!Array.isArray(elements)) {
             elements = [elements];
@@ -104,26 +112,23 @@ export default abstract class App {
         }
 
         Phaser.Actions.GridAlign(elements, {
-            x: this.fakeOS.width / elements.length / 2,
+            x: this.area.width / elements.length / 2,
             y: this.atRow(this.lastY),
             width: -1,
             height: 1,
-            cellWidth: this.fakeOS.width / elements.length,
+            cellWidth: this.area.width / elements.length,
             cellHeight: this.rowHeight() * options['height'],
             position: options['position']
         });
 
+        this.lastY += options['height'];
+
         if (this.lastY > this.biggestY) {
             this.biggestY = this.lastY;
             if (this.biggestY > this.rows) {
-                this.dragZone.input.hitArea.setSize(
-                    this.fakeOS.width,
-                    this.atRow(this.biggestY+1)
-                );
+                //this.createDragZone();
             }
         }
-
-        this.lastY += options['height'];
     }
 
     /**
@@ -134,6 +139,8 @@ export default abstract class App {
      * @param options   Additional options for rendering the content
      */
     public addGrid(elements: any, options:any = {}): void {
+        this.area = this.fakeOS.getUI().getAppRenderSize();
+
         // Accept single elements
         if (!Array.isArray(elements)) {
             elements = [elements];
@@ -168,26 +175,64 @@ export default abstract class App {
         }
 
         Phaser.Actions.GridAlign(elements, {
-            x: (this.fakeOS.width / elements.length / 2) +  (this.fakeOS.width / options['columns']) / options['columns'],
-            y: this.atRow(this.lastY) + options['offsetY'],
+            x: (this.area.width / options['columns']) / 2,
+            y: this.atRow(this.lastY) + this.area.y + options['offsetY'],
             width: options['columns'],
-            height: options['rows'],
-            cellWidth: this.fakeOS.width / options['columns'],
-            cellHeight: (this.fakeOS.height / options['rows']) * options['height'],
+            height: elements.length / options['columns'],
+            cellWidth: this.area.width / options['columns'],
+            cellHeight: (this.area.height / options['rows']) * options['height'],
             position: options['position']
         });
+
+        this.lastY += Math.floor(elements.length / options['columns'] * (elements.length / options['columns']));
 
         if (this.lastY > this.biggestY) {
             this.biggestY = this.lastY;
             if (this.biggestY > this.rows) {
-                this.dragZone.input.hitArea.setSize(
-                    this.fakeOS.width,
-                    this.atRow(this.biggestY+1)
-                );
+                //this.createDragZone();
             }
         }
+    }
 
-        this.lastY += Math.floor(elements.length / options['columns'] * options['height']);
+    protected createDragZone(): void {
+        this.fakeOS.log('Too many elements. Creating drag zone...');
+        this.fakeOS.input.dragDistanceThreshold = 16;
+
+        this.dragZone = this.fakeOS.add.rectangle(
+            this.area.x,
+            this.area.y,
+            this.area.width,
+            this.area.height
+        ).setName('SceneDragZone')
+        .setOrigin(0, 0)
+        .setDepth(1001);
+
+        this.fakeOS.addInputEvent(
+            'drag',
+            (pointer:any, gameobject: any) => { this.dragEvent(pointer, gameobject)},
+            this.dragZone
+        );
+
+        this.dragZone.input.hitArea.setSize(
+            this.area.width,
+            this.atRow(this.biggestY+1)
+        );
+    }
+
+    protected dragEvent(pointer: any, gameobject: any): void {
+        console.log(gameobject);
+        if (typeof gameobject !== 'object') {
+            return;
+          }
+        if (gameobject.name = 'SceneDragZone') {
+            this.fakeOS.cameras.main.scrollY -= (pointer.position.y - pointer.prevPosition.y);
+
+            this.fakeOS.cameras.main.scrollY = Phaser.Math.Clamp(
+            this.fakeOS.cameras.main.scrollY,
+            0,
+            this.biggestY >= this.rows ? this.atRow(this.biggestY+1) - this.area.height : 0
+            );
+        }
     }
 
     /**
@@ -196,7 +241,7 @@ export default abstract class App {
      * @returns The total height divided by the number of rows
      */
     protected rowHeight(): number {
-        return this.fakeOS.height / this.rows;
+        return this.area.height / this.rows;
     }
 
     /**
@@ -206,22 +251,20 @@ export default abstract class App {
      * @returns         The y position of the specified row
      */
     protected atRow(rowNumber: number): number {
-        let area = this.fakeOS.getUI().getAppRenderSize();
-
         // If rowNumber is negative, start from the bottom
         if (rowNumber < 0) {
           rowNumber = this.rows + rowNumber;
         }
-        return area.y + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
+        return this.area.y + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
     }
 
     public addLayer(): void {
-        let area = this.fakeOS.getUI().getAppRenderSize();
+        this.area = this.fakeOS.getUI().getAppRenderSize();
         let layer = this.fakeOS.add.rectangle(
-            area.x,
-            area.y,
-            area.width,
-            area.height,
+            this.area.x,
+            this.area.y,
+            this.area.width,
+            this.area.height,
             0x333333
         ).setOrigin(0,0).setInteractive();
         this.elements.add(layer);

@@ -49,8 +49,8 @@ export class FakeOS extends FakeOSScene {
      */
     public constructor() {
         super('fakeOS');
-        this.activeApp = AppFactory.createInstance('HomescreenApp', this);
         this.UI = new UI(this);
+        this.activeApp = AppFactory.createInstance('HomescreenApp', this);
     }
 
     /**
@@ -88,7 +88,8 @@ export class FakeOS extends FakeOSScene {
      */
     public create(): void {
 
-        this.input.setTopOnly(true);
+        this.input.setTopOnly(false);
+        this.input.setGlobalTopOnly(false);
 
         this.cameras.main.setRoundPixels(true);
         if (this.handlerScene instanceof Handler) {
@@ -98,7 +99,6 @@ export class FakeOS extends FakeOSScene {
         this.setBackground();
 
         // Render the UI
-        this.UI = new UI(this);
         this.UI.render();
 
         // Render the homescreen

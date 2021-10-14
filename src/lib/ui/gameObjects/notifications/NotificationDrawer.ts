@@ -43,7 +43,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             this.fakeOS,
             0,
             this.UI.elements.topBar.height
-        );
+        ).setDepth(1001);
         this.drawerArea?.add(this.notificationList);
         this.pendingNotifications = [];
         this.isNotificationYoyoing = false;
@@ -66,13 +66,15 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         this.drawerArea = this.fakeOS.add.container(
             0, -this.fakeOS.height
         ).setDepth(100)
-        .setSize(this.fakeOS.width, this.fakeOS.height);
+        .setSize(this.fakeOS.width, this.fakeOS.height)
+        .setDepth(1001);
 
         this.drawerBox = this.fakeOS.add.rectangle(
             0, 0,
             this.fakeOS.width, this.fakeOS.height,
             0x333333
-        ).setOrigin(0,0);
+        ).setOrigin(0,0)
+        .setDepth(1001);
 
         // Stops events from going below the box
         this.fakeOS.addInputEvent(

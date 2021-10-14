@@ -71,6 +71,10 @@ export default abstract class App {
      */
     public update(delta: any, time: any): void {}
 
+    public getKey(): string {
+        return this.constructor.name;
+    }
+
     /**
      * Arranges content in a new row.
      * The elements must already be in the scene.
@@ -219,7 +223,7 @@ export default abstract class App {
             area.width,
             area.height,
             0x333333
-        ).setOrigin(0,0);
+        ).setOrigin(0,0).setInteractive();
         this.elements.add(layer);
 
         // Reset position

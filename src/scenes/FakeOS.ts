@@ -190,6 +190,14 @@ export class FakeOS extends FakeOSScene {
     }
 
     /**
+     * Returns the active app.
+     * @returns App
+     */
+    public getActiveApp(): App {
+        return this.activeApp;
+    }
+
+    /**
      * Launches a new app and sets it as active.
      *
      * @param key   The app key.

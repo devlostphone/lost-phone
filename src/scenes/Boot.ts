@@ -18,6 +18,24 @@ export default class Boot extends FakeOSScene {
         this.load.json('config', 'config/config.json');
         this.load.json('apps', 'config/apps.json');
         this.load.json('colors', 'config/colors.json');
+        this.preload_app_config();
+    }
+
+    /**
+     * Preloads app-specific config file.
+     */
+     protected preload_app_config(): void {
+        // Load json app files
+        /*let apps = this.cache.json.get('apps');
+        for (var i = 0; i < apps.length; i++) {
+            console.log('Loading ' + apps[i].type);
+            if (apps[i].configFile) {
+                this.load.json(apps[i].type, `config/${apps[i].type}.json`);
+            }
+        }*/
+        // @TODO: check this
+        this.load.json('mail', 'config/mail.json');
+        this.load.json('gallery', 'config/gallery.json');
     }
 
     /**

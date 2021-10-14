@@ -40,8 +40,10 @@ export default class Preloader extends FakeOSScene {
         this.sceneStopped = false;
 
         this.preload_images();
-        this.preload_app_config();
         this.preload_languages();
+
+        // More specific preloads.
+        this.preload_gallery_images();
 
         this.progressBar();
     }
@@ -81,6 +83,14 @@ export default class Preloader extends FakeOSScene {
         this.load.image('background', 'assets/img/backgrounds/library.png');
     }
 
+    public preload_gallery_images(): void {
+        let media = this.cache.json.get('gallery');
+
+        for (let i = 0; i < media.length; i++) {
+            this.load.image(media[i].id, 'assets/' + media[i].source);
+        }
+    }
+
     /**
      * Create method.
      */
@@ -89,17 +99,6 @@ export default class Preloader extends FakeOSScene {
         // CONFIG SCENE
         if (this.handlerScene instanceof Handler) {
             this.handlerScene?.updateResize(this);
-        }
-
-        // More specific preloads.
-        this.preload_gallery_images();
-    }
-
-    public preload_gallery_images(): void {
-        let media = this.cache.json.get('gallery');
-
-        for (let i = 0; i < media.length; i++) {
-            this.load.image(media[i].id, 'assets/' + media[i].source);
         }
     }
 

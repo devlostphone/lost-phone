@@ -15,10 +15,12 @@ export default class GalleryApp extends App {
     }
 
     public render(): void {
-        this.fakeOS.add.existing(new PicGrid(
+        let picGrid = new PicGrid(
             this.fakeOS,
             0, 0,
             this.media
-        ));
+        );
+        this.fakeOS.add.existing(picGrid);
+        this.elements.add(picGrid);
     }
 }

@@ -116,7 +116,7 @@ export default class phoneUI {
             this.fakeOS.height * 0.05,
             this.fakeOS.colors.ui.UIBarsColor,
             1.0
-        ).setOrigin(0).setDepth(1000);
+        ).setOrigin(0).setDepth(1000).setInteractive();
 
         this.fakeOS.log('Creating bottom bar');
         this.elements.bottomBar = this.fakeOS.add.rectangle(
@@ -126,7 +126,7 @@ export default class phoneUI {
             this.fakeOS.height * 0.1,
             this.fakeOS.colors.ui.UIBarsColor,
           1.0
-        ).setOrigin(0).setDepth(1000);
+        ).setOrigin(0).setDepth(1000).setInteractive();
     }
 
     /**

@@ -46,26 +46,13 @@ export default class PicGrid extends Phaser.GameObjects.Container
 
             this.add(element);
             this.fakeOS.addInputEvent(
-                'pointerdown',
-                () => {
-                    element.setTint(185273);
-                },
-                element
-            );
-
-            this.fakeOS.addInputEvent(
-                'pointerout',
-                () => {
-                    element.clearTint();
-                },
-                element
-            );
-
-            this.fakeOS.addInputEvent(
                 'pointerup',
                 () => {
-                    this.openMedia(element);
-                    element.clearTint();
+                    element.setTint(185273);
+                    setTimeout(() => {
+                        element.clearTint();
+                        this.openMedia(element);
+                    }, 100);
                 },
                 element
             );
@@ -88,7 +75,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
      * @param element
      */
     public openMedia(element: Phaser.GameObjects.Image): void {
-        this.fakeOS.getActiveApp().addLayer();
+        this.fakeOS.getActiveApp().addLayer(0x333333);
         const dimensions = this.fakeOS.getUI().getAppRenderSize();
 
         element.displayWidth = dimensions.width;

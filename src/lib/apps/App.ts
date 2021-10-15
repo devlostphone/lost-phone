@@ -14,7 +14,7 @@ export default abstract class App {
     /**
      * Group of elements of the app.
      */
-    public elements: Phaser.GameObjects.Group;
+    public elements: Phaser.GameObjects.Container;
 
     /**
      * Number of rows to divide the app into.
@@ -53,7 +53,11 @@ export default abstract class App {
      */
     public constructor(fakeOS: FakeOS) {
         this.fakeOS = fakeOS;
-        this.elements = new Phaser.GameObjects.Group(fakeOS);
+        this.area = this.fakeOS.getUI().getAppRenderSize();
+        this.elements = this.fakeOS.add.container(
+            this.area.x,
+            this.area.y
+        );
     }
 
     /**
@@ -68,7 +72,60 @@ export default abstract class App {
      * @param delta
      * @param time
      */
-    public update(delta: any, time: any): void {}
+    public update(delta: any, time: any): void {
+        /*const friction = 0.99;
+        const speedMult = 0.7;
+
+        if (this.dragZone !== undefined) {
+            if (this.dragZone.isBeingDragged) {
+                this.dragZone.savedPosition = new Phaser.Geom.Point(this.dragZone.x, this.dragZone.y);
+            } else {
+                // if the moving speed is greater than 1...
+                if (this.dragZone.movingSpeed > 1) {
+                    // adjusting map y position according to moving speed and angle using trigonometry
+                    this.dragZone.y += this.dragZone.movingSpeed * Math.sin(this.dragZone.movingangle);
+
+                    // keep map within boundaries
+                    if(this.dragZone.y < this.fakeOS.height - this.dragZone.height){
+                        this.dragZone.y = this.fakeOS.height - this.dragZone.height;
+                    }
+                    // keep map within boundaries
+                    if(this.dragZone.y > 0){
+                        this.dragZone.y = 0;
+                    }
+                    // applying friction to moving speed
+                    this.dragZone.movingSpeed *= friction;
+                    // save current map position
+                    this.dragZone.savedPosition = new Phaser.Geom.Point(this.dragZone.x, this.dragZone.y);
+                }
+                // if the moving speed is less than 1...
+                else {
+                    // checking distance between current map position and last saved position
+                    // which is the position in the previous frame
+                    var distance = Phaser.Math.Distance.Between(
+                        this.dragZone.savedPosition.x,
+                        this.dragZone.savedPosition.y,
+                        this.dragZone.x,
+                        this.dragZone.y
+                    );
+                    // same thing with the angle
+                    var angle = Phaser.Math.Angle.Between(
+                        this.dragZone.savedPosition.x,
+                        this.dragZone.savedPosition.y,
+                        this.dragZone.x,
+                        this.dragZone.y
+                    );
+                    // if the distance is at least 4 pixels (an arbitrary value to see I am swiping)
+                    if(distance > 4) {
+                        // set moving speed value
+                        this.dragZone.movingSpeed = distance * speedMult;
+                        // set moving angle value
+                        this.dragZone.movingangle = angle;
+                    }
+                }
+            }
+        }*/
+    }
 
     /**
      * Returns app key.
@@ -86,14 +143,13 @@ export default abstract class App {
      * @param options   Additional options for rendering the content
      */
     public addRow(elements: any, options:any = {}): void {
-        this.area = this.fakeOS.getUI().getAppRenderSize();
 
         // Accept single elements
         if (!Array.isArray(elements)) {
             elements = [elements];
         }
 
-        this.elements.addMultiple(elements);
+        this.elements.add(elements);
 
         // Check defaults
         if (options['height'] === undefined) {
@@ -122,6 +178,9 @@ export default abstract class App {
 
         if (this.lastY > this.biggestY) {
             this.biggestY = this.lastY;
+            if (this.biggestY > this.rows) {
+                this.createDragZone(this.atRow(this.biggestY));
+            }
         }
     }
 
@@ -133,7 +192,6 @@ export default abstract class App {
      * @param options   Additional options for rendering the content
      */
     public addGrid(elements: any, options:any = {}): void {
-        this.area = this.fakeOS.getUI().getAppRenderSize();
 
         // Accept single elements
         if (!Array.isArray(elements)) {
@@ -142,7 +200,7 @@ export default abstract class App {
 
         // The elements are stored in the class so they can be easily
         // cleared when needed.
-        this.elements.addMultiple(elements);
+        this.elements.add(elements);
 
         if (options['offsetY'] === undefined) {
             options['offsetY'] = 0;
@@ -168,21 +226,49 @@ export default abstract class App {
             options['position'] = Phaser.Display.Align.CENTER;
         }
 
+        const colNumber = options['columns'];
+        const rowNumber = elements.length / colNumber;
+        const cellHeight = (this.area.height / options['rows']) * options['height'];
+
         Phaser.Actions.GridAlign(elements, {
             x: (this.area.width / options['columns']) / 2,
-            y: this.atRow(this.lastY) + this.area.y + options['offsetY'],
-            width: options['columns'],
-            height: elements.length / options['columns'],
-            cellWidth: this.area.width / options['columns'],
-            cellHeight: (this.area.height / options['rows']) * options['height'],
+            y: this.atRow(this.lastY) + options['offsetY'],
+            width: colNumber,
+            height: rowNumber,
+            cellWidth: this.area.width / colNumber,
+            cellHeight: cellHeight,
             position: options['position']
         });
 
-        this.lastY += Math.floor(elements.length / options['columns'] * (elements.length / options['columns']));
+        const totalHeight = cellHeight * rowNumber;
 
-        if (this.lastY > this.biggestY) {
-            this.biggestY = this.lastY;
+        if (totalHeight > this.area.height) {
+            this.createDragZone(totalHeight);
         }
+    }
+
+    public createDragZone(height: number): void {
+        this.elements.setInteractive(new Phaser.Geom.Rectangle(
+            0,0,
+            this.area.width,
+            height
+        ), Phaser.Geom.Rectangle.Contains);
+        this.fakeOS.log("Too many elements. Creating drag zone...");
+        this.fakeOS.input.setDraggable(this.elements);
+        this.fakeOS.input.on(
+            'drag',
+            (pointer:any, gameobject:any, dragX: any, dragY: any) => {
+                if (dragY > this.area.y) {
+                    dragY = this.area.y;
+                }
+
+                if (dragY < -(height - this.area.height - this.area.y)) {
+                    dragY = -(height - this.area.height - this.area.y);
+                }
+
+                this.elements.y = dragY
+            }
+        );
     }
 
     /**
@@ -205,28 +291,34 @@ export default abstract class App {
         if (rowNumber < 0) {
           rowNumber = this.rows + rowNumber;
         }
-        return this.area.y + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
+        return this.area.y * 2 + Math.floor((this.rowHeight() * rowNumber));
     }
 
-    public addLayer(): void {
-        this.area = this.fakeOS.getUI().getAppRenderSize();
+    public addLayer(color?: any): Phaser.GameObjects.Rectangle {
+        this.fakeOS.input.off('drag');
+        this.elements.setInteractive(false);
+        this.elements.setX(this.area.x).setY(this.area.y);
         let layer = this.fakeOS.add.rectangle(
-            this.area.x,
-            this.area.y,
+            0,
+            0,
             this.area.width,
             this.area.height,
-            0x333333
+            color ? color : '',
+            color ? 1 : 0
         ).setOrigin(0,0).setInteractive();
         this.elements.add(layer);
 
         // Reset position
         this.lastY = 0;
+
+        return layer;
     }
 
     /**
      * Clears all the elements stored in the app.
      */
     public destroy(): void {
-        this.elements.clear(true, true);
+        this.elements.removeAll(true);
+        this.elements.destroy();
     }
 }

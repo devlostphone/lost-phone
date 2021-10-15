@@ -32,7 +32,15 @@ FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, obj
     let fakeOS = this;
 
     object.setInteractive();
-    object.on(eventType, function(...args: any[]) {
+    this.input.on(eventType, function(...args: any[]) {
+        if (args[0].getDistanceY() > 0) {
+            return;
+        }
+
+        if (args[1] != object && Array.isArray(args[1]) && args[1][0] != object) {
+            return;
+        }
+
         fakeOS.log('Launching event ' + eventType + ' on ' + object.constructor.name);
         func(...args);
     });

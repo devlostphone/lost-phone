@@ -56,7 +56,7 @@ import App from '~/lib/apps/App';
     public openMail(mail: any): void {
 
         // Adding a new layer for displaying mail contents.
-        this.addLayer();
+        this.addLayer(0x333333);
         let text = this.fakeOS.add.text(0,0,
             mail['body'],
             {wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }}

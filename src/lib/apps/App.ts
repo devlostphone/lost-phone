@@ -47,6 +47,11 @@ export default abstract class App {
     public area: any;
 
     /**
+     * FakeOS mask
+     */
+    public mask: Phaser.Display.Masks.GeometryMask;
+
+    /**
      * Class constructor.
      *
      * @param fakeOS FakeOS
@@ -58,6 +63,21 @@ export default abstract class App {
             this.area.x,
             this.area.y
         );
+
+        let graphics = new Phaser.GameObjects.Graphics(fakeOS);
+        graphics.fillRect(
+            0,0,
+            this.fakeOS.width,
+            this.fakeOS.height
+        );
+        this.mask = new Phaser.Display.Masks.GeometryMask(
+            this.fakeOS,
+            graphics
+        );
+
+        this.elements.setMask(this.mask);
+        this.fakeOS.getUI().container?.setMask(this.mask);
+
     }
 
     /**
@@ -194,6 +214,11 @@ export default abstract class App {
         }
     }
 
+    /**
+     * Sets the app container as interactive and draggable.
+     *
+     * @param height Height of the container area.
+     */
     public createDragZone(height: number): void {
         this.elements.setInteractive(new Phaser.Geom.Rectangle(
             0,0,
@@ -241,6 +266,12 @@ export default abstract class App {
         return this.area.y * 2 + Math.floor((this.rowHeight() * rowNumber));
     }
 
+    /**
+     * Adds a layer on top of the app.
+     *
+     * @param color  Color of the layer.
+     * @returns The layer game object.
+     */
     public addLayer(color?: any): Phaser.GameObjects.Rectangle {
         this.fakeOS.input.off('drag');
         this.elements.setInteractive(false);

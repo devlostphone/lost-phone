@@ -26,6 +26,11 @@ export default class phoneUI {
     };
 
     /**
+     * Container game object with all UI game objects.
+     */
+    public container?: Phaser.GameObjects.Container;
+
+    /**
      * Is the notification drawer open?
      */
     public isDrawerOpen: boolean;
@@ -45,6 +50,7 @@ export default class phoneUI {
      * Renders the UI.
      */
     public render(): void {
+        this.container = this.fakeOS.add.container(0,0).setDepth(1000);
         this.fakeOS.log('Loading UI');
         this.setWallpaper();
         this.createBars();
@@ -127,6 +133,9 @@ export default class phoneUI {
             this.fakeOS.colors.ui.UIBarsColor,
           1.0
         ).setOrigin(0).setDepth(1000).setInteractive();
+
+        this.container?.add(this.elements.topBar);
+        this.container?.add(this.elements.bottomBar);
     }
 
     /**
@@ -164,6 +173,9 @@ export default class phoneUI {
             () => t.fakeOS.useBackFunction(),
             this.elements.backButton
         );
+
+        this.container?.add(this.elements.homeButton);
+        this.container?.add(this.elements.backButton);
     }
 
     /**
@@ -182,6 +194,8 @@ export default class phoneUI {
                 align: 'center'
             }
         ).setOrigin(0.5, 0.5).setDepth(1001);
+
+        this.container?.add(this.elements.clock);
     }
 
     /**
@@ -191,6 +205,8 @@ export default class phoneUI {
         this.fakeOS.log('Creating drawer');
         this.elements.drawer = new NotificationDrawer(this.fakeOS, 0, 0).setDepth(1001);
         this.elements.drawer.refreshNotifications();
+
+        this.container?.add(this.elements.drawer);
     }
 
     /**

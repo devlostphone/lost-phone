@@ -91,6 +91,8 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
                 this.fakeOS.getString('notifications')
             ).setOrigin(0.5, 0)
         );
+
+        this.add(this.drawerArea);
     }
 
     /**

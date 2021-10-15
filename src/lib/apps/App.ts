@@ -72,60 +72,7 @@ export default abstract class App {
      * @param delta
      * @param time
      */
-    public update(delta: any, time: any): void {
-        /*const friction = 0.99;
-        const speedMult = 0.7;
-
-        if (this.dragZone !== undefined) {
-            if (this.dragZone.isBeingDragged) {
-                this.dragZone.savedPosition = new Phaser.Geom.Point(this.dragZone.x, this.dragZone.y);
-            } else {
-                // if the moving speed is greater than 1...
-                if (this.dragZone.movingSpeed > 1) {
-                    // adjusting map y position according to moving speed and angle using trigonometry
-                    this.dragZone.y += this.dragZone.movingSpeed * Math.sin(this.dragZone.movingangle);
-
-                    // keep map within boundaries
-                    if(this.dragZone.y < this.fakeOS.height - this.dragZone.height){
-                        this.dragZone.y = this.fakeOS.height - this.dragZone.height;
-                    }
-                    // keep map within boundaries
-                    if(this.dragZone.y > 0){
-                        this.dragZone.y = 0;
-                    }
-                    // applying friction to moving speed
-                    this.dragZone.movingSpeed *= friction;
-                    // save current map position
-                    this.dragZone.savedPosition = new Phaser.Geom.Point(this.dragZone.x, this.dragZone.y);
-                }
-                // if the moving speed is less than 1...
-                else {
-                    // checking distance between current map position and last saved position
-                    // which is the position in the previous frame
-                    var distance = Phaser.Math.Distance.Between(
-                        this.dragZone.savedPosition.x,
-                        this.dragZone.savedPosition.y,
-                        this.dragZone.x,
-                        this.dragZone.y
-                    );
-                    // same thing with the angle
-                    var angle = Phaser.Math.Angle.Between(
-                        this.dragZone.savedPosition.x,
-                        this.dragZone.savedPosition.y,
-                        this.dragZone.x,
-                        this.dragZone.y
-                    );
-                    // if the distance is at least 4 pixels (an arbitrary value to see I am swiping)
-                    if(distance > 4) {
-                        // set moving speed value
-                        this.dragZone.movingSpeed = distance * speedMult;
-                        // set moving angle value
-                        this.dragZone.movingangle = angle;
-                    }
-                }
-            }
-        }*/
-    }
+    public update(delta: any, time: any): void {}
 
     /**
      * Returns app key.

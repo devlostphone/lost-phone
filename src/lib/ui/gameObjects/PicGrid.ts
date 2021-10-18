@@ -93,7 +93,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
         let element = this.fakeOS.add.video(0, 0, video.id);
         let playerButton = this.fakeOS.add.image(0, 0, 'play-button');
         playerButton.displayWidth = renderArea.width / 4;
-        playerButton.displayHeight = renderArea.height / 8;
+        playerButton.displayHeight = renderArea.width / 4;
         element.displayWidth = renderArea.width / 2;
         element.displayHeight = renderArea.height / 4;
 
@@ -120,11 +120,11 @@ export default class PicGrid extends Phaser.GameObjects.Container
      */
     public openImage(element: Phaser.GameObjects.Image): void {
         this.fakeOS.getActiveApp().addLayer(0x333333);
-        const dimensions = this.fakeOS.getUI().getAppRenderSize();
+        const area = this.fakeOS.getUI().getAppRenderSize();
 
-        element.displayWidth = dimensions.width;
-        element.displayHeight = dimensions.height / 2;
-        element.setX(0).setY(this.fakeOS.height / 2).setOrigin(0,0.5);
+        element.displayWidth = area.width;
+        element.displayHeight = area.height / 2;
+        element.setX(0).setY(area.y + area.height / 2).setOrigin(0,0.5);
         this.fakeOS.add.existing(element);
 
         this.fakeOS.addBackFunction(() => {
@@ -138,13 +138,13 @@ export default class PicGrid extends Phaser.GameObjects.Container
      */
      public openVideo(element: Phaser.GameObjects.Video, container: Phaser.GameObjects.Container): void {
         this.fakeOS.getActiveApp().addLayer(0x333333);
-        const dimensions = this.fakeOS.getUI().getAppRenderSize();
+        const area = this.fakeOS.getUI().getAppRenderSize();
         container.remove(element);
         this.fakeOS.getActiveApp().elements.add(element);
 
-        element.displayWidth = dimensions.width;
-        element.displayHeight = dimensions.height / 2;
-        element.setX(0).setY(this.fakeOS.height / 2).setOrigin(0,0.5);
+        element.displayWidth = area.width;
+        element.displayHeight = area.height / 2;
+        element.setX(0).setY(area.height / 2).setOrigin(0,0.5);
 
         this.fakeOS.addInputEvent(
             'pointerup',

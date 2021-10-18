@@ -78,9 +78,9 @@ export default class ClockApp extends App {
      */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
-        this.x = this.fakeOS.width / 2;
-        this.y = this.fakeOS.height / 2;
-        this.clockSize = Math.round(this.fakeOS.width / 2.5);
+        this.x = this.area.width / 2;
+        this.y = this.area.height / 2;
+        this.clockSize = Math.round(this.area.width / 2.5);
     }
 
     /**

@@ -52,6 +52,11 @@ export default abstract class App {
     public mask: Phaser.Display.Masks.GeometryMask;
 
     /**
+     * Number of graphic layers of the app.
+     */
+    public numLayers: number;
+
+    /**
      * Class constructor.
      *
      * @param fakeOS FakeOS
@@ -59,6 +64,7 @@ export default abstract class App {
     public constructor(fakeOS: FakeOS) {
         this.fakeOS = fakeOS;
         this.area = this.fakeOS.getUI().getAppRenderSize();
+        this.numLayers = 0;
         this.elements = this.fakeOS.add.container(
             this.area.x,
             this.area.y
@@ -273,7 +279,8 @@ export default abstract class App {
      * @returns The layer game object.
      */
     public addLayer(color?: any): Phaser.GameObjects.Rectangle {
-        this.fakeOS.input.off('drag');
+        this.fakeOS.input.removeAllListeners();
+        this.fakeOS.getUI().addListeners();
         this.elements.setInteractive(false);
         this.elements.setX(this.area.x).setY(this.area.y);
         let layer = this.fakeOS.add.rectangle(
@@ -283,13 +290,29 @@ export default abstract class App {
             this.area.height,
             color ? color : '',
             color ? 1 : 0
-        ).setOrigin(0,0).setInteractive();
+        ).setOrigin(0,0).setInteractive().setDepth(++this.numLayers);
         this.elements.add(layer);
 
         // Reset position
         this.lastY = 0;
 
         return layer;
+    }
+
+    /**
+     * Returns the current number of layers.
+     * @returns # of layers.
+     */
+    public getNumLayers(): number {
+        return this.numLayers;
+    }
+
+    /**
+     * Brings an element to top of the container.
+     * @param element Element to bring to top.
+     */
+    public bringToTop(element: any) {
+        this.elements.bringToTop(element);
     }
 
     /**

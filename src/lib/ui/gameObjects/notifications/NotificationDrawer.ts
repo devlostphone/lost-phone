@@ -56,6 +56,8 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
                 }, 1000);
             }
         );
+
+        this.addEvents();
     }
 
     /**
@@ -77,11 +79,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         .setDepth(1001);
 
         // Stops events from going below the box
-        this.fakeOS.addInputEvent(
-            'pointerup',
-            () => {},
-            this.drawerBox
-        );
+        this.drawerBox.setInteractive();
 
         this.drawerArea.add(this.drawerBox);
         this.drawerArea.add(
@@ -113,34 +111,6 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             0x333333
         ).setOrigin(0,0);
 
-        this.fakeOS.addInputEvent(
-            'pointerup',
-            () => {
-                this.fakeOS.log('Launching drawer');
-                this.UI.isDrawerOpen = true;
-                this.fakeOS.tweens.add({
-                    targets: this.drawerArea,
-                    y: 0,
-                    duration: 700
-                });
-            },
-            this.drawerLauncher
-        );
-        this.fakeOS.addInputEvent(
-            'pointerover',
-            () => {
-                this.drawerLauncher?.setFillStyle(0x666666)
-            },
-            this.drawerLauncher
-        );
-        this.fakeOS.addInputEvent(
-            'pointerout',
-            () => {
-                this.drawerLauncher?.setFillStyle(0x333333)
-            },
-            this.drawerLauncher
-        );
-
         this.drawerArea?.add(this.drawerLauncher);
     }
 
@@ -162,34 +132,6 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             0xcccccc
         ).setOrigin(0,0);
 
-        this.fakeOS.addInputEvent(
-            'pointerup',
-            () => {
-                this.fakeOS.log('Hiding drawer');
-                this.UI.isDrawerOpen = false;
-                this.fakeOS.tweens.add({
-                    targets: this.drawerArea,
-                    y: -this.fakeOS.height,
-                    duration: 700
-                });
-            },
-            this.drawerHide
-        );
-        this.fakeOS.addInputEvent(
-            'pointerover',
-            () => {
-                this.drawerHide?.setFillStyle(0x999999)
-            },
-            this.drawerHide
-        );
-        this.fakeOS.addInputEvent(
-            'pointerout',
-            () => {
-                this.drawerHide?.setFillStyle(0xcccccc)
-            },
-            this.drawerHide
-        );
-
         this.drawerArea?.add(this.drawerHide);
     }
 
@@ -206,6 +148,68 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
      */
     public launchNotification(notification: any): void {
         this.pendingNotifications.push(notification);
+    }
+
+    public addEvents(): void {
+        if (this.drawerLauncher !== undefined) {
+            this.fakeOS.addInputEvent(
+                'pointerup',
+                () => {
+                    this.fakeOS.log('Launching drawer');
+                    this.UI.isDrawerOpen = true;
+                    this.fakeOS.tweens.add({
+                        targets: this.drawerArea,
+                        y: 0,
+                        duration: 700
+                    });
+                },
+                this.drawerLauncher
+            );
+            this.fakeOS.addInputEvent(
+                'pointerover',
+                () => {
+                    this.drawerLauncher?.setFillStyle(0x666666)
+                },
+                this.drawerLauncher
+            );
+            this.fakeOS.addInputEvent(
+                'pointerout',
+                () => {
+                    this.drawerLauncher?.setFillStyle(0x333333)
+                },
+                this.drawerLauncher
+            );
+        }
+
+        if (this.drawerHide !== undefined) {
+            this.fakeOS.addInputEvent(
+                'pointerup',
+                () => {
+                    this.fakeOS.log('Hiding drawer');
+                    this.UI.isDrawerOpen = false;
+                    this.fakeOS.tweens.add({
+                        targets: this.drawerArea,
+                        y: -this.fakeOS.height,
+                        duration: 700
+                    });
+                },
+                this.drawerHide
+            );
+            this.fakeOS.addInputEvent(
+                'pointerover',
+                () => {
+                    this.drawerHide?.setFillStyle(0x999999)
+                },
+                this.drawerHide
+            );
+            this.fakeOS.addInputEvent(
+                'pointerout',
+                () => {
+                    this.drawerHide?.setFillStyle(0xcccccc)
+                },
+                this.drawerHide
+            );
+        }
     }
 
     /**

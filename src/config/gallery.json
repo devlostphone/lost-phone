@@ -10,6 +10,11 @@
         "source": "img/pictures/pic2.jpg"
     },
     {
+        "id": "v001",
+        "type": "video",
+        "source": "videos/v001.mp4"
+    },
+    {
         "id": "g003",
         "type": "picture",
         "source": "img/pictures/pic3.jpg"
@@ -38,6 +43,11 @@
         "id": "g008",
         "type": "picture",
         "source": "img/pictures/pic3.jpg"
+    },
+    {
+        "id": "v002",
+        "type": "video",
+        "source": "videos/v002.mp4"
     },
     {
         "id": "g009",

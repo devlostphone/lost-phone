@@ -75,6 +75,8 @@ export default class phoneUI {
                 this.elements.drawer?.launchNotification(notification);
             }
         );
+
+        this.addListeners();
     }
 
     /**
@@ -154,12 +156,6 @@ export default class phoneUI {
         .setOrigin(0.5, 0.5)
         .setDepth(1001);
 
-        this.fakeOS.addInputEvent(
-            'pointerup',
-            () => t.fakeOS.launchApp('HomescreenApp'),
-            this.elements.homeButton
-        );
-
         // Create back button
         this.elements.backButton = this.fakeOS.add.text(
             this.fakeOS.width / 4,
@@ -167,12 +163,6 @@ export default class phoneUI {
             '<-'
         ).setVisible(false)
         .setDepth(1001);
-
-        this.fakeOS.addInputEvent(
-            'pointerup',
-            () => t.fakeOS.useBackFunction(),
-            this.elements.backButton
-        );
 
         this.container?.add(this.elements.homeButton);
         this.container?.add(this.elements.backButton);
@@ -207,6 +197,25 @@ export default class phoneUI {
         this.elements.drawer.refreshNotifications();
 
         this.container?.add(this.elements.drawer);
+    }
+
+    /**
+     * Adds UI input listeners.
+     */
+    public addListeners(): void {
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => this.fakeOS.launchApp('HomescreenApp'),
+            this.elements.homeButton
+        );
+
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => this.fakeOS.useBackFunction(),
+            this.elements.backButton
+        );
+
+        this.elements.drawer?.addEvents();
     }
 
     /**

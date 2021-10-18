@@ -11,6 +11,12 @@
     "configFile" : true
   },
   {
+    "type"   : "chat",
+    "key"    : "ChatApp",
+    "icon"   : "chatApp.png",
+    "configFile" : true
+  },
+  {
     "type" : "podcast",
     "key"  : "PodcastApp",
     "icon" : "podcastApp.png",

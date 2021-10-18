@@ -44,6 +44,7 @@ export default class Preloader extends FakeOSScene {
 
         // More specific preloads.
         this.preload_gallery_images();
+        this.preload_contact_images();
 
         this.progressBar();
     }
@@ -96,6 +97,14 @@ export default class Preloader extends FakeOSScene {
                 case 'video':
                     this.load.video(media[i].id, 'assets/' + media[i].source);
             }
+        }
+    }
+
+    public preload_contact_images(): void {
+        let media = this.cache.json.get('chat');
+
+        for (let i = 0; i < media.length; i++) {
+            this.load.image(media[i].id, 'assets/' + media[i].contactPic);
         }
     }
 

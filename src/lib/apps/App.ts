@@ -295,6 +295,7 @@ export default abstract class App {
 
         // Reset position
         this.lastY = 0;
+        this.biggestY = 0;
 
         return layer;
     }

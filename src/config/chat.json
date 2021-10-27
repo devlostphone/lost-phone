@@ -3,43 +3,100 @@
         "id": "contact001",
         "contactName": "John Doe",
         "contactPic": "img/contacts/calamar.png",
-        "conversation" : [
-            {
-                "id": "c0001",
+        "conversation" : {
+            "c001-0001": {
+                "id": "c001-0001",
                 "text": "Ei! Bones! Com va el dia?",
-                "next": "c0002"
+                "next": "c001-0002",
+                "condition": null
             },
-            {
-                "id": "c0002",
-                "options": [
-                    {
-                        "id": "ans0001",
+            "c001-0002": {
+                "id": "c001-0002",
+                "options": {
+                    "c001-ans0001": {
+                        "id": "c001-ans0001",
                         "text": "Doncs molt bé, gràcies! I tú?",
-                        "next": "c0003"
+                        "next": "c001-0003"
                     },
-                    {
-                        "id": "ans0002",
+                    "c001-ans0002": {
+                        "id": "c001-ans0002",
                         "text": "El dia? El dia, una mierda",
-                        "next": "c0004"
+                        "next": "c001-0004"
                     }
-                ]
+                }
             },
-            {
-                "id": "c003",
-                "text": "Me n'alegro molt!"
+            "c001-0003": {
+                "id": "c001-0003",
+                "text": "Me n'alegro molt!",
+                "condition": null,
+                "next": "c001-0005"
             },
-            {
-                "id": "c004",
-                "text": "Tú també et veus l'APM!"
+            "c001-0004": {
+                "id": "c001-0004",
+                "text": "Tú també et veus l'APM!",
+                "condition": null,
+                "next": "c001-0005"
+            },
+            "c001-0005": {
+                "id": "c001-0005",
+                "text": "Ei! Has llegit el mail del miniop?",
+                "condition": "m001",
+                "next": "c001-0006"
+            },
+            "c001-0006": {
+                "id": "c001-0006",
+                "options": {
+                    "ans0003": {
+                        "id": "ans0003",
+                        "text": "Com ho has sapigut?",
+                        "next": "c001-0007"
+                    },
+                    "ans0004": {
+                        "id": "ans0004",
+                        "text": "It's none of your business!",
+                        "next": "c001-0008"
+                    }
+                }
+            },
+            "c001-0007": {
+                "id": "c001-0007",
+                "text": "It's magic!",
+                "condition": null,
+                "next": null
+            },
+            "c001-0008": {
+                "id": "c001-0008",
+                "text": ":-(",
+                "condition": null,
+                "next": null
             }
-        ]
+        }
     },
     {
         "id": "contact002",
         "contactName": "Jane Doe",
         "contactPic": "img/contacts/menina.png",
-        "conversation" : [
-
-        ]
+        "conversation" : {
+            "c002-0001": {
+                "id": "c002-0001",
+                "options": {
+                    "c002-ans0001" : {
+                        "id": "c002-ans0001",
+                        "text": "Hola! Quant de temps!",
+                        "next": "c002-0002"
+                    },
+                    "c002-ans0002" : {
+                        "id": "c002-ans0002",
+                        "text": "Infanta Margarita Teresa de Austria, ets tu?",
+                        "next": "c002-0002"
+                    }
+                }
+            },
+            "c002-0002": {
+                "id": "c002-0002",
+                "text": "Deixa'm en pau! No vull parlar amb tú.",
+                "condition": null
+            }
+        }
     }
 ]

@@ -84,6 +84,9 @@ export default class Preloader extends FakeOSScene {
         this.load.image('background', 'assets/img/backgrounds/library.png');
 
         this.load.image('play-button', 'assets/img/icons/play-button.png');
+
+        this.load.image('default-avatar', 'assets/default-avatar.png');
+        this.load.spritesheet('typing', 'assets/typing-spritesheet.png', { frameWidth: 77, frameHeight: 38});
     }
 
     public preload_gallery_images(): void {

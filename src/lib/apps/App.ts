@@ -281,7 +281,7 @@ export default abstract class App {
     public addLayer(color?: any): Phaser.GameObjects.Rectangle {
         this.fakeOS.input.removeAllListeners();
         this.fakeOS.getUI().addListeners();
-        this.elements.setInteractive(false);
+        this.elements.disableInteractive();
         this.elements.setX(this.area.x).setY(this.area.y);
         let layer = this.fakeOS.add.rectangle(
             0,

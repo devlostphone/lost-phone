@@ -9,7 +9,7 @@ declare module "scenes/FakeOS" {
     }
 }
 
-FakeOS.prototype.setDone = function(id: string): void {
+FakeOS.prototype.setDone = function(id: string, value: any = undefined): void {
     let save = this.registry.get('complete');
 
     if (id in save) {

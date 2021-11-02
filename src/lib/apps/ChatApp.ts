@@ -165,7 +165,7 @@ export default class ChatApp extends App {
         } else {
             let chosen = this.fakeOS.registry.get('chat')[conversation.id];
             this.fakeOS.log('Chosen option was ' + chosen);
-            let text = this.fakeOS.add.text(0,0, conversation.options[chosen].text);
+            let text = this.fakeOS.add.text(0,0, conversation.options[chosen].text, this.textOptions);
             this.addRow([text, avatar], {height: 2});
             return this.getNextConversation(conversation.options[chosen]);
         }

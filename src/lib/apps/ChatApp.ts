@@ -10,6 +10,7 @@ export default class ChatApp extends App {
     protected chat: any;
     protected contacts: any;
     protected textOptions = { align: "left", fontSize: "24px", wordWrap: { width: 300, useAdvancedWrap: true }};
+    protected rowOptions = { height: 2, autoscroll: true};
     protected activeContact: number;
     protected lastMessage?: string;
 
@@ -116,7 +117,7 @@ export default class ChatApp extends App {
         let pic = this.fakeOS.add.image(0, 0, this.chat[this.activeContact].id);
         if (newMessage) {
             let typing = this.fakeOS.add.sprite(0, 0, 'typing').play('typingAnimation');
-            this.addRow([pic, typing], {height: 2});
+            this.addRow([pic, typing], this.rowOptions);
             this.fakeOS.log("Saving " + this.chat[this.activeContact].id + " last conversation as " + conversation.id);
             let chatRegistry = this.fakeOS.registry.get('chat');
             chatRegistry[this.chat[this.activeContact].id+'_lastchat'] = conversation.id;
@@ -129,14 +130,14 @@ export default class ChatApp extends App {
                     typing.destroy();
                     pic = this.fakeOS.add.image(0, 0, this.chat[this.activeContact].id);
                     let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
-                    this.addRow([pic, text], {height: 2, y: this.lastY - 2});
+                    this.addRow([pic, text], {...this.rowOptions, y: this.lastY - 2});
                     this.createChatInteraction(this.getNextConversation(conversation), true);
                 }
             );
 
         } else {
             let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
-            this.addRow([pic, text], {height: 2});
+            this.addRow([pic, text], this.rowOptions);
 
         }
 
@@ -148,7 +149,7 @@ export default class ChatApp extends App {
 
         if (!this.fakeOS.checkDone(conversation['id'])) {
             let typing = this.fakeOS.add.sprite(0, 0, 'typing').play('typingAnimation');
-            this.addRow([typing, avatar], { height: 2});
+            this.addRow([typing, avatar], this.rowOptions);
 
             let timedEvent = this.fakeOS.time.delayedCall(
                 600,
@@ -157,7 +158,7 @@ export default class ChatApp extends App {
                     typing.destroy();
                     avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
                     let options = this.showOptions(conversation);
-                    this.addRow([options, avatar], { height: 2, y: this.lastY - 2});
+                    this.addRow([options, avatar], { ...this.rowOptions, y: this.lastY - 2});
                 }
             );
 
@@ -166,7 +167,7 @@ export default class ChatApp extends App {
             let chosen = this.fakeOS.registry.get('chat')[conversation.id];
             this.fakeOS.log('Chosen option was ' + chosen);
             let text = this.fakeOS.add.text(0,0, conversation.options[chosen].text, this.textOptions);
-            this.addRow([text, avatar], {height: 2});
+            this.addRow([text, avatar], this.rowOptions);
             return this.getNextConversation(conversation.options[chosen]);
         }
     }

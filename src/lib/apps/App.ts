@@ -57,6 +57,11 @@ export default abstract class App {
     public numLayers: number;
 
     /**
+     * Last layer, if any
+     */
+    protected layer?: Phaser.GameObjects.Rectangle;
+
+    /**
      * Class constructor.
      *
      * @param fakeOS FakeOS
@@ -153,7 +158,17 @@ export default abstract class App {
             this.biggestY = this.lastY;
             if (this.biggestY > this.rows) {
                 this.createDragZone(this.atRow(this.biggestY));
+                if (this.layer !== undefined) {
+                    this.layer.height = this.rowHeight() * (this.biggestY + 1);
+                }
             }
+        }
+
+        this.fakeOS.log("Last row is: " + this.lastY);
+
+        if (options['autoscroll'] !== undefined && this.lastY > this.rows) {
+            this.fakeOS.log("Auto-scrolling");
+            this.elements.y = - (this.lastY - this.rows) * this.rowHeight();
         }
     }
 
@@ -217,6 +232,9 @@ export default abstract class App {
 
         if (totalHeight > this.area.height) {
             this.createDragZone(totalHeight);
+            if (this.layer !== undefined) {
+                this.layer.height = this.rowHeight() * this.biggestY;
+            }
         }
     }
 
@@ -245,6 +263,22 @@ export default abstract class App {
                 }
 
                 this.elements.y = dragY
+            }
+        );
+
+        this.fakeOS.input.on(
+            'wheel',
+            (pointer:any, gameobject:any, deltaX: any, deltaY: any, deltaZ: any) => {
+
+                this.elements.y -= deltaY
+
+                if (this.elements.y > this.area.y) {
+                    this.elements.y = this.area.y;
+                }
+
+                if (this.elements.y < -(height - this.area.height - this.area.y)) {
+                    this.elements.y = -(height - this.area.height - this.area.y);
+                }
             }
         );
     }
@@ -283,7 +317,7 @@ export default abstract class App {
         this.fakeOS.getUI().addListeners();
         this.elements.disableInteractive();
         this.elements.setX(this.area.x).setY(this.area.y);
-        let layer = this.fakeOS.add.rectangle(
+        this.layer = this.fakeOS.add.rectangle(
             0,
             0,
             this.area.width,
@@ -291,13 +325,13 @@ export default abstract class App {
             color ? color : '',
             color ? 1 : 0
         ).setOrigin(0,0).setInteractive().setDepth(++this.numLayers);
-        this.elements.add(layer);
+        this.elements.add(this.layer);
 
         // Reset position
         this.lastY = 0;
         this.biggestY = 0;
 
-        return layer;
+        return this.layer;
     }
 
     /**

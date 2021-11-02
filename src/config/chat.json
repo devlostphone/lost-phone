@@ -62,11 +62,17 @@
                 "id": "c001-0007",
                 "text": "It's magic!",
                 "condition": null,
-                "next": null
+                "next": "c001-0009"
             },
             "c001-0008": {
                 "id": "c001-0008",
                 "text": ":-(",
+                "condition": null,
+                "next": null
+            },
+            "c001-0009": {
+                "id": "c001-0009",
+                "text": "Ja t'ho explicaré",
                 "condition": null,
                 "next": null
             }

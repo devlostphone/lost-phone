@@ -36,13 +36,18 @@ export default class ChatApp extends App {
             let chatRegistry = this.fakeOS.registry.get('chat');
             let lastTextId = chatRegistry[this.chat[i].id+'_lastchat'];
             this.fakeOS.log('Contact '+this.chat[i].id+' last message was '+lastTextId);
-            let lastText = '...';
+            let lastText = this.fakeOS.getString('no_messages');
             if (lastTextId in this.chat[i].conversation) {
                 lastText = this.chat[i].conversation[lastTextId].text;
             }
 
             let lastMessage = this.fakeOS.add.text(0, 10, lastText, this.textOptions);
             let contact = this.fakeOS.add.container(0, 0, [rectangle, pic, name, lastMessage]);
+
+            let notifications = this.fakeOS.registry.get('notifications');
+            if (notifications.find((o:any) => o.contact == this.chat[i]['id'])) {
+                lastMessage.text = this.fakeOS.getString('is_typing');
+            }
 
             this.fakeOS.addInputEvent(
                 'pointerup',

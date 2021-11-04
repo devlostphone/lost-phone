@@ -38,8 +38,8 @@ export default class NotificationBox extends Phaser.GameObjects.Container
 
         this.add(this.fakeOS.add.image(
             0,0,'lorem-appsum'
-        ).setX(-150));
+        ).setX(-220));
 
-        this.add(this.fakeOS.add.text(0, 0, notification.title));
+        this.add(this.fakeOS.add.text(-100, 0, notification.title, { fontSize: "24px", wordWrap: {width: 400}}));
     }
  }

@@ -86,7 +86,8 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             this.fakeOS.add.text(
                 this.fakeOS.width / 2,
                 this.UI.elements.topBar.height / 2,
-                this.fakeOS.getString('notifications')
+                this.fakeOS.getString('notifications'),
+                { fontSize: '24px'}
             ).setOrigin(0.5, 0)
         );
 

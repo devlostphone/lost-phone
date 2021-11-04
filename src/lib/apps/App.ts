@@ -14,7 +14,7 @@ export default abstract class App {
     /**
      * Group of elements of the app.
      */
-    public elements: Phaser.GameObjects.Group;
+    public elements: Phaser.GameObjects.Container;
 
     /**
      * Number of rows to divide the app into.
@@ -42,10 +42,24 @@ export default abstract class App {
     public biggestY: number = 0;
 
     /**
-     * A drag zone created when the last row added surpasses
-     * the total rows.
+     * Renderable area (inside UI).
      */
-    public dragZone?: any;
+    public area: any;
+
+    /**
+     * FakeOS mask
+     */
+    public mask: Phaser.Display.Masks.GeometryMask;
+
+    /**
+     * Number of graphic layers of the app.
+     */
+    public numLayers: number;
+
+    /**
+     * Last layer, if any
+     */
+    protected layer?: Phaser.GameObjects.Rectangle;
 
     /**
      * Class constructor.
@@ -54,7 +68,27 @@ export default abstract class App {
      */
     public constructor(fakeOS: FakeOS) {
         this.fakeOS = fakeOS;
-        this.elements = new Phaser.GameObjects.Group(fakeOS);
+        this.area = this.fakeOS.getUI().getAppRenderSize();
+        this.numLayers = 0;
+        this.elements = this.fakeOS.add.container(
+            this.area.x,
+            this.area.y
+        );
+
+        let graphics = new Phaser.GameObjects.Graphics(fakeOS);
+        graphics.fillRect(
+            0,0,
+            this.fakeOS.width,
+            this.fakeOS.height
+        );
+        this.mask = new Phaser.Display.Masks.GeometryMask(
+            this.fakeOS,
+            graphics
+        );
+
+        this.elements.setMask(this.mask);
+        this.fakeOS.getUI().container?.setMask(this.mask);
+
     }
 
     /**
@@ -72,6 +106,14 @@ export default abstract class App {
     public update(delta: any, time: any): void {}
 
     /**
+     * Returns app key.
+     * @returns Key
+     */
+    public getKey(): string {
+        return this.constructor.name;
+    }
+
+    /**
      * Arranges content in a new row.
      * The elements must already be in the scene.
      *
@@ -79,12 +121,13 @@ export default abstract class App {
      * @param options   Additional options for rendering the content
      */
     public addRow(elements: any, options:any = {}): void {
+
         // Accept single elements
         if (!Array.isArray(elements)) {
             elements = [elements];
         }
 
-        this.elements.addMultiple(elements);
+        this.elements.add(elements);
 
         // Check defaults
         if (options['height'] === undefined) {
@@ -100,26 +143,33 @@ export default abstract class App {
         }
 
         Phaser.Actions.GridAlign(elements, {
-            x: this.fakeOS.width / elements.length / 2,
+            x: this.area.width / elements.length / 2,
             y: this.atRow(this.lastY),
             width: -1,
             height: 1,
-            cellWidth: this.fakeOS.width / elements.length,
+            cellWidth: this.area.width / elements.length,
             cellHeight: this.rowHeight() * options['height'],
             position: options['position']
         });
 
+        this.lastY += options['height'];
+
         if (this.lastY > this.biggestY) {
             this.biggestY = this.lastY;
             if (this.biggestY > this.rows) {
-                this.dragZone.input.hitArea.setSize(
-                    this.fakeOS.width,
-                    this.atRow(this.biggestY+1)
-                );
+                this.createDragZone(this.atRow(this.biggestY));
+                if (this.layer !== undefined) {
+                    this.layer.height = this.rowHeight() * (this.biggestY + 1);
+                }
             }
         }
 
-        this.lastY += options['height'];
+        this.fakeOS.log("Last row is: " + this.lastY);
+
+        if (options['autoscroll'] !== undefined && this.lastY > this.rows) {
+            this.fakeOS.log("Auto-scrolling");
+            this.elements.y = - (this.lastY - this.rows) * this.rowHeight();
+        }
     }
 
     /**
@@ -130,6 +180,7 @@ export default abstract class App {
      * @param options   Additional options for rendering the content
      */
     public addGrid(elements: any, options:any = {}): void {
+
         // Accept single elements
         if (!Array.isArray(elements)) {
             elements = [elements];
@@ -137,7 +188,7 @@ export default abstract class App {
 
         // The elements are stored in the class so they can be easily
         // cleared when needed.
-        this.elements.addMultiple(elements);
+        this.elements.add(elements);
 
         if (options['offsetY'] === undefined) {
             options['offsetY'] = 0;
@@ -163,27 +214,73 @@ export default abstract class App {
             options['position'] = Phaser.Display.Align.CENTER;
         }
 
+        const colNumber = options['columns'];
+        const rowNumber = elements.length / colNumber;
+        const cellHeight = (this.area.height / options['rows']) * options['height'];
+
         Phaser.Actions.GridAlign(elements, {
-            x: (this.fakeOS.width / elements.length / 2) +  (this.fakeOS.width / options['columns']) / options['columns'],
+            x: (this.area.width / options['columns']) / 2,
             y: this.atRow(this.lastY) + options['offsetY'],
-            width: options['columns'],
-            height: options['rows'],
-            cellWidth: this.fakeOS.width / options['columns'],
-            cellHeight: (this.fakeOS.height / options['rows']) * options['height'],
+            width: colNumber,
+            height: rowNumber,
+            cellWidth: this.area.width / colNumber,
+            cellHeight: cellHeight,
             position: options['position']
         });
 
-        if (this.lastY > this.biggestY) {
-            this.biggestY = this.lastY;
-            if (this.biggestY > this.rows) {
-                this.dragZone.input.hitArea.setSize(
-                    this.fakeOS.width,
-                    this.atRow(this.biggestY+1)
-                );
+        const totalHeight = cellHeight * rowNumber;
+
+        if (totalHeight > this.area.height) {
+            this.createDragZone(totalHeight);
+            if (this.layer !== undefined) {
+                this.layer.height = this.rowHeight() * this.biggestY;
             }
         }
+    }
 
-        this.lastY += Math.floor(elements.length / options['columns'] * options['height']);
+    /**
+     * Sets the app container as interactive and draggable.
+     *
+     * @param height Height of the container area.
+     */
+    public createDragZone(height: number): void {
+        this.elements.setInteractive(new Phaser.Geom.Rectangle(
+            0,0,
+            this.area.width,
+            height
+        ), Phaser.Geom.Rectangle.Contains);
+        this.fakeOS.log("Too many elements. Creating drag zone...");
+        this.fakeOS.input.setDraggable(this.elements);
+        this.fakeOS.input.on(
+            'drag',
+            (pointer:any, gameobject:any, dragX: any, dragY: any) => {
+                if (dragY > this.area.y) {
+                    dragY = this.area.y;
+                }
+
+                if (dragY < -(height - this.area.height - this.area.y)) {
+                    dragY = -(height - this.area.height - this.area.y);
+                }
+
+                this.elements.y = dragY
+            }
+        );
+
+        this.fakeOS.input.on(
+            'wheel',
+            (pointer:any, gameobject:any, deltaX: any, deltaY: any, deltaZ: any) => {
+
+                this.elements.y -= deltaY
+
+                if (this.elements.y > this.area.y) {
+                    this.elements.y = this.area.y;
+                }
+
+                if (this.elements.y < -(height - this.area.height - this.area.y)) {
+                    this.elements.y = -(height - this.area.height - this.area.y);
+                }
+            }
+        );
     }
 
     /**
@@ -192,7 +289,7 @@ export default abstract class App {
      * @returns The total height divided by the number of rows
      */
     protected rowHeight(): number {
-        return this.fakeOS.height / this.rows;
+        return this.area.height / this.rows;
     }
 
     /**
@@ -202,34 +299,62 @@ export default abstract class App {
      * @returns         The y position of the specified row
      */
     protected atRow(rowNumber: number): number {
-        let area = this.fakeOS.getUI().getAppRenderSize();
-
         // If rowNumber is negative, start from the bottom
         if (rowNumber < 0) {
           rowNumber = this.rows + rowNumber;
         }
-        return area.y + Math.floor((this.rowHeight() * rowNumber) + this.rowHeight()/2);
+        return this.area.y * 2 + Math.floor((this.rowHeight() * rowNumber));
     }
 
-    public addLayer(): void {
-        let area = this.fakeOS.getUI().getAppRenderSize();
-        let layer = this.fakeOS.add.rectangle(
-            area.x,
-            area.y,
-            area.width,
-            area.height,
-            0x333333
-        ).setOrigin(0,0);
-        this.elements.add(layer);
+    /**
+     * Adds a layer on top of the app.
+     *
+     * @param color  Color of the layer.
+     * @returns The layer game object.
+     */
+    public addLayer(color?: any): Phaser.GameObjects.Rectangle {
+        this.fakeOS.input.removeAllListeners();
+        this.fakeOS.getUI().addListeners();
+        this.elements.disableInteractive();
+        this.elements.setX(this.area.x).setY(this.area.y);
+        this.layer = this.fakeOS.add.rectangle(
+            0,
+            0,
+            this.area.width,
+            this.area.height,
+            color ? color : '',
+            color ? 1 : 0
+        ).setOrigin(0,0).setInteractive().setDepth(++this.numLayers);
+        this.elements.add(this.layer);
 
         // Reset position
         this.lastY = 0;
+        this.biggestY = 0;
+
+        return this.layer;
+    }
+
+    /**
+     * Returns the current number of layers.
+     * @returns # of layers.
+     */
+    public getNumLayers(): number {
+        return this.numLayers;
+    }
+
+    /**
+     * Brings an element to top of the container.
+     * @param element Element to bring to top.
+     */
+    public bringToTop(element: any) {
+        this.elements.bringToTop(element);
     }
 
     /**
      * Clears all the elements stored in the app.
      */
     public destroy(): void {
-        this.elements.clear(true, true);
+        this.elements.removeAll(true);
+        this.elements.destroy();
     }
 }

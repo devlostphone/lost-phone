@@ -7,6 +7,7 @@ declare module "scenes/FakeOS" {
         getState(): any;
         saveState(): void;
         loadState(password?: any): void;
+        addData(key:string, data:any): void;
     }
 }
 
@@ -14,6 +15,7 @@ FakeOS.prototype.cleanState = function() {
     this.log('Cleaning state');
     this.registry.reset();
     this.registry.set('complete',{});
+    this.registry.set('chat', {});
     this.registry.set('notifications',[]);
     this.registry.set('pendingNotifications',[]);
     this.registry.set('settings',{});
@@ -55,4 +57,9 @@ FakeOS.prototype.loadState = function(password?: any) {
     }
 
     this.settings.fullSync();
+}
+
+FakeOS.prototype.addData = function(key: string, data: any) {
+    this.registry.set(key, data);
+    this.saveState();
 }

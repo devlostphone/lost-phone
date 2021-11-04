@@ -6,22 +6,39 @@ import App from '~/lib/apps/App';
  */
  export default class MailApp extends App {
 
+    /**
+     * Mail list.
+     */
     protected mails: any;
 
+    /**
+     * Class constructor.
+     *
+     * @param fakeOS
+     */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
-        this.mails = this.fakeOS.cache.json.get('mail')['mails'];
+        this.mails = this.fakeOS.cache.json.get('mail');
     }
 
+    /**
+     * Renders the app.
+     */
     public render(): void {
         //this.showTitle();
         this.showMailList();
     }
 
+    /**
+     * Shows the app title.
+     */
     public showTitle(): void {
         this.addRow(this.fakeOS.add.text(0,0,this.fakeOS.getString('mail')));
     }
 
+    /**
+     * Prints the mail list.
+     */
     public showMailList(): void {
         let style = { color: '#F00' };
 
@@ -53,10 +70,15 @@ import App from '~/lib/apps/App';
         }
     }
 
+    /**
+     * Opens the mail contents.
+     *
+     * @param mail
+     */
     public openMail(mail: any): void {
 
         // Adding a new layer for displaying mail contents.
-        this.addLayer();
+        this.addLayer(0x333333);
         let text = this.fakeOS.add.text(0,0,
             mail['body'],
             {wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }}
@@ -69,4 +91,4 @@ import App from '~/lib/apps/App';
             this.fakeOS.launchApp('MailApp');
         });
     }
- }
+}

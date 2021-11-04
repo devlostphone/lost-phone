@@ -17,7 +17,7 @@ export class FakeOS extends FakeOSScene {
     /**
      * The app which is active.
      */
-    protected activeApp: App;
+    protected activeApp?: App;
 
     /**
      * Background image.
@@ -49,8 +49,8 @@ export class FakeOS extends FakeOSScene {
      */
     public constructor() {
         super('fakeOS');
-        this.activeApp = AppFactory.createInstance('HomescreenApp', this);
         this.UI = new UI(this);
+        //this.activeApp = AppFactory.createInstance('HomescreenApp', this);
     }
 
     /**
@@ -87,7 +87,11 @@ export class FakeOS extends FakeOSScene {
      * Create method.
      */
     public create(): void {
-        this.cameras.main.setRoundPixels(true);
+
+        this.input.setTopOnly(false);
+        this.input.setGlobalTopOnly(false);
+
+        this.cameras.main.setRoundPixels(false);
         if (this.handlerScene instanceof Handler) {
             this.handlerScene?.updateResize(this);
         }
@@ -95,11 +99,11 @@ export class FakeOS extends FakeOSScene {
         this.setBackground();
 
         // Render the UI
-        this.UI = new UI(this);
         this.UI.render();
 
         // Render the homescreen
-        this.activeApp.render();
+        this.activeApp = AppFactory.createInstance('HomescreenApp', this);
+        this.activeApp?.render();
 
         // Start listening to events
     }
@@ -181,8 +185,20 @@ export class FakeOS extends FakeOSScene {
      */
     public update(delta: any, time: any): void {
         this.UI?.update(delta, time);
-        if (typeof this.activeApp.update === 'function') {
-            this.activeApp.update(delta, time);
+        if (typeof this.activeApp?.update === 'function') {
+            this.activeApp?.update(delta, time);
+        }
+    }
+
+    /**
+     * Returns the active app.
+     * @returns App
+     */
+    public getActiveApp(): App {
+        if (this.activeApp !== undefined) {
+            return this.activeApp;
+        } else {
+            return AppFactory.createInstance('HomescreenApp', this);
         }
     }
 
@@ -192,12 +208,14 @@ export class FakeOS extends FakeOSScene {
      * @param key   The app key.
      */
     public launchApp(key: string): void {
-        this.log('Shutting down: ' + this.activeApp.constructor.name);
-        this.activeApp.destroy();
+        this.log('Shutting down: ' + this.activeApp?.constructor.name);
+        this.activeApp?.destroy();
+        this.input.removeAllListeners();
 
         this.log('Launching App: '+key);
         this.activeApp = AppFactory.createInstance(key, this);
-        this.activeApp.render();
+        this.activeApp?.render();
+        this.getUI().addListeners();
 
         // Delete back function when in homescreen.
         if (key == 'HomescreenApp') {

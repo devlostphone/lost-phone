@@ -1,58 +1,56 @@
 [
   {
     "type" : "clock",
-    "class": "ClockApp",
     "key"  : "ClockApp",
-    "name" : "Rellotge",
     "icon" : "clockApp.png"
   },
   {
+    "type"   : "gallery",
+    "key"    : "GalleryApp",
+    "icon"   : "galleryApp.png",
+    "configFile" : true
+  },
+  {
+    "type"   : "chat",
+    "key"    : "ChatApp",
+    "icon"   : "chatApp.png",
+    "configFile" : true
+  },
+  {
     "type" : "podcast",
-    "class": "PodcastApp",
     "key"  : "PodcastApp",
-    "name" : "Podcast",
-    "icon" : "podcastApp.png"
+    "icon" : "podcastApp.png",
+    "configFile" : true
   },
   {
     "type" : "calculator",
-    "class": "CalculatorApp",
     "key"  : "calculatorApp",
-    "name" : "Calculadora",
     "icon" : "calculatorApp.png"
   },
   {
     "type" : "calendar",
-    "class": "CalendarApp",
     "key"  : "calendarApp",
-    "name" : "Agenda",
     "icon" : "calendarApp.png"
   },
   {
     "type" : "notes",
-    "class": "NotesApp",
     "key"  : "notesApp",
-    "name" : "Notes",
     "icon" : "notesApp.png"
   },
   {
     "type" : "mail",
-    "class": "MailApp",
     "key"  : "MailApp",
-    "name" : "Correu",
-    "icon" : "mailApp.png"
+    "icon" : "mailApp.png",
+    "configFile" : true
   },
   {
     "type" : "sandbox",
-    "class": "SandboxApp",
     "key"  : "SandboxApp",
-    "name" : "Sandbox",
     "icon" : "clockApp.png"
   },
   {
     "type" : "settings",
-    "class": "SettingsApp",
     "key"  : "SettingsApp",
-    "name" : "Settings",
     "icon" : "settingsApp.png"
   }
 ]

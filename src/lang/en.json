@@ -1,10 +1,13 @@
 {
     "calculator": "Calculator",
     "calendar": "Calendar",
+    "chat": "Chat",
     "clock": "Clock",
+    "gallery": "Galeria",
     "getQR": "Get QR",
     "mail": "Mail",
     "notes": "Notes",
+    "notifications": "Notifications",
     "podcast": "Podcast",
     "sandbox": "Sandbox",
     "settings": "Settings",

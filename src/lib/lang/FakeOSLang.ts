@@ -19,6 +19,6 @@ declare module "scenes/FakeOS" {
 }
 
 FakeOS.prototype.getString = function(key: string, additions?: string[]): string {
-    let strings = this.cache.json.get('language-'+this.lang);
-    return key in strings ? strings[key] : '<'+key+'>';
+    let strings = this.cache.json.get('lang-' + this.lang);
+    return strings !== undefined && key in strings ? strings[key] : '<'+key+'>';
 }

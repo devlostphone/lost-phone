@@ -1,0 +1,62 @@
+[
+    {
+        "id": "g001",
+        "type": "picture",
+        "source" : "img/pictures/pic1.jpg"
+    },
+    {
+        "id": "g002",
+        "type": "picture",
+        "source": "img/pictures/pic2.jpg"
+    },
+    {
+        "id": "v001",
+        "type": "video",
+        "source": "videos/v001.mp4"
+    },
+    {
+        "id": "g003",
+        "type": "picture",
+        "source": "img/pictures/pic3.jpg"
+    },
+    {
+        "id": "g004",
+        "type": "picture",
+        "source": "img/pictures/pic4.jpg"
+    },
+    {
+        "id": "g005",
+        "type": "picture",
+        "source": "img/pictures/pic5.jpg"
+    },
+    {
+        "id": "g006",
+        "type": "picture",
+        "source" : "img/pictures/pic1.jpg"
+    },
+    {
+        "id": "g007",
+        "type": "picture",
+        "source": "img/pictures/pic2.jpg"
+    },
+    {
+        "id": "g008",
+        "type": "picture",
+        "source": "img/pictures/pic3.jpg"
+    },
+    {
+        "id": "v002",
+        "type": "video",
+        "source": "videos/v002.mp4"
+    },
+    {
+        "id": "g009",
+        "type": "picture",
+        "source": "img/pictures/pic4.jpg"
+    },
+    {
+        "id": "g010",
+        "type": "picture",
+        "source": "img/pictures/pic5.jpg"
+    }
+]

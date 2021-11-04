@@ -10,6 +10,21 @@ declare module "scenes/FakeOS" {
          * @param object
          */
         addInputEvent(eventType: string, func: Function, object: Phaser.GameObjects.GameObject): void;
+
+        /**
+         * Adds a listener to an specific event.
+         *
+         * @param eventType
+         * @param func
+         */
+        addEventListener(eventType: string, func: Function): void;
+
+        /**
+         * Launches an event.
+         *
+         * @param eventType
+         */
+        launchEvent(eventType: string, args?: any): void;
     }
 }
 
@@ -17,8 +32,30 @@ FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, obj
     let fakeOS = this;
 
     object.setInteractive();
-    object.on(eventType, function(this: any, event: any) {
-        fakeOS.log('Launching event '+eventType+' on '+object.constructor.name);
-        func(this, event);
+    this.input.on(eventType, function(...args: any[]) {
+        if (args[0].getDistanceY() > 0) {
+            return;
+        }
+
+        if (args[1] != object && Array.isArray(args[1]) && args[1][0] != object) {
+            return;
+        }
+
+        fakeOS.log('Launching event ' + eventType + ' on ' + object.constructor.name);
+        func(...args);
     });
+}
+
+FakeOS.prototype.addEventListener = function(eventType: string, func: Function): void {
+    let fakeOS = this;
+
+    fakeOS.game.events.on(eventType, function(...args: any[]) {
+        fakeOS.log('Received ' + eventType + ' event');
+        func(...args);
+    });
+}
+
+FakeOS.prototype.launchEvent = function(eventType: string, args?: any): void {
+    this.log('Launched event ' + eventType);
+    this.game.events.emit(eventType, args);
 }

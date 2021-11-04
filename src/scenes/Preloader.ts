@@ -31,8 +31,6 @@ export default class Preloader extends FakeOSScene {
      */
     public preload(): void {
         super.preload();
-        this.preload_images();
-
         this.canvasWidth = this.sys.game.canvas.width;
         this.canvasHeight = this.sys.game.canvas.height;
 
@@ -41,17 +39,36 @@ export default class Preloader extends FakeOSScene {
         }
         this.sceneStopped = false;
 
+        this.preload_images();
+        this.preload_languages();
+
+        // More specific preloads.
+        this.preload_gallery_images();
+        this.preload_contact_images();
+
         this.progressBar();
+    }
 
-        // Load json config files
-        let config = ['config', 'apps', 'tracks', 'wifi', 'mail', 'colors'];
-        for (var i = 0; i < config.length; i++) {
-            this.load.json(config[i], `config/${config[i]}.json`);
+    /**
+     * Preloads app-specific config file.
+     */
+    protected preload_app_config(): void {
+        // Load json app files
+        let apps = this.cache.json.get('apps');
+        for (var i = 0; i < apps.length; i++) {
+            if (apps[i].configFile) {
+                this.load.json(apps[i].type, `config/${apps[i].type}.json`);
+            }
         }
+    }
 
-        // Load languages
-        this.load.json('language-ca', 'lang/ca.json');
-        this.load.json('language-en', 'lang/en.json');
+    /**
+     * Preloads lang files.
+     */
+    protected preload_languages(): void {
+        // Load language
+        let lang = this.cache.json.get('config')['language'];
+        this.load.json(`lang-${lang}`, `lang/${lang}.json`);
     }
 
     /**
@@ -65,6 +82,33 @@ export default class Preloader extends FakeOSScene {
         this.load.image('lorem-appsum', `assets/iconApp-@2.png`);
         this.load.image('button-homescreen', 'assets/button-homescreen.png');
         this.load.image('background', 'assets/img/backgrounds/library.png');
+
+        this.load.image('play-button', 'assets/img/icons/play-button.png');
+
+        this.load.image('default-avatar', 'assets/default-avatar.png');
+        this.load.spritesheet('typing', 'assets/typing-spritesheet.png', { frameWidth: 77, frameHeight: 38});
+    }
+
+    public preload_gallery_images(): void {
+        let media = this.cache.json.get('gallery');
+
+        for (let i = 0; i < media.length; i++) {
+            switch (media[i].type) {
+                case 'picture':
+                    this.load.image(media[i].id, 'assets/' + media[i].source);
+                    break;
+                case 'video':
+                    this.load.video(media[i].id, 'assets/' + media[i].source);
+            }
+        }
+    }
+
+    public preload_contact_images(): void {
+        let media = this.cache.json.get('chat');
+
+        for (let i = 0; i < media.length; i++) {
+            this.load.image(media[i].id, 'assets/' + media[i].contactPic);
+        }
     }
 
     /**

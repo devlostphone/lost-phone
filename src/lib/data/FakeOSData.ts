@@ -80,7 +80,8 @@ FakeOS.prototype.checkNew = function(): void {
                 if(this.checkDone(conditions)) {
                     items.push({
                         id: content[element]['id'],
-                        title: content[element]['title']
+                        title: content[element]['title'],
+                        type: type
                     });
                 }
             }

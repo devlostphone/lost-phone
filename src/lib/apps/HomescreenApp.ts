@@ -69,6 +69,19 @@ export default class HomescreenApp extends App {
             rows: 5 ,
             offsetY: this.fakeOS.getUI().getAppRenderSize().height * 0.05
         });
+
+        this.addBalloons();
     };
+
+    protected addBalloons()
+    {
+        let notifications = this.fakeOS.registry.get('notifications');
+
+        for (let index in this.fakeOS.apps) {
+            let found = notifications.filter((element:any) =>  element['type'] === this.fakeOS.apps[index]['type']).length;
+            this.fakeOS.log('Balloon for ' + this.fakeOS.apps[index]['type'] + ' is ' + found);
+            this.icons[this.fakeOS.apps[index]['type']].addBalloon(found);
+        }
+    }
 
 }

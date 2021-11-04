@@ -3,6 +3,7 @@
     "calendar": "Calendari",
     "chat": "Xat",
     "clock": "Rellotge",
+    "from": "De",
     "gallery": "Galeria",
     "getQR": "Obtenir QR",
     "mail": "Correu",
@@ -12,5 +13,6 @@
     "sandbox": "Sandbox",
     "settings": "Configuració",
     "showNotifications": "Mostra les notificacions",
+    "subject": "Assumpte",
     "title": "Títol"
 }

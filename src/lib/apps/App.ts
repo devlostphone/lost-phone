@@ -168,7 +168,11 @@ export default abstract class App {
 
         if (options['autoscroll'] !== undefined && this.lastY > this.rows) {
             this.fakeOS.log("Auto-scrolling");
-            this.elements.y = - (this.lastY - this.rows) * this.rowHeight();
+            this.fakeOS.tweens.add({
+                targets: this.elements,
+                y: - (this.lastY - this.rows) * this.rowHeight(),
+                duration: 500
+            });
         }
     }
 

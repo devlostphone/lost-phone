@@ -11,6 +11,12 @@ import App from '~/lib/apps/App';
      */
     protected mails: any;
 
+    protected textoptions = {
+        fontSize: "24px",
+        align: "left",
+        wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+    };
+
     /**
      * Class constructor.
      *
@@ -56,7 +62,10 @@ import App from '~/lib/apps/App';
             } else {
                 style = { color: '#F00' };
             }
-            let title = this.fakeOS.add.text(0,0, this.mails[i]['date'] + ' - ' +this.mails[i]['title'], style);
+            let title = this.fakeOS.add.text(0,0,
+                this.mails[i]['date'] + ' - ' +this.mails[i]['title'],
+                {...style, ...this.textoptions}
+            );
 
             this.addRow(title);
 
@@ -79,9 +88,17 @@ import App from '~/lib/apps/App';
 
         // Adding a new layer for displaying mail contents.
         this.addLayer(0x333333);
+
+        let header = this.fakeOS.add.text(0,0,
+            this.fakeOS.getString('from') + ': ' + mail['from'] + "\n" +
+            this.fakeOS.getString('subject') + ': ' + mail['subject'],
+            this.textoptions
+        ).setOrigin(0, 0);
+        this.addRow(header, { height: 2});
+
         let text = this.fakeOS.add.text(0,0,
             mail['body'],
-            {wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }}
+            this.textoptions
         ).setOrigin(0,0);
         this.addRow(text);
 

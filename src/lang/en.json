@@ -3,6 +3,7 @@
     "calendar": "Calendar",
     "chat": "Chat",
     "clock": "Clock",
+    "from": "From",
     "gallery": "Galeria",
     "getQR": "Get QR",
     "mail": "Mail",
@@ -12,5 +13,6 @@
     "sandbox": "Sandbox",
     "settings": "Settings",
     "showNotifications": "Show notifications",
+    "subject": "Subject",
     "title": "Title"
 }

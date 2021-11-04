@@ -157,10 +157,17 @@ export default class phoneUI {
         .setDepth(1001);
 
         // Create back button
-        this.elements.backButton = this.fakeOS.add.text(
+        /*this.elements.backButton = this.fakeOS.add.text(
             this.fakeOS.width / 4,
             this.fakeOS.height - this.fakeOS.height * 0.05,
             '<-'
+        ).setVisible(false)
+        .setDepth(1001);*/
+
+        this.elements.backButton = this.fakeOS.add.image(
+            this.fakeOS.width / 4,
+            this.fakeOS.height - this.fakeOS.height * 0.05,
+            'back-button'
         ).setVisible(false)
         .setDepth(1001);
 

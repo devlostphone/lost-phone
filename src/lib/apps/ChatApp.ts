@@ -1,6 +1,6 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
-import { GameObjects } from 'phaser';
+import ChatBubble from '../ui/gameObjects/chat/ChatBubble';
 
 /**
  * Gallery app
@@ -117,6 +117,11 @@ export default class ChatApp extends App {
     protected createChatText(conversation: any, newMessage: boolean = false): object | null {
         if (!this.fakeOS.checkDone(conversation['condition'])) {
             return null;
+        } else {
+            /*let notifications = this.fakeOS.registry.get('notifications');
+            if (notifications.find((o:any) => o.id == conversation['id'])) {
+                this.fakeOS.checkDone(conversation['id']);
+            }*/
         }
 
         let pic = this.fakeOS.add.image(0, 0, this.chat[this.activeContact].id);
@@ -134,16 +139,17 @@ export default class ChatApp extends App {
                     pic.destroy();
                     typing.destroy();
                     pic = this.fakeOS.add.image(0, 0, this.chat[this.activeContact].id);
-                    let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
+                    //let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
+                    let text = new ChatBubble(this.fakeOS, 0, 0, conversation.text, this.textOptions);
                     this.addRow([pic, text], {...this.rowOptions, y: this.lastY - 2});
                     this.createChatInteraction(this.getNextConversation(conversation), true);
                 }
             );
 
         } else {
-            let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
+            //let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
+            let text = new ChatBubble(this.fakeOS, 0, 0, conversation.text, this.textOptions);
             this.addRow([pic, text], this.rowOptions);
-
         }
 
         return this.getNextConversation(conversation);
@@ -159,11 +165,11 @@ export default class ChatApp extends App {
             let timedEvent = this.fakeOS.time.delayedCall(
                 600,
                 () => {
-                    avatar.destroy();
-                    typing.destroy();
-                    avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
+                    //avatar.destroy();
+                    //typing.destroy();
+                    //avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
                     let options = this.showOptions(conversation);
-                    this.addRow([options, avatar], { ...this.rowOptions, y: this.lastY - 2});
+                    //this.addRow([options, avatar], { ...this.rowOptions, y: this.lastY - 2});
                 }
             );
 
@@ -171,23 +177,40 @@ export default class ChatApp extends App {
         } else {
             let chosen = this.fakeOS.registry.get('chat')[conversation.id];
             this.fakeOS.log('Chosen option was ' + chosen);
-            let text = this.fakeOS.add.text(0,0, conversation.options[chosen].text, this.textOptions);
+            //let text = this.fakeOS.add.text(0,0, conversation.options[chosen].text, this.textOptions);
+            let text = new ChatBubble(this.fakeOS, 0, 0, conversation.options[chosen].text, this.textOptions, true);
             this.addRow([text, avatar], this.rowOptions);
             return this.getNextConversation(conversation.options[chosen]);
         }
     }
 
     protected showOptions(conversation: any): Phaser.GameObjects.Container {
-        let options = this.fakeOS.add.container(0,0);
         let pos = 0;
+        let starting_pos = this.fakeOS.getActiveApp().area.height - 200;
+        let options = this.fakeOS.add.container(0,starting_pos);
+        let option_area = options.add(this.fakeOS.add.rectangle(
+            0,
+            0,
+            this.fakeOS.getActiveApp().area.width,
+            200,
+            0x999999
+        ).setOrigin(0, 0));
         for (const key in conversation.options) {
-            let option = this.fakeOS.add.text(0, (pos*70) - 30, conversation.options[key]['text'], this.textOptions);
+            let option = this.fakeOS.add.text(
+                this.fakeOS.getActiveApp().area.width / 2 - 100,
+                (pos*70) + 30,
+                conversation.options[key]['text'],
+                this.textOptions
+            );
             this.fakeOS.addInputEvent('pointerover', () => { option.setTint(0x00cc00)}, option);
             this.fakeOS.addInputEvent('pointerout', () => { option.clearTint()}, option);
             this.fakeOS.addInputEvent('pointerup', () =>  {
                 options.removeAll(true);
-                let option = this.fakeOS.add.text(0, - 30, conversation.options[key]['text'], this.textOptions);
+                //let option = this.fakeOS.add.text(0, - 30, conversation.options[key]['text'], this.textOptions);
+                let option = new ChatBubble(this.fakeOS, 0, 0, conversation.options[key]['text'], this.textOptions, true);
                 options.add(option);
+                let avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
+                this.addRow([options, avatar], { ...this.rowOptions, y: this.lastY - 2});
                 this.selectOption(conversation, key);
             }, option);
             options.add(option);

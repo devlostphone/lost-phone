@@ -292,7 +292,7 @@ export default abstract class App {
      *
      * @returns The total height divided by the number of rows
      */
-    protected rowHeight(): number {
+    public rowHeight(): number {
         return this.area.height / this.rows;
     }
 

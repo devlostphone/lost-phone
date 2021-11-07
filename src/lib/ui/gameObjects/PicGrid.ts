@@ -122,14 +122,11 @@ export default class PicGrid extends Phaser.GameObjects.Container
         this.fakeOS.getActiveApp().addLayer(0x333333);
         const area = this.fakeOS.getUI().getAppRenderSize();
 
-        element.displayWidth = area.width;
-        element.displayHeight = area.height / 2;
-        element.setX(0).setY(area.y + area.height / 2).setOrigin(0,0.5);
-        this.fakeOS.add.existing(element);
+        let zoomedImage = this.fakeOS.add.image(0, 0, element.texture);
+        zoomedImage.displayWidth = area.width;
+        zoomedImage.displayHeight = area.height / 2;
 
-        this.fakeOS.addBackFunction(() => {
-            this.fakeOS.launchApp(this.fakeOS.getActiveApp().getKey());
-        });
+        this.fakeOS.getActiveApp().addRow(zoomedImage, {y: 4});
     }
 
     /**
@@ -139,12 +136,12 @@ export default class PicGrid extends Phaser.GameObjects.Container
      public openVideo(element: Phaser.GameObjects.Video, container: Phaser.GameObjects.Container): void {
         this.fakeOS.getActiveApp().addLayer(0x333333);
         const area = this.fakeOS.getUI().getAppRenderSize();
-        container.remove(element);
-        this.fakeOS.getActiveApp().elements.add(element);
 
-        element.displayWidth = area.width;
-        element.displayHeight = area.height / 2;
-        element.setX(0).setY(area.height / 2).setOrigin(0,0.5);
+        let zoomedVideo = this.fakeOS.add.video(0, 0, element.getVideoKey());
+        zoomedVideo.displayWidth = area.width;
+        zoomedVideo.displayHeight = area.height / 2;
+
+        this.fakeOS.getActiveApp().addRow(zoomedVideo, {y: 4});
 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -155,10 +152,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
                     element.play();
                 }
             },
-            element);
-
-        this.fakeOS.addBackFunction(() => {
-            this.fakeOS.launchApp(this.fakeOS.getActiveApp().getKey());
-        });
+            element
+        );
     }
 }

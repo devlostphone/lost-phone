@@ -29,41 +29,65 @@ export default class ChatBubble extends Phaser.GameObjects.Container
 
         let bubble_x = -250;
         let bubble_y = -50;
-
-        let triangle_coords = {
-            x1: {x: 0, y: this.fakeOS.getActiveApp().rowHeight() - 15},
-            x2: {x: -30, y: this.fakeOS.getActiveApp().rowHeight() - 10},
-            x3 :{x: 0, y: this.fakeOS.getActiveApp().rowHeight() - 35}
-        }
+        let offsetY = 20;
 
         if (right) {
             bubble_x = -120;
             bubble_y = -50;
+        }
 
-            triangle_coords = {
-                x1: {x: this.fakeOS.getActiveApp().area.width / 2, y: this.fakeOS.getActiveApp().rowHeight() - 15},
-                x2: {x: this.fakeOS.getActiveApp().area.width / 2 + 30, y: this.fakeOS.getActiveApp().rowHeight() - 10},
-                x3 :{x: this.fakeOS.getActiveApp().area.width / 2, y: this.fakeOS.getActiveApp().rowHeight() - 35}
+        let bubble_text = this.fakeOS.add.text(
+            bubble_x + 20, bubble_y + offsetY,
+            text,
+            textOptions
+        ).setOrigin(0,0);
+        let bubble = this.fakeOS.add.rectangle(
+            bubble_x, bubble_y,
+            this.fakeOS.getActiveApp().area.width / 2,
+            bubble_text.getBounds().height + (offsetY * 2),
+            0x999999
+        ).setOrigin(0,0);
+
+        let triangle_coords = {
+            x1: {
+                x: 0,
+                y: bubble_text.getBounds().height + (offsetY * 2) - 15
+            },
+            x2: {
+                x: -30,
+                y: bubble_text.getBounds().height + (offsetY * 2) - 10
+            },
+            x3 :{
+                x: 0,
+                y: bubble_text.getBounds().height + (offsetY * 2) - 35
             }
         }
 
-        let bubble = this.add(this.fakeOS.add.rectangle(
-            bubble_x, bubble_y,
-            this.fakeOS.getActiveApp().area.width / 2,
-            this.fakeOS.getActiveApp().rowHeight(),
-            0x999999
-        ).setOrigin(0,0));
-        let triangle = this.add(this.fakeOS.add.triangle(
+        if (right) {
+            triangle_coords = {
+                x1: {
+                    x: this.fakeOS.getActiveApp().area.width / 2,
+                    y: bubble_text.getBounds().height + (offsetY * 2) - 15
+                },
+                x2: {
+                    x: this.fakeOS.getActiveApp().area.width / 2 + 30,
+                    y: bubble_text.getBounds().height + (offsetY * 2) - 10
+                },
+                x3 :{
+                    x: this.fakeOS.getActiveApp().area.width / 2,
+                    y: bubble_text.getBounds().height + (offsetY * 2) - 35
+                }
+            }
+        }
+
+        let triangle = this.fakeOS.add.triangle(
             bubble_x,bubble_y,
             triangle_coords.x1.x, triangle_coords.x1.y,
             triangle_coords.x2.x, triangle_coords.x2.y,
             triangle_coords.x3.x, triangle_coords.x3.y,
             0x999999
-        ).setOrigin(0,0));
-        let bubble_text = this.add(this.fakeOS.add.text(
-            bubble_x + 20, bubble_y + 20,
-            text,
-            textOptions
-        ).setOrigin(0,0));
+        ).setOrigin(0,0);
+
+        this.add([bubble, triangle, bubble_text]);
     }
 }

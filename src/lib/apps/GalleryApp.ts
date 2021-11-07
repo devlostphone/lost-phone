@@ -21,6 +21,6 @@ export default class GalleryApp extends App {
             this.media
         );
         this.fakeOS.add.existing(picGrid);
-        this.elements.add(picGrid);
+        this.addElements(picGrid);
     }
 }

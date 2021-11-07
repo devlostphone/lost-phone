@@ -103,9 +103,5 @@ import App from '~/lib/apps/App';
         this.addRow(text);
 
         this.fakeOS.setDone(mail['id']);
-
-        this.fakeOS.addBackFunction(() => {
-            this.fakeOS.launchApp('MailApp');
-        });
     }
 }

@@ -77,6 +77,21 @@ export default class phoneUI {
         );
 
         this.addListeners();
+        this.applyMask();
+    }
+
+    protected applyMask(): void {
+        let graphics = new Phaser.GameObjects.Graphics(this.fakeOS);
+        graphics.fillRect(
+            0,0,
+            this.fakeOS.width,
+            this.fakeOS.height
+        );
+        let mask = new Phaser.Display.Masks.GeometryMask(
+            this.fakeOS,
+            graphics
+        );
+        this.container?.setMask(mask);
     }
 
     /**

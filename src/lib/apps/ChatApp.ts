@@ -10,12 +10,13 @@ export default class ChatApp extends App {
     protected chat: any;
     protected contacts: any;
     protected textOptions = { align: "left", fontSize: "24px", wordWrap: { width: 300, useAdvancedWrap: true }};
-    protected rowOptions = { height: 2, autoscroll: true};
+    protected choiceTextOptions = { align: "left", fontSize: "24px", wordWrap: { width: 1000, useAdvancedWrap: true }};
+    protected rowOptions = { autoscroll: true};
     protected activeContact: number;
     protected lastMessage?: string;
 
     public constructor(fakeOS: FakeOS) {
-        super(fakeOS);
+        super(fakeOS, {rows: 6});
         this.chat = this.fakeOS.cache.json.get('chat');
         this.contacts = [];
         this.activeContact = 0;
@@ -26,7 +27,7 @@ export default class ChatApp extends App {
         for (let i = 0; i < this.chat.length; i++) {
 
             let pic = this.fakeOS.add.image(-this.area.width / 4 + 40, 0, this.chat[i].id);
-            let rectangle = this.fakeOS.add.rectangle(0, 0, this.area.width, this.rowHeight()*2);
+            let rectangle = this.fakeOS.add.rectangle(0, 0, this.area.width, this.rowHeight());
             rectangle.setStrokeStyle(1, 0xffffff);
             let radius = Math.min(pic.width, pic.height) / 2;
             //let circle = this.fakeOS.add.graphics().setPosition(0, 0).fillCircle(0, 0, radius);
@@ -59,7 +60,7 @@ export default class ChatApp extends App {
 
             this.contacts.push(contact);
 
-            this.addRow(contact, {height: 2});
+            this.addRow(contact);
         }
     }
 
@@ -141,7 +142,7 @@ export default class ChatApp extends App {
                     pic = this.fakeOS.add.image(0, 0, this.chat[this.activeContact].id);
                     //let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
                     let text = new ChatBubble(this.fakeOS, 0, 0, conversation.text, this.textOptions);
-                    this.addRow([pic, text], {...this.rowOptions, y: this.lastY - 2});
+                    this.addRow([pic, text], {...this.rowOptions, y: this.getLastY() - 1});
                     this.createChatInteraction(this.getNextConversation(conversation), true);
                 }
             );
@@ -186,36 +187,35 @@ export default class ChatApp extends App {
 
     protected showOptions(conversation: any): Phaser.GameObjects.Container {
         let pos = 0;
-        let starting_pos = this.fakeOS.getActiveApp().area.height - 200;
-        let options = this.fakeOS.add.container(0,starting_pos);
-        let option_area = options.add(this.fakeOS.add.rectangle(
+        let options = this.fakeOS.add.container(0,0);
+        options.add(this.fakeOS.add.rectangle(
             0,
             0,
             this.fakeOS.getActiveApp().area.width,
-            200,
+            this.fakeOS.getActiveApp().rowHeight(),
             0x999999
-        ).setOrigin(0, 0));
+        ));
         for (const key in conversation.options) {
             let option = this.fakeOS.add.text(
-                this.fakeOS.getActiveApp().area.width / 2 - 100,
-                (pos*70) + 30,
+                0,
+                (pos*70) - 50,
                 conversation.options[key]['text'],
-                this.textOptions
-            );
+                this.choiceTextOptions
+            ).setOrigin(0.5);
             this.fakeOS.addInputEvent('pointerover', () => { option.setTint(0x00cc00)}, option);
             this.fakeOS.addInputEvent('pointerout', () => { option.clearTint()}, option);
             this.fakeOS.addInputEvent('pointerup', () =>  {
                 options.removeAll(true);
-                //let option = this.fakeOS.add.text(0, - 30, conversation.options[key]['text'], this.textOptions);
+                options.destroy();
                 let option = new ChatBubble(this.fakeOS, 0, 0, conversation.options[key]['text'], this.textOptions, true);
-                options.add(option);
                 let avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
-                this.addRow([options, avatar], { ...this.rowOptions, y: this.lastY - 2});
+                this.addRow([option, avatar], { ...this.rowOptions, y: this.getLastY() - 1});
                 this.selectOption(conversation, key);
             }, option);
             options.add(option);
             pos++;
         }
+        this.addRow(options, {y: 5})
         return options;
     }
 

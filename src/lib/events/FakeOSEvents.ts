@@ -20,6 +20,14 @@ declare module "scenes/FakeOS" {
         addEventListener(eventType: string, func: Function): void;
 
         /**
+         * Removes all listeners to an specific event.
+         *
+         * @param eventType
+         * @param func
+         */
+         removeEventListener(eventType: string): void;
+
+        /**
          * Launches an event.
          *
          * @param eventType
@@ -53,6 +61,10 @@ FakeOS.prototype.addEventListener = function(eventType: string, func: Function):
         fakeOS.log('Received ' + eventType + ' event');
         func(...args);
     });
+}
+
+FakeOS.prototype.removeEventListener = function(eventType: string): void {
+    this.game.events.off(eventType);
 }
 
 FakeOS.prototype.launchEvent = function(eventType: string, args?: any): void {

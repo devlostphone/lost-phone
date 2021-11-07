@@ -1,6 +1,9 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
 import ChatBubble from '../ui/gameObjects/chat/ChatBubble';
+import ChatInteraction from '../ui/gameObjects/chat/ChatInteraction';
+import { PhoneEvents } from '../events/GameEvents';
+import ChoiceInputArea from '../ui/gameObjects/input/ChoiceInputArea';
 
 /**
  * Gallery app
@@ -9,8 +12,8 @@ export default class ChatApp extends App {
 
     protected chat: any;
     protected contacts: any;
-    protected textOptions = { align: "left", fontSize: "24px", wordWrap: { width: 300, useAdvancedWrap: true }};
-    protected choiceTextOptions = { align: "left", fontSize: "24px", wordWrap: { width: 1000, useAdvancedWrap: true }};
+    protected textOptions: any = { align: "left", fontSize: "24px" };
+    protected choiceTextOptions: any = { align: "left", fontSize: "24px" };
     protected rowOptions = { autoscroll: true};
     protected activeContact: number;
     protected lastMessage?: string;
@@ -20,6 +23,15 @@ export default class ChatApp extends App {
         this.chat = this.fakeOS.cache.json.get('chat');
         this.contacts = [];
         this.activeContact = 0;
+
+        this.textOptions['wordWrap'] = {
+            width: this.area.width * 0.6,
+            useAdvancedWrap: true
+        };
+        this.choiceTextOptions['wordWrap'] = {
+            width: this.area.width * 0.8,
+            useAdvancedWrap: true
+        };
     }
 
     public render(): void {
@@ -65,10 +77,6 @@ export default class ChatApp extends App {
     }
 
     public openChat(contact: number): void {
-        this.fakeOS.addBackFunction(() => {
-            this.fakeOS.launchApp(this.fakeOS.getActiveApp().getKey());
-        });
-
         this.activeContact = contact;
         this.fakeOS.log("Opening chat with " + this.chat[this.activeContact].contactName);
         const conversation = this.chat[this.activeContact].conversation;
@@ -124,99 +132,77 @@ export default class ChatApp extends App {
                 this.fakeOS.checkDone(conversation['id']);
             }*/
         }
+        this.addRow(new ChatInteraction(
+            this.fakeOS,
+            0,0,
+            conversation.id,
+            this.chat[this.activeContact].id,
+            conversation.text,
+            {...this.textOptions, new_message: newMessage}
+        ).setName(conversation.id), this.rowOptions);
 
-        let pic = this.fakeOS.add.image(0, 0, this.chat[this.activeContact].id);
-        if (newMessage) {
-            let typing = this.fakeOS.add.sprite(0, 0, 'typing').play('typingAnimation');
-            this.addRow([pic, typing], this.rowOptions);
-            this.fakeOS.log("Saving " + this.chat[this.activeContact].id + " last conversation as " + conversation.id);
-            let chatRegistry = this.fakeOS.registry.get('chat');
-            chatRegistry[this.chat[this.activeContact].id+'_lastchat'] = conversation.id;
-            this.fakeOS.addData('chat', chatRegistry);
+        this.saveChatRegistry(conversation);
+        this.waitForNextConversation(conversation);
 
-            let timedEvent = this.fakeOS.time.delayedCall(
-                1500,
-                () => {
-                    pic.destroy();
-                    typing.destroy();
-                    pic = this.fakeOS.add.image(0, 0, this.chat[this.activeContact].id);
-                    //let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
-                    let text = new ChatBubble(this.fakeOS, 0, 0, conversation.text, this.textOptions);
-                    this.addRow([pic, text], {...this.rowOptions, y: this.getLastY() - 1});
-                    this.createChatInteraction(this.getNextConversation(conversation), true);
-                }
-            );
-
-        } else {
-            //let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
-            let text = new ChatBubble(this.fakeOS, 0, 0, conversation.text, this.textOptions);
-            this.addRow([pic, text], this.rowOptions);
-        }
-
-        return this.getNextConversation(conversation);
+        return newMessage ? null : this.getNextConversation(conversation);
     }
 
     protected createChatOptions(conversation: any): object | null {
-        let avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
 
         if (!this.fakeOS.checkDone(conversation['id'])) {
-            let typing = this.fakeOS.add.sprite(0, 0, 'typing').play('typingAnimation');
-            this.addRow([typing, avatar], this.rowOptions);
 
-            let timedEvent = this.fakeOS.time.delayedCall(
-                600,
-                () => {
-                    //avatar.destroy();
-                    //typing.destroy();
-                    //avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
-                    let options = this.showOptions(conversation);
-                    //this.addRow([options, avatar], { ...this.rowOptions, y: this.lastY - 2});
-                }
-            );
+            this.addRow(new ChatInteraction(
+                this.fakeOS,
+                0,0,
+                conversation.id,
+                'default-avatar',
+                conversation.options,
+                {...this.textOptions, own_message: true, choose: true, new_message: true }
+            ).setName(conversation.id), this.rowOptions);
+
+            this.waitForShowOptions(conversation);
 
             return null;
         } else {
             let chosen = this.fakeOS.registry.get('chat')[conversation.id];
             this.fakeOS.log('Chosen option was ' + chosen);
-            //let text = this.fakeOS.add.text(0,0, conversation.options[chosen].text, this.textOptions);
-            let text = new ChatBubble(this.fakeOS, 0, 0, conversation.options[chosen].text, this.textOptions, true);
-            this.addRow([text, avatar], this.rowOptions);
+
+            this.addRow(new ChatInteraction(
+                this.fakeOS,
+                0,0,
+                conversation.id,
+                'default-avatar',
+                conversation.options[chosen].text,
+                {...this.textOptions, own_message: true }
+            ).setName(conversation.id), this.rowOptions);
+
             return this.getNextConversation(conversation.options[chosen]);
         }
     }
 
     protected showOptions(conversation: any): Phaser.GameObjects.Container {
-        let pos = 0;
-        let options = this.fakeOS.add.container(0,0);
-        options.add(this.fakeOS.add.rectangle(
-            0,
-            0,
-            this.fakeOS.getActiveApp().area.width,
-            this.fakeOS.getActiveApp().rowHeight(),
-            0x999999
-        ));
-        for (const key in conversation.options) {
-            let option = this.fakeOS.add.text(
-                0,
-                (pos*70) - 50,
+
+        let choice_area = new ChoiceInputArea(
+            this.fakeOS,
+            0, 0,
+            conversation.options,
+            this.choiceTextOptions
+        );
+
+        this.addElements(choice_area);
+
+        this.fakeOS.addEventListener(PhoneEvents.OptionSelected, (key: string) => {
+            choice_area.destroy();
+            let interaction = this.getActiveLayer().getByName(conversation.id);
+            interaction.setText(interaction.createText(
                 conversation.options[key]['text'],
-                this.choiceTextOptions
-            ).setOrigin(0.5);
-            this.fakeOS.addInputEvent('pointerover', () => { option.setTint(0x00cc00)}, option);
-            this.fakeOS.addInputEvent('pointerout', () => { option.clearTint()}, option);
-            this.fakeOS.addInputEvent('pointerup', () =>  {
-                options.removeAll(true);
-                options.destroy();
-                let option = new ChatBubble(this.fakeOS, 0, 0, conversation.options[key]['text'], this.textOptions, true);
-                let avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
-                this.addRow([option, avatar], { ...this.rowOptions, y: this.getLastY() - 1});
-                this.selectOption(conversation, key);
-            }, option);
-            options.add(option);
-            pos++;
-        }
-        this.addRow(options, {y: 5})
-        return options;
+                {...this.textOptions, own_message: true }
+            ));
+            this.selectOption(conversation, key);
+        });
+
+        return choice_area;
+
     }
 
     protected selectOption(conversation: any, key: string): void {
@@ -240,5 +226,26 @@ export default class ChatApp extends App {
             }
         }
         return null;
+    }
+
+    protected waitForNextConversation(conversation: any): void {
+        this.fakeOS.addEventListener(PhoneEvents.NewConversation, () => {
+            this.fakeOS.removeEventListener(PhoneEvents.NewConversation);
+            this.createChatInteraction(this.getNextConversation(conversation), true);
+        });
+    }
+
+    protected waitForShowOptions(conversation: any): void {
+        this.fakeOS.addEventListener(PhoneEvents.ShowOptions, () => {
+            this.fakeOS.removeEventListener(PhoneEvents.ShowOptions);
+            this.showOptions(conversation);
+        });
+    }
+
+    protected saveChatRegistry(conversation: any): void {
+        this.fakeOS.log("Saving " + this.chat[this.activeContact].id + " last conversation as " + conversation.id);
+        let chatRegistry = this.fakeOS.registry.get('chat');
+        chatRegistry[this.chat[this.activeContact].id+'_lastchat'] = conversation.id;
+        this.fakeOS.addData('chat', chatRegistry);
     }
 }

@@ -20,7 +20,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
     /**
      * Row where the last content was placed.
      */
-    public lastY: number = 0;
+    public last_row: number = 0;
 
     /**
      * Number of columns to divide the app into.
@@ -28,11 +28,16 @@ export default class AppLayer extends Phaser.GameObjects.Container
     public columns: number = 4;
 
     /**
-     * Biggest row number where content was ever placed.
+     * Bottom row number where content was ever placed.
      */
-    public biggestY: number = 0;
+    public bottom_row: number = 0;
 
+    /**
+     * Layer background.
+     */
     public background: any;
+
+    public onChangeHandler?: Function;
 
     /**
      * Class constructor.
@@ -52,14 +57,15 @@ export default class AppLayer extends Phaser.GameObjects.Container
         super(scene, x, y, []);
         this.fakeOS = scene;
         this.area = this.fakeOS.getUI().getAppRenderSize();
-        this.add(this.fakeOS.add.rectangle(
+        this.background = this.fakeOS.add.rectangle(
             0,
             0,
             this.area.width,
             this.area.height,
             background ? background : '',
             background ? 1 : 0
-        ).setOrigin(0,0).setInteractive().setName('background'));
+        ).setOrigin(0,0).setInteractive().setName('background');
+        this.add(this.background);
 
         if (options['columns'] !== undefined) {
             this.columns = options['columns'];
@@ -68,9 +74,27 @@ export default class AppLayer extends Phaser.GameObjects.Container
             this.rows = options['rows'];
         }
 
+        if (options['handler'] !== undefined) {
+            this.onChangeHandler = options['handler'];
+        }
+
         this.applyMask();
     }
 
+    protected setHandler(handler: Function): void {
+        this.onChangeHandler = handler;
+    }
+
+    protected launchHandler(): void {
+        if (this.onChangeHandler !== undefined) {
+            this.fakeOS.log('Launching handler for layer.');
+            this.onChangeHandler();
+        }
+    }
+
+    /**
+     * Applies mask so content does not show outside FakeOS borders.
+     */
     protected applyMask(): void {
         let graphics = new Phaser.GameObjects.Graphics(this.fakeOS);
         graphics.fillRect(
@@ -111,14 +135,14 @@ export default class AppLayer extends Phaser.GameObjects.Container
             options['position'] = Phaser.Display.Align.CENTER;
         }
 
-        let previousY = this.lastY;
+        let previousY = this.last_row;
         if (options['y'] !== undefined) {
-            this.lastY = options['y'];
+            this.last_row = options['y'];
         }
 
         Phaser.Actions.GridAlign(elements, {
             x: this.area.width / elements.length / 2,
-            y: this.atRow(this.lastY),
+            y: this.atRow(this.last_row),
             width: -1,
             height: 1,
             cellWidth: this.area.width / elements.length,
@@ -127,31 +151,14 @@ export default class AppLayer extends Phaser.GameObjects.Container
         });
 
         if (options['y'] !== undefined) {
-            this.lastY = previousY;
+            this.last_row = previousY;
         } else {
-            this.lastY += options['height'];
+            this.last_row += options['height'];
         }
 
-        if (this.lastY > this.biggestY) {
-            this.biggestY = this.lastY;
-            if (this.biggestY > this.rows) {
-                this.createDragZone(this.atRow(this.biggestY));
-                if (this.background !== undefined) {
-                    this.background.height = this.rowHeight() * (this.biggestY + 1);
-                }
-            }
-        }
-
-        this.fakeOS.log("Last row is: " + this.lastY);
-
-        if (options['autoscroll'] !== undefined && this.lastY > this.rows) {
-            this.fakeOS.log("Auto-scrolling");
-            this.fakeOS.tweens.add({
-                targets: this,
-                y: - (this.lastY - this.rows) * this.rowHeight(),
-                duration: 500
-            });
-        }
+        this.checkBoundaries();
+        this.checkAutoScroll(options);
+        this.fakeOS.log("Last row is: " + this.last_row);
     }
 
     /**
@@ -176,7 +183,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
         }
 
         if (options['y'] !== undefined) {
-            this.lastY = options['y'];
+            this.last_row = options['y'];
         }
 
         if (options['height'] === undefined) {
@@ -201,7 +208,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
 
         Phaser.Actions.GridAlign(elements, {
             x: (this.area.width / options['columns']) / 2,
-            y: this.atRow(this.lastY) + options['offsetY'],
+            y: this.atRow(this.last_row) + options['offsetY'],
             width: colNumber,
             height: rowNumber,
             cellWidth: this.area.width / colNumber,
@@ -209,12 +216,55 @@ export default class AppLayer extends Phaser.GameObjects.Container
             position: options['position']
         });
 
-        const totalHeight = cellHeight * rowNumber;
+        this.checkBoundaries();
+        this.checkAutoScroll(options);
+    }
 
-        if (totalHeight > this.area.height) {
-            this.createDragZone(totalHeight);
+    /**
+     * Checks if content is outside boundaries and generates drag area.
+     */
+    protected checkBoundaries(): void {
+        if (this.last_row > this.bottom_row) {
+            this.bottom_row = this.last_row;
+        }
+
+        // If bottom row is bigger than allowed rows
+        if (this.bottom_row > this.rows) {
+            this.createDragZone(this.atRow(this.bottom_row));
             if (this.background !== undefined) {
-                this.background.height = this.rowHeight() * this.biggestY;
+                this.background.height = this.rowHeight() * (this.bottom_row + 1);
+            }
+        } else if (this.getBounds().height > this.area.height) {
+            this.fakeOS.log(
+                "Container height (" + this.getBounds().height + ") \
+                bigger than printable area (" + this.area.height + ").")
+            // If container height is bigger than area height
+            this.createDragZone(this.getBounds().bottom);
+            if (this.background !== undefined) {
+                this.background.height = this.getBounds().height + this.rowHeight();;
+            }
+        }
+
+    }
+
+    /**
+     * Checks if autoscroll is enabled and moves elements accordingly.
+     *
+     * @param options
+     */
+    protected checkAutoScroll(options: any): void {
+        if (options['autoscroll'] !== undefined && this.last_row > this.rows) {
+            this.fakeOS.log("Auto-scrolling");
+            let y = - ((this.last_row - this.rows) * this.rowHeight()) - this.rowHeight();
+
+            if (options['autoscroll'] === 'fast') {
+                this.y = y;
+            } else {
+                this.fakeOS.tweens.add({
+                    targets: this,
+                    y: y,
+                    duration: 500
+                });
             }
         }
     }
@@ -260,13 +310,11 @@ export default class AppLayer extends Phaser.GameObjects.Container
             (pointer:any, gameobject:any, dragX: any, dragY: any) => {
                 if (dragY > 0) {
                     dragY = 0;
-                }
-
-                if (dragY < -(height - this.area.height)) {
+                } else if (dragY < -(height - this.area.height)) {
                     dragY = -(height - this.area.height);
                 }
 
-                this.y = dragY
+                this.y = dragY;
             }
         );
 
@@ -275,17 +323,32 @@ export default class AppLayer extends Phaser.GameObjects.Container
             (pointer:any, gameobject:any, deltaX: any, deltaY: any, deltaZ: any) => {
                 this.y -= deltaY
 
-                if (this.y > 0) {
+                if (this.y - deltaY > 0) {
                     this.y = 0;
-                }
-
-                if (this.y < -(height - this.area.height)) {
+                } else if (this.y - deltaY < -(height - this.area.height)) {
                     this.y = -(height - this.area.height);
+                } else {
+                    this.y -= deltaY;
                 }
             }
         );
     }
 
+    /**
+     * Removes layer elements and resets indexes.
+     */
+    public clear(): void {
+        this.remove(this.background);
+        this.removeAll(true);
+        this.add(this.background);
+        this.last_row = 0;
+        this.bottom_row = 0;
+    }
+
+    /**
+     * Destroy layer and all its children.
+     * @param fromScene
+     */
     public destroy(fromScene: boolean): void {
         this.removeAll(true);
         super.destroy();

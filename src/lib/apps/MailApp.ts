@@ -1,5 +1,6 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
+import { PhoneEvents } from '../events/GameEvents';
 
 /**
  * Mail app.
@@ -94,13 +95,13 @@ import App from '~/lib/apps/App';
             this.fakeOS.getString('subject') + ': ' + mail['subject'],
             this.textoptions
         ).setOrigin(0, 0);
-        this.addRow(header, { height: 2});
+        this.addRow(header);
 
         let text = this.fakeOS.add.text(0,0,
             mail['body'],
             this.textoptions
         ).setOrigin(0,0);
-        this.addRow(text);
+        this.addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
 
         this.fakeOS.setDone(mail['id']);
     }

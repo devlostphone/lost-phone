@@ -82,6 +82,11 @@ export default class ChatInteraction extends Phaser.GameObjects.Container
 
     }
 
+    /**
+     * Sets the interaction text.
+     *
+     * @param text
+     */
     public setText(text: any) {
         this.text = text;
         this.add(text);

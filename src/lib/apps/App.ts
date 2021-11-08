@@ -1,4 +1,3 @@
-import { GameObjects } from 'phaser';
 import { FakeOS } from '~/scenes/FakeOS';
 import AppLayer from '../ui/AppLayer';
 
@@ -59,6 +58,9 @@ export default abstract class App {
 
         this.layers = this.fakeOS.add.container(this.area.x, this.area.y);
         this.layers.add(new AppLayer(fakeOS, 0, 0, undefined, options));
+        this.getActiveLayer().setHandler(() => {
+            this.reRender();
+        });
     }
 
     /**
@@ -124,7 +126,7 @@ export default abstract class App {
      * @param color  Color of the layer.
      * @returns The layer game object.
      */
-    public addLayer(color?: any): void {
+    public addLayer(color?: any, backFunction?: Function): void {
 
         let nextLayer = this.activeLayer + 1;
 
@@ -175,6 +177,8 @@ export default abstract class App {
 
         newLayer.moveTo(newLayer.getByName('background'), 0);
 
+        newLayer.launchHandler();
+
         this.fakeOS.tweens.add({
             targets: this.layers,
             x: - this.area.width * this.activeLayer,
@@ -223,8 +227,29 @@ export default abstract class App {
         this.layers.bringToTop(element);
     }
 
-    public getLastY(): number {
-        return this.getActiveLayer().lastY;
+    /**
+     * Retrieves layer last row.
+     *
+     * @returns
+     */
+    public getLastRow(): number {
+        return this.getActiveLayer().last_row;
+    }
+
+    /**
+     * Clears current layer.
+     */
+    public clearCurrentLayer(): void {
+        this.getActiveLayer().clear();
+    }
+
+    /**
+     * Clears current layer and renders the elements again.
+     */
+    public reRender(): void {
+        this.fakeOS.game.events.removeAllListeners();
+        this.clearCurrentLayer();
+        this.render();
     }
 
     /**

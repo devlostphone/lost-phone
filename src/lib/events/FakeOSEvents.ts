@@ -2,6 +2,9 @@ import { FakeOS } from "~/scenes/FakeOS";
 
 declare module "scenes/FakeOS" {
     interface FakeOS {
+
+        eventListeners: object;
+
         /**
          * Adds an input event.
          *
@@ -17,7 +20,7 @@ declare module "scenes/FakeOS" {
          * @param eventType
          * @param func
          */
-        addEventListener(eventType: string, func: Function): void;
+        addEventListener(eventType: string, func: Function, once?: boolean): void;
 
         /**
          * Removes all listeners to an specific event.
@@ -54,13 +57,19 @@ FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, obj
     });
 }
 
-FakeOS.prototype.addEventListener = function(eventType: string, func: Function): void {
+FakeOS.prototype.addEventListener = function(eventType: string, func: Function, once: boolean = false): void {
     let fakeOS = this;
 
-    fakeOS.game.events.on(eventType, function(...args: any[]) {
+    let eventFunc = function(...args: any[]) {
         fakeOS.log('Received ' + eventType + ' event');
         func(...args);
-    });
+    };
+
+    if (once) {
+        fakeOS.game.events.once(eventType, eventFunc);
+    } else {
+        fakeOS.game.events.on(eventType, eventFunc);
+    }
 }
 
 FakeOS.prototype.removeEventListener = function(eventType: string): void {

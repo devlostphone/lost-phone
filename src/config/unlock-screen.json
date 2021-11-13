@@ -1,0 +1,9 @@
+{
+    "password": "1234",
+    "messages": {
+        "instruction": "Enter Pin Code to Unlock",
+        "onSuccess": "Welcome back. I've got some jobs ready for you",
+        "onFailure": "Sorry, try again"
+    }
+
+}

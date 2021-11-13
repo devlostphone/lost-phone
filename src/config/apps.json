@@ -44,8 +44,8 @@
     "configFile" : true
   },
   {
-    "type" : "sandbox",
-    "key"  : "SandboxApp",
+    "type" : "unlock-screen",
+    "key"  : "UnlockScreenApp",
     "icon" : "clockApp.png"
   },
   {

@@ -30,6 +30,9 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
                         options: any = {})
     {
         super(scene, x, y);
+        let text = new Phaser.GameObjects.Text(scene, 0, 0, label, { fontFamily: 'Arial', fontSize: 128 });
+        this.add(text);
+        this.y = y;
     }
 }
 

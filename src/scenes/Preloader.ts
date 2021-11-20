@@ -91,6 +91,7 @@ export default class Preloader extends FakeOSScene {
 
         this.load.image('arc@144', 'assets/arc@144.png');
         this.load.image('rect@144', 'assets/rect@144.png');
+        this.load.image('capsule@144', 'assets/capsule@144.png');
     }
 
     public preload_gallery_images(): void {

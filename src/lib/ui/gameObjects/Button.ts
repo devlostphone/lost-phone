@@ -22,6 +22,12 @@ declare global {
 }
 
 export default class Button extends Phaser.GameObjects.Container implements IButton {
+
+    protected arc: Phaser.GameObjects.Image;
+    protected rect: Phaser.GameObjects.Image;
+    protected capsule: Phaser.GameObjects.Image;
+    protected label: Phaser.GameObjects.Text;
+
     public constructor (scene: FakeOS,
                         shape: string,
                         label: string,
@@ -31,25 +37,41 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
     {
         super(scene, x, y);
 
+        // Set shape button
         switch(shape) {
             case "arc":
-                let arc = new Phaser.GameObjects.Image(scene, 0, 0, 'arc@144');
-                this.add(arc);
+                this.arc = new Phaser.GameObjects.Image(scene, 0, 0, 'arc@144');
+                this.add(this.arc);
                 break;
             case "rect":
-                let rect = new Phaser.GameObjects.Image(scene, 0, 0, 'rect@144');
-                this.add(rect);
+                this.rect = new Phaser.GameObjects.Image(scene, 0, 0, 'rect@144');
+                this.add(this.rect);
                 break;
             case "capsule":
+                this.capsule = new Phaser.GameObjects.Image(scene, 0, 0, 'capsule@144');
+                this.add(this.capsule);
                 break;
         }
 
-        let text = new Phaser.GameObjects.Text(scene, 0, 0, label, { fontFamily: 'Arial', fontSize: 92 });
-        text.setColor('#000000');
-        text.setOrigin(0.5);
-        this.add(text);
+        // Set label button
+        this.label = new Phaser.GameObjects.Text(scene, 0, 0, label, { fontFamily: 'Arial', fontSize: 72 });
+        this.label.setColor('#000000');
+        this.label.setOrigin(0.5);
+        this.add(this.label);
+
+        // Set sublabel button if exists on options
+        if (options.hasOwnProperty('sublabel')) {
+            let sublabelText = new Phaser.GameObjects.Text(scene, 0, 0, options.sublabel, { fontFamily: 'Arial', fontSize: 24});
+            sublabelText.setColor('#000000');
+            sublabelText.setOrigin(0.5);
+            this.label.y -= 8
+            sublabelText.y = this.label.y + 42;
+            this.add(sublabelText);
+        }
+
+        // Set button position
         this.y = y;
-        this.x = 72;
+        this.x = x;
     }
 }
 

@@ -17,9 +17,10 @@ export default class UnlockScreenApp extends App {
         this.password = this.fakeOS.cache.json.get('unlock-screen').password;
         console.log(this.password);
 
-        let button1 = this.fakeOS.add.button('arc', '1', 0, 128, {});
-        let button2 = this.fakeOS.add.button('rect', '2', 0, 256, {});
-        this.addElements([button1, button2]);
+        let arcButton1 = this.fakeOS.add.button('arc', '1', 96, 128, { });
+        let arcButton2 = this.fakeOS.add.button('arc', '2', 96 * 2 + 72, 128, { 'sublabel': 'ABC' });
+        let arcButton3 = this.fakeOS.add.button('arc', '3', 96 * 3 + (72 * 2), 128, { 'sublabel': 'DEF' });
+        this.addElements([arcButton1, arcButton2, arcButton3]);
     }
 
     public render(): void {

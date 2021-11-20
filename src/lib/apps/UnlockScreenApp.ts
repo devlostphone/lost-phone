@@ -16,11 +16,25 @@ export default class UnlockScreenApp extends App {
         super(fakeOS);
         this.password = this.fakeOS.cache.json.get('unlock-screen').password;
         console.log(this.password);
+        let numericLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9','', '0'];
+        let numericSubLabels = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ'];
 
-        let arcButton1 = this.fakeOS.add.button('arc', '1', 96, 128, { });
-        let arcButton2 = this.fakeOS.add.button('arc', '2', 96 * 2 + 72, 128, { 'sublabel': 'ABC' });
-        let arcButton3 = this.fakeOS.add.button('arc', '3', 96 * 3 + (72 * 2), 128, { 'sublabel': 'DEF' });
-        this.addElements([arcButton1, arcButton2, arcButton3]);
+        let numericPad = this.fakeOS.add.container();
+        for (let label of numericLabels) {
+            let button: any;
+            if (label == '1' || label == '0') {
+                button = this.fakeOS.add.button('arc', label, 0, 0, { });
+            } else {
+                button = this.fakeOS.add.button('arc', label, 0, 0, { 'sublabel': numericSubLabels[Number(label) - 2]});
+            }
+            numericPad.add(button);
+        }
+
+        this.addGrid(numericPad.getAll(),
+            {
+                columns: 3,
+                rows: 7
+            });
     }
 
     public render(): void {

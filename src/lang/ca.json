@@ -3,9 +3,12 @@
     "calendar": "Calendari",
     "chat": "Xat",
     "clock": "Rellotge",
+    "download": "Baixa",
+    "downloading": "Baixant...",
     "from": "De",
     "gallery": "Galeria",
     "getQR": "Obtenir QR",
+    "installed": "Instal·lada",
     "is_typing": "...està escrivint...",
     "mail": "Correu",
     "no_messages": "[No hi ha missatges]",
@@ -15,6 +18,7 @@
     "sandbox": "Sandbox",
     "settings": "Configuració",
     "showNotifications": "Mostra les notificacions",
+    "store": "AppStore",
     "subject": "Assumpte",
     "title": "Títol"
 }

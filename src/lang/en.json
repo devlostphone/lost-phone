@@ -3,9 +3,12 @@
     "calendar": "Calendar",
     "chat": "Chat",
     "clock": "Clock",
+    "download": "Download",
+    "downloading": "Downloading...",
     "from": "From",
     "gallery": "Galeria",
     "getQR": "Get QR",
+    "installed": "Installed",
     "is_typing": "...is typing...",
     "mail": "Mail",
     "no_messages": "[There are no messages]",
@@ -15,6 +18,7 @@
     "sandbox": "Sandbox",
     "settings": "Settings",
     "showNotifications": "Show notifications",
+    "store": "AppStore",
     "subject": "Subject",
     "title": "Title"
 }

@@ -4,6 +4,7 @@ import GalleryApp from '~/lib/apps/GalleryApp';
 import HomescreenApp from '~/lib/apps/HomescreenApp';
 import MailApp from '~/lib/apps/MailApp';
 import SettingsApp from '~/lib/apps/SettingsApp';
+import StoreApp from '~/lib/apps/StoreApp';
 
 /**
  * Contains all app definitions.
@@ -14,7 +15,8 @@ const Store: any = {
     GalleryApp,
     HomescreenApp,
     MailApp,
-    SettingsApp
+    SettingsApp,
+    StoreApp
 }
 
 /**

@@ -55,7 +55,8 @@ export default class AppInfoBox extends Phaser.GameObjects.Container
             status = 'installed';
         }
 
-        this.description = this.fakeOS.add.text(0,0, '...');
+        let description = app['description'] ? app['description'] : this.fakeOS.getString('no-description');
+        this.description = this.fakeOS.add.text(-100, -60, description, {fontSize: '24px'});
         this.downloadButton = new DownloadButton(this.fakeOS, 0, 0, status);
         this.add(this.description);
         this.add(this.downloadButton);

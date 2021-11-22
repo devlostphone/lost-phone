@@ -11,8 +11,6 @@ export default class StoreApp extends App {
 
     public constructor(fakeOS: FakeOS) {
         super(fakeOS, {rows: 4});
-        this.rows = 6;
-
         this.apps = this.fakeOS.cache.json.get('apps');
     }
 
@@ -22,6 +20,5 @@ export default class StoreApp extends App {
             let info_box = new AppInfoBox(this.fakeOS, 0, 0, this.apps[i]);
             this.addRow(info_box);
         }
-
     }
 }

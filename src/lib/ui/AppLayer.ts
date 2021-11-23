@@ -250,7 +250,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
             this.createDragZone();
 
             if (this.background !== undefined) {
-                this.background.height = this.getBounds().bottom + this.rowHeight();
+                this.background.height = this.getBounds().height + this.rowHeight();
             }
         }
     }

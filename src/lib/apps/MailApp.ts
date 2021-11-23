@@ -105,4 +105,9 @@ import { PhoneEvents } from '../events/GameEvents';
 
         this.fakeOS.setDone(mail['id']);
     }
+
+    public goToID(id: string): void {
+        let mail = this.mails.find((o: any) => o.id == id);
+        this.openMail(mail);
+    }
 }

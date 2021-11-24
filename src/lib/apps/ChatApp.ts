@@ -49,7 +49,7 @@ export default class ChatApp extends App {
             let chatRegistry = this.fakeOS.registry.get('chat');
             let lastTextId = chatRegistry[this.chat[i].id+'_lastchat'];
             this.fakeOS.log('Contact '+this.chat[i].id+' last message was '+lastTextId);
-            let lastText = this.fakeOS.getString('no_messages');
+            let lastText = this.fakeOS.getString('no-messages');
             if (lastTextId in this.chat[i].conversation) {
                 lastText = this.chat[i].conversation[lastTextId].text;
             }

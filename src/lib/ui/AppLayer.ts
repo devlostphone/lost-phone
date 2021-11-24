@@ -37,6 +37,14 @@ export default class AppLayer extends Phaser.GameObjects.Container
      */
     public background: any;
 
+    /**
+     * If the current layer already has a drag zone.
+     */
+    public hasDragZone: boolean;
+
+    /**
+     * Layer handler function.
+     */
     public onChangeHandler?: Function;
 
     /**
@@ -66,6 +74,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
             background ? 1 : 0
         ).setOrigin(0,0).setInteractive().setName('background');
         this.add(this.background);
+        this.hasDragZone = false;
 
         if (options['columns'] !== undefined) {
             this.columns = options['columns'];
@@ -81,10 +90,17 @@ export default class AppLayer extends Phaser.GameObjects.Container
         this.applyMask();
     }
 
+    /**
+     * Sets layer handler.
+     * @param handler
+     */
     protected setHandler(handler: Function): void {
         this.onChangeHandler = handler;
     }
 
+    /**
+     * Launches layer handler.
+     */
     protected launchHandler(): void {
         if (this.onChangeHandler !== undefined) {
             this.fakeOS.log('Launching handler for layer.');
@@ -228,23 +244,15 @@ export default class AppLayer extends Phaser.GameObjects.Container
             this.bottom_row = this.last_row;
         }
 
-        // If bottom row is bigger than allowed rows
-        if (this.bottom_row > this.rows) {
-            this.createDragZone(this.atRow(this.bottom_row));
+        // If container height is bigger than area height
+        if (this.getBounds().height > this.area.height) {
+            this.fakeOS.log("Container height (" + this.getBounds().height + ") bigger than printable area (" + this.area.height + "). Creating drag zone.");
+            this.createDragZone();
+
             if (this.background !== undefined) {
-                this.background.height = this.rowHeight() * (this.bottom_row + 1);
-            }
-        } else if (this.getBounds().height > this.area.height) {
-            this.fakeOS.log(
-                "Container height (" + this.getBounds().height + ") \
-                bigger than printable area (" + this.area.height + ").")
-            // If container height is bigger than area height
-            this.createDragZone(this.getBounds().bottom);
-            if (this.background !== undefined) {
-                this.background.height = this.getBounds().height + this.rowHeight();;
+                this.background.height = this.getBounds().height + this.rowHeight();
             }
         }
-
     }
 
     /**
@@ -297,39 +305,51 @@ export default class AppLayer extends Phaser.GameObjects.Container
      *
      * @param height Height of the container area.
      */
-     public createDragZone(height: number): void {
+     public createDragZone(): void {
+        if (this.hasDragZone) {
+            this.input.hitArea = new Phaser.Geom.Rectangle(
+                0,0,
+                this.area.width,
+                this.getBounds().bottom
+            );
+            return;
+        }
+
+        this.hasDragZone = true;
         this.setInteractive(new Phaser.Geom.Rectangle(
             0,0,
             this.area.width,
-            height
+            this.getBounds().bottom
         ), Phaser.Geom.Rectangle.Contains);
-        this.fakeOS.log("Too many elements. Creating drag zone...");
         this.fakeOS.input.setDraggable(this);
+
         this.fakeOS.input.on(
             'drag',
             (pointer:any, gameobject:any, dragX: any, dragY: any) => {
-                if (dragY > 0) {
-                    dragY = 0;
-                } else if (dragY < -(height - this.area.height)) {
-                    dragY = -(height - this.area.height);
+                if (gameobject != this) {
+                    return;
                 }
 
-                this.y = dragY;
+                this.y = Math.round(Phaser.Math.Clamp(
+                    dragY,
+                    -(this.getBounds().height - this.area.height - this.area.y),
+                    0
+                ));
             }
         );
 
         this.fakeOS.input.on(
-            'wheel',
+            'gameobjectwheel',
             (pointer:any, gameobject:any, deltaX: any, deltaY: any, deltaZ: any) => {
-                this.y -= deltaY
-
-                if (this.y - deltaY > 0) {
-                    this.y = 0;
-                } else if (this.y - deltaY < -(height - this.area.height)) {
-                    this.y = -(height - this.area.height);
-                } else {
-                    this.y -= deltaY;
+                if (gameobject != this) {
+                    return;
                 }
+
+                this.y = Math.round(Phaser.Math.Clamp(
+                    this.y - deltaY,
+                    -(this.getBounds().height - this.area.height - this.area.y),
+                    0
+                ));
             }
         );
     }

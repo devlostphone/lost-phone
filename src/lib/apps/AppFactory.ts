@@ -5,6 +5,7 @@ import HomescreenApp from '~/lib/apps/HomescreenApp';
 import MailApp from '~/lib/apps/MailApp';
 import SettingsApp from '~/lib/apps/SettingsApp';
 import UnlockScreenApp from '~/lib/apps/UnlockScreenApp';
+import StoreApp from '~/lib/apps/StoreApp';
 
 /**
  * Contains all app definitions.
@@ -17,6 +18,7 @@ const Store: any = {
     MailApp,
     SettingsApp,
     UnlockScreenApp
+    StoreApp
 }
 
 /**

@@ -1,5 +1,6 @@
 import { PhoneEvents } from '~/lib/events/GameEvents';
 import { FakeOS } from '~/scenes/FakeOS';
+import phoneUI from '../../phoneUI';
 import NotificationList from './NotificationList';
 /**
  * Notification Drawer.
@@ -7,17 +8,20 @@ import NotificationList from './NotificationList';
  */
 export default class NotificationDrawer extends Phaser.GameObjects.Container
 {
-    protected fakeOS;
-    protected UI;
+    protected fakeOS: FakeOS;
+    protected UI: phoneUI;
+    protected graphicMask?: Phaser.GameObjects.Graphics;
 
     public drawerArea?: Phaser.GameObjects.Container;
     public drawerBox?: Phaser.GameObjects.Rectangle;
     public drawerLauncher?: Phaser.GameObjects.Polygon;
     public drawerHide?: Phaser.GameObjects.Polygon;
 
-    public notificationList: NotificationList;
+    public notificationList?: NotificationList;
     public pendingNotifications: any[];
     public isNotificationYoyoing: boolean;
+
+    public hasDragZone: boolean;
 
     /**
      * Class constructor.
@@ -34,28 +38,15 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         super(fakeOS, x, y, []);
         this.fakeOS = fakeOS;
         this.UI = fakeOS.getUI();
+        this.hasDragZone = false;
 
         this.renderDrawerArea();
         this.renderDrawerLauncher();
         this.renderDrawerHide();
+        this.renderNotificationList();
 
-        this.notificationList = new NotificationList(
-            this.fakeOS,
-            0,
-            this.UI.elements.topBar.height
-        ).setDepth(1001);
-        this.drawerArea?.add(this.notificationList);
         this.pendingNotifications = [];
         this.isNotificationYoyoing = false;
-
-        this.fakeOS.addEventListener(
-            PhoneEvents.NotificationFinished,
-            () => {
-                setTimeout(() => {
-                    this.isNotificationYoyoing = false;
-                }, 1000);
-            }
-        );
 
         this.addEvents();
     }
@@ -137,10 +128,46 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
     }
 
     /**
+     * Renders the notification list.
+     */
+    protected renderNotificationList(): void {
+        this.notificationList = new NotificationList(
+            this.fakeOS,
+            0,
+            this.UI.elements.topBar.height
+        ).setDepth(1001);
+        this.drawerArea?.add(this.notificationList);
+        this.drawerArea?.moveDown(this.notificationList);
+
+        this.applyMask();
+    }
+
+    /**
+     * Applies a mask to the notification list.
+     */
+    protected applyMask(): void {
+        if (this.drawerArea == undefined || this.drawerHide == undefined || this.notificationList == undefined) {
+            return;
+        }
+        this.graphicMask = new Phaser.GameObjects.Graphics(this.fakeOS);
+        this.graphicMask.fillRect(
+            0,
+            this.drawerArea.y + this.UI.elements.topBar.height,
+            this.fakeOS.width,
+            this.fakeOS.height - this.drawerHide.height - this.UI.elements.topBar.height - 20
+        );
+
+        this.notificationList?.setMask(new Phaser.Display.Masks.GeometryMask(
+            this.fakeOS,
+            this.graphicMask
+        ));
+    }
+
+    /**
      * Refreshes list of notifications.
      */
     public refreshNotifications(): void {
-        this.notificationList.refreshNotifications();
+        this.notificationList?.refreshNotifications();
     }
 
     /**
@@ -151,19 +178,52 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         this.pendingNotifications.push(notification);
     }
 
+    /**
+     * Shows notification drawer.
+     */
+    public showDrawer(): void {
+        this.fakeOS.log('Launching drawer');
+        this.UI.isDrawerOpen = true;
+        this.fakeOS.tweens.add({
+            targets: this.drawerArea,
+            y: 0,
+            duration: 700,
+            onUpdate: () => {
+                this.applyMask();
+            },
+            onComplete: () => {
+                this.createDragZone();
+            }
+        });
+    }
+
+    /**
+     * Hides notification drawer.
+     */
+    public hideDrawer(): void {
+        this.fakeOS.log('Hiding drawer');
+        this.UI.isDrawerOpen = false;
+        this.fakeOS.tweens.add({
+            targets: this.drawerArea,
+            y: -this.fakeOS.height,
+            duration: 700,
+            onUpdate: () => {
+                this.applyMask();
+            },
+            onStart: () => {
+                this.deleteDragZone();
+            }
+        });
+    }
+
+    /**
+     * Adds input event listeners.
+     */
     public addEvents(): void {
         if (this.drawerLauncher !== undefined) {
             this.fakeOS.addInputEvent(
                 'pointerup',
-                () => {
-                    this.fakeOS.log('Launching drawer');
-                    this.UI.isDrawerOpen = true;
-                    this.fakeOS.tweens.add({
-                        targets: this.drawerArea,
-                        y: 0,
-                        duration: 700
-                    });
-                },
+                () => {this.showDrawer()},
                 this.drawerLauncher
             );
             this.fakeOS.addInputEvent(
@@ -185,15 +245,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         if (this.drawerHide !== undefined) {
             this.fakeOS.addInputEvent(
                 'pointerup',
-                () => {
-                    this.fakeOS.log('Hiding drawer');
-                    this.UI.isDrawerOpen = false;
-                    this.fakeOS.tweens.add({
-                        targets: this.drawerArea,
-                        y: -this.fakeOS.height,
-                        duration: 700
-                    });
-                },
+                () => {this.hideDrawer()},
                 this.drawerHide
             );
             this.fakeOS.addInputEvent(
@@ -211,6 +263,74 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
                 this.drawerHide
             );
         }
+
+        this.notificationList?.iterate(function(notificationBox: any){
+            notificationBox.addOnIconClick();
+        });
+
+    }
+
+    public createDragZone(): void {
+        if (this.drawerArea == undefined || this.notificationList == undefined) {
+            return;
+        }
+
+        this.notificationList.setInteractive(new Phaser.Geom.Rectangle(
+            this.drawerArea.x,
+            this.drawerArea.y,
+            this.drawerArea.width,
+            this.drawerArea.height
+        ), Phaser.Geom.Rectangle.Contains);
+        this.fakeOS.input.setDraggable(this.notificationList);
+
+        this.hasDragZone = true;
+        this.fakeOS.input.on(
+            'drag',
+            this.dragFunction,
+            this
+        );
+
+        this.fakeOS.input.on(
+            'gameobjectwheel',
+            this.wheelFunction,
+            this
+        );
+
+    }
+
+    protected dragFunction(pointer:any, gameobject:any, dragX: any, dragY: any)  {
+        if (gameobject != this.notificationList || this.drawerArea == undefined || this.notificationList == undefined) {
+            return;
+        }
+
+        // TO DO: change min
+        this.notificationList.y = Math.round(Phaser.Math.Clamp(
+            dragY,
+            -(this.notificationList.getBounds().height),
+            this.UI.elements.topBar.height
+        ));
+    }
+
+    protected wheelFunction(pointer:any, gameobject:any, deltaX: any, deltaY: any, deltaZ: any) {
+        if (gameobject != this.notificationList || this.drawerArea == undefined || this.notificationList == undefined) {
+            return;
+        }
+
+        // TO DO: change min
+        this.notificationList.y = Math.round(Phaser.Math.Clamp(
+            this.notificationList.y - deltaY,
+            -(this.notificationList.getBounds().height),
+            this.UI.elements.topBar.height
+        ));
+    }
+
+    public deleteDragZone(): void {
+        if (this.hasDragZone) {
+            this.notificationList?.disableInteractive();
+            this.fakeOS.input.off('drag', this.dragFunction);
+            this.fakeOS.input.off('wheel', this.wheelFunction);
+            this.hasDragZone = false;
+        }
     }
 
     /**
@@ -224,10 +344,10 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             return;
         }
         if (this.pendingNotifications.length > 0) {
-            if (this.notificationList.launchNotification(this.pendingNotifications[0])) {
+            if (this.notificationList?.launchNotification(this.pendingNotifications[0])) {
                 this.isNotificationYoyoing = true;
-                this.pendingNotifications.shift();
             }
+            this.pendingNotifications.shift();
         }
     }
 }

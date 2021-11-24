@@ -92,6 +92,9 @@ export default abstract class App {
      */
     public update(delta: any, time: any): void {}
 
+
+    public goToID(id: string): void {}
+
     /**
      * Returns app key.
      * @returns Key
@@ -250,6 +253,7 @@ export default abstract class App {
         this.fakeOS.game.events.removeAllListeners();
         this.clearCurrentLayer();
         this.render();
+        this.fakeOS.getUI().addEventListeners();
     }
 
     /**

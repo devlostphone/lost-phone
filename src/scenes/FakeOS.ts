@@ -211,11 +211,13 @@ export class FakeOS extends FakeOSScene {
         this.log('Shutting down: ' + this.activeApp?.constructor.name);
         this.activeApp?.destroy();
         this.input.removeAllListeners();
+        this.game.events.removeAllListeners();
 
         this.log('Launching App: '+key);
         this.activeApp = AppFactory.createInstance(key, this);
         this.activeApp?.render();
-        this.getUI().addListeners();
+        this.getUI().addInputListeners();
+        this.getUI().addEventListeners();
 
         // Delete back function when in homescreen.
         if (key == 'HomescreenApp') {

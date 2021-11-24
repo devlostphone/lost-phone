@@ -37,20 +37,23 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
     {
         super(scene, x, y);
 
-        // Set shape button
-        switch(shape) {
-            case "arc":
-                this.arc = new Phaser.GameObjects.Image(scene, 0, 0, 'arc@144');
-                this.add(this.arc);
-                break;
-            case "rect":
-                this.rect = new Phaser.GameObjects.Image(scene, 0, 0, 'rect@144');
-                this.add(this.rect);
-                break;
-            case "capsule":
-                this.capsule = new Phaser.GameObjects.Image(scene, 0, 0, 'capsule@144');
-                this.add(this.capsule);
-                break;
+        // Set shape button if label exists
+        // if don't, fake that for align buttons on a grid
+        if (label) {
+            switch(shape) {
+                case "arc":
+                    this.arc = new Phaser.GameObjects.Image(scene, 0, 0, 'arc@144');
+                    this.add(this.arc);
+                    break;
+                case "rect":
+                    this.rect = new Phaser.GameObjects.Image(scene, 0, 0, 'rect@144');
+                    this.add(this.rect);
+                    break;
+                case "capsule":
+                    this.capsule = new Phaser.GameObjects.Image(scene, 0, 0, 'capsule@144');
+                    this.add(this.capsule);
+                    break;
+            }
         }
 
         // Set label button

@@ -47,6 +47,23 @@ export default class UnlockScreenApp extends App {
             } else {
                 button = this.fakeOS.add.button('arc', label, 0, 0, { 'sublabel': numericSubLabels[Number(label) - 2]});
             }
+
+            // INFO: 72 is the half value of rect/arc/capsule dimension (144)
+            button.setInteractive(new Phaser.Geom.Circle(0, 0, 72), Phaser.Geom.Circle.Contains);
+            button.on('pointerdown', function() {
+                button.label.setColor('#ffffff');
+                if (button.sublabel)
+                    button.sublabel.setColor('#ffffff');
+                button.bg.setTint(0x000000);
+            });
+            button.on('pointerup', function() {
+                button.label.setColor('#000');
+                if (button.sublabel)
+                    button.sublabel.setColor('#000');
+                button.bg.setTint(0xffffff);
+                console.log(button.label.text);
+            });
+
             this.numericPad.add(button);
         }
 
@@ -69,5 +86,9 @@ export default class UnlockScreenApp extends App {
             columns: 4,
             rows: 1
         });
+    }
+
+    protected showMessage(): void {
+        this.fakeOS.add.text(0, 128, this.message, { fontFamily: 'Arial', fontSize: '32px', color: '#ffffff', align: 'center' });
     }
 }

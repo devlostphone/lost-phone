@@ -26,7 +26,9 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
     protected arc: Phaser.GameObjects.Image;
     protected rect: Phaser.GameObjects.Image;
     protected capsule: Phaser.GameObjects.Image;
-    protected label: Phaser.GameObjects.Text;
+    public bg: Phaser.GameObjects.Image;
+    public label: Phaser.GameObjects.Text;
+    public sublabel: Phaser.GameObjects.Text;
 
     public constructor (scene: FakeOS,
                         shape: string,
@@ -44,6 +46,7 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
                 case "arc":
                     this.arc = new Phaser.GameObjects.Image(scene, 0, 0, 'arc@144');
                     this.add(this.arc);
+                    this.bg = this.arc;
                     break;
                 case "rect":
                     this.rect = new Phaser.GameObjects.Image(scene, 0, 0, 'rect@144');
@@ -64,12 +67,12 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
 
         // Set sublabel button if exists on options
         if (options.hasOwnProperty('sublabel')) {
-            let sublabelText = new Phaser.GameObjects.Text(scene, 0, 0, options.sublabel, { fontFamily: 'Arial', fontSize: 24});
-            sublabelText.setColor('#000000');
-            sublabelText.setOrigin(0.5);
+            this.sublabel = new Phaser.GameObjects.Text(scene, 0, 0, options.sublabel, { fontFamily: 'Arial', fontSize: 24});
+            this.sublabel.setColor('#000000');
+            this.sublabel.setOrigin(0.5);
             this.label.y -= 8
-            sublabelText.y = this.label.y + 42;
-            this.add(sublabelText);
+            this.sublabel.y = this.label.y + 42;
+            this.add(this.sublabel);
         }
 
         // Set button position

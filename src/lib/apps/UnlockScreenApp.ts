@@ -13,14 +13,19 @@ export default class UnlockScreenApp extends App {
     protected password: string;
     protected dots: any;
     protected numericPad: any;
+    protected enterCode: string;
 
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.password = this.fakeOS.cache.json.get('unlock-screen').password;
+        // TODO: Localize this
+        this.message = "Introdueix el PIN per desbloquejar";
+        this.enterCode = "";
 
     }
 
     public render(): void {
+        this.showMessage();
         this.showDotsPIN();
         this.showNumericPad();
     }
@@ -56,14 +61,8 @@ export default class UnlockScreenApp extends App {
                     button.sublabel.setColor('#ffffff');
                 button.bg.setTint(0x000000);
             });
-            button.on('pointerup', function() {
-                button.label.setColor('#000');
-                if (button.sublabel)
-                    button.sublabel.setColor('#000');
-                button.bg.setTint(0xffffff);
-                console.log(button.label.text);
-            });
 
+            button.on('pointerup', this.checkPIN.bind(this, button));
             this.numericPad.add(button);
         }
 
@@ -75,20 +74,41 @@ export default class UnlockScreenApp extends App {
     }
 
     protected showDotsPIN(): void {
-        this.dots = this.fakeOS.add.container();
+        let container = this.fakeOS.add.container();
+
         for (let i = 0; i < 4; i++) {
             let dot = this.fakeOS.add.circle(0, 0, 12, 0x0);
             dot.setStrokeStyle(6, 0xffffff);
-            this.dots.add(dot);
+            container.add(dot);
         }
-
-        this.addGrid(this.dots.getAll(), {
+        this.dots = container.getAll();
+        this.addGrid(this.dots, {
             columns: 4,
-            rows: 1
+            rows: 1,
+            offsetY: 48
         });
     }
 
     protected showMessage(): void {
-        this.fakeOS.add.text(0, 128, this.message, { fontFamily: 'Arial', fontSize: '32px', color: '#ffffff', align: 'center' });
+        this.addRow(this.fakeOS.add.text(0,0, this.message, { fontFamily: 'Arial', fontSize: '32px', color: '#ffffff', align: 'center' }));
+    }
+
+    // FIXME: notification.type is undefined
+    protected checkPIN = (button: any) => {
+        button.label.setColor('#000');
+        if (button.sublabel)
+            button.sublabel.setColor('#000');
+        button.bg.setTint(0xffffff);
+        let value: string = button.label.text;
+        this.enterCode = this.enterCode + value;
+        let lengthCode = parseInt(this.enterCode.length);
+        lengthCode--;
+
+        if (lengthCode < 4)
+            this.dots[lengthCode].setFillStyle(0xffffff);
+            // if (this.enterCode.length == 4) {
+            //     let timer = this.fakeOS.time.delayedCall(500, this.checkPIN, [], this);
+            // }
+       // }
     }
 }

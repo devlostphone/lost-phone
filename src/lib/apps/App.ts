@@ -250,7 +250,8 @@ export default abstract class App {
      * Clears current layer and renders the elements again.
      */
     public reRender(): void {
-        this.fakeOS.game.events.removeAllListeners();
+        this.fakeOS.removePhoneEvents();
+        this.fakeOS.time.removeAllEvents();
         this.clearCurrentLayer();
         this.render();
         this.fakeOS.getUI().addEventListeners();

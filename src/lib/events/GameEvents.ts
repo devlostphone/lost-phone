@@ -9,5 +9,10 @@ export const PhoneEvents = {
     OptionSelected: 'option-selected',
     PreloadFinished : 'preload-finished',
     SettingsUpdated: 'settings-updated',
-    ShowOptions: 'show-options'
+    ShowOptions: 'show-options',
+    TrackNext: 'track-next',
+    TrackPlayAt: 'track-play-at',
+    TrackPlaying: 'track-playing',
+    TrackPrevious: 'track-previous',
+    TrackStopped: 'track-stopped'
 }

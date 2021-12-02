@@ -27,6 +27,7 @@ import { PhoneEvents } from '../events/GameEvents';
 
     public render() {
 
+        this.currentTrack = undefined;
         for (let i=0; i < this.tracks.length; i++) {
             this.fakeOS.sound.add(this.tracks[i].key, this.tracks[i]);
             let preview = new TrackPreview(this.fakeOS, 0, 0, this.tracks[i], this.textOptions);
@@ -48,18 +49,16 @@ import { PhoneEvents } from '../events/GameEvents';
     public update(): void {
         if (this.currentTrack !== undefined) {
             let current_track = this.fakeOS.sound.get(this.currentTrack.key);
+            let seek = Math.floor(current_track.seek.valueOf());
+            let duration = current_track.duration;
 
-            //if (current_track instanceof Phaser.Sound.HTML5AudioSound) {
-                let seek = Math.floor(current_track.seek.valueOf());
-                let duration = current_track.duration;
+            if (!this.currentTrack.progressBar.isCursorBeingDragged) {
+                this.currentTrack.progressBar.update_cursor(seek/duration);
+            }
+            this.currentTrack.seek_time.setText(
+                Math.floor(seek / 60) + ':' + (seek % 60 < 10 ? '0': '') + Math.floor(seek % 60)
+            );
 
-                if (!this.currentTrack.progressBar.isCursorBeingDragged) {
-                    this.currentTrack.progressBar.update_cursor(seek/duration);
-                }
-                this.currentTrack.seek_time.setText(
-                    Math.floor(seek / 60) + ':' + (seek % 60 < 10 ? '0': '') + Math.floor(seek % 60)
-                );
-            //}
         }
     }
 
@@ -181,6 +180,7 @@ import { PhoneEvents } from '../events/GameEvents';
             (track: any, pointer: any) => {
                 let audio = this.fakeOS.sound.get(track.key);
                 if (!audio.isPlaying) {
+                    this.fakeOS.sound.stopAll();
                     audio.play();
                 }
                 audio.setSeek(Math.floor(pointer*audio.duration));

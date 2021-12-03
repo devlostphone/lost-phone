@@ -48,31 +48,21 @@ export default class TrackProgressBar extends Phaser.GameObjects.Container
 
         this.add([this.background, this.cursor]);
 
-        this.fakeOS.addInputEvent('pointerup', (pointer: any) => {
-            let percentage = (pointer.worldX - this.fakeOS.getActiveApp().area.width * 0.1) / this.background.width;
-            this.fakeOS.launchEvent(PhoneEvents.TrackPlayAt, track, percentage) ;
-        }, this.background);
-
-        /*this.fakeOS.addInputEvent('drag', (pointer:any, gameobject:any, dragX: any, dragY: any) => {
-            if (gameobject != this.cursor) {
-                return;
+        let seek_func = (pointer: any) => {
+            if (this.isCursorBeingDragged) {
+                let percentage = (pointer.worldX - this.fakeOS.getActiveApp().area.width * 0.1) / this.background.width;
+                this.fakeOS.launchEvent(PhoneEvents.TrackPlayAt, track, percentage);
             }
-            this.cursor.x = Math.round(Phaser.Math.Clamp(
-                dragX,
-                - this.background.width / 2,
-                this.background.width / 2
-            ));
-        },
-        this.cursor);
-        this.fakeOS.addInputEvent('dragstart', (pointer:any, gameobject:any, dragX: any, dragY: any) => {
+        }
+
+        this.fakeOS.addInputEvent('pointerdown', (pointer:any) => {
             this.isCursorBeingDragged = true;
-         },
-         this.cursor);
-        this.fakeOS.addInputEvent('dragend', (pointer:any, gameobject:any, dragX: any, dragY: any) => {
+            seek_func(pointer);
+        }, this.background);
+        this.fakeOS.addInputEvent('pointermove', seek_func);
+        this.fakeOS.addInputEvent('pointerup', () => {
             this.isCursorBeingDragged = false;
-        },
-        this.cursor);
-        this.fakeOS.input.setDraggable(this.cursor);*/
+        });
     }
 
     public update_cursor(x: number) {

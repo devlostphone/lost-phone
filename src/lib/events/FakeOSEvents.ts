@@ -12,7 +12,7 @@ declare module "scenes/FakeOS" {
          * @param func
          * @param object
          */
-        addInputEvent(eventType: string, func: Function, object: Phaser.GameObjects.GameObject): void;
+        addInputEvent(eventType: string, func: Function, object?: Phaser.GameObjects.GameObject): void;
 
         /**
          * Adds a listener to an specific event.
@@ -39,20 +39,27 @@ declare module "scenes/FakeOS" {
     }
 }
 
-FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, object: Phaser.GameObjects.GameObject): void {
+FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, object?: Phaser.GameObjects.GameObject): void {
     let fakeOS = this;
 
-    object.setInteractive();
+    if (object !== undefined) {
+        object.setInteractive();
+    }
     this.input.on(eventType, function(...args: any[]) {
         if (args[0].getDistanceY() > 0) {
             return;
         }
 
-        if (args[1] != object && Array.isArray(args[1]) && args[1][0] != object) {
-            return;
+        if (object !== undefined) {
+            if (args[1] != object && Array.isArray(args[1]) && args[1][0] != object) {
+                return;
+            }
+
+            fakeOS.log('Launching event ' + eventType + ' on ' + object.constructor.name);
+        } else {
+            fakeOS.log('Launching event ' + eventType);
         }
 
-        fakeOS.log('Launching event ' + eventType + ' on ' + object.constructor.name);
         func(...args);
     });
 }

@@ -52,9 +52,7 @@ import { PhoneEvents } from '../events/GameEvents';
             let seek = Math.floor(current_track.seek.valueOf());
             let duration = current_track.duration;
 
-            if (!this.currentTrack.progressBar.isCursorBeingDragged) {
-                this.currentTrack.progressBar.update_cursor(seek/duration);
-            }
+            this.currentTrack.progressBar.update_cursor(seek/duration);
             this.currentTrack.seek_time.setText(
                 Math.floor(seek / 60) + ':' + (seek % 60 < 10 ? '0': '') + Math.floor(seek % 60)
             );
@@ -122,12 +120,12 @@ import { PhoneEvents } from '../events/GameEvents';
             (track: any) => {
                 let audio = this.fakeOS.sound.get(track.key);
                 if (audio.isPlaying) {
-                    this.fakeOS.sound.get(track.key).pause();
+                    audio.pause();
                 } else if (audio.isPaused) {
-                    this.fakeOS.sound.get(track.key).resume();
+                    audio.resume();
                 } else {
                     this.fakeOS.sound.stopAll();
-                    this.fakeOS.sound.get(track.key).play();
+                    audio.play();
                 }
             }
         );
@@ -174,16 +172,13 @@ import { PhoneEvents } from '../events/GameEvents';
             }
         );
 
-        // Click on progress bar
+        // Click on / move progress bar
         this.fakeOS.addEventListener(
             PhoneEvents.TrackPlayAt,
             (track: any, pointer: any) => {
                 let audio = this.fakeOS.sound.get(track.key);
-                if (!audio.isPlaying) {
-                    this.fakeOS.sound.stopAll();
-                    audio.play();
-                }
-                audio.setSeek(Math.floor(pointer*audio.duration));
+                this.fakeOS.sound.stopAll();
+                audio.play({seek: Math.floor(pointer*audio.duration)});
             }
         );
     }

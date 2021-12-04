@@ -1,20 +1,29 @@
 [
   {
-    "key" : "track01",
-    "name" : "SantPoort -- LOFI Essentials",
-    "url" : "assets/audio/tracks/santpoort - you left a trace in the sand.mp3",
-    "artist" : "Sant Poort",
-    "title" : "You left a trace in the sand",
-    "thumbnail" : "santpoort - you left a trace in the sand.png",
+    "key" : "track001",
+    "name" : "Bensound - Cute",
+    "url" : "assets/audio/tracks/bensound-cute.mp3",
+    "artist" : "Bensound",
+    "title" : "Cute",
+    "thumbnail" : "img/thumbnails/cute.jpg",
+    "volume" : 1
+  },
+  {
+    "key" : "track002",
+    "name" : "Bensound - Tomorrow",
+    "url" : "assets/audio/tracks/bensound-tomorrow.mp3",
+    "artist" : "Bensound",
+    "title" : "Tomorrow",
+    "thumbnail" : "img/thumbnails/tomorrow.jpg",
     "volume" : 0.75
   },
   {
-    "key" : "track02",
-    "name" : "Albedo -- LOFI Essentials",
-    "url" : "assets/audio/tracks/Albedo __Winter Essentials 2017 Out Now__.mp3",
-    "artist" : "Albedo",
-    "title" : "Out now",
-    "thumbnail" : "Albedo __Winter Essentials 2017 Out Now__.png",
-    "volume" : 0.15
+    "key" : "track003",
+    "name" : "Bensound - Birth of a Hero",
+    "url" : "assets/audio/tracks/bensound-birthofahero.mp3",
+    "artist" : "Bensound",
+    "title" : "Birth of a Hero",
+    "thumbnail" : "img/thumbnails/birthofahero.jpg",
+    "volume" : 0.75
   }
 ]

@@ -34,6 +34,7 @@ export default class Boot extends FakeOSScene {
             }
         }*/
         // @TODO: check this
+        this.load.json('browser', 'config/browser.json');
         this.load.json('mail', 'config/mail.json');
         this.load.json('gallery', 'config/gallery.json');
         this.load.json('chat', 'config/chat.json');

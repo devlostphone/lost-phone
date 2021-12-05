@@ -1,3 +1,4 @@
+import BrowserApp from '~/lib/apps/BrowserApp';
 import ChatApp from '~/lib/apps/ChatApp';
 import ClockApp from '~/lib/apps/ClockApp';
 import GalleryApp from '~/lib/apps/GalleryApp';
@@ -11,6 +12,7 @@ import StoreApp from '~/lib/apps/StoreApp';
  * Contains all app definitions.
  */
 const Store: any = {
+    BrowserApp,
     ChatApp,
     ClockApp,
     GalleryApp,

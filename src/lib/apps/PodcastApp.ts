@@ -49,13 +49,15 @@ import { PhoneEvents } from '../events/GameEvents';
     public update(): void {
         if (this.currentTrack !== undefined) {
             let current_track = this.fakeOS.sound.get(this.currentTrack.key);
-            let seek = Math.floor(current_track.seek.valueOf());
-            let duration = current_track.duration;
+            if (current_track instanceof Phaser.Sound.WebAudioSound) {
+                let seek = Math.floor(current_track.seek.valueOf());
+                let duration = current_track.duration;
 
-            this.currentTrack.progressBar.update_cursor(seek/duration);
-            this.currentTrack.seek_time.setText(
-                Math.floor(seek / 60) + ':' + (seek % 60 < 10 ? '0': '') + Math.floor(seek % 60)
-            );
+                this.currentTrack.progressBar.update_cursor(seek/duration);
+                this.currentTrack.seek_time.setText(
+                    Math.floor(seek / 60) + ':' + (seek % 60 < 10 ? '0': '') + Math.floor(seek % 60)
+                );
+            }
 
         }
     }

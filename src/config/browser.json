@@ -1,0 +1,13 @@
+[
+    {
+        "id" : "page001",
+        "title": "Miniops",
+        "body" : "Amb els miniops aprendràs sobre un tema concret, de manera autònoma, creant una comunitat i amb continguts oberts.",
+        "condition" : null
+    },
+    {
+        "id" : "page002",
+        "title": "Què és el joc del calamar?",
+        "body" : ""
+    }
+]

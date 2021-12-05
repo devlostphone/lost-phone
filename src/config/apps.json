@@ -69,5 +69,11 @@
     "key"  : "StoreApp",
     "icon" : "storeApp.png",
     "preInstalled": true
+  },
+  {
+    "type": "browser",
+    "key": "BrowserApp",
+    "icon": "browserApp.png",
+    "preInstalled": true
   }
 ]

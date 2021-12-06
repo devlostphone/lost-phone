@@ -5,5 +5,4 @@
         "onSuccess": "Welcome back. I've got some jobs ready for you",
         "onFailure": "Sorry, try again"
     }
-
 }

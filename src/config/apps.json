@@ -34,7 +34,7 @@
     },
     {
         "type" : "calendar",
-        "key"  : "calendarApp",
+        "key"  : "CalendarApp",
         "icon" : "calendarApp.png",
         "preInstalled": true
     },
@@ -62,6 +62,8 @@
         "type" : "calendar",
         "key"  : "CalendarApp",
         "icon" : "clockApp.png",
+        "decription" : "Aplicació de calendari",
+        "configFile" : true,
         "preInstalled": true
     },
     {

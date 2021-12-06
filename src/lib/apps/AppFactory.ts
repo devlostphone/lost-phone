@@ -20,8 +20,8 @@ const Store: any = {
     MailApp,
     PodcastApp,
     SettingsApp,
-    UnlockScreenApp,
     CalendarApp,
+    UnlockScreenApp,
     StoreApp
 }
 

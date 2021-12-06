@@ -1,73 +1,79 @@
 [
-  {
-    "type" : "clock",
-    "key"  : "ClockApp",
-    "icon" : "clockApp.png",
-    "preInstalled": true
-  },
-  {
-    "type"   : "gallery",
-    "key"    : "GalleryApp",
-    "icon"   : "galleryApp.png",
-    "configFile" : true,
-    "preInstalled": true
-  },
-  {
-    "type"   : "chat",
-    "key"    : "ChatApp",
-    "icon"   : "chatApp.png",
-    "configFile" : true,
-    "preInstalled": true
-  },
-  {
-    "type" : "podcast",
-    "key"  : "PodcastApp",
-    "icon" : "podcastApp.png",
-    "configFile" : true,
-    "preInstalled": false
-  },
-  {
-    "type" : "calculator",
-    "key"  : "calculatorApp",
-    "icon" : "calculatorApp.png",
-    "preInstalled": true
-  },
-  {
-    "type" : "calendar",
-    "key"  : "calendarApp",
-    "icon" : "calendarApp.png",
-    "preInstalled": true
-  },
-  {
-    "type" : "notes",
-    "key"  : "notesApp",
-    "icon" : "notesApp.png",
-    "preInstalled": true
-  },
-  {
-    "type" : "mail",
-    "key"  : "MailApp",
-    "icon" : "mailApp.png",
-    "description": "Aplicació de correu electrònic",
-    "configFile" : true,
-    "preInstalled": true
-  },
-  {
-      "type" : "unlock-screen",
-      "key"  : "UnlockScreenApp",
-      "icon" : "clockApp.png",
-    "preInstalled": true
-  },
-  {
-    "type" : "settings",
-    "key"  : "SettingsApp",
-    "icon" : "settingsApp.png",
-    "preInstalled": true
-  },
-  {
-    "type" : "store",
-    "key"  : "StoreApp",
-    "icon" : "storeApp.png",
-    "preInstalled": true
-  }
+    {
+        "type" : "clock",
+        "key"  : "ClockApp",
+        "icon" : "clockApp.png",
+        "preInstalled": true
+    },
+    {
+        "type"   : "gallery",
+        "key"    : "GalleryApp",
+        "icon"   : "galleryApp.png",
+        "configFile" : true,
+        "preInstalled": true
+    },
+    {
+        "type"   : "chat",
+        "key"    : "ChatApp",
+        "icon"   : "chatApp.png",
+        "configFile" : true,
+        "preInstalled": true
+    },
+    {
+        "type" : "podcast",
+        "key"  : "PodcastApp",
+        "icon" : "podcastApp.png",
+        "configFile" : true,
+        "preInstalled": false
+    },
+    {
+        "type" : "calculator",
+        "key"  : "calculatorApp",
+        "icon" : "calculatorApp.png",
+        "preInstalled": true
+    },
+    {
+        "type" : "calendar",
+        "key"  : "calendarApp",
+        "icon" : "calendarApp.png",
+        "preInstalled": true
+    },
+    {
+        "type" : "notes",
+        "key"  : "notesApp",
+        "icon" : "notesApp.png",
+        "preInstalled": true
+    },
+    {
+        "type" : "mail",
+        "key"  : "MailApp",
+        "icon" : "mailApp.png",
+        "description": "Aplicació de correu electrònic",
+        "configFile" : true,
+        "preInstalled": true
+    },
+    {
+        "type" : "unlock-screen",
+        "key"  : "UnlockScreenApp",
+        "icon" : "clockApp.png",
+        "preInstalled": true
+    },
+    {
+        "type" : "calendar",
+        "key"  : "CalendarApp",
+        "icon" : "clockApp.png",
+        "preInstalled": true
+    },
+    {
+        "type" : "settings",
+        "key"  : "SettingsApp",
+        "icon" : "settingsApp.png",
+        "preInstalled": true
+    },
+    {
+        "type" : "store",
+        "key"  : "StoreApp",
+        "icon" : "storeApp.png",
+        "preInstalled": true
+    }
 ]

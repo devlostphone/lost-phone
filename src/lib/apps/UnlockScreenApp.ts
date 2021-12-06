@@ -18,10 +18,9 @@ export default class UnlockScreenApp extends App {
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.password = this.fakeOS.cache.json.get('unlock-screen').password;
-        // TODO: Localize this
+        // TODO: Localize this message
         this.message = "Introdueix el PIN per desbloquejar";
         this.enterCode = "";
-
     }
 
     public render(): void {
@@ -36,9 +35,7 @@ export default class UnlockScreenApp extends App {
      * @param delta
      * @param time
      */
-    public update(delta: any, time: any): void {
-
-    }
+    public update(delta: any, time: any): void { }
 
     protected showNumericPad(): void {
         let numericLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9','', '0'];
@@ -104,11 +101,21 @@ export default class UnlockScreenApp extends App {
         let lengthCode = parseInt(this.enterCode.length);
         lengthCode--;
 
-        if (lengthCode < 4)
+        if (lengthCode < 4) {
             this.dots[lengthCode].setFillStyle(0xffffff);
-            // if (this.enterCode.length == 4) {
-            //     let timer = this.fakeOS.time.delayedCall(500, this.checkPIN, [], this);
-            // }
-       // }
+            if (lengthCode == 3) {
+                if (this.enterCode === this.password) {
+                    console.log("Password correct");
+                    // TODO: Switch to homescreen at this point
+                } else {
+                    // Reset everything
+                    for (let dot of this.dots) dot.setFillStyle(0x000000);
+                    this.enterCode = "";
+                    // TODO: Find an alternative for shaking only the object nor the camera view
+                    this.fakeOS.cameras.main.shake(250);
+                    console.log("Password incorrect");
+                }
+            }
+        }
     }
 }

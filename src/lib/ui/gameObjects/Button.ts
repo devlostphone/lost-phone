@@ -32,7 +32,7 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
 
     public constructor (scene: FakeOS,
                         shape: string,
-                        label: string,
+                        label: string = "",
                         x: number = 0,
                         y: number = 0,
                         options: any = {})

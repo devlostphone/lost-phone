@@ -96,7 +96,11 @@ export default class Preloader extends FakeOSScene {
         this.load.image('default-avatar', 'assets/default-avatar.png');
         this.load.spritesheet('typing', 'assets/typing-spritesheet.png', { frameWidth: 77, frameHeight: 38});
 
+        // Buttons shapes
+        // TODO: Rewrite this by a simple value iteration
         this.load.image('arc@144', 'assets/arc@144.png');
+        this.load.image('arc@96', 'assets/arc@96.png');
+        this.load.image('arc@72', 'assets/arc@72.png');
         this.load.image('rect@144', 'assets/rect@144.png');
         this.load.image('capsule@144', 'assets/capsule@144.png');
     }

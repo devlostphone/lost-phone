@@ -23,5 +23,8 @@
     "subject": "Assumpte",
     "title": "Títol",
     "unlock-screen": "Desbloqueja pantalla",
-    "calendar": "Calendari"
+    "calendar": "Calendari",
+    "daysweek": ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"],
+    "daysweek": ["Dl.", "Dt.", "Dc.", "Dj.", "Dv.", "Ds.", "Dm."],
+    "month": ["Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"]
 }

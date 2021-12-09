@@ -39,12 +39,15 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
     {
         super(scene, x, y);
 
+        // TODO: Set this value as a size parameter
+        let size: number = 72;
+
         // Set shape button if label exists
         // if don't, fake that for align buttons on a grid
         if (label) {
             switch(shape) {
                 case "arc":
-                    this.arc = new Phaser.GameObjects.Image(scene, 0, 0, 'arc@144');
+                    this.arc = new Phaser.GameObjects.Image(scene, 0, 0, 'arc@' + size);
                     this.add(this.arc);
                     this.bg = this.arc;
                     break;
@@ -60,7 +63,14 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
         }
 
         // Set label button
-        this.label = new Phaser.GameObjects.Text(scene, 0, 0, label, { fontFamily: 'Arial', fontSize: 72 });
+        let fontsz = 0;
+        switch(size) {
+            case 144: fontsz = 72; break;
+            case 96: fontsz = 48; break;
+            case 72: fontsz = 32; break;
+            default: fontsz = 128; break;
+        }
+        this.label = new Phaser.GameObjects.Text(scene, 0, 0, label, { fontFamily: 'Arial', fontSize: fontsz });
         this.label.setColor('#000000');
         this.label.setOrigin(0.5);
         this.add(this.label);

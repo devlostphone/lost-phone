@@ -39,8 +39,11 @@ export default class CalendarApp extends App {
         let month: number = this.currentDate.getMonth() + 1;
         let year: number = this.currentDate.getFullYear();
         let startDay: number = this.currentDate.getDay();
+        let today: number = new Date().getDate();
         let endDay: number = new Date(year, month, 0).getDate();
         let endDayLastMonth: number = new Date(year, month - 1, 0).getDate();
+
+        console.log("starDay: " + startDay + "today: "  + today + "endDay: " + endDay);
 
         // Add month and year label
         // TODO: Rewrite this
@@ -55,13 +58,12 @@ export default class CalendarApp extends App {
             }).setName('labelDay'));
         }
 
-        // TODO: Fix one day offset
         // Create the numberered days
         for (let w: number = 0; w < 6; w++) {
             for (let i: number = 0; i < 7; i++) {
-                let currentDay: number = ((w * 7) + i) + 1;
+                let currentDay: number = ((w * 7) + i) + 2; // You kidding me? plus two?
                 if (currentDay < startDay) {
-                    let dayNumber: number = endDayLastMonth + (currentDay - startDay + 1);
+                    let dayNumber: number = endDayLastMonth + (currentDay - startDay + 1)
                     let day = new Day(this.scene, dayNumber);
                     day.bg.setTint(0x3c3c3c);
                     this.container.add(day);
@@ -71,15 +73,10 @@ export default class CalendarApp extends App {
                     day.bg.setTint(0x3c3c3c);
                     this.container.add(day);
                 } else {
-                    let dayNumber: number = currentDay - startDay + 1;
-                    let day = new Day(this.scene, dayNumber);
-
-                    // TODO: Fix month
-                    // if (currentDay == this.currentDay &&
-                    //     (this.currentMonth + 1) == month &&
-                    //     this.currentYear == year)
-                    //     day.bg.setTint(0x00ff00);
-
+                    let day = new Day(this.scene, currentDay - startDay + 1);
+                    if (currentDay - startDay + 1 == today) {
+                        day.bg.setTint(0x00ff00);
+                    }
                     this.container.add(day);
                 }
             }

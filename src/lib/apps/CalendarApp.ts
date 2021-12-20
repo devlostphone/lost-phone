@@ -18,10 +18,12 @@ class Day extends Button {
 
 export default class CalendarApp extends App {
 
+    protected fakeOS: FakeOS;
     private days: Array<Day> = new Array<Day>();
     private currentDate: Date = new Date();
-    private container: any;
-    protected fakeOS: FakeOS;
+    private monthYearLabel: Phaser.GameObjects.Text;
+    private container: Phaser.GameObjects.Container;
+
 
     public constructor(
         scene: FakeOS
@@ -29,13 +31,39 @@ export default class CalendarApp extends App {
         super(scene);
         this.fakeOS = scene;
         this.currentDate = new Date();
+        this.container = this.fakeOS.add.container();
+        this.switchMonth();
     }
 
+    // TODO: How to get container from activeLayer?
+    // Something like this.getActiveLayer().get(this.container.getAll());
     public render(): void {
-        this.showCalendar();
+            this.showCalendar();
     }
 
     public update(delta: any, time: any): void { }
+
+    protected switchMonth(direction: number): void {
+        let app = this;
+        // Create back and forward month buttons
+        let backButton = this.fakeOS.add.text(
+            0, 72,
+            '<',
+             { fontFamily: 'Arial', fontSize: '72px', color: '#f00', align: 'center' }
+        ).setInteractive().on('pointerup', () => {
+            this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+            app.render();
+        })
+
+        let forwardButton = this.fakeOS.add.text(
+            this.fakeOS.width - 72, 72,
+            '>',
+             { fontFamily: 'Arial', fontSize: '72px', color: '#f00', align: 'center' }
+        ).setInteractive().on('pointerup', () => {
+            this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+            app.render();
+        })
+    }
 
     protected showCalendar() : void {
         let year: number = this.currentDate.getFullYear();
@@ -44,11 +72,10 @@ export default class CalendarApp extends App {
         let endDay: number = new Date(year, month, 0).getDate();
         let today: number = this.currentDate.getDate();
         let endDayLastMonth: number = new Date(year, month - 1, 0).getDate();
-        this.container = this.fakeOS.add.container();
 
         // Add month and year label
         // TODO: Rewrite this
-        let monthYear = this.fakeOS.add.text(32, 128, this.fakeOS.getString("month")[month - 1] + ' ' + year, { fontFamily: 'Arial', fontSize: '64px', color: '#ffffff' });
+        this.monthYearLabel = this.fakeOS.add.text(32, 128, this.fakeOS.getString("month")[month - 1] + ' ' + year, { fontFamily: 'Arial', fontSize: '64px', color: '#ffffff' });
 
         // Add day header names
         for (let j: number = 0; j < 7; j++) {
@@ -81,8 +108,9 @@ export default class CalendarApp extends App {
                         this.fakeOS.addInputEvent(
                             'pointerup',
                             () => {
-                                console.log("what?");
                                 this.addLayer();
+                                // TODO: Remove in the new layer the navigation buttons
+
                             },
                             day
                         );
@@ -100,7 +128,7 @@ export default class CalendarApp extends App {
             x: 72, y: 256
         });
 
-        this.getActiveLayer().add(monthYear);
+        this.getActiveLayer().add(this.monthYearLabel);
         this.getActiveLayer().add(this.container.getAll());
 
     }

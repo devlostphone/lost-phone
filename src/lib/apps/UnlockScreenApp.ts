@@ -45,9 +45,10 @@ export default class UnlockScreenApp extends App {
         for (let label of numericLabels) {
             let button: any;
             if (label == '1' || label == '0') {
-                button = this.fakeOS.add.button('arc', label, 0, 0, { });
+                button = this.fakeOS.add.button('arc', 'large', label, 0, 0, { });
+                console.log(button);
             } else {
-                button = this.fakeOS.add.button('arc', label, 0, 0, { 'sublabel': numericSubLabels[Number(label) - 2]});
+                button = this.fakeOS.add.button('arc', 'large', label, 0, 0, { 'sublabel': numericSubLabels[Number(label) - 2]});
             }
 
             // INFO: 72 is the half value of rect/arc/capsule dimension (144)

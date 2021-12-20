@@ -12,7 +12,7 @@ class Day extends Button {
     public event : any;
 
     public constructor(fakeOS: FakeOS, date: number, labelColor: number = '#ffffff', event: any = {}) {
-        super(fakeOS, 'arc', date);
+        super(fakeOS, 'arc', 'small', date);
     }
 }
 

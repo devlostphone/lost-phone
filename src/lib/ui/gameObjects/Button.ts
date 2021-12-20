@@ -13,6 +13,7 @@ declare global {
     namespace Phaser.GameObjects {
         interface GameObjectFactory {
             button(shape: string,
+                   size: string,
                    label: string,
                    x: number,
                    y: number,
@@ -32,6 +33,7 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
 
     public constructor (scene: FakeOS,
                         shape: string,
+                        size: string,
                         label: string = "",
                         x: number = 0,
                         y: number = 0,
@@ -39,38 +41,36 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
     {
         super(scene, x, y);
 
-        // TODO: Set this value as a size parameter
-        let size: number = 72;
+        let shapeSize: number;
+        let fontSize: number;
+        switch(size) {
+            case "small" : shapeSize = 72 ; fontSize = 32; break;
+            case "medium": shapeSize = 96 ; fontSize = 48; break;
+            case "large" : shapeSize = 144; fontSize = 72; break:
+            default: break;
+        }
 
         // Set shape button if label exists
         // if don't, fake that for align buttons on a grid
         if (label) {
             switch(shape) {
                 case "arc":
-                    this.arc = new Phaser.GameObjects.Image(scene, 0, 0, 'arc@' + size);
+                    this.arc = new Phaser.GameObjects.Image(scene, 0, 0, 'arc@' + shapeSize);
                     this.add(this.arc);
                     this.bg = this.arc;
                     break;
                 case "rect":
-                    this.rect = new Phaser.GameObjects.Image(scene, 0, 0, 'rect@144');
+                    this.rect = new Phaser.GameObjects.Image(scene, 0, 0, 'rect@1' + shapeSize);
                     this.add(this.rect);
                     break;
                 case "capsule":
-                    this.capsule = new Phaser.GameObjects.Image(scene, 0, 0, 'capsule@144');
+                    this.capsule = new Phaser.GameObjects.Image(scene, 0, 0, 'capsule@' + shapeSize);
                     this.add(this.capsule);
                     break;
             }
         }
 
-        // Set label button
-        let fontsz = 0;
-        switch(size) {
-            case 144: fontsz = 72; break;
-            case 96: fontsz = 48; break;
-            case 72: fontsz = 32; break;
-            default: fontsz = 128; break;
-        }
-        this.label = new Phaser.GameObjects.Text(scene, 0, 0, label, { fontFamily: 'Arial', fontSize: fontsz });
+        this.label = new Phaser.GameObjects.Text(scene, 0, 0, label, { fontFamily: 'Arial', fontSize: fontSize });
         this.label.setColor('#000000');
         this.label.setOrigin(0.5);
         this.add(this.label);
@@ -94,12 +94,13 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
 Phaser.GameObjects.GameObjectFactory.register('button', function (
     this: Phaser.GameObjects.GameObjectFactory,
     shape: string,
+    size: string,
     label: string,
     x: number,
     y: number,
     options: any) {
     const scene = this.scene;
-    const button = new Button(scene, shape, label, x, y, options);
+    const button = new Button(scene, shape, size, label, x, y, options);
     scene.sys.displayList.add(button);
     return button;
 })

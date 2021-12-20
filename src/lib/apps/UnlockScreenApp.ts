@@ -46,21 +46,20 @@ export default class UnlockScreenApp extends App {
             let button: any;
             if (label == '1' || label == '0') {
                 button = this.fakeOS.add.button('arc', 'large', label, 0, 0, { });
-                console.log(button);
             } else {
                 button = this.fakeOS.add.button('arc', 'large', label, 0, 0, { 'sublabel': numericSubLabels[Number(label) - 2]});
             }
 
-            // INFO: 72 is the half value of rect/arc/capsule dimension (144)
+            // REMEMBER: 72 is the half value of rect/arc/capsule dimension (144)
+            // TODO: Fix undefined behaviour when clicking buttons
             button.setInteractive(new Phaser.Geom.Circle(0, 0, 72), Phaser.Geom.Circle.Contains);
-            button.on('pointerdown', function() {
-                button.label.setColor('#ffffff');
-                if (button.sublabel)
-                    button.sublabel.setColor('#ffffff');
-                button.bg.setTint(0x000000);
-            });
-
-            button.on('pointerup', this.checkPIN.bind(this, button));
+            this.fakeOS.addInputEvent(
+                'pointerup',
+                () => {
+                    this.checkPIN(button);
+                },
+                button
+            );
             this.numericPad.add(button);
         }
 
@@ -93,6 +92,7 @@ export default class UnlockScreenApp extends App {
 
     // FIXME: notification.type is undefined
     protected checkPIN = (button: any) => {
+        console.log("checkPIN");
         button.label.setColor('#000');
         if (button.sublabel)
             button.sublabel.setColor('#000');

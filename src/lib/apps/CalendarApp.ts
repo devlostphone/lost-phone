@@ -48,7 +48,7 @@ export default class CalendarApp extends App {
 
         // Add month and year label
         // TODO: Rewrite this
-        this.fakeOS.add.text(32, 128, this.fakeOS.getString("month")[month - 1] + ' ' + year, { fontFamily: 'Arial', fontSize: '64px', color: '#ffffff' });
+        let monthYear = this.fakeOS.add.text(32, 128, this.fakeOS.getString("month")[month - 1] + ' ' + year, { fontFamily: 'Arial', fontSize: '64px', color: '#ffffff' });
 
         // Add day header names
         for (let j: number = 0; j < 7; j++) {
@@ -82,6 +82,7 @@ export default class CalendarApp extends App {
                             'pointerup',
                             () => {
                                 console.log("what?");
+                                this.addLayer();
                             },
                             day
                         );
@@ -90,19 +91,6 @@ export default class CalendarApp extends App {
                 }
             }
         }
-
-        // Show grid of container elements
-        // TODO: Need to fix this
-        // this.fakeOS.getActiveApp().addGrid(
-        //     this.container.getAll(),
-        //     {
-        //         width: 7,
-        //         height: 7,
-        //         cellWidth: 92,
-        //         cellHeight: 92,
-        //         position: Phaser.Display.Align.BOTTOM_CENTER,
-        //         x: 72, y: 256
-        //     });
         Phaser.Actions.GridAlign(this.container.getAll(), {
             width: 7,
             height: 7,
@@ -112,7 +100,9 @@ export default class CalendarApp extends App {
             x: 72, y: 256
         });
 
-        // this.container.add(new Day(this.scene, "0"));
+        this.getActiveLayer().add(monthYear);
+        this.getActiveLayer().add(this.container.getAll());
+
     }
 
     private callbackTest = (day : any) => {

@@ -20,13 +20,15 @@ export default class CalendarApp extends App {
 
     private days: Array<Day> = new Array<Day>();
     private currentDate: Date;
-    private container: Phaser.GameObjects.Container;
+    private container: any;
+    protected fakeOS: FakeOS;
 
-    public constructor(fakeOS: FakeOS) {
-        super(fakeOS);
-        this.scene = fakeOS;
+    public constructor(
+        scene: FakeOS
+    ){
+        super(scene);
+        this.fakeOS = scene;
         this.currentDate = new Date();
-        this.container = this.scene.add.container();
     }
 
     public render(): void {
@@ -42,8 +44,7 @@ export default class CalendarApp extends App {
         let today: number = new Date().getDate();
         let endDay: number = new Date(year, month, 0).getDate();
         let endDayLastMonth: number = new Date(year, month - 1, 0).getDate();
-
-        console.log("starDay: " + startDay + "today: "  + today + "endDay: " + endDay);
+        this.container = this.fakeOS.add.container();
 
         // Add month and year label
         // TODO: Rewrite this
@@ -51,7 +52,7 @@ export default class CalendarApp extends App {
 
         // Add day header names
         for (let j: number = 0; j < 7; j++) {
-            this.container.add(new Phaser.GameObjects.Text(this.scene, 0, 0, this.fakeOS.getString('daysweek')[j], {
+            this.container.add(new Phaser.GameObjects.Text(this.fakeOS, 0, 0, this.fakeOS.getString('daysweek')[j], {
                 fontFamily: 'Arial',
                 fontSize: 48,
                 color: '#fff'
@@ -64,18 +65,26 @@ export default class CalendarApp extends App {
                 let currentDay: number = ((w * 7) + i) + 1;
                 if (currentDay < startDay) {
                     let dayNumber: number = endDayLastMonth + (currentDay - startDay + 1)
-                    let day = new Day(this.scene, dayNumber);
+                    let day = new Day(this.fakeOS, dayNumber);
                     day.bg.setTint(0x3c3c3c);
                     this.container.add(day);
                 } else if (currentDay - startDay >= endDay) {
                     let dayNumber: number = (currentDay - startDay + 1) - endDay;
-                    let day = new Day(this.scene, dayNumber);
+                    let day = new Day(this.fakeOS, dayNumber);
                     day.bg.setTint(0x3c3c3c);
                     this.container.add(day);
                 } else {
-                    let day = new Day(this.scene, currentDay - startDay + 1);
+                    let day = new Day(this.fakeOS, currentDay - startDay + 1);
                     if (currentDay - startDay + 1 == today) {
                         day.bg.setTint(0x00ff00);
+                        day.setInteractive(new Phaser.Geom.Circle(0, 0, 32), Phaser.Geom.Circle.Contains);
+                        this.fakeOS.addInputEvent(
+                            'pointerup',
+                            () => {
+                                console.log("what?");
+                            },
+                            day
+                        );
                     }
                     this.container.add(day);
                 }
@@ -83,8 +92,18 @@ export default class CalendarApp extends App {
         }
 
         // Show grid of container elements
-        let grid = this.container.getAll();
-        Phaser.Actions.GridAlign(grid, {
+        // TODO: Need to fix this
+        // this.fakeOS.getActiveApp().addGrid(
+        //     this.container.getAll(),
+        //     {
+        //         width: 7,
+        //         height: 7,
+        //         cellWidth: 92,
+        //         cellHeight: 92,
+        //         position: Phaser.Display.Align.BOTTOM_CENTER,
+        //         x: 72, y: 256
+        //     });
+        Phaser.Actions.GridAlign(this.container.getAll(), {
             width: 7,
             height: 7,
             cellWidth: 92,
@@ -94,5 +113,9 @@ export default class CalendarApp extends App {
         });
 
         // this.container.add(new Day(this.scene, "0"));
+    }
+
+    private callbackTest = (day : any) => {
+        console.log(day);
     }
 }

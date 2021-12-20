@@ -19,7 +19,7 @@ class Day extends Button {
 export default class CalendarApp extends App {
 
     private days: Array<Day> = new Array<Day>();
-    private currentDate: Date;
+    private currentDate: Date = new Date();
     private container: any;
     protected fakeOS: FakeOS;
 
@@ -38,11 +38,11 @@ export default class CalendarApp extends App {
     public update(delta: any, time: any): void { }
 
     protected showCalendar() : void {
-        let month: number = this.currentDate.getMonth() + 1;
         let year: number = this.currentDate.getFullYear();
-        let startDay: number = this.currentDate.getDay() - 1;
-        let today: number = new Date().getDate();
+        let month: number = this.currentDate.getMonth() + 1;
+        let startDay: number = new Date(year, month - 1).getDay();
         let endDay: number = new Date(year, month, 0).getDate();
+        let today: number = this.currentDate.getDate();
         let endDayLastMonth: number = new Date(year, month - 1, 0).getDate();
         this.container = this.fakeOS.add.container();
 

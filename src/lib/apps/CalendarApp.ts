@@ -23,6 +23,8 @@ export default class CalendarApp extends App {
     private currentDate: Date = new Date();
     private monthYearLabel: Phaser.GameObjects.Text;
     private container: Phaser.GameObjects.Container;
+    private backButton: Phaser.GameObjects.Text;
+    private forwardButton: Phase.GameObjects.Text;
 
 
     public constructor(
@@ -32,13 +34,13 @@ export default class CalendarApp extends App {
         this.fakeOS = scene;
         this.currentDate = new Date();
         this.container = this.fakeOS.add.container();
-        this.switchMonth();
     }
 
     // TODO: How to get container from activeLayer?
     // Something like this.getActiveLayer().get(this.container.getAll());
     public render(): void {
-            this.showCalendar();
+        this.switchMonth();
+        this.showCalendar();
     }
 
     public update(delta: any, time: any): void { }
@@ -46,7 +48,7 @@ export default class CalendarApp extends App {
     protected switchMonth(direction: number): void {
         let app = this;
         // Create back and forward month buttons
-        let backButton = this.fakeOS.add.text(
+        this.backButton = this.fakeOS.add.text(
             0, 72,
             '<',
              { fontFamily: 'Arial', fontSize: '72px', color: '#f00', align: 'center' }
@@ -55,7 +57,7 @@ export default class CalendarApp extends App {
             app.render();
         })
 
-        let forwardButton = this.fakeOS.add.text(
+        this.forwardButton = this.fakeOS.add.text(
             this.fakeOS.width - 72, 72,
             '>',
              { fontFamily: 'Arial', fontSize: '72px', color: '#f00', align: 'center' }
@@ -63,6 +65,8 @@ export default class CalendarApp extends App {
             this.currentDate.setMonth(this.currentDate.getMonth() + 1);
             app.render();
         })
+
+        this.getActiveLayer().add([this.backButton, this.forwardButton]);
     }
 
     protected showCalendar() : void {
@@ -108,9 +112,10 @@ export default class CalendarApp extends App {
                         this.fakeOS.addInputEvent(
                             'pointerup',
                             () => {
-                                this.addLayer();
                                 // TODO: Remove in the new layer the navigation buttons
-
+                                this.addLayer(0x333333);
+                                let calendarEventTitle = this.fakeOS.add.text(0,0, "Calendar Event").setOrigin(0, 0);
+                                this.addRow(calendarEventTitle);
                             },
                             day
                         );

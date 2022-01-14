@@ -34,6 +34,7 @@ export default class CalendarApp extends App {
         this.fakeOS = scene;
         this.currentDate = new Date();
         this.container = this.fakeOS.add.container();
+        this.events = this.fakeOS.cache.json.get('calendar');
     }
 
     public render(): void {
@@ -47,7 +48,9 @@ export default class CalendarApp extends App {
 
     protected switchMonth(direction: number): void {
         let app = this;
-        // Create back and forward month buttons
+
+        // TODO: Improve visuals
+        // Back and forward month buttons
         this.backButton = this.fakeOS.add.text(
             0, 72,
             '<',
@@ -112,19 +115,26 @@ export default class CalendarApp extends App {
                     this.container.add(day);
                 } else {
                     let day = new Day(this.fakeOS, currentDay - startDay + 1);
-                    if (currentDay - startDay + 1 == today) {
-                        day.bg.setTint(0x00ff00);
-                        day.setInteractive(new Phaser.Geom.Circle(0, 0, 32), Phaser.Geom.Circle.Contains);
-                        this.fakeOS.addInputEvent(
-                            'pointerup',
-                            () => {
-                                // TODO: Remove in the new layer the navigation buttons
-                                this.addLayer(0x333333);
-                                let calendarEventTitle = this.fakeOS.add.text(0,0, "Calendar Event").setOrigin(0, 0);
-                                this.addRow(calendarEventTitle);
-                            },
-                            day
-                        );
+                    // Add events to calendar
+                    for (var index in this.events) {
+                        let event = this.events[index];
+                        if (event["day"] == (currentDay - startDay + 1) &&
+                            event["month"] == month &&
+                            event["year"] == year) {
+                            // TODO: Set human color names at config
+                            day.bg.setTint(0x00ff00);
+                            day.setInteractive(new Phaser.Geom.Circle(0, 0, 32), Phaser.Geom.Circle.Contains);
+                            this.fakeOS.addInputEvent(
+                                'pointerup',
+                                () => {
+                                    // TODO: Remove in the new layer the navigation buttons
+                                    this.addLayer(0x333333);
+                                    let calendarEventTitle = this.fakeOS.add.text(0, 0, event["title"]).setOrigin(0, 0);
+                                    let calendarEventDescription = this.fakeOS.add.text(0, 0, event["description"]).setOrigin(0, 0);
+                                    this.addRow(calendarEventTitle);
+                                    this.addRow(calendarEventDescription);
+                                }, day);
+                        }
                     }
                     this.container.add(day);
                 }
@@ -142,6 +152,7 @@ export default class CalendarApp extends App {
         this.getActiveLayer().add(this.container.getAll());
     }
 
+    // TODO: Remove this if this doesn't mean anything
     private callbackTest = (day : any) => {
         console.log(day);
     }

@@ -1,4 +1,18 @@
-{
-    "start": "",
-    "end": ""
-}
+[
+    {
+        "title" : "Lorem ipsum dolor",
+        "day": 14,
+        "month": 1,
+        "year": 2022,
+        "description": "Description of Lorem Ipsum dolor",
+        "color": "0xffff00"
+    },
+    {
+        "title" : "Dolor est",
+        "day": 23,
+        "month": 2,
+        "year": 2022,
+        "description": "Description of dolor est",
+        "color": "0xff00ff"
+    }
+]

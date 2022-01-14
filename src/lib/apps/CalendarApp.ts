@@ -78,8 +78,14 @@ export default class CalendarApp extends App {
         let endDayLastMonth: number = new Date(year, month - 1, 0).getDate();
 
         // Add month and year label
-        // TODO: Rewrite this
-        this.monthYearLabel = this.fakeOS.add.text(32, 128, this.fakeOS.getString("month")[month - 1] + ' ' + year, { fontFamily: 'Arial', fontSize: '64px', color: '#ffffff' });
+        this.getActiveLayer().add(
+            this.fakeOS.add.text(
+                32, 128,
+                this.fakeOS.getString("month")[month - 1] + ' ' + year,
+                { fontFamily: 'Arial',
+                  fontSize: '64px',
+                  color: '#ffffff'
+                }));
 
         // Add day header names
         for (let j: number = 0; j < 7; j++) {
@@ -133,9 +139,7 @@ export default class CalendarApp extends App {
             x: 72, y: 256
         });
 
-        this.getActiveLayer().add(this.monthYearLabel);
         this.getActiveLayer().add(this.container.getAll());
-
     }
 
     private callbackTest = (day : any) => {

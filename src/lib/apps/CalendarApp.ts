@@ -36,9 +36,9 @@ export default class CalendarApp extends App {
         this.container = this.fakeOS.add.container();
     }
 
-    // TODO: How to get container from activeLayer?
-    // Something like this.getActiveLayer().get(this.container.getAll());
     public render(): void {
+        // Clear layer
+        this.getActiveLayer().clear();
         this.switchMonth();
         this.showCalendar();
     }

@@ -1,6 +1,7 @@
 export const PhoneEvents = {
     ActivityFinished: 'activity-finished',
     Downloaded: 'downloaded',
+    ItemSelected: 'item-selected',
     NewConversation: 'new-conversation',
     NotificationClicked: 'notification-clicked',
     NotificationFinished: 'notification-finished',

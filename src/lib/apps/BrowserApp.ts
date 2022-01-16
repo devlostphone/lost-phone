@@ -1,5 +1,8 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
+import TextList from '../ui/gameObjects/list/TextList';
+import { PhoneEvents } from '../events/GameEvents';
+import SearchBox from '../ui/gameObjects/input/SearchBox';
 
 /**
  * Browser app.
@@ -7,8 +10,9 @@ import App from '~/lib/apps/App';
  export default class BrowserApp extends App {
 
     protected pages: any;
-    protected pageList?: Phaser.GameObjects.GameObject;
+    protected pageList?: TextList;
     protected isListOpen: boolean;
+    protected searchBox: any;
 
     /**
      * Class constructor.
@@ -23,44 +27,68 @@ import App from '~/lib/apps/App';
 
     public render() {
 
-        let inputGraphics = this.fakeOS.add.graphics();
-        inputGraphics.fillStyle(0xffffff, 1);
-        inputGraphics.fillRoundedRect(
-            this.area.width * 0.1,
-            this.area.height / 3,
-            this.area.width * 0.8,
-            100,
-            32
+        this.searchBox = new SearchBox(
+            this.fakeOS,
+            this.fakeOS.getActiveApp().area.width * 0.1,
+            this.fakeOS.getActiveApp().area.height / 3,
+            '',
+            this.pages,
+            { color: '0x000000', fontSize: '28px' }
         );
-
-        let inputBox = this.fakeOS.add.rectangle(
-            this.area.width * 0.1,
-            this.area.height / 3,
-            this.area.width * 0.8,
-            100,
-        ).setOrigin(0);
-
-        let down_arrow = this.fakeOS.add.text(
-            (this.area.width * 0.9) - 48,
-            (this.area.height / 3) + 50,
-            '▼',
-            { color: '0x000000', fontSize: '48px' }
-        ).setOrigin(0.5);
-
-        this.addElements([inputGraphics, inputBox, down_arrow]);
+        this.addElements(this.searchBox);
 
         this.fakeOS.addInputEvent('pointerup', () => {
             if (!this.isListOpen) {
                 this.showPageList();
-                this.isListOpen = true;
             } else {
                 this.pageList?.destroy();
                 this.isListOpen = false;
             }
-        }, inputBox);
+        }, this.searchBox.background);
+
+        // Open page when link selected
+        this.fakeOS.addEventListener(PhoneEvents.ItemSelected, (id: number) => {
+            this.showPage(id);
+            this.pageList?.destroy();
+            this.isListOpen = false;
+        });
     }
 
     protected showPageList(): void {
 
+        this.pageList = new TextList(this.fakeOS, 0, 0);
+        for (let i = 0; i < this.pages.length; i++) {
+            this.pageList.addItem(this.pages[i]['id'], this.pages[i]['title']);
+        }
+
+        this.fakeOS.add.tween({
+            targets: this.searchBox,
+            y: this.area.y,
+            duration: 200,
+            onComplete: () => {
+                this.isListOpen = true;
+                this.addRow(this.pageList, { y: 1 });
+            }
+        });
+    }
+
+    protected showPage(id: number): void {
+        this.addLayer(0x333333);
+        this.addElements(this.searchBox);
+
+        const page = this.pages.find((element: any) => element.id == id);
+
+        let body = this.fakeOS.add.text(
+            0, this.area.y,
+            page['body'],
+            { fontSize: "28px", wordWrap: { width: this.area.width * 0.85, useAdvancedWrap: true} }
+        );
+
+        this.searchBox.addText(page['title']);
+        this.addRow(body, { y: 2, position: Phaser.Display.Align.TOP_CENTER });
+
+        this.getActiveLayer().setHandler(() => {
+            this.reRender();
+        });
     }
 }

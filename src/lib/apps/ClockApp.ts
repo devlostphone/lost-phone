@@ -88,7 +88,7 @@ export default class ClockApp extends App {
      */
     public render(): void {
         this.graphics = this.fakeOS.add.graphics();
-        this.elements.add(this.graphics);
+        this.addElements(this.graphics);
     }
 
     /**

@@ -59,24 +59,23 @@ export default class phoneUI {
         this.createDrawer();
 
         this.fakeOS.log('Setting up UI listeners');
-        this.fakeOS.addEventListener(
-            PhoneEvents.ActivityFinished,
-            () => {
-                this.fakeOS.log('Refreshing notifications');
-                this.fakeOS.checkNew();
-                this.elements.drawer?.refreshNotifications();
-            }
-        );
+        this.addEventListeners();
+        this.addInputListeners();
+        this.applyMask();
+    }
 
-        this.fakeOS.addEventListener(
-            PhoneEvents.NotificationLaunched,
-            (notification: any) => {
-                this.fakeOS.log('Launching notification ' + notification.id + ':' + notification.title);
-                this.elements.drawer?.launchNotification(notification);
-            }
+    protected applyMask(): void {
+        let graphics = new Phaser.GameObjects.Graphics(this.fakeOS);
+        graphics.fillRect(
+            0,0,
+            this.fakeOS.width,
+            this.fakeOS.height
         );
-
-        this.addListeners();
+        let mask = new Phaser.Display.Masks.GeometryMask(
+            this.fakeOS,
+            graphics
+        );
+        this.container?.setMask(mask);
     }
 
     /**
@@ -157,10 +156,10 @@ export default class phoneUI {
         .setDepth(1001);
 
         // Create back button
-        this.elements.backButton = this.fakeOS.add.text(
+        this.elements.backButton = this.fakeOS.add.image(
             this.fakeOS.width / 4,
             this.fakeOS.height - this.fakeOS.height * 0.05,
-            '<-'
+            'back-button'
         ).setVisible(false)
         .setDepth(1001);
 
@@ -200,9 +199,53 @@ export default class phoneUI {
     }
 
     /**
+     * Adds event listeners.
+     */
+    public addEventListeners(): void {
+        this.fakeOS.addEventListener(
+            PhoneEvents.ActivityFinished,
+            () => {
+                this.fakeOS.log('Refreshing notifications');
+                this.fakeOS.checkNew();
+                this.elements.drawer?.refreshNotifications();
+            }
+        );
+
+        this.fakeOS.addEventListener(
+            PhoneEvents.NotificationLaunched,
+            (notification: any) => {
+                this.fakeOS.log('Launching notification ' + notification.id + ':' + notification.title);
+                this.elements.drawer?.launchNotification(notification);
+            }
+        );
+
+        this.fakeOS.addEventListener(
+            PhoneEvents.NotificationClicked,
+            (notification: any) => {
+                let app = notification.type.charAt(0).toUpperCase() + notification.type.slice(1) + 'App';
+                this.fakeOS.log('Clicked notification of type: ' + notification.type);
+                this.elements.drawer?.hideDrawer();
+                this.fakeOS.launchApp(app);
+                this.fakeOS.getActiveApp().goToID(notification.id);
+            }
+        );
+
+        this.fakeOS.addEventListener(
+            PhoneEvents.NotificationFinished,
+            () => {
+                setTimeout(() => {
+                    if (this.elements.drawer !== undefined) {
+                        this.elements.drawer.isNotificationYoyoing = false;
+                    }
+                }, 1000);
+            }
+        );
+    }
+
+    /**
      * Adds UI input listeners.
      */
-    public addListeners(): void {
+    public addInputListeners(): void {
         this.fakeOS.addInputEvent(
             'pointerup',
             () => this.fakeOS.launchApp('HomescreenApp'),

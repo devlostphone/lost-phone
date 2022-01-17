@@ -69,9 +69,36 @@ FakeOS.prototype.checkNew = function(): void {
         if (content !== undefined) {
             for (let element in content) {
                 // If already completed or already in notifications, skip the element.
-                if(complete.includes(content[element]['id']) || notifications.includes(content[element]['id'])) {
+                if(complete.includes(content[element]['id']) || notifications.find((o:any) => o.id == content[element]['id'])) {
+                    this.log('Skipping notification ' + content[element]['id']);
                     continue;
                 }
+
+                // TODO: isolate this, let every app handle new elements
+                if (type == 'chat') {
+                    for (let conversation in content[element]['conversation']) {
+
+                        if(complete.includes(content[element]['conversation'][conversation]['id']) || notifications.find((o:any) => o.id == content[element]['conversation'][conversation]['id'])) {
+                            this.log('Skipping notification ' + content[element]['id']);
+                            continue;
+                        }
+
+                        let conditions = content[element]['conversation'][conversation]['condition'];
+                        if (!Array.isArray(conditions)) {
+                            conditions = [conditions];
+                        }
+
+                        if(this.checkDone(conditions)) {
+                            items.push({
+                                id: content[element]['conversation'][conversation]['id'],
+                                title: content[element]['conversation'][conversation]['text'],
+                                type: type,
+                                contact: content[element]['id']
+                            });
+                        }
+                    }
+                }
+
                 let conditions = content[element]['condition'];
                 if (!Array.isArray(conditions)) {
                     conditions = [conditions];
@@ -80,7 +107,8 @@ FakeOS.prototype.checkNew = function(): void {
                 if(this.checkDone(conditions)) {
                     items.push({
                         id: content[element]['id'],
-                        title: content[element]['title']
+                        title: content[element]['title'],
+                        type: type
                     });
                 }
             }

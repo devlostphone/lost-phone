@@ -1,5 +1,6 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
+import { PhoneEvents } from '../events/GameEvents';
 
 /**
  * Mail app.
@@ -10,6 +11,12 @@ import App from '~/lib/apps/App';
      * Mail list.
      */
     protected mails: any;
+
+    protected textoptions = {
+        fontSize: "24px",
+        align: "left",
+        wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+    };
 
     /**
      * Class constructor.
@@ -56,7 +63,10 @@ import App from '~/lib/apps/App';
             } else {
                 style = { color: '#F00' };
             }
-            let title = this.fakeOS.add.text(0,0, this.mails[i]['date'] + ' - ' +this.mails[i]['title'], style);
+            let title = this.fakeOS.add.text(0,0,
+                this.mails[i]['date'] + ' - ' +this.mails[i]['title'],
+                {...style, ...this.textoptions}
+            );
 
             this.addRow(title);
 
@@ -79,16 +89,25 @@ import App from '~/lib/apps/App';
 
         // Adding a new layer for displaying mail contents.
         this.addLayer(0x333333);
+
+        let header = this.fakeOS.add.text(0,0,
+            this.fakeOS.getString('from') + ': ' + mail['from'] + "\n" +
+            this.fakeOS.getString('subject') + ': ' + mail['subject'],
+            this.textoptions
+        ).setOrigin(0, 0);
+        this.addRow(header);
+
         let text = this.fakeOS.add.text(0,0,
             mail['body'],
-            {wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }}
+            this.textoptions
         ).setOrigin(0,0);
-        this.addRow(text);
+        this.addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
 
         this.fakeOS.setDone(mail['id']);
+    }
 
-        this.fakeOS.addBackFunction(() => {
-            this.fakeOS.launchApp('MailApp');
-        });
+    public goToID(id: string): void {
+        let mail = this.mails.find((o: any) => o.id == id);
+        this.openMail(mail);
     }
 }

@@ -97,8 +97,8 @@ export default class AppIcon extends Phaser.GameObjects.Container
                 this.scene,
                 0,
                 0,
-                25,
-                25,
+                50,
+                50,
                 0xff0000,
                 1.0
             ).setOrigin(0.5, 0.5));
@@ -110,7 +110,7 @@ export default class AppIcon extends Phaser.GameObjects.Container
                 counter.toString(),
                 {
                     fontFamily: 'Roboto',
-                    fontSize : '32',
+                    fontSize : '32px',
                     color: '#ffffff',
                     align: 'center'
                 }

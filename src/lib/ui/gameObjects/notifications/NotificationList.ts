@@ -37,7 +37,7 @@ export default class NotificationList extends Phaser.GameObjects.Container
             this.add(new NotificationBox(
                 this.fakeOS,
                 this.fakeOS.width / 2,
-                (i+1)*50,
+                (i+1)*200,
                 notifications[i]
             ));
         }
@@ -55,9 +55,9 @@ export default class NotificationList extends Phaser.GameObjects.Container
             this.yoyo(new NotificationBox(
                 this.fakeOS,
                 this.fakeOS.width / 2,
-                -50,
+                -200,
                 notification
-            ));
+            ).setDepth(2000));
             return true;
         } else {
             return false;
@@ -75,6 +75,7 @@ export default class NotificationList extends Phaser.GameObjects.Container
         this.fakeOS.tweens.add({
             targets: bouncingNotification,
             y: 100,
+            delay: 2500,
             duration: 700,
             yoyo: true,
             hold: 3000,

@@ -1,68 +1,92 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
-import { GameObjects } from 'phaser';
+import ChatInteraction from '../ui/gameObjects/chat/ChatInteraction';
+import { PhoneEvents } from '../events/GameEvents';
+import ChoiceInputArea from '../ui/gameObjects/input/ChoiceInputArea';
+import ChatSummary from '../ui/gameObjects/chat/ChatSummary';
 
 /**
- * Gallery app
+ * Chat app
  */
 export default class ChatApp extends App {
 
     protected chat: any;
     protected contacts: any;
-    protected textOptions = { align: "left", fontSize: "24px", wordWrap: { width: 300, useAdvancedWrap: true }};
-    protected rowOptions = { height: 2, autoscroll: true};
+    protected textOptions: any = { align: "left", fontSize: "24px" };
+    protected choiceTextOptions: any = { align: "left", fontSize: "24px" };
+    protected newRowOptions = { autoscroll: true };
+    protected rowOptions = { autoscroll: 'fast' };
     protected activeContact: number;
     protected lastMessage?: string;
 
+    /**
+     * Class constructor.
+     * @param fakeOS
+     */
     public constructor(fakeOS: FakeOS) {
-        super(fakeOS);
+        super(fakeOS, {rows: 6});
         this.chat = this.fakeOS.cache.json.get('chat');
         this.contacts = [];
         this.activeContact = 0;
+
+        this.textOptions['wordWrap'] = {
+            width: this.area.width * 0.6,
+            useAdvancedWrap: true
+        };
+        this.choiceTextOptions['wordWrap'] = {
+            width: this.area.width * 0.8,
+            useAdvancedWrap: true
+        };
     }
 
+    /**
+     * Render method.
+     */
     public render(): void {
 
         for (let i = 0; i < this.chat.length; i++) {
 
-            let pic = this.fakeOS.add.image(-this.area.width / 4 + 40, 0, this.chat[i].id);
-            let rectangle = this.fakeOS.add.rectangle(0, 0, this.area.width, this.rowHeight()*2);
-            rectangle.setStrokeStyle(1, 0xffffff);
-            let radius = Math.min(pic.width, pic.height) / 2;
-            //let circle = this.fakeOS.add.graphics().setPosition(0, 0).fillCircle(0, 0, radius);
-            //pic.setMask(circle.createGeometryMask());
-
-            let name = this.fakeOS.add.text(0, -pic.height / 6, this.chat[i].contactName, this.textOptions);
             let chatRegistry = this.fakeOS.registry.get('chat');
             let lastTextId = chatRegistry[this.chat[i].id+'_lastchat'];
             this.fakeOS.log('Contact '+this.chat[i].id+' last message was '+lastTextId);
-            let lastText = '...';
+            let lastText = this.fakeOS.getString('no-messages');
             if (lastTextId in this.chat[i].conversation) {
                 lastText = this.chat[i].conversation[lastTextId].text;
             }
 
-            let lastMessage = this.fakeOS.add.text(0, 10, lastText, this.textOptions);
-            let contact = this.fakeOS.add.container(0, 0, [rectangle, pic, name, lastMessage]);
+            let notifications = this.fakeOS.registry.get('notifications');
+            if (notifications.find((o:any) => o.contact == this.chat[i]['id'])) {
+                lastText = this.fakeOS.getString('is_typing');
+            }
+
+            let contact = new ChatSummary(
+                this.fakeOS,
+                0, 0,
+                this.chat[i],
+                lastText,
+                this.textOptions
+            );
 
             this.fakeOS.addInputEvent(
                 'pointerup',
                 () => {
                     this.openChat(i)
                 },
-                pic
+                contact
             );
 
             this.contacts.push(contact);
 
-            this.addRow(contact, {height: 2});
+            this.addRow(contact);
         }
     }
 
+    /**
+     * Opens up a single chat conversation.
+     *
+     * @param contact
+     */
     public openChat(contact: number): void {
-        this.fakeOS.addBackFunction(() => {
-            this.fakeOS.launchApp(this.fakeOS.getActiveApp().getKey());
-        });
-
         this.activeContact = contact;
         this.fakeOS.log("Opening chat with " + this.chat[this.activeContact].contactName);
         const conversation = this.chat[this.activeContact].conversation;
@@ -84,6 +108,13 @@ export default class ChatApp extends App {
         this.createChatInteraction(conversation[Object.keys(conversation)[0]], this.lastMessage == undefined);
     }
 
+    /**
+     * Creates a single chat interaction and then calls the next one.
+     *
+     * @param conversation
+     * @param newMessage
+     * @returns
+     */
     protected createChatInteraction(conversation: any, newMessage: boolean = false): object | null {
 
         if (conversation == undefined) {
@@ -109,88 +140,117 @@ export default class ChatApp extends App {
         }
     }
 
+    /**
+     * Creates a plain text chat interaction.
+     *
+     * @param conversation
+     * @param newMessage
+     * @returns
+     */
     protected createChatText(conversation: any, newMessage: boolean = false): object | null {
         if (!this.fakeOS.checkDone(conversation['condition'])) {
             return null;
-        }
-
-        let pic = this.fakeOS.add.image(0, 0, this.chat[this.activeContact].id);
-        if (newMessage) {
-            let typing = this.fakeOS.add.sprite(0, 0, 'typing').play('typingAnimation');
-            this.addRow([pic, typing], this.rowOptions);
-            this.fakeOS.log("Saving " + this.chat[this.activeContact].id + " last conversation as " + conversation.id);
-            let chatRegistry = this.fakeOS.registry.get('chat');
-            chatRegistry[this.chat[this.activeContact].id+'_lastchat'] = conversation.id;
-            this.fakeOS.addData('chat', chatRegistry);
-
-            let timedEvent = this.fakeOS.time.delayedCall(
-                1500,
-                () => {
-                    pic.destroy();
-                    typing.destroy();
-                    pic = this.fakeOS.add.image(0, 0, this.chat[this.activeContact].id);
-                    let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
-                    this.addRow([pic, text], {...this.rowOptions, y: this.lastY - 2});
-                    this.createChatInteraction(this.getNextConversation(conversation), true);
-                }
-            );
-
         } else {
-            let text = this.fakeOS.add.text(0, 0, conversation.text, this.textOptions);
-            this.addRow([pic, text], this.rowOptions);
+            /*let notifications = this.fakeOS.registry.get('notifications');
+            if (notifications.find((o:any) => o.id == conversation['id'])) {
+                this.fakeOS.checkDone(conversation['id']);
+            }*/
+        }
+        this.addRow(new ChatInteraction(
+                this.fakeOS,
+                0,0,
+                conversation.id,
+                this.chat[this.activeContact].id,
+                conversation.text,
+                {...this.textOptions, new_message: newMessage}
+            ).setName(conversation.id),
+            newMessage ? this.newRowOptions : this.rowOptions
+        );
 
+        if (newMessage) {
+            this.saveChatRegistry(conversation);
+            this.waitForNextConversation(conversation);
         }
 
-        return this.getNextConversation(conversation);
+        return newMessage ? null : this.getNextConversation(conversation);
     }
 
+    /**
+     * Creates a choice interaction where the user selects the answer.
+     *
+     * @param conversation
+     * @returns
+     */
     protected createChatOptions(conversation: any): object | null {
-        let avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
 
         if (!this.fakeOS.checkDone(conversation['id'])) {
-            let typing = this.fakeOS.add.sprite(0, 0, 'typing').play('typingAnimation');
-            this.addRow([typing, avatar], this.rowOptions);
 
-            let timedEvent = this.fakeOS.time.delayedCall(
-                600,
-                () => {
-                    avatar.destroy();
-                    typing.destroy();
-                    avatar = this.fakeOS.add.image(0, 0, 'default-avatar').setScale(0.5, 0.5);
-                    let options = this.showOptions(conversation);
-                    this.addRow([options, avatar], { ...this.rowOptions, y: this.lastY - 2});
-                }
-            );
+            this.addRow(new ChatInteraction(
+                this.fakeOS,
+                0,0,
+                conversation.id,
+                'default-avatar',
+                conversation.options,
+                {...this.textOptions, own_message: true, choose: true, new_message: true }
+            ).setName(conversation.id), this.newRowOptions);
+
+            this.waitForShowOptions(conversation);
 
             return null;
         } else {
             let chosen = this.fakeOS.registry.get('chat')[conversation.id];
             this.fakeOS.log('Chosen option was ' + chosen);
-            let text = this.fakeOS.add.text(0,0, conversation.options[chosen].text, this.textOptions);
-            this.addRow([text, avatar], this.rowOptions);
+
+            this.addRow(new ChatInteraction(
+                this.fakeOS,
+                0,0,
+                conversation.id,
+                'default-avatar',
+                conversation.options[chosen].text,
+                {...this.textOptions, own_message: true }
+            ).setName(conversation.id), this.rowOptions);
+
             return this.getNextConversation(conversation.options[chosen]);
         }
     }
 
+    /**
+     * Shows the list of options for a choice interaction.
+     *
+     * @param conversation
+     * @returns
+     */
     protected showOptions(conversation: any): Phaser.GameObjects.Container {
-        let options = this.fakeOS.add.container(0,0);
-        let pos = 0;
-        for (const key in conversation.options) {
-            let option = this.fakeOS.add.text(0, (pos*70) - 30, conversation.options[key]['text'], this.textOptions);
-            this.fakeOS.addInputEvent('pointerover', () => { option.setTint(0x00cc00)}, option);
-            this.fakeOS.addInputEvent('pointerout', () => { option.clearTint()}, option);
-            this.fakeOS.addInputEvent('pointerup', () =>  {
-                options.removeAll(true);
-                let option = this.fakeOS.add.text(0, - 30, conversation.options[key]['text'], this.textOptions);
-                options.add(option);
-                this.selectOption(conversation, key);
-            }, option);
-            options.add(option);
-            pos++;
-        }
-        return options;
+
+        let choice_area = new ChoiceInputArea(
+            this.fakeOS,
+            0, 0,
+            conversation.options,
+            this.choiceTextOptions
+        );
+
+        this.addElements(choice_area);
+
+        this.fakeOS.addEventListener(PhoneEvents.OptionSelected, (key: string) => {
+            choice_area.destroy();
+            let interaction = this.getActiveLayer().getByName(conversation.id);
+            interaction.setText(interaction.createText(
+                conversation.options[key]['text'],
+                {...this.textOptions, own_message: true }
+            ));
+            this.selectOption(conversation, key);
+        }, true);
+
+        return choice_area;
+
     }
 
+    /**
+     * Stores the selected option and continues the conversation.
+     *
+     * @param conversation
+     * @param key
+     */
     protected selectOption(conversation: any, key: string): void {
         this.fakeOS.log('You chose option ' + key);
 
@@ -201,6 +261,12 @@ export default class ChatApp extends App {
         this.createChatInteraction(this.getNextConversation(conversation.options[key]), true);
     }
 
+    /**
+     * Retrieve the next conversation.
+     *
+     * @param conversation
+     * @returns
+     */
     protected getNextConversation(conversation: any): any {
         if ('next' in conversation) {
             let next = this.chat[this.activeContact].conversation[conversation.next];
@@ -212,5 +278,39 @@ export default class ChatApp extends App {
             }
         }
         return null;
+    }
+
+    /**
+     * Adds an event listener that waits for new conversation to appear.
+     *
+     * @param conversation
+     */
+    protected waitForNextConversation(conversation: any): void {
+        this.fakeOS.addEventListener(PhoneEvents.NewConversation, () => {
+            this.createChatInteraction(this.getNextConversation(conversation), true);
+        }, true);
+    }
+
+    /**
+     * Adds an event listener that waits for the options to show.
+     *
+     * @param conversation
+     */
+    protected waitForShowOptions(conversation: any): void {
+        this.fakeOS.addEventListener(PhoneEvents.ShowOptions, () => {
+            this.showOptions(conversation);
+        }, true);
+    }
+
+    /**
+     * Saves the current state of the chat.
+     *
+     * @param conversation
+     */
+    protected saveChatRegistry(conversation: any): void {
+        this.fakeOS.log("Saving " + this.chat[this.activeContact].id + " last conversation as " + conversation.id);
+        let chatRegistry = this.fakeOS.registry.get('chat');
+        chatRegistry[this.chat[this.activeContact].id+'_lastchat'] = conversation.id;
+        this.fakeOS.addData('chat', chatRegistry);
     }
 }

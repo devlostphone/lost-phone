@@ -3,6 +3,7 @@ import Handler from '~/scenes/Handler';
 import UI from '~/lib/ui/phoneUI';
 import App from '~/lib/apps/App';
 import AppFactory from '~/lib/apps/AppFactory';
+import { PhoneEvents } from '~/lib/events/GameEvents';
 
 /**
  * FakeOS.
@@ -211,11 +212,14 @@ export class FakeOS extends FakeOSScene {
         this.log('Shutting down: ' + this.activeApp?.constructor.name);
         this.activeApp?.destroy();
         this.input.removeAllListeners();
+        this.removePhoneEvents();
+        this.time.removeAllEvents();
 
         this.log('Launching App: '+key);
         this.activeApp = AppFactory.createInstance(key, this);
         this.activeApp?.render();
-        this.getUI().addListeners();
+        this.getUI().addInputListeners();
+        this.getUI().addEventListeners();
 
         // Delete back function when in homescreen.
         if (key == 'HomescreenApp') {
@@ -224,6 +228,17 @@ export class FakeOS extends FakeOSScene {
             this.addBackFunction(() => {
                 this.launchApp('HomescreenApp');
             });
+        }
+    }
+
+    /**
+     * Removes only PhoneEvents listeners.
+     */
+    public removePhoneEvents() {
+        let key: keyof typeof PhoneEvents;
+
+        for (key in PhoneEvents) {
+            this.game.events.removeAllListeners(PhoneEvents[key]);
         }
     }
 }

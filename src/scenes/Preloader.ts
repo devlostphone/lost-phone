@@ -41,10 +41,12 @@ export default class Preloader extends FakeOSScene {
 
         this.preload_images();
         this.preload_languages();
+        this.preload_audio();
 
         // More specific preloads.
         this.preload_gallery_images();
         this.preload_contact_images();
+        this.preload_track_images();
 
         this.progressBar();
     }
@@ -71,6 +73,11 @@ export default class Preloader extends FakeOSScene {
         this.load.json(`lang-${lang}`, `lang/${lang}.json`);
     }
 
+    protected preload_audio(): void {
+        let tracks = this.cache.json.get('podcast');
+        this.load.audio(tracks);
+    }
+
     /**
      * Preload images method.
      */
@@ -84,6 +91,7 @@ export default class Preloader extends FakeOSScene {
         this.load.image('background', 'assets/img/backgrounds/library.png');
 
         this.load.image('play-button', 'assets/img/icons/play-button.png');
+        this.load.image('back-button', 'assets/img/icons/back.png');
 
         this.load.image('default-avatar', 'assets/default-avatar.png');
         this.load.spritesheet('typing', 'assets/typing-spritesheet.png', { frameWidth: 77, frameHeight: 38});
@@ -108,6 +116,14 @@ export default class Preloader extends FakeOSScene {
 
         for (let i = 0; i < media.length; i++) {
             this.load.image(media[i].id, 'assets/' + media[i].contactPic);
+        }
+    }
+
+    public preload_track_images(): void {
+        let tracks = this.cache.json.get('podcast');
+
+        for (let i = 0; i < tracks.length; i++) {
+            this.load.image(tracks[i].key, 'assets/' + tracks[i].thumbnail);
         }
     }
 

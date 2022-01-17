@@ -84,11 +84,19 @@ export default class Preloader extends FakeOSScene {
     public preload_images(): void {
         let imageSize = dpr * 128; // 64, 128, 256, 512
         this.load.image('app', 'assets/app@' + imageSize + 'x.png');
+
+        // Icon apps
+        // TODO: Replace them by new ones made by hand
+        let apps = this.cache.json.get('apps');
+        for (let i = 0; i < apps.length; i++) {
+            this.load.image(apps[i].type, 'assets/apps/' + apps[i].icon);
+        }
+
         this.load.image('guide', 'assets/720x1280-guide.png');
 
         this.load.image('lorem-appsum', `assets/iconApp-@2.png`);
         this.load.image('button-homescreen', 'assets/button-homescreen.png');
-        this.load.image('background', 'assets/img/backgrounds/library.png');
+        this.load.image('background', 'assets/img/backgrounds/background.jpg');
 
         this.load.image('play-button', 'assets/img/icons/play-button.png');
         this.load.image('back-button', 'assets/img/icons/back.png');

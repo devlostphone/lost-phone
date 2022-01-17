@@ -47,7 +47,7 @@ export default class HomescreenApp extends App {
                 this.fakeOS,
                 this.fakeOS.apps[index],
                 0, 0,
-                this.fakeOS.debug ? 'lorem-appsum' : this.fakeOS.apps[index].key
+                this.fakeOS.debug ? 'lorem-appsum' : this.fakeOS.apps[index].type
             ).addLabel(this.fakeOS.getString(this.fakeOS.apps[index]['type']));
 
             this.fakeOS.addInputEvent('pointerover', () => {

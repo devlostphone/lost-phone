@@ -74,7 +74,7 @@ export class FakeOS extends FakeOSScene {
 
         // Setup basic config
         this.lang = this.cache.json.get('config').language;
-        this.debug = this.cache.json.get('config').debug == 'dev';
+        this.debug = this.cache.json.get('config').debug;
         this.colors = this.cache.json.get('colors');
         this.apps = this.cache.json.get('apps');
 

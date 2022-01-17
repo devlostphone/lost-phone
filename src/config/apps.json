@@ -2,52 +2,52 @@
   {
     "type" : "clock",
     "key"  : "ClockApp",
-    "icon" : "clockApp.png",
+    "icon" : "clock.png",
     "preInstalled": true
   },
   {
     "type"   : "gallery",
     "key"    : "GalleryApp",
-    "icon"   : "galleryApp.png",
+    "icon"   : "gallery.png",
     "configFile" : true,
     "preInstalled": true
   },
   {
     "type"   : "chat",
     "key"    : "ChatApp",
-    "icon"   : "chatApp.png",
+    "icon"   : "chat.png",
     "configFile" : true,
     "preInstalled": true
   },
   {
     "type" : "podcast",
     "key"  : "PodcastApp",
-    "icon" : "podcastApp.png",
+    "icon" : "podcast.png",
     "configFile" : true,
     "preInstalled": false
   },
   {
     "type" : "calculator",
     "key"  : "calculatorApp",
-    "icon" : "calculatorApp.png",
+    "icon" : "calculator.png",
     "preInstalled": true
   },
   {
     "type" : "calendar",
     "key"  : "calendarApp",
-    "icon" : "calendarApp.png",
+    "icon" : "calendar.png",
     "preInstalled": true
   },
   {
     "type" : "notes",
     "key"  : "notesApp",
-    "icon" : "notesApp.png",
+    "icon" : "notes.png",
     "preInstalled": true
   },
   {
     "type" : "mail",
     "key"  : "MailApp",
-    "icon" : "mailApp.png",
+    "icon" : "mail.png",
     "description": "Aplicació de correu electrònic",
     "configFile" : true,
     "preInstalled": true
@@ -55,25 +55,25 @@
   {
     "type" : "sandbox",
     "key"  : "SandboxApp",
-    "icon" : "clockApp.png",
+    "icon" : "clock.png",
     "preInstalled": false
   },
   {
     "type" : "settings",
     "key"  : "SettingsApp",
-    "icon" : "settingsApp.png",
+    "icon" : "settings.png",
     "preInstalled": true
   },
   {
     "type" : "store",
     "key"  : "StoreApp",
-    "icon" : "storeApp.png",
+    "icon" : "store.png",
     "preInstalled": true
   },
   {
     "type": "browser",
     "key": "BrowserApp",
-    "icon": "browserApp.png",
+    "icon": "browser.png",
     "preInstalled": true
   }
 ]

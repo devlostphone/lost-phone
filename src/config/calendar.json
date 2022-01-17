@@ -1,6 +1,6 @@
 [
     {
-        "title" : "Lorem ipsum dolor",
+        "title" : "Inici miniop",
         "day": 14,
         "month": 1,
         "year": 2022,
@@ -8,7 +8,7 @@
         "color": "0xffff00"
     },
     {
-        "title" : "Dolor est",
+        "title" : "Final miniop",
         "day": 23,
         "month": 2,
         "year": 2022,

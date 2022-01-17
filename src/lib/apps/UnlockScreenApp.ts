@@ -113,7 +113,9 @@ export default class UnlockScreenApp extends App {
                     for (let dot of this.dots) dot.setFillStyle(0x000000);
                     this.enterCode = "";
                     // TODO: Find an alternative for shaking only the object nor the camera view
+                    // TODO: https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API
                     this.fakeOS.cameras.main.shake(250);
+                    window.navigator.vibrate(500);
                     console.log("Password incorrect");
                 }
             }

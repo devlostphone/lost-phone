@@ -44,7 +44,7 @@ export default class AppInfoBox extends Phaser.GameObjects.Container
             this.fakeOS,
             app,
             - this.fakeOS.getActiveApp().area.width * 0.15, 0,
-            this.fakeOS.debug ? 'lorem-appsum' : app.key
+            this.fakeOS.debug ? 'lorem-appsum' : app.type
         ).addLabel(this.fakeOS.getString(app['type']));
         this.add(this.icon);
 

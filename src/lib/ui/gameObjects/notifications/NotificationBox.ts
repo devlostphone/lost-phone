@@ -41,7 +41,7 @@ export default class NotificationBox extends Phaser.GameObjects.Container
         ));
 
         this.icon = this.fakeOS.add.image(
-            0,0,'lorem-appsum'
+            0,0, this.fakeOS.debug ? 'lorem-appsum' : notification.type
         ).setX(-220);
         this.add(this.icon);
 

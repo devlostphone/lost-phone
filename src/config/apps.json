@@ -53,10 +53,10 @@
     "preInstalled": true
   },
   {
-    "type" : "sandbox",
-    "key"  : "SandboxApp",
+    "type" : "unlock-screen",
+    "key"  : "UnlockScreenApp",
     "icon" : "clock.png",
-    "preInstalled": false
+    "preInstalled": true
   },
   {
     "type" : "settings",

@@ -6,6 +6,8 @@ import HomescreenApp from '~/lib/apps/HomescreenApp';
 import MailApp from '~/lib/apps/MailApp';
 import PodcastApp from '~/lib/apps/PodcastApp';
 import SettingsApp from '~/lib/apps/SettingsApp';
+import UnlockScreenApp from '~/lib/apps/UnlockScreenApp';
+import CalendarApp from '~/lib/apps/CalendarApp';
 import StoreApp from '~/lib/apps/StoreApp';
 
 /**
@@ -20,6 +22,8 @@ const Store: any = {
     MailApp,
     PodcastApp,
     SettingsApp,
+    CalendarApp,
+    UnlockScreenApp,
     StoreApp
 }
 

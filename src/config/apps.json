@@ -34,7 +34,7 @@
   },
   {
     "type" : "calendar",
-    "key"  : "calendarApp",
+    "key"  : "CalendarApp",
     "icon" : "calendar.png",
     "preInstalled": true
   },

@@ -4,14 +4,19 @@
     "calendar": "Calendar",
     "chat": "Chat",
     "clock": "Clock",
+    "daysweek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "daysweekshort": ["Mo.", "Tu.", "We.", "Th.", "Fr.", "Sa.", "Su."],
     "download": "Download",
     "downloading": "Downloading...",
+    "enter-passcode": "Enter passcode",
+    "enter-passcode-failure": "Incorrect passcode. Try again.",
     "from": "From",
     "gallery": "Galeria",
     "getQR": "Get QR",
     "installed": "Installed",
     "is_typing": "...is typing...",
     "mail": "Mail",
+    "month": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     "no-description": "No description available",
     "no-messages": "[There are no messages]",
     "notes": "Notes",
@@ -22,5 +27,6 @@
     "showNotifications": "Show notifications",
     "store": "AppStore",
     "subject": "Subject",
-    "title": "Title"
+    "title": "Title",
+    "unlock-screen": "Unlock screen"
 }

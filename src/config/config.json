@@ -6,6 +6,7 @@
     "name": "IOC Operating System"
   },
   "debug": false,
+  "locked": "true",
   "phone-scenes" :
   {
     "ui" : "UI",

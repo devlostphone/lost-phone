@@ -46,6 +46,11 @@ export class FakeOS extends FakeOSScene {
     protected backFunction: any = [];
 
     /**
+     * Is the Phone locked at start?
+     */
+    protected isLocked: boolean = false;
+
+    /**
      * Class constructor.
      */
     public constructor() {
@@ -73,6 +78,7 @@ export class FakeOS extends FakeOSScene {
         this.handlerScene.sceneRunning = 'fakeOS';
 
         // Setup basic config
+        this.isLocked = this.cache.json.get('config').locked && !this.checkDone('unlocked');
         this.lang = this.cache.json.get('config').language;
         this.debug = this.cache.json.get('config').debug;
         this.colors = this.cache.json.get('colors');
@@ -102,8 +108,11 @@ export class FakeOS extends FakeOSScene {
         // Render the UI
         this.UI.render();
 
-        // Render the homescreen
-        this.activeApp = AppFactory.createInstance('HomescreenApp', this);
+        // Render the first screen (homescreen or unlockscreen)
+        this.activeApp = AppFactory.createInstance(
+            this.isLocked ? 'UnlockScreenApp' : 'HomescreenApp',
+            this
+        );
         this.activeApp?.render();
 
         // Start listening to events

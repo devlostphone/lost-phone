@@ -1,6 +1,5 @@
 import { FakeOS } from '~/scenes/FakeOS';
 import App from '~/lib/apps/App';
-import Button from '~/lib/ui/gameObjects/Button';
 
 /**
  * Unlock Screen app
@@ -8,7 +7,7 @@ import Button from '~/lib/ui/gameObjects/Button';
 
 export default class UnlockScreenApp extends App {
 
-    protected message: string;
+    protected message?: Phaser.GameObjects.Text;
     protected pin?: string;
     protected password: string;
     protected dots: any;
@@ -18,8 +17,6 @@ export default class UnlockScreenApp extends App {
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.password = this.fakeOS.cache.json.get('unlock-screen').password;
-        // TODO: Localize this message
-        this.message = "Introdueix el PIN per desbloquejar";
         this.enterCode = "";
     }
 
@@ -87,12 +84,17 @@ export default class UnlockScreenApp extends App {
     }
 
     protected showMessage(): void {
-        this.addRow(this.fakeOS.add.text(0,0, this.message, { fontFamily: 'Arial', fontSize: '32px', color: '#ffffff', align: 'center' }));
+        this.message = this.fakeOS.add.text(
+            0,0,
+            this.fakeOS.getString('enter-passcode'),
+            { fontFamily: 'Arial', fontSize: '32px', color: '#ffffff', align: 'center' }
+        );
+        this.addRow(this.message);
     }
 
     // FIXME: notification.type is undefined
     protected checkPIN = (button: any) => {
-        console.log("checkPIN");
+        this.fakeOS.log("checkPIN");
         button.label.setColor('#000');
         if (button.sublabel)
             button.sublabel.setColor('#000');
@@ -106,8 +108,9 @@ export default class UnlockScreenApp extends App {
             this.dots[lengthCode].setFillStyle(0xffffff);
             if (lengthCode == 3) {
                 if (this.enterCode === this.password) {
-                    console.log("Password correct");
-                    // TODO: Switch to homescreen at this point
+                    this.fakeOS.log("Password correct");
+                    this.fakeOS.setDone('unlocked');
+                    this.fakeOS.launchApp('HomescreenApp');
                 } else {
                     // Reset everything
                     for (let dot of this.dots) dot.setFillStyle(0x000000);
@@ -116,7 +119,10 @@ export default class UnlockScreenApp extends App {
                     // TODO: https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API
                     this.fakeOS.cameras.main.shake(250);
                     window.navigator.vibrate(500);
-                    console.log("Password incorrect");
+                    this.fakeOS.log("Password incorrect");
+                    if (this.message !== undefined) {
+                        this.message.text = this.fakeOS.getString('enter-passcode-failure');
+                    }
                 }
             }
         }

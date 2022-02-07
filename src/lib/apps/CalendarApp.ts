@@ -7,12 +7,12 @@ import Button from '~/lib/ui/gameObjects/Button';
  */
 
 class Day extends Button {
-    public date : Date;
-    public labelColor : number;
+    public date? : Date;
+    public labelColor? : number;
     public event : any;
 
-    public constructor(fakeOS: FakeOS, date: number, labelColor: number = '#ffffff', event: any = {}) {
-        super(fakeOS, 'arc', 'small', date);
+    public constructor(fakeOS: FakeOS, date: number, labelColor: string = '#ffffff', event: any = {}) {
+        super(fakeOS, 'arc', 'small', date.toString());
     }
 }
 
@@ -21,10 +21,11 @@ export default class CalendarApp extends App {
     protected fakeOS: FakeOS;
     private days: Array<Day> = new Array<Day>();
     private currentDate: Date = new Date();
-    private monthYearLabel: Phaser.GameObjects.Text;
+    private monthYearLabel?: Phaser.GameObjects.Text;
     private container: Phaser.GameObjects.Container;
-    private backButton: Phaser.GameObjects.Text;
-    private forwardButton: Phase.GameObjects.Text;
+    private backButton?: Phaser.GameObjects.Text;
+    private forwardButton?: Phaser.GameObjects.Text;
+    private events: any;
 
 
     public constructor(
@@ -46,7 +47,7 @@ export default class CalendarApp extends App {
 
     public update(delta: any, time: any): void { }
 
-    protected switchMonth(direction: number): void {
+    protected switchMonth(direction?: number): void {
         let app = this;
 
         // TODO: Improve visuals
@@ -94,7 +95,7 @@ export default class CalendarApp extends App {
         for (let j: number = 0; j < 7; j++) {
             this.container.add(new Phaser.GameObjects.Text(this.fakeOS, 0, 0, this.fakeOS.getString('daysweek')[j], {
                 fontFamily: 'Arial',
-                fontSize: 48,
+                fontSize: '48px',
                 color: '#fff'
             }).setName('labelDay'));
         }
@@ -106,12 +107,12 @@ export default class CalendarApp extends App {
                 if (currentDay < startDay) {
                     let dayNumber: number = endDayLastMonth + (currentDay - startDay + 1)
                     let day = new Day(this.fakeOS, dayNumber);
-                    day.bg.setTint(0x3c3c3c);
+                    day.bg?.setTint(0x3c3c3c);
                     this.container.add(day);
                 } else if (currentDay - startDay >= endDay) {
                     let dayNumber: number = (currentDay - startDay + 1) - endDay;
                     let day = new Day(this.fakeOS, dayNumber);
-                    day.bg.setTint(0x3c3c3c);
+                    day.bg?.setTint(0x3c3c3c);
                     this.container.add(day);
                 } else {
                     let day = new Day(this.fakeOS, currentDay - startDay + 1);
@@ -122,7 +123,7 @@ export default class CalendarApp extends App {
                             event["month"] == month &&
                             event["year"] == year) {
                             // TODO: Set human color names at config
-                            day.bg.setTint(0x00ff00);
+                            day.bg?.setTint(0x00ff00);
                             day.setInteractive(new Phaser.Geom.Circle(0, 0, 32), Phaser.Geom.Circle.Contains);
                             this.fakeOS.addInputEvent(
                                 'pointerup',

@@ -17,21 +17,21 @@ declare global {
                    label: string,
                    x: number,
                    y: number,
-                   option: any = {});
+                   option: any): any;
         }
     }
 }
 
 export default class Button extends Phaser.GameObjects.Container implements IButton {
 
-    protected arc: Phaser.GameObjects.Image;
-    protected rect: Phaser.GameObjects.Image;
-    protected capsule: Phaser.GameObjects.Image;
-    public bg: Phaser.GameObjects.Image;
+    protected arc?: Phaser.GameObjects.Image;
+    protected rect?: Phaser.GameObjects.Image;
+    protected capsule?: Phaser.GameObjects.Image;
+    public bg?: Phaser.GameObjects.Image;
     public label: Phaser.GameObjects.Text;
-    public sublabel: Phaser.GameObjects.Text;
+    public sublabel?: Phaser.GameObjects.Text;
 
-    public constructor (scene: FakeOS,
+    public constructor (scene: Phaser.Scene,
                         shape: string,
                         size: string,
                         label: string = "",
@@ -42,12 +42,12 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
         super(scene, x, y);
 
         let shapeSize: number;
-        let fontSize: number;
+        let fontSize: string;
         switch(size) {
-            case "small" : shapeSize = 72 ; fontSize = 32; break;
-            case "medium": shapeSize = 96 ; fontSize = 48; break;
-            case "large" : shapeSize = 144; fontSize = 72; break:
-            default: break;
+            default:
+            case "small" : shapeSize = 72 ; fontSize = '32px'; break;
+            case "medium": shapeSize = 96 ; fontSize = '48px'; break;
+            case "large" : shapeSize = 144; fontSize = '72px'; break;
         }
 
         // Set shape button if label exists
@@ -77,7 +77,7 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
 
         // Set sublabel button if exists on options
         if (options.hasOwnProperty('sublabel')) {
-            this.sublabel = new Phaser.GameObjects.Text(scene, 0, 0, options.sublabel, { fontFamily: 'Arial', fontSize: 24});
+            this.sublabel = new Phaser.GameObjects.Text(scene, 0, 0, options.sublabel, { fontFamily: 'Arial', fontSize: '24px'});
             this.sublabel.setColor('#000000');
             this.sublabel.setOrigin(0.5);
             this.label.y -= 8

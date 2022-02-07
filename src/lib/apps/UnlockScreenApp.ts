@@ -9,7 +9,7 @@ import Button from '~/lib/ui/gameObjects/Button';
 export default class UnlockScreenApp extends App {
 
     protected message: string;
-    protected pin: string;
+    protected pin?: string;
     protected password: string;
     protected dots: any;
     protected numericPad: any;
@@ -99,7 +99,7 @@ export default class UnlockScreenApp extends App {
         button.bg.setTint(0xffffff);
         let value: string = button.label.text;
         this.enterCode = this.enterCode + value;
-        let lengthCode = parseInt(this.enterCode.length);
+        let lengthCode = this.enterCode.length;
         lengthCode--;
 
         if (lengthCode < 4) {

@@ -63,6 +63,11 @@ FakeOS.prototype.checkNew = function(): void {
     let notifications = this.registry.get('notifications');
 
     for (let app in apps) {
+
+        if (!apps[app]['hasNotifications']) {
+            continue;
+        }
+
         let type = apps[app]['type'];
         let content = this.cache.json.get(type);
 
@@ -100,9 +105,6 @@ FakeOS.prototype.checkNew = function(): void {
                 }
 
                 let conditions = content[element]['condition'];
-                if (!Array.isArray(conditions)) {
-                    conditions = [conditions];
-                }
 
                 if(this.checkDone(conditions)) {
                     items.push({

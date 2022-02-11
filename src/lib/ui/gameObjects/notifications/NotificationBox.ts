@@ -41,7 +41,7 @@ export default class NotificationBox extends Phaser.GameObjects.Container
         ));
 
         this.icon = this.fakeOS.add.image(
-            0,0, this.fakeOS.debug ? 'lorem-appsum' : notification.type
+            0,0, notification.type
         ).setX(-220);
         this.add(this.icon);
 
@@ -52,8 +52,17 @@ export default class NotificationBox extends Phaser.GameObjects.Container
         this.fakeOS.addInputEvent('pointerup', () => {
             this.icon.setTint(185273);
             setTimeout(() => {
+                this.fakeOS.log("Clicked on notification: " + this.id);
                 this.icon.clearTint();
-                this.fakeOS.launchEvent(PhoneEvents.NotificationClicked, this.notification);
+
+                // Only open app when phone unlocked
+                if (this.fakeOS.checkDone('unlocked')) {
+                    this.fakeOS.launchEvent(PhoneEvents.NotificationClicked, this.notification);
+                } else {
+                    this.fakeOS.cameras.main.shake(250);
+                    window.navigator.vibrate(500);
+                    this.fakeOS.getUI().elements.drawer?.hideDrawer();
+                }
             }, 100);
         }, this.icon);
     }

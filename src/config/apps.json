@@ -3,46 +3,53 @@
     "type" : "clock",
     "key"  : "ClockApp",
     "icon" : "clock.png",
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": false
   },
   {
     "type"   : "gallery",
     "key"    : "GalleryApp",
     "icon"   : "gallery.png",
     "configFile" : true,
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": false
   },
   {
     "type"   : "chat",
     "key"    : "ChatApp",
     "icon"   : "chat.png",
     "configFile" : true,
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": true
   },
   {
     "type" : "podcast",
     "key"  : "PodcastApp",
     "icon" : "podcast.png",
     "configFile" : true,
-    "preInstalled": false
+    "preInstalled": false,
+    "hasNotifications": false
   },
   {
     "type" : "calculator",
     "key"  : "calculatorApp",
     "icon" : "calculator.png",
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": false
   },
   {
     "type" : "calendar",
     "key"  : "CalendarApp",
     "icon" : "calendar.png",
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": false
   },
   {
     "type" : "notes",
     "key"  : "notesApp",
     "icon" : "notes.png",
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": false
   },
   {
     "type" : "mail",
@@ -50,30 +57,35 @@
     "icon" : "mail.png",
     "description": "Aplicació de correu electrònic",
     "configFile" : true,
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": true
   },
   {
     "type" : "unlock-screen",
     "key"  : "UnlockScreenApp",
     "icon" : "clock.png",
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": false
   },
   {
     "type" : "settings",
     "key"  : "SettingsApp",
     "icon" : "settings.png",
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": false
   },
   {
     "type" : "store",
     "key"  : "StoreApp",
     "icon" : "store.png",
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": false
   },
   {
     "type": "browser",
     "key": "BrowserApp",
     "icon": "browser.png",
-    "preInstalled": true
+    "preInstalled": true,
+    "hasNotifications": false
   }
 ]

@@ -115,7 +115,8 @@ export class FakeOS extends FakeOSScene {
         );
         this.activeApp?.render();
 
-        // Start listening to events
+        // Check new notifications at start
+        this.launchEvent(PhoneEvents.ActivityFinished);
     }
 
     /**
@@ -155,6 +156,13 @@ export class FakeOS extends FakeOSScene {
      */
     public getBackFunction(): any {
         return this.backFunction;
+    }
+
+    /**
+     * Clears the back function stack.
+     */
+    public clearBackFunction(): void {
+        this.backFunction = [];
     }
 
     /**
@@ -231,7 +239,7 @@ export class FakeOS extends FakeOSScene {
         this.getUI().addEventListeners();
 
         // Delete back function when in homescreen.
-        if (key == 'HomescreenApp') {
+        if (['HomescreenApp','UnlockScreenApp'].includes(key)) {
             this.backFunction = [];
         } else {
             this.addBackFunction(() => {

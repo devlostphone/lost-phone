@@ -18,6 +18,9 @@ export default class UnlockScreenApp extends App {
         super(fakeOS);
         this.password = this.fakeOS.cache.json.get('unlock-screen').password;
         this.enterCode = "";
+
+        // Hide home button and back button
+        this.fakeOS.getUI().hideHomeButton();
     }
 
     public render(): void {
@@ -110,6 +113,7 @@ export default class UnlockScreenApp extends App {
                 if (this.enterCode === this.password) {
                     this.fakeOS.log("Password correct");
                     this.fakeOS.setDone('unlocked');
+                    this.fakeOS.getUI().showHomeButton();
                     this.fakeOS.launchApp('HomescreenApp');
                 } else {
                     // Reset everything

@@ -34,12 +34,14 @@ export default class NotificationList extends Phaser.GameObjects.Container
         this.fakeOS.log('Total notifications: ' + notifications.length);
 
         for (let i=0; i<notifications.length; i++) {
-            this.add(new NotificationBox(
+            let notification = new NotificationBox(
                 this.fakeOS,
                 this.fakeOS.width / 2,
                 (i+1)*200,
                 notifications[i]
-            ));
+            );
+            notification.addOnIconClick();
+            this.add(notification);
         }
     }
 
@@ -52,6 +54,7 @@ export default class NotificationList extends Phaser.GameObjects.Container
     public launchNotification(notification: any): boolean {
         let child = this.getFirst('id', notification.id);
         if (child instanceof NotificationBox) {
+            this.fakeOS.log("Yoyoing!");
             this.yoyo(new NotificationBox(
                 this.fakeOS,
                 this.fakeOS.width / 2,

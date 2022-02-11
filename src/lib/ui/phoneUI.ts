@@ -111,6 +111,20 @@ export default class phoneUI {
     }
 
     /**
+     * Shows home button.
+     */
+    public showHomeButton(): void {
+        this.elements.homeButton.setVisible(true);
+    }
+
+    /**
+     * Hides home button.
+     */
+    public hideHomeButton(): void {
+        this.elements.homeButton.setVisible(false);
+    }
+
+    /**
      * Creates the top and bottom bars.
      */
     protected createBars(): void {

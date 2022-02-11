@@ -5,7 +5,7 @@
   {
     "name": "IOC Operating System"
   },
-  "debug": false,
+  "debug": true,
   "locked": "true",
   "phone-scenes" :
   {

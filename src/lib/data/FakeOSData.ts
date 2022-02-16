@@ -81,16 +81,20 @@ FakeOS.prototype.checkNew = function(): void {
 
                 // TODO: isolate this, let every app handle new elements
                 if (type == 'chat') {
+                    let first = true;
                     for (let conversation in content[element]['conversation']) {
 
                         if(complete.includes(content[element]['conversation'][conversation]['id']) || notifications.find((o:any) => o.id == content[element]['conversation'][conversation]['id'])) {
                             this.log('Skipping notification ' + content[element]['id']);
+                            first = false;
                             continue;
                         }
 
                         let conditions = content[element]['conversation'][conversation]['condition'];
-                        if (!Array.isArray(conditions)) {
-                            conditions = [conditions];
+
+                        // Only notify the first chat without conditions
+                        if (!first && conditions === null) {
+                            continue;
                         }
 
                         if(this.checkDone(conditions)) {
@@ -101,6 +105,8 @@ FakeOS.prototype.checkNew = function(): void {
                                 contact: content[element]['id']
                             });
                         }
+
+                        first = false;
                     }
                 }
 

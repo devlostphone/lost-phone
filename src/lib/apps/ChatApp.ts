@@ -151,10 +151,11 @@ export default class ChatApp extends App {
         if (!this.fakeOS.checkDone(conversation['condition'])) {
             return null;
         } else {
-            /*let notifications = this.fakeOS.registry.get('notifications');
+            this.fakeOS.log("Checking conversation " + conversation['id'] + ' as done.');
+            let notifications = this.fakeOS.registry.get('notifications');
             if (notifications.find((o:any) => o.id == conversation['id'])) {
-                this.fakeOS.checkDone(conversation['id']);
-            }*/
+                this.fakeOS.setDone(conversation['id']);
+            }
         }
         this.addRow(new ChatInteraction(
                 this.fakeOS,

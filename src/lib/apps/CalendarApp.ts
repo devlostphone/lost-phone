@@ -93,7 +93,7 @@ export default class CalendarApp extends App {
 
         // Add day header names
         for (let j: number = 0; j < 7; j++) {
-            this.container.add(new Phaser.GameObjects.Text(this.fakeOS, 0, 0, this.fakeOS.getString('daysweek')[j], {
+            this.container.add(new Phaser.GameObjects.Text(this.fakeOS, 0, 0, this.fakeOS.getString('daysweekshort')[j], {
                 fontFamily: 'Arial',
                 fontSize: '48px',
                 color: '#fff'

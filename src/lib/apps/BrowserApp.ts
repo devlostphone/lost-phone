@@ -58,7 +58,11 @@ import SearchBox from '../ui/gameObjects/input/SearchBox';
 
         this.pageList = new TextList(this.fakeOS, 0, 0);
         for (let i = 0; i < this.pages.length; i++) {
-            this.pageList.addItem(this.pages[i]['id'], this.pages[i]['title']);
+            this.pageList.addItem(
+                this.pages[i]['id'],
+                this.pages[i]['title'],
+                !this.fakeOS.checkDone(this.pages[i]['condition'])
+            );
         }
 
         this.fakeOS.add.tween({

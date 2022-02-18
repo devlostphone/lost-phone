@@ -27,7 +27,7 @@ export default class TextList extends Phaser.GameObjects.Container
         this.num_items = 0;
     }
 
-    public addItem(id: number, text: string) {
+    public addItem(id: number, text: string, forbidden: boolean = false) {
 
         let item_height = this.fakeOS.getActiveApp().area.height / 12;
 
@@ -41,12 +41,14 @@ export default class TextList extends Phaser.GameObjects.Container
         let item_text = this.fakeOS.add.text(
             0, this.num_items * item_height,
             text,
-            { fontSize: "28px"}
+            { fontSize: "28px", color: (forbidden ? "#999999" : "#ffffff") }
         ).setOrigin(0.5);
 
-        this.fakeOS.addInputEvent('pointerup', () => {
-            this.fakeOS.launchEvent(PhoneEvents.ItemSelected, id);
-        }, item_background);
+        if (!forbidden) {
+            this.fakeOS.addInputEvent('pointerup', () => {
+                this.fakeOS.launchEvent(PhoneEvents.ItemSelected, id);
+            }, item_background);
+        }
 
         this.add([item_background, item_text]);
 

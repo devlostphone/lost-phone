@@ -30,6 +30,9 @@ export const config:  Phaser.Types.Core.GameConfig = {
             height: MAX_SIZE_HEIGHT_SCREEN
         }
     },
+    dom: {
+        createContainer: true
+    },
     scene: [
         Handler,
         Boot,

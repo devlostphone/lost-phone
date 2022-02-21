@@ -9,12 +9,18 @@
         "id" : "page002",
         "title": "Què és el joc del calamar?",
         "body" : "오징어 게임 (RR: Ojingeo Geim, traduïble com a «El joc del calamar») és una sèrie de televisió sud-coreana estrenada el 17 de setembre de 2021 a Netflix.[1] La sèrie narra la història d'un grup de persones en risc d'exclusió que arrisquen la vida en una misteriosa competició de supervivència, basada en jocs infantils coreans, amb un premi de 45.600 milions de wons[2] —equivalents a aproximadament uns 33,12 milions d'euros. L'obra rep el títol d'un joc de carrer a qual Gi-hun i Sang-woo jugaven quan eren joves.[3][4] El joc és bastant físic i només acaba quan s'aconsegueix arribar a un guanyador final. El joc es diu així, ja que els jugadors han de dibuixar diferents formes geomètriques (cercle, quadrat o triangle) a terra, que, en conjunt, semblen formar un calamar. Si un atacant aconsegueix travessar el defensor i entrar al cap del calamar, es proclama a aquest com guanyador del joc.[5] La sèrie narra la història d'un grup de persones que decideixen convertir-se en jugadors d'un misteriós joc de supervivència que té com a premi l'enorme quantitat de 45 mil milions de wons. Entre els jugadors s'hi troben: Ki-hoon, un home benèvol que sembla haver-ho perdut tot després de ser acomiadat de la feina: Sang-woo, un home astut que es fica en problemes a la feina després de robar diners de la companyia; Deok-soo un perillós i despietat home disposat a fer el que sigui; Joon-ho, un oficial molt sagaç que va encobert per descobrir la veritat; Kang Sae-byeok, una jove i rebel desertora nord-coreana que necessita diners per a la seva família; Han Mi-nyeo, una dona salvatge a la qual no li importa enganyar i Abdul Ali, un afable jove immigrant.[6] ",
-        "condition": null
+        "condition": ["m001"]
     },
     {
         "id": "page003",
         "title": "IOC (Institut Obert de Catalunya)",
-        "body": "L'IOC és l'institut d'ensenyament a distància del Departament d’Ensenyament que posa al teu abast una àmplia oferta formativa i et permet estudiar d’una manera flexible i adaptada a les teves necessitats. El centre aposta per un model educatiu centrat en l’estudiant que es recolza en un entorn virtual d’aprenentatge dissenyat per garantir l’atenció personalitzada dels alumnes.",
-        "condition": ["m002"]
+        "page": "https://ioc.xtec.cat/educacio",
+        "condition": null
+    },
+    {
+        "id": "page004",
+        "title": "Prova HTML",
+        "page": "assets/web/prova.html",
+        "condition": null
     }
 ]

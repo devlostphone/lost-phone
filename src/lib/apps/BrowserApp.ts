@@ -13,6 +13,7 @@ import SearchBox from '../ui/gameObjects/input/SearchBox';
     protected pageList?: TextList;
     protected isListOpen: boolean;
     protected searchBox: any;
+    protected body?: any;
 
     /**
      * Class constructor.
@@ -42,6 +43,7 @@ import SearchBox from '../ui/gameObjects/input/SearchBox';
                 this.showPageList();
             } else {
                 this.pageList?.destroy();
+                this.body?.setVisible(true);
                 this.isListOpen = false;
             }
         }, this.searchBox.background);
@@ -71,26 +73,37 @@ import SearchBox from '../ui/gameObjects/input/SearchBox';
             duration: 200,
             onComplete: () => {
                 this.isListOpen = true;
+                this.body?.setVisible(false);
                 this.addRow(this.pageList, { y: 1 });
             }
         });
     }
 
     protected showPage(id: number): void {
+        this.getActiveLayer().setHandler(() => {
+            this.body?.destroy();
+            this.reRender();
+        });
         this.addLayer(0x333333);
         this.addElements(this.searchBox);
 
         const page = this.pages.find((element: any) => element.id == id);
-
-        let body = this.fakeOS.add.text(
-            0, this.area.y,
-            page['body'],
-            { fontSize: "28px", wordWrap: { width: this.area.width * 0.85, useAdvancedWrap: true} }
-        );
-
         this.searchBox.addText(page['title']);
-        this.addRow(body, { y: 2, position: Phaser.Display.Align.TOP_CENTER });
 
+        if ('body' in page) {
+            this.body = this.fakeOS.add.text(
+                0, this.area.y,
+                page['body'],
+                { fontSize: "28px", wordWrap: { width: this.area.width * 0.85, useAdvancedWrap: true} }
+            );
+
+        } else {
+            this.body = this.fakeOS.add.dom(0, 0).createFromHTML(
+                '<iframe width="'+ (this.area.width - 6) +'" height="'+ this.rowHeight() * 9 +'" src="'+ page['page'] +'" />'
+            );
+        }
+
+        this.addRow(this.body, { y: 2, position: Phaser.Display.Align.TOP_CENTER });
         this.getActiveLayer().setHandler(() => {
             this.reRender();
         });

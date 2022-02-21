@@ -183,6 +183,8 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
      */
     public showDrawer(): void {
         this.fakeOS.log('Launching drawer');
+        this.iframe_visibility(false);
+
         this.UI.isDrawerOpen = true;
         this.fakeOS.tweens.add({
             targets: this.drawerArea,
@@ -202,6 +204,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
      */
     public hideDrawer(): void {
         this.fakeOS.log('Hiding drawer');
+
         this.UI.isDrawerOpen = false;
         this.fakeOS.tweens.add({
             targets: this.drawerArea,
@@ -212,6 +215,9 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             },
             onStart: () => {
                 this.deleteDragZone();
+            },
+            onComplete: () => {
+                this.iframe_visibility(true);
             }
         });
     }
@@ -348,6 +354,18 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
                 this.isNotificationYoyoing = true;
             }
             this.pendingNotifications.shift();
+        }
+    }
+
+    /**
+     * Sets iframe visibility (only used for browser app)
+     * @param visible
+     */
+    protected iframe_visibility(visible: boolean): void {
+        // TODO: look for a better solution to show browser iframe
+        let iframe = document.getElementsByTagName("iframe");
+        if (iframe.length > 0) {
+            iframe[0].style.visibility = visible ? 'visible' : 'hidden';
         }
     }
 }

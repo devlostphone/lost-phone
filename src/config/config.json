@@ -7,6 +7,7 @@
   },
   "debug": true,
   "locked": "true",
+  "notification_drawer_animation_duration": 400,
   "phone-scenes" :
   {
     "ui" : "UI",

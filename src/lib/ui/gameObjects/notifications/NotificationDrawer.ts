@@ -189,7 +189,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         this.fakeOS.tweens.add({
             targets: this.drawerArea,
             y: 0,
-            duration: 700,
+            duration: this.fakeOS.cache.json.get('config').notification_drawer_animation_duration,
             onUpdate: () => {
                 this.applyMask();
             },
@@ -209,7 +209,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         this.fakeOS.tweens.add({
             targets: this.drawerArea,
             y: -this.fakeOS.height,
-            duration: 700,
+            duration: this.fakeOS.cache.json.get('config').notification_drawer_animation_duration,
             onUpdate: () => {
                 this.applyMask();
             },

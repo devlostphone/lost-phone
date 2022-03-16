@@ -81,6 +81,16 @@ export default class ChatApp extends App {
         }
     }
 
+    public goToID(id: string): void {
+        for (let contact=0; contact < this.chat.length; contact++) {
+            if (id in this.chat[contact].conversation) {
+                this.openChat(contact);
+                break;
+            }
+        }
+
+    }
+
     /**
      * Opens up a single chat conversation.
      *

@@ -92,7 +92,10 @@ export default abstract class App {
      */
     public update(delta: any, time: any): void {}
 
-
+    /**
+     * Goes to specific item ID (launched by notification)
+     * @param id
+     */
     public goToID(id: string): void {}
 
     /**

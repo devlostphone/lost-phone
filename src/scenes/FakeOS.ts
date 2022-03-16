@@ -56,7 +56,6 @@ export class FakeOS extends FakeOSScene {
     public constructor() {
         super('fakeOS');
         this.UI = new UI(this);
-        //this.activeApp = AppFactory.createInstance('HomescreenApp', this);
     }
 
     /**
@@ -233,7 +232,13 @@ export class FakeOS extends FakeOSScene {
         this.time.removeAllEvents();
 
         this.log('Launching App: '+key);
-        this.activeApp = AppFactory.createInstance(key, this);
+        try {
+            this.activeApp = AppFactory.createInstance(key, this);
+        } catch (error: any) {
+            this.log(error);
+            this.log('Defaulting to homescreen');
+            this.activeApp = AppFactory.createInstance('HomescreenApp', this);
+        }
         this.activeApp?.render();
         this.getUI().addInputListeners();
         this.getUI().addEventListeners();

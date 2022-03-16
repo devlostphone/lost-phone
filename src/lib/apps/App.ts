@@ -8,7 +8,7 @@ import AppLayer from '../ui/AppLayer';
 export default abstract class App {
 
     /**
-     * FakeOS
+     * FakeOS.
      */
     protected fakeOS: FakeOS;
 
@@ -23,12 +23,12 @@ export default abstract class App {
     public columns: number = 4;
 
     /**
-     * Active layer
+     * Active layer.
      */
     public activeLayer: number;
 
     /**
-     * Last layer, if any
+     * App layers.
      */
     public layers: Phaser.GameObjects.Container;
 

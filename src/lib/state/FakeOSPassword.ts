@@ -2,10 +2,34 @@ import { FakeOS } from "~/scenes/FakeOS";
 
 declare module "scenes/FakeOS" {
     interface FakeOS {
+        /**
+         * Updates URL query string with the given password.
+         *
+         * @param value
+         */
         updateURL(value: string): void;
+
+        /**
+         * Returns URL with password query string attached.
+         *
+         * @param path
+         * @param pass
+         */
         generateURL(path: string, pass: string): string;
+
+        /**
+         * Clears query string form URL.
+         */
         clearURL(): void;
+
+        /**
+         * Returns current URL.
+         */
         getURL(): any;
+
+        /**
+         * Returns URL password.
+         */
         getPassword(): any;
     }
 }

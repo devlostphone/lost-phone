@@ -3,8 +3,24 @@ import { PhoneEvents } from "../events/GameEvents";
 
 declare module "scenes/FakeOS" {
     interface FakeOS {
+
+        /**
+         * Sets an activity as done (remove from notifications).
+         *
+         * @param id Activity ID
+         */
         setDone(id: string): void;
+
+        /**
+         * Check if conditions are done (activities viewed by the user).
+         *
+         * @param conditions
+         */
         checkDone(conditions: any): boolean;
+
+        /**
+         * Checks for new notifications based on user action.
+         */
         checkNew(): void;
     }
 }

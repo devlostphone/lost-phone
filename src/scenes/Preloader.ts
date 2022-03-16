@@ -52,19 +52,6 @@ export default class Preloader extends FakeOSScene {
     }
 
     /**
-     * Preloads app-specific config file.
-     */
-    protected preload_app_config(): void {
-        // Load json app files
-        let apps = this.cache.json.get('apps');
-        for (var i = 0; i < apps.length; i++) {
-            if (apps[i].configFile) {
-                this.load.json(apps[i].type, `config/${apps[i].type}.json`);
-            }
-        }
-    }
-
-    /**
      * Preloads lang files.
      */
     protected preload_languages(): void {
@@ -73,6 +60,9 @@ export default class Preloader extends FakeOSScene {
         this.load.json(`lang-${lang}`, `lang/${lang}.json`);
     }
 
+    /**
+     * Preloads audio files.
+     */
     protected preload_audio(): void {
         let tracks = this.cache.json.get('podcast');
         this.load.audio(tracks);
@@ -81,7 +71,7 @@ export default class Preloader extends FakeOSScene {
     /**
      * Preload images method.
      */
-    public preload_images(): void {
+    protected preload_images(): void {
         let imageSize = dpr * 128; // 64, 128, 256, 512
         this.load.image('app', 'assets/app@' + imageSize + 'x.png');
 
@@ -113,7 +103,10 @@ export default class Preloader extends FakeOSScene {
         this.load.image('capsule@144', 'assets/capsule@144.png');
     }
 
-    public preload_gallery_images(): void {
+    /**
+     * Preloads gallery images.
+     */
+    protected preload_gallery_images(): void {
         let media = this.cache.json.get('gallery');
 
         for (let i = 0; i < media.length; i++) {
@@ -127,7 +120,10 @@ export default class Preloader extends FakeOSScene {
         }
     }
 
-    public preload_contact_images(): void {
+    /**
+     * Preloads contact images.
+     */
+    protected preload_contact_images(): void {
         let media = this.cache.json.get('chat');
 
         for (let i = 0; i < media.length; i++) {
@@ -135,7 +131,10 @@ export default class Preloader extends FakeOSScene {
         }
     }
 
-    public preload_track_images(): void {
+    /**
+     * Preloads audio track images.
+     */
+    protected preload_track_images(): void {
         let tracks = this.cache.json.get('podcast');
 
         for (let i = 0; i < tracks.length; i++) {

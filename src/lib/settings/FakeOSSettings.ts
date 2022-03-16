@@ -4,7 +4,15 @@ import GameSettings from "./GameSettings";
 declare module "scenes/FakeOS" {
     interface FakeOS {
         settings: GameSettings;
+
+        /**
+         * Initializes FakeOS settings.
+         */
         initSettings(): void;
+
+        /**
+         * Returns FakeOS settings.
+         */
         getSettings(): GameSettings;
     }
 }

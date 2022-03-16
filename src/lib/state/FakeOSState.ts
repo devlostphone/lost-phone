@@ -2,11 +2,40 @@ import { FakeOS } from "~/scenes/FakeOS";
 
 declare module "scenes/FakeOS" {
     interface FakeOS {
+
+        /**
+         * Resets FakeOS to "factory settings".
+         */
         cleanState(): void;
+
+        /**
+         * Deletes FakeOS data from local storage.
+         */
         deleteState(): void;
+
+        /**
+         * Retrieves FakeOS data from local storage.
+         */
         getState(): any;
+
+        /**
+         * Saves FakeOS data to local storage.
+         */
         saveState(): void;
+
+        /**
+         * Loads FakeOS data from a given password.
+         *
+         * @param password
+         */
         loadState(password?: any): void;
+
+        /**
+         * Adds specific data to FakeOS registry.
+         *
+         * @param key
+         * @param data
+         */
         addData(key:string, data:any): void;
     }
 }

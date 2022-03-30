@@ -74,6 +74,10 @@ export default class ChatInteraction extends Phaser.GameObjects.Container
                     () => {
                         this.remove(this.text, true);
                         this.text = this.createText(text, options);
+                        let text_bounds = this.text.getBounds();
+                        if (text_bounds.height > this.pic.height) {
+                            this.pic.y = text_bounds.height + text_bounds.y - this.pic.height ;
+                        }
                         this.add(this.text);
                         this.fakeOS.launchEvent(PhoneEvents.NewConversation);
                     }
@@ -81,6 +85,11 @@ export default class ChatInteraction extends Phaser.GameObjects.Container
             }
         } else {
             this.text = this.createText(text, options);
+        }
+
+        let text_bounds = this.text.getBounds();
+        if (text_bounds.height > this.pic.height) {
+            this.pic.y = text_bounds.height + text_bounds.y - this.pic.height ;
         }
 
         this.add(this.text);

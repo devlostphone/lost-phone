@@ -163,9 +163,9 @@ export default class ChatApp extends App {
         } else {
             this.fakeOS.log("Checking conversation " + conversation['id'] + ' as done.');
             let notifications = this.fakeOS.registry.get('notifications');
-            if (notifications.find((o:any) => o.id == conversation['id'])) {
+            //if (notifications.find((o:any) => o.id == conversation['id'])) {
                 this.fakeOS.setDone(conversation['id']);
-            }
+            //}
         }
         let avatar = conversation.pic !== undefined ? conversation.pic : this.chat[this.activeContact].id;
         this.addRow(new ChatInteraction(

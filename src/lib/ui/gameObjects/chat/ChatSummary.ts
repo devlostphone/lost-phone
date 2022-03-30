@@ -42,7 +42,7 @@ export default class ChatSummary extends Phaser.GameObjects.Container
         );
         this.background = this.fakeOS.add.rectangle(
             0, 0,
-            this.fakeOS.getActiveApp().area.width + 2,
+            this.fakeOS.getActiveApp().area.width - 2,
             this.fakeOS.getActiveApp().rowHeight()
         );
         this.background.setStrokeStyle(1, 0xffffff);

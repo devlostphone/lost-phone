@@ -38,6 +38,10 @@ export default class PicGrid extends Phaser.GameObjects.Container
         for (let i = 0; i < this.media.length; i++) {
             let element: any;
 
+            if (!this.fakeOS.checkDone(this.media[i].condition)) {
+                continue;
+            }
+
             if (this.media[i].type === 'picture') {
                 element = this.printImage(this.media[i]);
             } else if (this.media[i].type === 'video') {

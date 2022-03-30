@@ -144,6 +144,13 @@
             "c003-0004": {
                 "id": "c003-0004",
                 "pic": "img/contacts/calamar.png",
+                "text": "gallery:g011",
+                "next": "c003-0005",
+                "condition": null
+            },
+            "c003-0005": {
+                "id": "c003-0005",
+                "pic": "img/contacts/calamar.png",
                 "text": "Sun Yoon ha marxat del grup",
                 "condition": null
             }

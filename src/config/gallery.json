@@ -2,61 +2,79 @@
     {
         "id": "g001",
         "type": "picture",
-        "source" : "img/pictures/pic1.jpg"
+        "source" : "img/pictures/pic1.jpg",
+        "condition": null
     },
     {
         "id": "g002",
         "type": "picture",
-        "source": "img/pictures/pic2.jpg"
+        "source": "img/pictures/pic2.jpg",
+        "condition": null
     },
     {
         "id": "v001",
         "type": "video",
-        "source": "videos/v001.mp4"
+        "source": "videos/v001.mp4",
+        "condition": null
     },
     {
         "id": "g003",
         "type": "picture",
-        "source": "img/pictures/pic3.jpg"
+        "source": "img/pictures/pic3.jpg",
+        "condition": null
     },
     {
         "id": "g004",
         "type": "picture",
-        "source": "img/pictures/pic4.jpg"
+        "source": "img/pictures/pic4.jpg",
+        "condition": null
     },
     {
         "id": "g005",
         "type": "picture",
-        "source": "img/pictures/pic5.jpg"
+        "source": "img/pictures/pic5.jpg",
+        "condition": null
     },
     {
         "id": "g006",
         "type": "picture",
-        "source" : "img/pictures/pic1.jpg"
+        "source" : "img/pictures/pic1.jpg",
+        "condition": null
     },
     {
         "id": "g007",
         "type": "picture",
-        "source": "img/pictures/pic2.jpg"
+        "source": "img/pictures/pic2.jpg",
+        "condition": null
     },
     {
         "id": "g008",
         "type": "picture",
-        "source": "img/pictures/pic3.jpg"
+        "source": "img/pictures/pic3.jpg",
+        "condition": null
     },
     {
         "id": "v002",
         "type": "video",
-        "source": "videos/v002.mp4"
+        "source": "videos/v002.mp4",
+        "condition": null
     },
     {
         "id": "g009",
         "type": "picture",
-        "source": "img/pictures/pic4.jpg"
+        "source": "img/pictures/pic4.jpg",
+        "condition": null
     },
     {
         "id": "g010",
         "type": "picture",
-        "source": "img/pictures/pic5.jpg"
+        "source": "img/pictures/pic5.jpg",
+        "condition": null
+    },
+    {
+        "id": "g011",
+        "type": "picture",
+        "source": "img/pictures/dont-care-meme.jpg",
+        "condition": "c003-0004"
     }
 ]

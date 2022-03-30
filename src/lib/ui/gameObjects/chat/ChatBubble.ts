@@ -30,17 +30,35 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         let offsetY = 20;
         let offsetX = 20;
 
-        let bubble_text = this.fakeOS.add.text(
+        let bubble_text: any = this.fakeOS.add.text(
             0, 0,
             text,
             textOptions
         ).setOrigin(0.5);
+
+        let matches = text.match(/gallery:(.*)/i);
+        if (matches !== null) {
+            bubble_text.destroy();
+            bubble_text = this.fakeOS.add.image(
+                0, -50,
+                matches[1]
+            ).setOrigin(0.5, 0);
+            bubble_text.displayWidth = this.fakeOS.getActiveApp().getActiveLayer().area.width / 2;
+            bubble_text.scaleY = bubble_text.scaleX;
+        }
+
+        let text_bounds = bubble_text.getBounds();
         let bubble = this.fakeOS.add.rectangle(
             0, 0,
-            bubble_text.getBounds().width + (offsetX * 2),
-            bubble_text.getBounds().height + (offsetY * 2),
+            text_bounds.width + (offsetX * 2),
+            text_bounds.height + (offsetY * 2),
             0x999999
         );
+
+        if (bubble_text instanceof Phaser.GameObjects.Image) {
+            bubble.y = -50-offsetY;
+            bubble.setOrigin(0.5, 0);
+        }
 
         const left_bound = bubble.getBounds().width / 2 - offsetX;
         const top_bound = bubble.getBounds().height / 2 - offsetY;

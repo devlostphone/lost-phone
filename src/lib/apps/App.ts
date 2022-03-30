@@ -181,7 +181,7 @@ export default abstract class App {
         let newLayer = this.getLayer(layer);
         this.activeLayer = layer;
 
-        newLayer.moveTo(newLayer.getByName('background'), 0);
+        newLayer.moveTo(newLayer.getByName('start-point'), 0);
 
         newLayer.launchHandler();
 
@@ -190,7 +190,7 @@ export default abstract class App {
             x: - this.area.width * this.activeLayer,
             duration: this.layerChangeDuration,
             onComplete: () => {
-                oldLayer.bringToTop(oldLayer.getByName('background'));
+                oldLayer.bringToTop(oldLayer.getByName('start-point'));
                 if (action !== undefined) {
                     action();
                 }

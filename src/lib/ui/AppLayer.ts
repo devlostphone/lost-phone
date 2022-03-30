@@ -38,6 +38,11 @@ export default class AppLayer extends Phaser.GameObjects.Container
     public background: any;
 
     /**
+     * Layer starting point
+     */
+    public start_point: Phaser.GameObjects.Zone;
+
+    /**
      * If the current layer already has a drag zone.
      */
     public hasDragZone: boolean;
@@ -65,7 +70,13 @@ export default class AppLayer extends Phaser.GameObjects.Container
         super(scene, x, y, []);
         this.fakeOS = scene;
         this.area = this.fakeOS.getUI().getAppRenderSize();
-        this.background = this.fakeOS.add.rectangle(
+        this.start_point = this.fakeOS.add.zone(0,0,0,0)
+            .setName('start-point')
+            .setOrigin(0,0);
+        this.add(this.start_point);
+
+        // @TODO: check what to do with background
+        /*this.background = this.fakeOS.add.rectangle(
             0,
             0,
             this.area.width,
@@ -73,7 +84,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
             background ? background : '',
             background ? 1 : 0
         ).setOrigin(0,0).setInteractive().setName('background');
-        this.add(this.background);
+        this.add(this.background);*/
         this.hasDragZone = false;
 
         if (options['columns'] !== undefined) {
@@ -140,8 +151,6 @@ export default class AppLayer extends Phaser.GameObjects.Container
             elements = [elements];
         }
 
-        this.add(elements);
-
         // Check defaults
         if (options['height'] === undefined) {
             options['height'] = 1;
@@ -151,14 +160,21 @@ export default class AppLayer extends Phaser.GameObjects.Container
             options['position'] = Phaser.Display.Align.CENTER;
         }
 
+        let y = 0;
         let previousY = this.last_row;
+        let bounds = this.getBounds();
+        this.add(elements);
+
         if (options['y'] !== undefined) {
             this.last_row = options['y'];
+            y = this.atRow(this.last_row);
+        } else {
+            y = Math.ceil(bounds.height) + this.area.y + 20;
         }
 
         Phaser.Actions.GridAlign(elements, {
             x: this.area.width / elements.length / 2,
-            y: this.atRow(this.last_row),
+            y: y,
             width: -1,
             height: 1,
             cellWidth: this.area.width / elements.length,
@@ -249,9 +265,9 @@ export default class AppLayer extends Phaser.GameObjects.Container
             this.fakeOS.log("Container height (" + this.getBounds().height + ") bigger than printable area (" + this.area.height + "). Creating drag zone.");
             this.createDragZone();
 
-            if (this.background !== undefined) {
+            /*if (this.background !== undefined) {
                 this.background.height = this.getBounds().height + this.rowHeight();
-            }
+            }*/
         }
     }
 
@@ -358,9 +374,11 @@ export default class AppLayer extends Phaser.GameObjects.Container
      * Removes layer elements and resets indexes.
      */
     public clear(): void {
-        this.remove(this.background);
+        //this.remove(this.background);
+        this.remove(this.start_point);
         this.removeAll(true);
-        this.add(this.background);
+        //this.add(this.background);
+        this.add(this.start_point);
         this.last_row = 0;
         this.bottom_row = 0;
     }

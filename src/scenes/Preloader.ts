@@ -128,6 +128,12 @@ export default class Preloader extends FakeOSScene {
 
         for (let i = 0; i < media.length; i++) {
             this.load.image(media[i].id, 'assets/' + media[i].contactPic);
+
+            for (let j in media[i].conversation) {
+                if (media[i].conversation[j].pic !== undefined) {
+                    this.load.image(media[i].conversation[j].pic, 'assets/' + media[i].conversation[j].pic);
+                }
+            }
         }
     }
 

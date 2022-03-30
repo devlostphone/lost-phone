@@ -167,12 +167,14 @@ export default class ChatApp extends App {
                 this.fakeOS.setDone(conversation['id']);
             }
         }
+        let avatar = conversation.pic !== undefined ? conversation.pic : this.chat[this.activeContact].id;
         this.addRow(new ChatInteraction(
                 this.fakeOS,
                 0,0,
                 conversation.id,
-                this.chat[this.activeContact].id,
+                avatar,
                 conversation.text,
+                conversation.author,
                 {...this.textOptions, new_message: newMessage}
             ).setName(conversation.id),
             newMessage ? this.newRowOptions : this.rowOptions
@@ -202,6 +204,7 @@ export default class ChatApp extends App {
                 conversation.id,
                 'default-avatar',
                 conversation.options,
+                conversation.author,
                 {...this.textOptions, own_message: true, choose: true, new_message: true }
             ).setName(conversation.id), this.newRowOptions);
 
@@ -218,6 +221,7 @@ export default class ChatApp extends App {
                 conversation.id,
                 'default-avatar',
                 conversation.options[chosen].text,
+                conversation.author,
                 {...this.textOptions, own_message: true }
             ).setName(conversation.id), this.rowOptions);
 

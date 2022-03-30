@@ -28,11 +28,16 @@ export default class ChatInteraction extends Phaser.GameObjects.Container
         conversation_id: string,
         avatar: any,
         text: any,
+        author: string|undefined,
         options: any = undefined
     ) {
         super(scene, x, y, []);
         this.fakeOS = scene;
         this.id = conversation_id;
+
+        if (author !== undefined) {
+            text = author + ':\n' + text;
+        }
 
         // Create background
         this.background = this.fakeOS.add.rectangle(

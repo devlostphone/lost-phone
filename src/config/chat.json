@@ -104,5 +104,49 @@
                 "condition": null
             }
         }
+    },
+    {
+        "id": "contact003",
+        "contactName": "Family",
+        "contactPic": "img/contacts/family.png",
+        "conversation" : {
+            "c003-0001": {
+                "id": "c003-0001",
+                "author": "Vanesa",
+                "pic": "img/contacts/menina.png",
+                "text": "feliz jawelin",
+                "next": "c003-0002",
+                "condition": null
+            },
+            "c003-0002": {
+                "id": "c003-0002",
+                "author": "Vanesa",
+                "pic": "img/contacts/menina.png",
+                "text": "grupo, soy Vanesa!",
+                "next": "c003-0003",
+                "condition": null
+            },
+            "c003-0003": {
+                "id": "c003-0003",
+                "options": {
+                    "c003-ans0001" : {
+                        "id": "c003-ans0001",
+                        "text": "No se dice jawelin, se dice jalojein",
+                        "next": "c003-0004"
+                    },
+                    "c003-ans0002" : {
+                        "id": "c002-ans0002",
+                        "text": "No tinc temps per perdre amb això...",
+                        "next": "c003-0004"
+                    }
+                }
+            },
+            "c003-0004": {
+                "id": "c003-0004",
+                "pic": "img/contacts/calamar.png",
+                "text": "Sun Yoon ha marxat del grup",
+                "condition": null
+            }
+        }
     }
 ]

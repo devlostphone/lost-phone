@@ -273,7 +273,9 @@ export default class ChatApp extends App {
         chatOptions[conversation.id] = conversation.options[key].id;
         this.fakeOS.setDone(conversation.id);
         this.fakeOS.addData('chat', chatOptions);
-        this.createChatInteraction(this.getNextConversation(conversation.options[key]), true);
+        setTimeout(() => {
+            this.createChatInteraction(this.getNextConversation(conversation.options[key]), true);
+        }, 1000);
     }
 
     /**

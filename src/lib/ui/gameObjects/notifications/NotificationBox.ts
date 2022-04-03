@@ -13,6 +13,7 @@ export default class NotificationBox extends Phaser.GameObjects.Container
     public id: string;
     public notification: any;
     protected icon: Phaser.GameObjects.Image;
+    protected littleIcon?: Phaser.GameObjects.Image;
 
     /**
      * Class constructor.
@@ -40,10 +41,27 @@ export default class NotificationBox extends Phaser.GameObjects.Container
             0x666666
         ));
 
-        this.icon = this.fakeOS.add.image(
-            0,0, notification.type
-        ).setX(-220);
-        this.add(this.icon);
+        // Notification icon (check first for contact pic)
+        if (notification.contact !== undefined) {
+            this.icon = this.fakeOS.add.image(
+                0,0, notification.contact
+            ).setX(-220);
+            this.add(this.icon);
+
+            // Also add little app pic
+            this.littleIcon = this.fakeOS.add.image(
+                0,0,
+                notification.type
+            ).setScale(0.4, 0.4)
+            .setX(-160)
+            .setY(60);
+            this.add(this.littleIcon);
+        } else {
+            this.icon = this.fakeOS.add.image(
+                0,0, notification.type
+            ).setX(-220);
+            this.add(this.icon);
+        }
 
         this.add(this.fakeOS.add.text(-100, 0, notification.title, { fontSize: "24px", wordWrap: {width: 400}}));
     }

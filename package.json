@@ -40,7 +40,7 @@
     "staticFiles": {
         "staticPath": [
             {
-                "staticPath": "src/assets",
+                "staticPath": "assets",
                 "staticOutDir": "assets"
             },
             {
@@ -48,8 +48,12 @@
                 "staticOutDir": "config"
             },
             {
-                "staticPath": "src/lang",
+                "staticPath": "lang",
                 "staticOutDir": "lang"
+            },
+            {
+                "staticPath": "theme",
+                "staticOutDir": "theme"
             }
         ],
         "watcherGlob": "**"

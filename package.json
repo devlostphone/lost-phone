@@ -4,7 +4,7 @@
     "description": "A Lost-Phone Project using Parcel and TypeScript",
     "main": "src/game.ts",
     "scripts": {
-        "build": "parcel build src/index.html --out-dir dist",
+        "build": "parcel build src/index.html --out-dir dist --public-url ./",
         "watch": "parcel src/index.html -p 8000"
     },
     "repository": {

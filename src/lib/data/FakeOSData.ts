@@ -1,5 +1,6 @@
 import { FakeOS } from "~/scenes/FakeOS";
 import { PhoneEvents } from "../events/GameEvents";
+import AppFactory from '~/lib/apps/AppFactory';
 
 declare module "scenes/FakeOS" {
     interface FakeOS {
@@ -73,9 +74,8 @@ FakeOS.prototype.checkDone = function(conditions: any): boolean {
 }
 
 FakeOS.prototype.checkNew = function(): void {
-    let items = [];
+    let items: any[] = [];
     let apps = this.cache.json.get('apps');
-    let complete = Object.keys(this.registry.get('complete'));
     let notifications = this.registry.get('notifications');
 
     for (let app in apps) {
@@ -84,59 +84,8 @@ FakeOS.prototype.checkNew = function(): void {
             continue;
         }
 
-        let type = apps[app]['type'];
-        let content = this.cache.json.get(type);
-
-        if (content !== undefined) {
-            for (let element in content) {
-                // If already completed or already in notifications, skip the element.
-                if(complete.includes(content[element]['id']) || notifications.find((o:any) => o.id == content[element]['id'])) {
-                    this.log('Skipping notification ' + content[element]['id']);
-                    continue;
-                }
-
-                // TODO: isolate this, let every app handle new elements
-                if (type == 'chat') {
-                    let first = true;
-                    for (let conversation in content[element]['conversation']) {
-
-                        if(complete.includes(content[element]['conversation'][conversation]['id']) || notifications.find((o:any) => o.id == content[element]['conversation'][conversation]['id'])) {
-                            this.log('Skipping notification ' + content[element]['id']);
-                            first = false;
-                            continue;
-                        }
-
-                        let conditions = content[element]['conversation'][conversation]['condition'];
-
-                        // Only notify the first chat without conditions
-                        if (!first && conditions === null) {
-                            continue;
-                        }
-
-                        if(this.checkDone(conditions)) {
-                            items.push({
-                                id: content[element]['conversation'][conversation]['id'],
-                                title: content[element]['conversation'][conversation]['text'],
-                                type: type,
-                                contact: content[element]['id']
-                            });
-                        }
-
-                        first = false;
-                    }
-                }
-
-                let conditions = content[element]['condition'];
-
-                if(this.checkDone(conditions)) {
-                    items.push({
-                        id: content[element]['id'],
-                        title: content[element]['title'],
-                        type: type
-                    });
-                }
-            }
-        }
+        let appInstance = AppFactory.createInstance(apps[app]['key'], this);
+        items = [...items, ...appInstance.checkNewElements(apps[app]['type'])];
     }
 
     for (let i = 0; i < items.length; i++) {

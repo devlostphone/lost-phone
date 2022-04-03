@@ -330,4 +330,55 @@ export default class ChatApp extends App {
         chatRegistry[this.chat[this.activeContact].id+'_lastchat'] = conversation.id;
         this.fakeOS.addData('chat', chatRegistry);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public checkNewElements(type: string) {
+        let complete = Object.keys(this.fakeOS.registry.get('complete'));
+        let notifications = this.fakeOS.registry.get('notifications');
+        let content = this.fakeOS.cache.json.get(type);
+
+        let items = [];
+
+        if (content !== undefined) {
+            for (let element in content) {
+                // If already completed or already in notifications, skip the element.
+                if(complete.includes(content[element]['id']) || notifications.find((o:any) => o.id == content[element]['id'])) {
+                    this.fakeOS.log('Skipping notification ' + content[element]['id']);
+                    continue;
+                }
+
+                let first = true;
+                    for (let conversation in content[element]['conversation']) {
+
+                    if(complete.includes(content[element]['conversation'][conversation]['id']) || notifications.find((o:any) => o.id == content[element]['conversation'][conversation]['id'])) {
+                        this.fakeOS.log('Skipping notification ' + content[element]['id']);
+                        first = false;
+                        continue;
+                    }
+
+                    let conditions = content[element]['conversation'][conversation]['condition'];
+
+                    // Only notify the first chat without conditions
+                    if (!first && conditions === null) {
+                        continue;
+                    }
+
+                    if(this.fakeOS.checkDone(conditions)) {
+                        items.push({
+                            id: content[element]['conversation'][conversation]['id'],
+                            title: content[element]['conversation'][conversation]['text'],
+                            type: type,
+                            contact: content[element]['id']
+                        });
+                    }
+
+                    first = false;
+                }
+            }
+        }
+
+        return items;
+    }
 }

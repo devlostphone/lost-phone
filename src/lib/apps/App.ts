@@ -267,4 +267,40 @@ export default abstract class App {
         this.layers.removeAll(true);
         this.layers.destroy();
     }
+
+    /**
+     * Checks for unlocked elements.
+     *
+     * @param type
+     * @returns
+     */
+    public checkNewElements(type: string) {
+        let complete = Object.keys(this.fakeOS.registry.get('complete'));
+        let notifications = this.fakeOS.registry.get('notifications');
+        let content = this.fakeOS.cache.json.get(type);
+
+        let items = [];
+
+        if (content !== undefined) {
+            for (let element in content) {
+                // If already completed or already in notifications, skip the element.
+                if(complete.includes(content[element]['id']) || notifications.find((o:any) => o.id == content[element]['id'])) {
+                    this.fakeOS.log('Skipping notification ' + content[element]['id']);
+                    continue;
+                }
+
+                let conditions = content[element]['condition'];
+
+                if(this.fakeOS.checkDone(conditions)) {
+                    items.push({
+                        id: content[element]['id'],
+                        title: content[element]['title'],
+                        type: type
+                    });
+                }
+            }
+        }
+
+        return items;
+    }
 }

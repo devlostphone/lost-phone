@@ -1,7 +1,7 @@
 {
     "name": "lost-phone",
     "version": "1.0.0",
-    "description": "A Lost-Phone Project using Rollup and TypeScript",
+    "description": "A Lost-Phone Project using Parcel and TypeScript",
     "main": "src/game.ts",
     "scripts": {
         "build": "parcel build src/index.html --out-dir dist",
@@ -44,7 +44,7 @@
                 "staticOutDir": "assets"
             },
             {
-                "staticPath": "src/config",
+                "staticPath": "config",
                 "staticOutDir": "config"
             },
             {

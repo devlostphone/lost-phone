@@ -1,0 +1,1 @@
+/* Put all pictures (photos, images, figures, illustrations, drawings...) on this folder */

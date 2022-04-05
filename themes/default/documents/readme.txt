@@ -1,0 +1,1 @@
+/* Put all the fake documents (like pdfs or plain text) on this folder */

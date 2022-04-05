@@ -1,0 +1,1 @@
+/* Put all the background images on this folder */

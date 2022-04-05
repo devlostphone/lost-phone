@@ -1,0 +1,1 @@
+/* Put all the wallpapers on this folder */

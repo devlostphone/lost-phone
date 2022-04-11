@@ -1,18 +1,24 @@
 [
     {
+        "id" : "cal001",
         "title" : "Inici miniop",
         "day": 14,
         "month": 1,
         "year": 2022,
         "description": "Description of Lorem Ipsum dolor",
-        "color": "0xffff00"
+        "color": "0xffff00",
+        "condition": null,
+        "delay": 0
     },
     {
+        "id" : "cal002",
         "title" : "Final miniop",
         "day": 23,
         "month": 2,
         "year": 2022,
         "description": "Description of dolor est",
         "color": "0xff00ff"
+        "condition": null,
+        "delay": 0
     }
 ]

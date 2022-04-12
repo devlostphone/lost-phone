@@ -2,28 +2,28 @@
   {
     "key" : "track001",
     "name" : "Bensound - Cute",
-    "url" : "assets/audio/tracks/bensound-cute.mp3",
+    "url" : "gamedata/assets/audios/bensound-cute.mp3",
     "artist" : "Bensound",
     "title" : "Cute",
-    "thumbnail" : "img/thumbnails/cute.jpg",
+    "thumbnail" : "gamedata/assets/pictures/cute.jpg",
     "volume" : 1
   },
   {
     "key" : "track002",
     "name" : "Bensound - Tomorrow",
-    "url" : "assets/audio/tracks/bensound-tomorrow.mp3",
+    "url" : "gamedata/assets/audios/bensound-tomorrow.mp3",
     "artist" : "Bensound",
     "title" : "Tomorrow",
-    "thumbnail" : "img/thumbnails/tomorrow.jpg",
+    "thumbnail" : "gamedata/assets/pictures/tomorrow.jpg",
     "volume" : 0.75
   },
   {
     "key" : "track003",
     "name" : "Bensound - Birth of a Hero",
-    "url" : "assets/audio/tracks/bensound-birthofahero.mp3",
+    "url" : "gamedata/assets/audios/bensound-birthofahero.mp3",
     "artist" : "Bensound",
     "title" : "Birth of a Hero",
-    "thumbnail" : "img/thumbnails/birthofahero.jpg",
+    "thumbnail" : "gamedata/assets/pictures/birthofahero.jpg",
     "volume" : 0.75
   }
 ]

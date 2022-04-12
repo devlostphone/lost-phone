@@ -2,7 +2,7 @@
     {
         "id": "contact001",
         "contactName": "John Doe",
-        "contactPic": "img/contacts/calamar.png",
+        "contactPic": "gamedata/assets/profiles/calamar.png",
         "conversation" : {
             "c001-0001": {
                 "id": "c001-0001",
@@ -81,7 +81,7 @@
     {
         "id": "contact002",
         "contactName": "Jane Doe",
-        "contactPic": "img/contacts/menina.png",
+        "contactPic": "gamedata/assets/profiles/menina.png",
         "conversation" : {
             "c002-0001": {
                 "id": "c002-0001",
@@ -108,12 +108,12 @@
     {
         "id": "contact003",
         "contactName": "Family",
-        "contactPic": "img/contacts/family.png",
+        "contactPic": "gamedata/assets/profiles/family.png",
         "conversation" : {
             "c003-0001": {
                 "id": "c003-0001",
                 "author": "Vanesa",
-                "pic": "img/contacts/menina.png",
+                "pic": "gamedata/assets/profiles/menina.png",
                 "text": "feliz jawelin",
                 "next": "c003-0002",
                 "condition": null
@@ -121,7 +121,7 @@
             "c003-0002": {
                 "id": "c003-0002",
                 "author": "Vanesa",
-                "pic": "img/contacts/menina.png",
+                "pic": "gamedata/assets/profiles/menina.png",
                 "text": "grupo, soy Vanesa!",
                 "next": "c003-0003",
                 "condition": null
@@ -143,14 +143,14 @@
             },
             "c003-0004": {
                 "id": "c003-0004",
-                "pic": "img/contacts/calamar.png",
+                "pic": "gamedata/assets/profiles/calamar.png",
                 "text": "gallery:g011",
                 "next": "c003-0005",
                 "condition": null
             },
             "c003-0005": {
                 "id": "c003-0005",
-                "pic": "img/contacts/calamar.png",
+                "pic": "gamedata/assets/profiles/calamar.png",
                 "text": "Sun Yoon ha marxat del grup",
                 "condition": null
             }

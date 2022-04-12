@@ -79,28 +79,28 @@ export default class Preloader extends FakeOSScene {
         // TODO: Replace them by new ones made by hand
         let apps = this.cache.json.get('apps');
         for (let i = 0; i < apps.length; i++) {
-            this.load.image(apps[i].type, 'assets/apps/' + apps[i].icon);
+            this.load.image(apps[i].type, 'themes/default/icons/' + apps[i].icon);
         }
 
-        this.load.image('guide', 'assets/720x1280-guide.png');
+        this.load.image('guide', 'themes/default/shaders/720x1280-guide.png');
 
-        this.load.image('lorem-appsum', `assets/iconApp-@2.png`);
-        this.load.image('button-homescreen', 'assets/button-homescreen.png');
-        this.load.image('background', 'assets/img/backgrounds/background.jpg');
+        this.load.image('lorem-appsum', `themes/default/shaders/iconApp-@2.png`);
+        this.load.image('button-homescreen', 'themes/default/shaders/button-homescreen.png');
+        this.load.image('background', 'themes/default/backgrounds/background.jpg');
 
-        this.load.image('play-button', 'assets/img/icons/play-button.png');
-        this.load.image('back-button', 'assets/img/icons/back.png');
+        this.load.image('play-button', 'themes/default/shaders/play-button.png');
+        this.load.image('back-button', 'themes/default/shaders/back.png');
 
-        this.load.image('default-avatar', 'assets/default-avatar.png');
-        this.load.spritesheet('typing', 'assets/typing-spritesheet.png', { frameWidth: 77, frameHeight: 38});
+        this.load.image('default-avatar', 'themes/default/shaders/default-avatar.png');
+        this.load.spritesheet('typing', 'themes/default/shaders/typing-spritesheet.png', { frameWidth: 77, frameHeight: 38});
 
         // Buttons shapes
         // TODO: Rewrite this by a simple value iteration
-        this.load.image('arc@144', 'assets/arc@144.png');
-        this.load.image('arc@96', 'assets/arc@96.png');
-        this.load.image('arc@72', 'assets/arc@72.png');
-        this.load.image('rect@144', 'assets/rect@144.png');
-        this.load.image('capsule@144', 'assets/capsule@144.png');
+        this.load.image('arc@144', 'themes/default/shaders/arc@144.png');
+        this.load.image('arc@96', 'themes/default/shaders/arc@96.png');
+        this.load.image('arc@72', 'themes/default/shaders/arc@72.png');
+        this.load.image('rect@144', 'themes/default/shaders/rect@144.png');
+        this.load.image('capsule@144', 'themes/default/shaders/capsule@144.png');
     }
 
     /**
@@ -112,10 +112,10 @@ export default class Preloader extends FakeOSScene {
         for (let i = 0; i < media.length; i++) {
             switch (media[i].type) {
                 case 'picture':
-                    this.load.image(media[i].id, 'assets/' + media[i].source);
+                    this.load.image(media[i].id, media[i].source);
                     break;
                 case 'video':
-                    this.load.video(media[i].id, 'assets/' + media[i].source);
+                    this.load.video(media[i].id, media[i].source);
             }
         }
     }
@@ -127,11 +127,11 @@ export default class Preloader extends FakeOSScene {
         let media = this.cache.json.get('chat');
 
         for (let i = 0; i < media.length; i++) {
-            this.load.image(media[i].id, 'assets/' + media[i].contactPic);
+            this.load.image(media[i].id, media[i].contactPic);
 
             for (let j in media[i].conversation) {
                 if (media[i].conversation[j].pic !== undefined) {
-                    this.load.image(media[i].conversation[j].pic, 'assets/' + media[i].conversation[j].pic);
+                    this.load.image(media[i].conversation[j].pic, media[i].conversation[j].pic);
                 }
             }
         }
@@ -144,7 +144,7 @@ export default class Preloader extends FakeOSScene {
         let tracks = this.cache.json.get('podcast');
 
         for (let i = 0; i < tracks.length; i++) {
-            this.load.image(tracks[i].key, 'assets/' + tracks[i].thumbnail);
+            this.load.image(tracks[i].key, tracks[i].thumbnail);
         }
     }
 

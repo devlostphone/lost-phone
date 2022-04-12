@@ -15,9 +15,9 @@ export default class Boot extends FakeOSScene {
     }
 
     public preload(): void {
-        this.load.json('config', 'config/config.json');
-        this.load.json('apps', 'config/apps.json');
-        this.load.json('colors', 'config/colors.json');
+        this.load.json('config', 'gamedata/config/config.json');
+        this.load.json('apps', 'gamedata/config/apps.json');
+        this.load.json('colors', 'gamedata/config/colors.json');
         this.preload_app_config();
     }
 
@@ -34,13 +34,13 @@ export default class Boot extends FakeOSScene {
           }
           }*/
         // @TODO: check this
-        this.load.json('browser', 'config/browser.json');
-        this.load.json('mail', 'config/mail.json');
-        this.load.json('gallery', 'config/gallery.json');
-        this.load.json('chat', 'config/chat.json');
-        this.load.json('podcast', 'config/podcast.json');
-        this.load.json('unlock-screen', 'config/unlock-screen.json');
-        this.load.json('calendar', 'config/calendar.json');
+        this.load.json('browser', 'gamedata/config/browser.json');
+        this.load.json('mail', 'gamedata/config/mail.json');
+        this.load.json('gallery', 'gamedata/config/gallery.json');
+        this.load.json('chat', 'gamedata/config/chat.json');
+        this.load.json('podcast', 'gamedata/config/podcast.json');
+        this.load.json('unlock-screen', 'gamedata/config/unlock-screen.json');
+        this.load.json('calendar', 'gamedata/config/calendar.json');
     }
 
     /**

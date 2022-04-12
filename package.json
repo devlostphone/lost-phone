@@ -40,20 +40,16 @@
     "staticFiles": {
         "staticPath": [
             {
-                "staticPath": "assets",
-                "staticOutDir": "assets"
-            },
-            {
-                "staticPath": "config",
-                "staticOutDir": "config"
+                "staticPath": "gamedata",
+                "staticOutDir": "gamedata"
             },
             {
                 "staticPath": "lang",
                 "staticOutDir": "lang"
             },
             {
-                "staticPath": "theme",
-                "staticOutDir": "theme"
+                "staticPath": "themes",
+                "staticOutDir": "themes"
             }
         ],
         "watcherGlob": "**"

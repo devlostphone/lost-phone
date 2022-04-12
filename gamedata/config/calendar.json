@@ -17,7 +17,7 @@
         "month": 2,
         "year": 2022,
         "description": "Description of dolor est",
-        "color": "0xff00ff"
+        "color": "0xff00ff",
         "condition": null,
         "delay": 0
     }

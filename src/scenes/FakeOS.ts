@@ -85,7 +85,7 @@ export class FakeOS extends FakeOSScene {
 
         let wallpapers = this.cache.json.get('config').wallpapers;
         for (let i = 0; i < wallpapers.length; i++) {
-            this.load.image(wallpapers[i]+ '-wallpaper', `assets/img/wallpapers/${wallpapers[i]}.png`);
+            this.load.image(wallpapers[i]+ '-wallpaper', `themes/default/wallpapers/${wallpapers[i]}.png`);
         }
     }
 

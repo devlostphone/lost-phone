@@ -20,7 +20,7 @@
     {
         "id": "page004",
         "title": "Prova HTML",
-        "page": "assets/web/prova.html",
+        "page": "gamedata/assets/sites/prova.html",
         "condition": null
     }
 ]

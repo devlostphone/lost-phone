@@ -1,5 +1,5 @@
-import { FakeOS } from '~/scenes/FakeOS';
-import App from '~/lib/apps/App';
+import { FakeOS } from '/src/scenes/FakeOS';
+import App from '/src/lib/apps/App';
 
 /**
  * Unlock Screen app

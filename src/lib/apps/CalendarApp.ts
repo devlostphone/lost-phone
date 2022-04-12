@@ -1,6 +1,6 @@
-import { FakeOS } from '~/scenes/FakeOS';
-import App from '~/lib/apps/App';
-import Button from '~/lib/ui/gameObjects/Button';
+import { FakeOS } from '/src/scenes/FakeOS';
+import App from '/src/lib/apps/App';
+import Button from '/src/lib/ui/gameObjects/Button';
 
 /**
  * Calendar App

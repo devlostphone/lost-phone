@@ -1,5 +1,5 @@
 import { FakeOS } from "scenes/FakeOS";
-import { PhoneEvents } from "~/lib/events/GameEvents";
+import { PhoneEvents } from "/src/lib/events/GameEvents";
 
 /**
  * Track buttons.

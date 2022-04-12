@@ -1,4 +1,4 @@
-import { FakeOS } from '~/scenes/FakeOS';
+import { FakeOS } from '/src/scenes/FakeOS';
 /**
  * Chat bubble.
  * @todo: review this.

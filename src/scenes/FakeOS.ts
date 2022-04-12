@@ -1,9 +1,9 @@
-import {FakeOSScene} from '~/lib/GameLib';
-import Handler from '~/scenes/Handler';
-import UI from '~/lib/ui/phoneUI';
-import App from '~/lib/apps/App';
-import AppFactory from '~/lib/apps/AppFactory';
-import { PhoneEvents } from '~/lib/events/GameEvents';
+import {FakeOSScene} from '/src/lib/GameLib';
+import Handler from '/src/scenes/Handler';
+import UI from '/src/lib/ui/phoneUI';
+import App from '/src/lib/apps/App';
+import AppFactory from '/src/lib/apps/AppFactory';
+import { PhoneEvents } from '/src/lib/events/GameEvents';
 
 /**
  * FakeOS.

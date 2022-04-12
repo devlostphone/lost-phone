@@ -1,5 +1,5 @@
-import { FakeOS } from '~/scenes/FakeOS';
-import App from '~/lib/apps/App';
+import { FakeOS } from '/src/scenes/FakeOS';
+import App from '/src/lib/apps/App';
 import TrackPreview from '../ui/gameObjects/tracks/TrackPreview';
 import TrackProgressBar from '../ui/gameObjects/tracks/TrackProgressBar';
 import TrackButtons from '../ui/gameObjects/tracks/TrackButtons';

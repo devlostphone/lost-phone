@@ -1,6 +1,6 @@
-import {dpr} from '~/lib/Screen';
-import {FakeOSScene} from '~/lib/GameLib';
-import Handler from '~/scenes/Handler';
+import {dpr} from '/src/lib/Screen';
+import {FakeOSScene} from '/src/lib/GameLib';
+import Handler from '/src/scenes/Handler';
 
 /**
  * Preloader scene.

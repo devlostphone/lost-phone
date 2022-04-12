@@ -1,4 +1,4 @@
-import { FakeOS } from '~/scenes/FakeOS';
+import { FakeOS } from '/src/scenes/FakeOS';
 /**
  * App layer.
  * @todo: review this.

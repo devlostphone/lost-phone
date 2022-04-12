@@ -1,14 +1,14 @@
-import BrowserApp from '~/lib/apps/BrowserApp';
-import ChatApp from '~/lib/apps/ChatApp';
-import ClockApp from '~/lib/apps/ClockApp';
-import GalleryApp from '~/lib/apps/GalleryApp';
-import HomescreenApp from '~/lib/apps/HomescreenApp';
-import MailApp from '~/lib/apps/MailApp';
-import PodcastApp from '~/lib/apps/PodcastApp';
-import SettingsApp from '~/lib/apps/SettingsApp';
-import UnlockScreenApp from '~/lib/apps/UnlockScreenApp';
-import CalendarApp from '~/lib/apps/CalendarApp';
-import StoreApp from '~/lib/apps/StoreApp';
+import BrowserApp from '/src/lib/apps/BrowserApp';
+import ChatApp from '/src/lib/apps/ChatApp';
+import ClockApp from '/src/lib/apps/ClockApp';
+import GalleryApp from '/src/lib/apps/GalleryApp';
+import HomescreenApp from '/src/lib/apps/HomescreenApp';
+import MailApp from '/src/lib/apps/MailApp';
+import PodcastApp from '/src/lib/apps/PodcastApp';
+import SettingsApp from '/src/lib/apps/SettingsApp';
+import UnlockScreenApp from '/src/lib/apps/UnlockScreenApp';
+import CalendarApp from '/src/lib/apps/CalendarApp';
+import StoreApp from '/src/lib/apps/StoreApp';
 
 /**
  * Contains all app definitions.

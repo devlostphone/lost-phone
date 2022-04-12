@@ -1,8 +1,8 @@
-import Handler from '~/scenes/Handler';
-import Preloader from '~/scenes/Preloader';
-import Boot from '~/scenes/Boot';
-import { FakeOS } from '~/scenes/FakeOS';
-import '~/import';
+import Handler from '/src/scenes/Handler';
+import Preloader from '/src/scenes/Preloader';
+import Boot from '/src/scenes/Boot';
+import { FakeOS } from '/src/scenes/FakeOS';
+import '/src/import';
 
 export const MAX_SIZE_WIDTH_SCREEN = 1920;
 export const MAX_SIZE_HEIGHT_SCREEN = 1920;

@@ -1,6 +1,6 @@
-import { FakeOS } from '~/scenes/FakeOS';
-import App from '~/lib/apps/App';
-import AppIcon from '~/lib/ui/gameObjects/AppIcon';
+import { FakeOS } from '/src/scenes/FakeOS';
+import App from '/src/lib/apps/App';
+import AppIcon from '/src/lib/ui/gameObjects/AppIcon';
 
 /**
  * Homescreen app.

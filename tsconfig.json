@@ -15,7 +15,7 @@
 		"sourceMap": true,
 		"baseUrl": "src/",
 		"paths": {
-		  "~/*": ["./*"]
+		  "app/*": ["./*"]
 		},
 		"typeRoots": [
 			"node_modules/@types",

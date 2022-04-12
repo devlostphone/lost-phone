@@ -2,10 +2,10 @@
     "name": "lost-phone",
     "version": "1.0.0",
     "description": "A Lost-Phone Project using Parcel and TypeScript",
-    "main": "src/game.ts",
+    "browserslist": "> 0.5%, last 2 versions, not dead",
     "scripts": {
-        "build": "parcel build src/index.html --out-dir dist --public-url ./",
-        "watch": "parcel watch src/index.html --out-dir dist --public-url ./"
+        "build": "parcel build src/index.html --dist-dir dist --public-url ./",
+        "watch": "parcel watch src/index.html --dist-dir dist --public-url ./"
     },
     "repository": {
         "type": "git",
@@ -23,7 +23,7 @@
         "@typescript-eslint/parser": "^5.15.0",
         "eslint": "^8.11.0",
         "minimist": ">=1.2.5",
-        "parcel-bundler": "^1.12.5",
+        "parcel": "^2.0.0",
         "parcel-plugin-clean-easy": "^1.0.2",
         "parcel-plugin-static-files-copy": "^2.6.0",
         "phaser": "^3.55.2",

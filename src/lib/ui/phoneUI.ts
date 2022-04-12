@@ -1,6 +1,6 @@
-import { FakeOS } from '/src/scenes/FakeOS';
-import Time from '/src/lib/ui/gameObjects/Time';
-import NotificationDrawer from '/src/lib/ui/gameObjects/notifications/NotificationDrawer';
+import { FakeOS } from '../../scenes/FakeOS';
+import Time from '../../lib/ui/gameObjects/Time';
+import NotificationDrawer from '../../lib/ui/gameObjects/notifications/NotificationDrawer';
 import { PhoneEvents } from '../events/GameEvents';
 
 /**

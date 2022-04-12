@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {FakeOSScene} from '/src/lib/GameLib';
+import {FakeOSScene} from '../lib/GameLib';
 
 /**
  * Scene for handling resizing.

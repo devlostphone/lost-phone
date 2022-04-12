@@ -1,8 +1,8 @@
-import { FakeOS } from "/src/scenes/FakeOS";
+import { FakeOS } from "../../scenes/FakeOS";
 import { PhoneEvents } from "../events/GameEvents";
-import AppFactory from '/src/lib/apps/AppFactory';
+import AppFactory from '../../lib/apps/AppFactory';
 
-declare module "scenes/FakeOS" {
+declare module "../../scenes/FakeOS" {
     interface FakeOS {
 
         /**

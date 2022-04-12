@@ -1,4 +1,4 @@
-import { FakeOS } from '/src/scenes/FakeOS';
+import { FakeOS } from '../../../../scenes/FakeOS';
 /**
  * Search box.
  * @todo: review this.

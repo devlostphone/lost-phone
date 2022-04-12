@@ -1,5 +1,5 @@
-import { PhoneEvents } from '/src/lib/events/GameEvents';
-import { FakeOS } from '/src/scenes/FakeOS';
+import { PhoneEvents } from '../../../../lib/events/GameEvents';
+import { FakeOS } from '../../../../scenes/FakeOS';
 import ChatBubble from './ChatBubble';
 /**
  * Chat interaction.

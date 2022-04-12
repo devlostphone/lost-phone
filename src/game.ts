@@ -8,7 +8,7 @@ import {
     MIN_SIZE_HEIGHT_SCREEN,
     SIZE_WIDTH_SCREEN,
     SIZE_HEIGHT_SCREEN
-} from '/src/config';
+} from './config';
 
 function newGame(gameConfig: object): Phaser.Game {
     game = new Phaser.Game(gameConfig);

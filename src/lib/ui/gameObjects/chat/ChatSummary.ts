@@ -1,4 +1,4 @@
-import { FakeOS } from '/src/scenes/FakeOS';
+import { FakeOS } from '../../../../scenes/FakeOS';
 /**
  * Chat summary.
  * @todo: review this.

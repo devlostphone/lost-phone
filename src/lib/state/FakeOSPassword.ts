@@ -1,6 +1,6 @@
-import { FakeOS } from "/src/scenes/FakeOS";
+import { FakeOS } from "../../scenes/FakeOS";
 
-declare module "scenes/FakeOS" {
+declare module "../../scenes/FakeOS" {
     interface FakeOS {
         /**
          * Updates URL query string with the given password.

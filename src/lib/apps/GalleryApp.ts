@@ -1,6 +1,6 @@
-import { FakeOS } from '/src/scenes/FakeOS';
-import App from '/src/lib/apps/App';
-import PicGrid from '/src/lib/ui/gameObjects/PicGrid';
+import { FakeOS } from '../../scenes/FakeOS';
+import App from '../../lib/apps/App';
+import PicGrid from '../../lib/ui/gameObjects/PicGrid';
 
 /**
  * Gallery app

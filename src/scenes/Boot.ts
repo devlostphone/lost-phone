@@ -1,6 +1,6 @@
 
-import {dpr} from '/src/lib/Screen';
-import {FakeOSScene} from '/src/lib/GameLib';
+import {dpr} from '../lib/Screen';
+import {FakeOSScene} from '../lib/GameLib';
 
 /**
  * Boot scene.

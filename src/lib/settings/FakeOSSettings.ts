@@ -1,7 +1,7 @@
-import { FakeOS } from "/src/scenes/FakeOS";
+import { FakeOS } from "../../scenes/FakeOS";
 import GameSettings from "./GameSettings";
 
-declare module "scenes/FakeOS" {
+declare module "../../scenes/FakeOS" {
     interface FakeOS {
         settings: GameSettings;
 

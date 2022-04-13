@@ -18,16 +18,33 @@
     },
     "homepage": "https://github.com/devlostphone/lost-phone",
     "devDependencies": {
+        "@parcel/packager-xml": "^2.4.1",
         "@types/qrcode": "^1.4.2",
         "@typescript-eslint/eslint-plugin": "^5.15.0",
         "@typescript-eslint/parser": "^5.15.0",
         "eslint": "^8.11.0",
         "minimist": ">=1.2.5",
         "parcel": "^2.0.0",
+        "parcel-config-pwa-manifest": "^0.1.1",
         "parcel-reporter-clean-dist": "^1.0.4",
         "parcel-reporter-static-files-copy": "^1.3.4",
         "phaser": "^3.55.2",
         "qrcode": "^1.5.0",
         "typescript": "^4.6.2"
+    },
+    "pwaManifest": {
+        "name": "Lost & Phone",
+        "shortName": "L&P",
+        "startURL": "./index.html",
+        "theme": "#add8e6",
+        "generateIconOptions": {
+            "baseIcon": "./static/themes/default/icons/podcast.png",
+            "sizes": [
+                192,
+                384,
+                512
+            ],
+            "genFavicons": true
+        }
     }
 }

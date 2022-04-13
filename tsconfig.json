@@ -17,7 +17,8 @@
 			"node_module/phaser/types"
 		],
 		"types": [
-			"phaser"
+			"phaser",
+			"node"
 		]
 	},
 	"include": [

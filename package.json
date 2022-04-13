@@ -5,7 +5,7 @@
     "browserslist": "> 0.5%, last 2 versions, not dead",
     "scripts": {
         "build": "parcel build src/index.html --dist-dir dist --public-url ./",
-        "watch": "parcel watch src/index.html --dist-dir dist --public-url ./"
+        "watch": "parcel serve src/index.html -p 8000"
     },
     "repository": {
         "type": "git",

@@ -11,7 +11,7 @@ import {
 } from './config';
 
 function newGame(gameConfig: object): Phaser.Game {
-    game = new Phaser.Game(gameConfig);
+    let game = new Phaser.Game(gameConfig);
 
     game.screenBaseSize = {
       maxWidth: MAX_SIZE_WIDTH_SCREEN,

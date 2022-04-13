@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
-		"target": "es2016",
-		"module": "es6",
+		"target": "es2022",
+		"module": "es2022",
 		"strict": true,
 		"noImplicitAny": true,
 		"noEmit": true,
@@ -12,7 +12,6 @@
 		"experimentalDecorators": true,
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
-		"sourceMap": true,
 		"typeRoots": [
 			"node_modules/@types",
 			"node_module/phaser/types"
@@ -23,5 +22,6 @@
 	},
 	"include": [
 		"src/**/*.ts"
+		, "src/service-worker.js"
 	]
 }

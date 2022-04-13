@@ -159,7 +159,7 @@ export default class Preloader extends FakeOSScene {
         let theme = 'themes/' + this.cache.json.get('config')['theme']+'/';
         let defaultTheme = 'themes/default/';
 
-        let http = new XMLHttpRequest();
+        /*let http = new XMLHttpRequest();
         http.open('HEAD', theme+path, false);
         http.send();
 
@@ -167,7 +167,8 @@ export default class Preloader extends FakeOSScene {
             return theme+path;
         } else {
             return defaultTheme+path;
-        }
+        }*/
+        return theme+path;
     }
 
     /**

@@ -26,6 +26,12 @@ function newGame(gameConfig: object): Phaser.Game {
     return game;
 }
 
+if('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    await navigator.serviceWorker.register(new URL('./service-worker.js', import.meta.url));
+  });
+};
+
 let game = newGame(config);
 
 

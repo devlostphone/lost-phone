@@ -87,5 +87,12 @@
     "icon": "browser.png",
     "preInstalled": true,
     "hasNotifications": false
+  },
+  {
+    "type": "phone",
+    "key": "PhoneApp",
+    "icon": "phone.png",
+    "preInstalled": true,
+    "hasNotifications": true
   }
 ]

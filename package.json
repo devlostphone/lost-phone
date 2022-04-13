@@ -24,30 +24,10 @@
         "eslint": "^8.11.0",
         "minimist": ">=1.2.5",
         "parcel": "^2.0.0",
-        "parcel-plugin-clean-easy": "^1.0.2",
-        "parcel-plugin-static-files-copy": "^2.6.0",
+        "parcel-reporter-clean-dist": "^1.0.4",
+        "parcel-reporter-static-files-copy": "^1.3.4",
         "phaser": "^3.55.2",
         "qrcode": "^1.5.0",
         "typescript": "^4.6.2"
-    },
-    "parcelCleanPaths": [
-        "dist"
-    ],
-    "staticFiles": {
-        "staticPath": [
-            {
-                "staticPath": "gamedata",
-                "staticOutDir": "gamedata"
-            },
-            {
-                "staticPath": "lang",
-                "staticOutDir": "lang"
-            },
-            {
-                "staticPath": "themes",
-                "staticOutDir": "themes"
-            }
-        ],
-        "watcherGlob": "**"
     }
 }

@@ -9,6 +9,7 @@ import SettingsApp from './SettingsApp';
 import UnlockScreenApp from './UnlockScreenApp';
 import CalendarApp from './CalendarApp';
 import StoreApp from './StoreApp';
+import PhoneApp from './PhoneApp';
 
 /**
  * Contains all app definitions.
@@ -24,7 +25,8 @@ const Store: any = {
     SettingsApp,
     CalendarApp,
     UnlockScreenApp,
-    StoreApp
+    StoreApp,
+    PhoneApp
 }
 
 /**

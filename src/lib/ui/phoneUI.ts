@@ -222,6 +222,7 @@ export default class phoneUI {
                 this.fakeOS.log('Refreshing notifications');
                 this.fakeOS.checkNew();
                 this.elements.drawer?.refreshNotifications();
+                this.elements.drawer?.update_notification_counter();
             }
         );
 
@@ -250,6 +251,7 @@ export default class phoneUI {
                 setTimeout(() => {
                     if (this.elements.drawer !== undefined) {
                         this.elements.drawer.isNotificationYoyoing = false;
+                        this.elements.drawer.update_notification_counter();
                     }
                 }, 1000);
             }

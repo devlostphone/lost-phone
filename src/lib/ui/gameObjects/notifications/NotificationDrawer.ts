@@ -16,6 +16,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
     public drawerBox?: Phaser.GameObjects.Rectangle;
     public drawerLauncher?: Phaser.GameObjects.Polygon;
     public drawerHide?: Phaser.GameObjects.Polygon;
+    public drawerNotificationCounter?: Phaser.GameObjects.Container;
 
     public notificationList?: NotificationList;
     public pendingNotifications: any[];
@@ -103,7 +104,43 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             0x333333
         ).setOrigin(0,0);
 
+        // Create notification counter
+        this.drawerNotificationCounter = this.fakeOS.add.container(
+            this.fakeOS.width - 25,
+            this.fakeOS.height
+        );
+        this.drawerNotificationCounter.add(new Phaser.GameObjects.Ellipse(
+            this.fakeOS,
+            0,
+            35,
+            35,
+            35,
+            0xff0000,
+            1.0
+        ).setOrigin(0.5, 0.5));
+
+        this.drawerNotificationCounter.add(new Phaser.GameObjects.Text(
+            this.fakeOS,
+            0,
+            35,
+            "0",
+            {
+                fontFamily: 'Roboto',
+                fontSize : '26px',
+                color: '#ffffff',
+                align: 'center'
+            }
+            )
+            .setOrigin(0.5, 0.5)
+            .setShadow(2, 2, '0x3f3f3f', 0.4)
+            .setResolution(1)
+            .setName('drawer-notify-counter')
+        );
+
+        this.update_notification_counter();
+
         this.drawerArea?.add(this.drawerLauncher);
+        this.drawerArea?.add(this.drawerNotificationCounter);
     }
 
     /**
@@ -366,6 +403,15 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         let iframe = document.getElementsByTagName("iframe");
         if (iframe.length > 0) {
             iframe[0].style.visibility = visible ? 'visible' : 'hidden';
+        }
+    }
+
+    public update_notification_counter(): void {
+        let total_notifications = this.fakeOS.registry.get('notifications').length;
+        let text = this.drawerNotificationCounter?.getByName('drawer-notify-counter');
+
+        if (text instanceof Phaser.GameObjects.Text) {
+            text.setText(total_notifications);
         }
     }
 }

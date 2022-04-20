@@ -14,24 +14,27 @@ function newGame(gameConfig: object): Phaser.Game {
     let game = new Phaser.Game(gameConfig);
 
     game.screenBaseSize = {
-      maxWidth: MAX_SIZE_WIDTH_SCREEN,
-      maxHeight: MAX_SIZE_HEIGHT_SCREEN,
-      minWidth: MIN_SIZE_WIDTH_SCREEN,
-      minHeight: MIN_SIZE_HEIGHT_SCREEN,
-      width: SIZE_WIDTH_SCREEN,
-      height: SIZE_HEIGHT_SCREEN
+        maxWidth: MAX_SIZE_WIDTH_SCREEN,
+        maxHeight: MAX_SIZE_HEIGHT_SCREEN,
+        minWidth: MIN_SIZE_WIDTH_SCREEN,
+        minHeight: MIN_SIZE_HEIGHT_SCREEN,
+        width: SIZE_WIDTH_SCREEN,
+        height: SIZE_HEIGHT_SCREEN
     };
     game.orientation = "portrait-primary";
 
     return game;
 }
 
-if('serviceWorker' in navigator) {
-  window.addEventListener('load', async () => {
-    await navigator.serviceWorker.register(new URL('./service-worker.js', import.meta.url));
-  });
-};
-
 let game = newGame(config);
 
+if('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+        try {
+            await navigator.serviceWorker.register(new URL('./service-worker.js', import.meta.url));
+        } catch (error) {
+            console.error(`Registration failed with ${error}`);
+        }
+    });
+};
 

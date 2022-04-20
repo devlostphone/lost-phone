@@ -25,13 +25,17 @@ self.addEventListener('activate', ev => {
   );
 });
 
+
 self.addEventListener('fetch', ev => {
   ev.respondWith(
     caches.match(ev.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
+      if (process.env.NODE_ENV === 'production') {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
       }
       return fetch(ev.request);
     }),
   );
 });
+

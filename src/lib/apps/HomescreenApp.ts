@@ -36,6 +36,7 @@ export default class HomescreenApp extends App {
     protected addIconApps(): void {
 
         let apps = [];
+        let favs = [];
         let home = this;
         for (let index in this.fakeOS.apps) {
 
@@ -48,7 +49,11 @@ export default class HomescreenApp extends App {
                 this.fakeOS.apps[index],
                 0, 0,
                 this.fakeOS.apps[index].type
-            ).addLabel(this.fakeOS.getString(this.fakeOS.apps[index]['type']));
+            );
+
+            if (this.fakeOS.apps[index].favourite != true) {
+                app.addLabel(this.fakeOS.getString(this.fakeOS.apps[index]['type']));
+            }
 
             this.fakeOS.addInputEvent('pointerover', () => {
                 app.icon.setAlpha(0.7);
@@ -66,12 +71,24 @@ export default class HomescreenApp extends App {
             app.icon);
 
             this.icons[this.fakeOS.apps[index]['type']] = app;
-            apps.push(app);
+
+            if (this.fakeOS.apps[index].favourite == true) {
+                favs.push(app);
+            } else {
+                apps.push(app);
+            }
         };
 
         this.addGrid(apps, {
-            columns: 3,
+            columns: 4,
             rows: 5 ,
+            offsetY: this.fakeOS.getUI().getAppRenderSize().height * 0.05
+        });
+
+        this.addGrid(favs, {
+            columns: 4,
+            rows: 1 ,
+            y: 9,
             offsetY: this.fakeOS.getUI().getAppRenderSize().height * 0.05
         });
 

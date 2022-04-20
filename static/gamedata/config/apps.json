@@ -1,5 +1,14 @@
 [
   {
+    "type": "phone",
+    "key": "PhoneApp",
+    "icon": "phone.png",
+    "configFile" : true,
+    "preInstalled": true,
+    "hasNotifications": true,
+    "favourite": true
+  },
+  {
     "type" : "clock",
     "key"  : "ClockApp",
     "icon" : "clock.png",
@@ -90,13 +99,5 @@
     "icon": "browser.png",
     "preInstalled": true,
     "hasNotifications": false
-  },
-  {
-    "type": "phone",
-    "key": "PhoneApp",
-    "icon": "phone.png",
-    "preInstalled": true,
-    "hasNotifications": true,
-    "favourite": true
   }
 ]

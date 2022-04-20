@@ -53,7 +53,7 @@ export default class SettingsApp extends App {
     }
 
     protected showResetOption(): any[] {
-        let text = this.fakeOS.add.text(0,0, this.fakeOS.getString('reset_data'));
+        let text = this.fakeOS.add.text(0,0, this.fakeOS.getString('reset-data'));
 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -69,11 +69,11 @@ export default class SettingsApp extends App {
     }
 
     protected showQROption(): any[] {
-        let settingsapp = this;
         let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('getQR'));
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {
+                this.addLayer();
                 QRCode.toDataURL(this.fakeOS.generateURL(
                     this.fakeOS.getURL(),
                     this.fakeOS.getState()
@@ -106,17 +106,18 @@ export default class SettingsApp extends App {
             this.fakeOS.getState()
         );
         this.qr = this.fakeOS.add.image(0,0,'url');
-        this.addRow(this.qr, {'y': 5});
+        this.addRow(this.qr, {y: 4});
 
-        this.qrtext = this.fakeOS.add.text(0,0,url,{
-            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
-        });
-        this.addRow(this.qrtext,{'y': 7});
+        this.qrtext = this.fakeOS.add.text(
+            0,0,
+            this.fakeOS.getString('copy-to-clipboard')
+        );
+        this.addRow(this.qrtext);
 
-        // TODO: make text selectable as an input
-        // TODO: copy URL to clipboard
-        /*this.fakeOS.add.dom(0,0)
-            .createFromHTML('<input type="text" value="'+url+'" />');*/
+        this.fakeOS.addInputEvent('pointerup', () => {
+            navigator.clipboard.writeText(url);
+            this.qrtext.text = this.fakeOS.getString('copied-to-clipboard');
+        }, this.qrtext);
 
         this.fakeOS.textures.off('onload');
     }

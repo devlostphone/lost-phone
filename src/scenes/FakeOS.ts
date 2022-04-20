@@ -3,7 +3,7 @@ import Handler from './Handler';
 import UI from '../lib/ui/phoneUI';
 import App from '../lib/apps/App';
 import AppFactory from '../lib/apps/AppFactory';
-import { PhoneEvents } from '../lib/events/GameEvents';
+import { PhoneEvents, SystemEvents } from '../lib/events/GameEvents';
 
 /**
  * FakeOS.
@@ -113,6 +113,7 @@ export class FakeOS extends FakeOSScene {
             this
         );
         this.activeApp?.render();
+        this.addSystemEventsListeners();
 
         // Check new notifications at start
         this.launchEvent(PhoneEvents.ActivityFinished);
@@ -171,6 +172,7 @@ export class FakeOS extends FakeOSScene {
      */
     public addBackFunction(func: any): any {
         this.backFunction.push(func);
+        this.log(this.backFunction);
     }
 
     /**
@@ -179,6 +181,7 @@ export class FakeOS extends FakeOSScene {
     public useBackFunction(): void {
         if (this.backFunction.length > 0) {
             this.backFunction.pop()();
+            this.log(this.backFunction);
         }
     }
 
@@ -262,5 +265,30 @@ export class FakeOS extends FakeOSScene {
         for (key in PhoneEvents) {
             this.game.events.removeAllListeners(PhoneEvents[key]);
         }
+    }
+
+    public addSystemEventsListeners() {
+
+        // Listen to clicking images -> redirect to gallery
+        this.addEventListener(SystemEvents.ImageClicked, (id: string) => {
+            let activeapp = this.activeApp;
+            if (activeapp !== undefined) {
+                let currentID = activeapp.getCurrentID();
+                this.log('Clicked on image ' + id);
+                this.log('Will go back to '+activeapp.constructor.name+' & ID: ' + currentID);
+
+                //this.clearBackFunction();
+                this.addBackFunction(() => {
+                    if (activeapp !== undefined) {
+                        this.launchApp(activeapp.constructor.name);
+                        this.getActiveApp().goToID(currentID);
+                    }
+                });
+                this.launchApp('GalleryApp');
+                this.backFunction.pop();
+                this.getActiveApp().goToID(id);
+                this.backFunction.pop();
+            }
+        });
     }
 }

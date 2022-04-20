@@ -17,3 +17,7 @@ export const PhoneEvents = {
     TrackPrevious: 'track-previous',
     TrackStopped: 'track-stopped'
 }
+
+export const SystemEvents = {
+    ImageClicked: 'image-clicked'
+}

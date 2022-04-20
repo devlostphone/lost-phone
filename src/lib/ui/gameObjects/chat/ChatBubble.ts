@@ -1,4 +1,5 @@
 import { FakeOS } from '../../../../scenes/FakeOS';
+import { SystemEvents } from '../../../events/GameEvents';
 /**
  * Chat bubble.
  * @todo: review this.
@@ -58,6 +59,14 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         if (bubble_text instanceof Phaser.GameObjects.Image) {
             bubble.y = -50-offsetY;
             bubble.setOrigin(0.5, 0);
+
+            this.fakeOS.addInputEvent('pointerup', () => {
+                if (matches !== null) {
+                    this.fakeOS.launchEvent(SystemEvents.ImageClicked, matches[1]);
+                }
+            },
+            bubble);
+
         }
 
         const left_bound = bubble.getBounds().width / 2 - offsetX;

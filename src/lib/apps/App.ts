@@ -99,6 +99,15 @@ export default abstract class App {
     public goToID(id: string): void {}
 
     /**
+     * Returns currently viewed ID
+     *
+     * @returns ID
+     */
+    public getCurrentID(): string {
+        return "";
+    }
+
+    /**
      * Returns app key.
      * @returns Key
      */

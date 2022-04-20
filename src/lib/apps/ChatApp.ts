@@ -81,14 +81,24 @@ export default class ChatApp extends App {
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public goToID(id: string): void {
-        for (let contact=0; contact < this.chat.length; contact++) {
-            if (id in this.chat[contact].conversation) {
+        for (let contact = 0; contact < this.chat.length; contact++) {
+            if (this.chat[contact].id == id || id in this.chat[contact].conversation) {
                 this.openChat(contact);
                 break;
             }
         }
 
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public getCurrentID(): string {
+        return this.chat[this.activeContact].id;
     }
 
     /**

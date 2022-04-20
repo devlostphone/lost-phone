@@ -30,11 +30,27 @@ export default class PicGrid extends Phaser.GameObjects.Container
     }
 
     /**
+     * Opens the selected element
+     *
+     * @param id
+     */
+    public open(id: string): void {
+        let element = this.fakeOS.getActiveApp().getActiveLayer().getByName(id);
+        if (element instanceof Phaser.GameObjects.Image) {
+            this.openImage(element);
+        } else if (element instanceof Phaser.GameObjects.Container) {
+            let video = element.getByName(id);
+            if (video instanceof Phaser.GameObjects.Video) {
+                this.openVideo(video);
+            }
+        }
+    }
+
+    /**
      * Prints media collection from the gallery.
      *
      */
     public printMedia(): void {
-        let renderArea = this.fakeOS.getUI().getAppRenderSize();
         for (let i = 0; i < this.media.length; i++) {
             let element: any;
 
@@ -68,7 +84,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
      */
     protected printImage(image: any): Phaser.GameObjects.Image {
         let renderArea = this.fakeOS.getUI().getAppRenderSize();
-        let element = this.fakeOS.add.image(0, 0, image.id);
+        let element = this.fakeOS.add.image(0, 0, image.id).setName(image.id);
         element.displayWidth = renderArea.width / 2;
         element.displayHeight = renderArea.height / 4;
 
@@ -94,7 +110,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
      */
     protected printVideo(video: any): Phaser.GameObjects.Container {
         let renderArea = this.fakeOS.getUI().getAppRenderSize();
-        let element = this.fakeOS.add.video(0, 0, video.id);
+        let element = this.fakeOS.add.video(0, 0, video.id).setName(video.id);
         let playerButton = this.fakeOS.add.image(0, 0, 'play-button');
         playerButton.displayWidth = renderArea.width / 4;
         playerButton.displayHeight = renderArea.width / 4;
@@ -107,14 +123,14 @@ export default class PicGrid extends Phaser.GameObjects.Container
                 element.setTint(185273);
                 setTimeout(() => {
                     element.clearTint();
-                    this.openVideo(element, container);
+                    this.openVideo(element);
                     element.play();
                 }, 100);
             },
             element
         );
 
-        let container = this.fakeOS.add.container(0,0, [element, playerButton]);
+        let container = this.fakeOS.add.container(0,0, [element, playerButton]).setName(video.id);
         return container;
     }
 
@@ -137,7 +153,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
      * Opens a video element from the gallery.
      * @param element
      */
-     public openVideo(element: Phaser.GameObjects.Video, container: Phaser.GameObjects.Container): void {
+     public openVideo(element: Phaser.GameObjects.Video): void {
         this.fakeOS.getActiveApp().addLayer(0x333333);
         const area = this.fakeOS.getUI().getAppRenderSize();
 

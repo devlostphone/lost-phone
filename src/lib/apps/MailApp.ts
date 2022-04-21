@@ -97,11 +97,29 @@ import { PhoneEvents } from '../events/GameEvents';
         ).setOrigin(0, 0);
         this.addRow(header);
 
-        let text = this.fakeOS.add.text(0,0,
-            mail['body'],
-            this.textoptions
-        ).setOrigin(0,0);
-        this.addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
+        let text;
+
+        if (mail['file']) {
+            fetch(mail['file'])
+                .then((response) => response.text())
+                .then((mailText) => {
+                    text = this.fakeOS.add.text(0,0,
+                        mailText.split("\\n"),
+                        this.textoptions
+                    ).setOrigin(0,0);
+                    this.addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
+                });
+        } else {
+            text = this.fakeOS.add.text(0,0,
+                mail['body'].split("\\n"),
+                this.textoptions
+            ).setOrigin(0,0)
+            this.addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
+        }
+
+        if (mail['attachment'] !== null) {
+
+        }
 
         this.fakeOS.setDone(mail['id']);
     }

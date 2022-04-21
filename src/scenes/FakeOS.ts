@@ -269,6 +269,7 @@ export class FakeOS extends FakeOSScene {
             this.log('Clicked on element: ' + id);
             this.log('Will go back to '+activeapp.constructor.name+' & ID: ' + currentID);
 
+            this.clearBackFunction();
             this.addBackFunction(() => {
                 if (activeapp !== undefined) {
                     this.launchApp(activeapp.constructor.name);
@@ -304,5 +305,38 @@ export class FakeOS extends FakeOSScene {
         this.addEventListener(SystemEvents.ImageClicked, (id: string) => {
             this.switchApp('GalleryApp', id);
         });
+    }
+
+    /**
+     * Generates a Phaser GameObject with event attached for switching apps.
+     */
+    public generateAppLink(tag: string): any {
+        let gameobject, matches, id: string, event: string;
+
+        switch (true) {
+            case /gallery/.test(tag):
+                matches = tag.match(/gallery:(.*)/i);
+                id = matches ? matches[1] : "";
+                gameobject = new Phaser.GameObjects.Image(
+                    this, 0, 0, id
+                ).setName(id);
+                event = SystemEvents.ImageClicked;
+                break;
+
+            case /browser/.test(tag):
+                break;
+
+            case /document/.test(tag):
+                break;
+
+            default:
+                return undefined;
+        }
+
+        this.addInputEvent('pointerup', () => {
+            this.launchEvent(event, id);
+        }, gameobject);
+
+        return gameobject;
     }
 }

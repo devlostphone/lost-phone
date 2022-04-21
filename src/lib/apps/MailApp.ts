@@ -12,6 +12,8 @@ import { PhoneEvents } from '../events/GameEvents';
      */
     protected mails: any;
 
+    protected currentMail: string = "";
+
     protected textoptions = {
         fontSize: "24px",
         align: "left",
@@ -33,6 +35,7 @@ import { PhoneEvents } from '../events/GameEvents';
      */
     public render(): void {
         //this.showTitle();
+        this.currentMail = "";
         this.showMailList();
     }
 
@@ -87,6 +90,8 @@ import { PhoneEvents } from '../events/GameEvents';
      */
     public openMail(mail: any): void {
 
+        this.currentMail = mail['id'];
+
         // Adding a new layer for displaying mail contents.
         this.addLayer(0x333333);
 
@@ -117,15 +122,34 @@ import { PhoneEvents } from '../events/GameEvents';
             this.addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
         }
 
+        let attachments = [];
         if (mail['attachment'] !== null) {
+            for (let i = 0; i < mail['attachment'].length; i++) {
+                let attachment = this.fakeOS.generateAppLink(mail['attachment'][i]);
+                attachments.push(this.fakeOS.add.existing(attachment));
 
+                // @TODO: change the way attachments look like
+                attachment.setOrigin(0.5, 1)
+                attachment.setScale(0.5, 0.5);
+            }
         }
 
+        this.addRow(attachments);
         this.fakeOS.setDone(mail['id']);
     }
 
+    /**
+     * @inheritdoc
+     */
     public goToID(id: string): void {
         let mail = this.mails.find((o: any) => o.id == id);
         this.openMail(mail);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public getCurrentID(): string {
+        return this.currentMail;
     }
 }

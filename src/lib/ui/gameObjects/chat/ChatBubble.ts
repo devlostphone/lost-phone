@@ -1,5 +1,4 @@
 import { FakeOS } from '../../../../scenes/FakeOS';
-import { SystemEvents } from '../../../events/GameEvents';
 /**
  * Chat bubble.
  * @todo: review this.
@@ -36,13 +35,13 @@ export default class ChatBubble extends Phaser.GameObjects.Container
             textOptions
         ).setOrigin(0.5);
 
-        let matches = text.match(/gallery:(.*)/i);
-        if (matches !== null) {
+        let image = this.fakeOS.generateAppLink(text);
+
+        if (image !== undefined) {
             bubble_text.destroy();
-            bubble_text = this.fakeOS.add.image(
-                0, -50,
-                matches[1]
-            ).setOrigin(0.5, 0);
+            bubble_text = this.fakeOS.add.existing(image);
+            bubble_text.y = -50;
+            bubble_text.setOrigin(0.5, 0);
             bubble_text.displayWidth = this.fakeOS.getActiveApp().getActiveLayer().area.width / 2;
             bubble_text.scaleY = bubble_text.scaleX;
         }
@@ -58,14 +57,6 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         if (bubble_text instanceof Phaser.GameObjects.Image) {
             bubble.y = -50-offsetY;
             bubble.setOrigin(0.5, 0);
-
-            this.fakeOS.addInputEvent('pointerup', () => {
-                if (matches !== null) {
-                    this.fakeOS.launchEvent(SystemEvents.ImageClicked, matches[1]);
-                }
-            },
-            bubble);
-
         }
         this.add(bubble);
 

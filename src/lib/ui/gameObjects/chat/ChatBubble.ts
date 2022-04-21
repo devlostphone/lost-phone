@@ -22,8 +22,7 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         y: number,
         text: string,
         textOptions: any,
-        right: boolean = false
-
+        position: string = 'left'
     ) {
         super(scene, x, y, []);
         this.fakeOS = scene;
@@ -68,6 +67,7 @@ export default class ChatBubble extends Phaser.GameObjects.Container
             bubble);
 
         }
+        this.add(bubble);
 
         const left_bound = bubble.getBounds().width / 2 - offsetX;
         const top_bound = bubble.getBounds().height / 2 - offsetY;
@@ -77,21 +77,24 @@ export default class ChatBubble extends Phaser.GameObjects.Container
             x3 :{ x: - left_bound, y: top_bound + 25 }
         }
 
-        if (right) {
+        if (position == 'right') {
             // TODO: why + 30?
             triangle_coords['x1']['x'] = left_bound + 30;
             triangle_coords['x2']['x'] = left_bound + 60;
             triangle_coords['x3']['x'] = left_bound + 30;
         }
 
-        let triangle = this.fakeOS.add.triangle(
-            0,0,
-            triangle_coords.x1.x, triangle_coords.x1.y,
-            triangle_coords.x2.x, triangle_coords.x2.y,
-            triangle_coords.x3.x, triangle_coords.x3.y,
-            0x999999
-        );
+        if (position != 'center') {
+            let triangle = this.fakeOS.add.triangle(
+                0,0,
+                triangle_coords.x1.x, triangle_coords.x1.y,
+                triangle_coords.x2.x, triangle_coords.x2.y,
+                triangle_coords.x3.x, triangle_coords.x3.y,
+                0x999999
+            );
+            this.add(triangle);
+        }
 
-        this.add([bubble, triangle, bubble_text]);
+        this.add(bubble_text);
     }
 }

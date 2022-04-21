@@ -178,6 +178,9 @@ export default class ChatApp extends App {
             //}
         }
         let avatar = conversation.pic !== undefined ? conversation.pic : this.chat[this.activeContact].id;
+        if (conversation.notification) {
+            avatar = null;
+        }
         this.addRow(new ChatInteraction(
                 this.fakeOS,
                 0,0,
@@ -185,7 +188,7 @@ export default class ChatApp extends App {
                 avatar,
                 conversation.text,
                 conversation.author,
-                {...this.textOptions, new_message: newMessage}
+                {...this.textOptions, new_message: newMessage, notification: conversation.notification}
             ).setName(conversation.id),
             newMessage ? this.newRowOptions : this.rowOptions
         );

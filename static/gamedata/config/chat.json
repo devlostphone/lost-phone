@@ -150,7 +150,7 @@
             },
             "c003-0005": {
                 "id": "c003-0005",
-                "pic": "gamedata/assets/profiles/calamar.png",
+                "notification": true,
                 "text": "Sun Yoon ha marxat del grup",
                 "condition": null
             }

@@ -305,6 +305,14 @@ export class FakeOS extends FakeOSScene {
         this.addEventListener(SystemEvents.ImageClicked, (id: string) => {
             this.switchApp('GalleryApp', id);
         });
+
+        this.addEventListener(SystemEvents.PasswordProtected, (id: string, password: string) => {
+            this.launchPasswordProtectedModal(id, password);
+        });
+        this.addEventListener(SystemEvents.PasswordCorrect, (id: string) => {
+            this.setDone(id);
+            this.getActiveApp().goToID(id);
+        });
     }
 
     /**
@@ -338,5 +346,39 @@ export class FakeOS extends FakeOSScene {
         }, gameobject);
 
         return gameobject;
+    }
+
+    public launchPasswordProtectedModal(id: string, password: string): void {
+
+        this.getActiveApp().addLayer();
+        let text = this.add.text(
+            0,0,
+            this.getString('fill-password')
+        );
+        this.getActiveApp().addRow(text, {y: 3});
+
+        let input = this.add.dom(0,0).createFromHTML('<input type="text" name="password" />');
+        let enter = this.add.text(
+            0,0,
+            'ENTER'
+        );
+        this.getActiveApp().addRow([input, enter], {y: 4});
+
+        this.addInputEvent('pointerup', ()=>{
+            let user_input = input.getChildByName('password').value;
+            this.log("Input password: " + user_input + " against " + password);
+            if (password == user_input) {
+                this.launchEvent(SystemEvents.PasswordCorrect, id);
+            } else {
+                text.text = this.getString('incorrect-password');
+            }
+        }, enter);
+
+        this.addBackFunction(() => {
+            input.destroy();
+            this.useBackFunction();
+        })
+
+
     }
 }

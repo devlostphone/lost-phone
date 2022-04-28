@@ -15,13 +15,15 @@
         "id": "v001",
         "type": "video",
         "source": "gamedata/assets/videos/v001.mp4",
-        "condition": null
+        "condition": null,
+        "password": 1234
     },
     {
         "id": "g003",
         "type": "picture",
         "source": "gamedata/assets/pictures/pic3.jpg",
-        "condition": null
+        "condition": null,
+        "password": 1234
     },
     {
         "id": "g004",

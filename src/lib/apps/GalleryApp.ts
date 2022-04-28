@@ -32,6 +32,7 @@ export default class GalleryApp extends App {
      * @inheritdoc
      */
     public goToID(id: string): void {
+        this.reRender();
         this.picGrid?.open(id);
     }
 }

@@ -1,4 +1,5 @@
 import { FakeOS } from "../../../scenes/FakeOS";
+import { SystemEvents } from "../../events/GameEvents";
 
 /**
  * Picture grid.
@@ -94,7 +95,11 @@ export default class PicGrid extends Phaser.GameObjects.Container
                 element.setTint(185273);
                 setTimeout(() => {
                     element.clearTint();
-                    this.openImage(element);
+                    if (image.password !== undefined && !this.fakeOS.checkDone(image.id)) {
+                        this.fakeOS.launchEvent(SystemEvents.PasswordProtected, image.id, image.password);
+                    } else {
+                        this.openImage(element);
+                    }
                 }, 100);
             },
             element
@@ -123,8 +128,13 @@ export default class PicGrid extends Phaser.GameObjects.Container
                 element.setTint(185273);
                 setTimeout(() => {
                     element.clearTint();
-                    this.openVideo(element);
-                    element.play();
+
+                    if (video.password !== undefined && !this.fakeOS.checkDone(video.id)) {
+                        this.fakeOS.launchEvent(SystemEvents.PasswordProtected, video.id, video.password);
+                    } else {
+                        this.openVideo(element);
+                        element.play();
+                    }
                 }, 100);
             },
             element

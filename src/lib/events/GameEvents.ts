@@ -19,5 +19,7 @@ export const PhoneEvents = {
 }
 
 export const SystemEvents = {
-    ImageClicked: 'image-clicked'
+    ImageClicked: 'image-clicked',
+    PasswordCorrect: 'password-correct',
+    PasswordProtected: 'password-protected'
 }

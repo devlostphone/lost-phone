@@ -39,4 +39,8 @@ export const config:  Phaser.Types.Core.GameConfig = {
         Preloader,
         FakeOS
     ],
+    fps: {
+        target: 60,
+        min: 30
+    }
 };

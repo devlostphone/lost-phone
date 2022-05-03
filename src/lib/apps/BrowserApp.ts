@@ -3,6 +3,7 @@ import App from '../../lib/apps/App';
 import TextList from '../ui/gameObjects/list/TextList';
 import { PhoneEvents } from '../events/GameEvents';
 import SearchBox from '../ui/gameObjects/input/SearchBox';
+import { throws } from 'assert';
 
 /**
  * Browser app.
@@ -49,7 +50,7 @@ import SearchBox from '../ui/gameObjects/input/SearchBox';
         }, this.searchBox.background);
 
         // Open page when link selected
-        this.fakeOS.addEventListener(PhoneEvents.ItemSelected, (id: number) => {
+        this.fakeOS.addEventListener(PhoneEvents.ItemSelected, (id: string) => {
             this.showPage(id);
             this.pageList?.destroy();
             this.isListOpen = false;
@@ -79,7 +80,7 @@ import SearchBox from '../ui/gameObjects/input/SearchBox';
         });
     }
 
-    protected showPage(id: number): void {
+    protected showPage(id: string): void {
         this.getActiveLayer().setHandler(() => {
             this.body?.destroy();
             this.reRender();
@@ -107,5 +108,14 @@ import SearchBox from '../ui/gameObjects/input/SearchBox';
         this.getActiveLayer().setHandler(() => {
             this.reRender();
         });
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public goToID(id: string, skipLayerChangeAnim = false): void {
+        this.searchBox.y = this.area.y;
+        this.skipLayerChangeAnim = skipLayerChangeAnim;
+        this.showPage(id);
     }
 }

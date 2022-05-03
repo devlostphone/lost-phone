@@ -31,7 +31,8 @@ export default class GalleryApp extends App {
     /**
      * @inheritdoc
      */
-    public goToID(id: string): void {
+    public goToID(id: string, skipLayerChangeAnim = false): void {
+        this.skipLayerChangeAnim = skipLayerChangeAnim;
         this.reRender();
         this.picGrid?.open(id);
     }

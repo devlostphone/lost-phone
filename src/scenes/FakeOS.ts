@@ -273,13 +273,13 @@ export class FakeOS extends FakeOSScene {
             this.addBackFunction(() => {
                 if (activeapp !== undefined) {
                     this.launchApp(activeapp.constructor.name);
-                    this.getActiveApp().goToID(currentID);
+                    this.getActiveApp().goToID(currentID, true);
                 }
             });
             this.launchApp(app);
             this.backFunction.pop();
             if (id !== undefined) {
-                this.getActiveApp().goToID(id);
+                this.getActiveApp().goToID(id, true);
                 this.backFunction.pop();
             }
         }
@@ -306,6 +306,11 @@ export class FakeOS extends FakeOSScene {
             this.switchApp('GalleryApp', id);
         });
 
+        // Listen to clicking links -> redirect to browser
+        this.addEventListener(SystemEvents.LinkClicked, (id: string) => {
+            this.switchApp('BrowserApp', id);
+        });
+
         this.addEventListener(SystemEvents.PasswordProtected, (id: string, password: string) => {
             this.launchPasswordProtectedModal(id, password);
         });
@@ -318,7 +323,7 @@ export class FakeOS extends FakeOSScene {
     /**
      * Generates a Phaser GameObject with event attached for switching apps.
      */
-    public generateAppLink(tag: string): any {
+    public generateAppLink(tag: string, options?: any): any {
         let gameobject, matches, id: string, event: string;
 
         switch (true) {
@@ -332,6 +337,12 @@ export class FakeOS extends FakeOSScene {
                 break;
 
             case /browser/.test(tag):
+                matches = tag.match(/browser:(.*):(.*)/i);
+                id = matches ? matches[1] : "";
+                gameobject = new Phaser.GameObjects.Text(
+                    this, 0, 0, matches ? matches[2] : "Link", options
+                ).setName(id);
+                event = SystemEvents.LinkClicked;
                 break;
 
             case /document/.test(tag):
@@ -348,8 +359,15 @@ export class FakeOS extends FakeOSScene {
         return gameobject;
     }
 
+    /**
+     * Shows input password screen.
+     *
+     * @param id
+     * @param password
+     */
     public launchPasswordProtectedModal(id: string, password: string): void {
 
+        this.getActiveApp().skipLayerChangeAnim = true;
         this.getActiveApp().addLayer();
         let text = this.add.text(
             0,0,
@@ -375,6 +393,7 @@ export class FakeOS extends FakeOSScene {
         }, enter);
 
         this.addBackFunction(() => {
+            this.getActiveApp().skipLayerChangeAnim = true;
             input.destroy();
             this.useBackFunction();
         })

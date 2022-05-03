@@ -84,7 +84,8 @@ export default class ChatApp extends App {
     /**
      * @inheritdoc
      */
-    public goToID(id: string): void {
+    public goToID(id: string, skipLayerChangeAnim = false): void {
+        this.skipLayerChangeAnim = skipLayerChangeAnim;
         for (let contact = 0; contact < this.chat.length; contact++) {
             if (this.chat[contact].id == id || id in this.chat[contact].conversation) {
                 this.openChat(contact);

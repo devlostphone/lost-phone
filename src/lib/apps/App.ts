@@ -38,9 +38,14 @@ export default abstract class App {
     public area: any;
 
     /**
-     * Changing layer tweens duration (in miliseconds)
+     * Changing layer tweens duration (in miliseconds).
      */
     public layerChangeDuration: number = 200;
+
+    /**
+     * Whether to skip change layer animation.
+     */
+    public skipLayerChangeAnim: boolean = false;
 
     /**
      * Class constructor.
@@ -96,7 +101,7 @@ export default abstract class App {
      * Goes to specific item ID (launched by notification)
      * @param id
      */
-    public goToID(id: string): void {}
+    public goToID(id: string, skipLayerChangeAnim = false): void {}
 
     /**
      * Returns currently viewed ID
@@ -194,17 +199,25 @@ export default abstract class App {
 
         newLayer.launchHandler();
 
-        this.fakeOS.tweens.add({
-            targets: this.layers,
-            x: - this.area.width * this.activeLayer,
-            duration: this.layerChangeDuration,
-            onComplete: () => {
-                oldLayer.bringToTop(oldLayer.getByName('start-point'));
-                if (action !== undefined) {
-                    action();
-                }
+        let onComplete = () => {
+            oldLayer.bringToTop(oldLayer.getByName('start-point'));
+            if (action !== undefined) {
+                action();
             }
-        });
+        };
+
+        if (this.skipLayerChangeAnim) {
+            this.layers.x = - this.area.width * this.activeLayer;
+            onComplete();
+            this.skipLayerChangeAnim = false;
+        } else {
+            this.fakeOS.tweens.add({
+                targets: this.layers,
+                x: - this.area.width * this.activeLayer,
+                duration: this.layerChangeDuration,
+                onComplete: onComplete
+            });
+        }
     }
 
     /**

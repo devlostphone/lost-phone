@@ -35,15 +35,21 @@ export default class ChatBubble extends Phaser.GameObjects.Container
             textOptions
         ).setOrigin(0.5);
 
-        let image = this.fakeOS.generateAppLink(text);
+        let applink = this.fakeOS.generateAppLink(text, {
+            ...textOptions,
+            color: "#0000FF"
+        });
 
-        if (image !== undefined) {
+        if (applink !== undefined) {
             bubble_text.destroy();
-            bubble_text = this.fakeOS.add.existing(image);
-            bubble_text.y = -50;
-            bubble_text.setOrigin(0.5, 0);
-            bubble_text.displayWidth = this.fakeOS.getActiveApp().getActiveLayer().area.width / 2;
-            bubble_text.scaleY = bubble_text.scaleX;
+            bubble_text = this.fakeOS.add.existing(applink);
+            bubble_text.setOrigin(0.5);
+            if (bubble_text instanceof Phaser.GameObjects.Image) {
+                bubble_text.y = -50;
+                bubble_text.setOrigin(0.5, 0);
+                bubble_text.displayWidth = this.fakeOS.getActiveApp().getActiveLayer().area.width / 2;
+                bubble_text.scaleY = bubble_text.scaleX;
+            }
         }
 
         let text_bounds = bubble_text.getBounds();

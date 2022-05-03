@@ -39,7 +39,7 @@
             },
             "c001-0005": {
                 "id": "c001-0005",
-                "text": "Ei! Has llegit el mail del miniop?",
+                "text": "browser:page001:Ei! Has llegit el mail del miniop?",
                 "condition": "m001",
                 "next": "c001-0006"
             },

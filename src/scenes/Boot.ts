@@ -41,6 +41,7 @@ export default class Boot extends FakeOSScene {
         this.load.json('podcast', 'gamedata/config/podcast.json');
         this.load.json('unlock-screen', 'gamedata/config/unlock-screen.json');
         this.load.json('calendar', 'gamedata/config/calendar.json');
+        this.load.json('files', 'gamedata/config/files.json');
     }
 
     /**

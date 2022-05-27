@@ -9,6 +9,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
 {
     protected media: any;
     protected fakeOS: FakeOS;
+    protected textoptions: any;
 
     /**
      * Class constructor.
@@ -27,6 +28,12 @@ export default class PicGrid extends Phaser.GameObjects.Container
         this.media = media;
         this.fakeOS = scene;
 
+        this.textoptions = {
+            fontSize: "24px",
+            align: "left",
+            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+        };
+
         this.printMedia();
     }
 
@@ -37,13 +44,17 @@ export default class PicGrid extends Phaser.GameObjects.Container
      */
     public open(id: string): void {
         let element = this.fakeOS.getActiveApp().getActiveLayer().getByName(id);
-        if (element instanceof Phaser.GameObjects.Image) {
-            this.openImage(element);
-        } else if (element instanceof Phaser.GameObjects.Container) {
-            let video = element.getByName(id);
-            if (video instanceof Phaser.GameObjects.Video) {
-                this.openVideo(video);
-            }
+
+        switch (element.constructor) {
+            case Phaser.GameObjects.Image:
+                this.openImage(element);
+                break;
+            case Phaser.GameObjects.Container:
+                let video = element.getByName(id);
+                if (video instanceof Phaser.GameObjects.Video) {
+                    this.openVideo(video);
+                }
+                break;
         }
     }
 
@@ -59,10 +70,16 @@ export default class PicGrid extends Phaser.GameObjects.Container
                 continue;
             }
 
-            if (this.media[i].type === 'picture') {
-                element = this.printImage(this.media[i]);
-            } else if (this.media[i].type === 'video') {
-                element = this.printVideo(this.media[i]);
+            switch(this.media[i].type) {
+                case 'picture':
+                    element = this.printImage(this.media[i]);
+                    break;
+                case 'video':
+                    element = this.printVideo(this.media[i]);
+                    break;
+                case 'file':
+                    element = this.printFile(this.media[i]);
+                    break;
             }
 
             this.add(element);
@@ -144,6 +161,43 @@ export default class PicGrid extends Phaser.GameObjects.Container
         return container;
     }
 
+
+    /**
+     * Prints a file thumbnail in a grid.
+     * @param file
+     * @returns
+     */
+    public printFile(file: any): Phaser.GameObjects.Container {
+        let renderArea = this.fakeOS.getUI().getAppRenderSize();
+        let rectangle = this.fakeOS.add.rectangle(
+            0,0,
+            renderArea.width / 2,
+            renderArea.height / 4);
+        let element = this.fakeOS.add.image(0, 0, 'files').setName(file.id);
+        let text = this.fakeOS.add.text(0, 100, file.filename).setOrigin(0.5);
+        let container = this.fakeOS.add.container(0,0, [rectangle, element, text]).setName(file.id);
+
+
+        this.fakeOS.addInputEvent(
+            'pointerup',
+            () => {
+                element.setTint(185273);
+                setTimeout(() => {
+                    element.clearTint();
+
+                    if (file.password !== undefined && !this.fakeOS.checkDone(file.id)) {
+                        this.fakeOS.launchEvent(SystemEvents.PasswordProtected, file.id, file.password);
+                    } else {
+                        this.openFile(file);
+                    }
+                }, 100);
+            },
+            element
+        );
+
+        return container;
+    }
+
     /**
      * Opens an image element from the gallery.
      * @param element
@@ -184,5 +238,31 @@ export default class PicGrid extends Phaser.GameObjects.Container
             },
             element
         );
+    }
+
+    public openFile(element: any): void {
+        this.fakeOS.getActiveApp().addLayer(0x333333);
+        const area = this.fakeOS.getUI().getAppRenderSize();
+
+        let text;
+
+        if (element['file']) {
+            fetch(element['file'])
+                .then((response) => response.text())
+                .then((mailText) => {
+                    text = this.fakeOS.add.text(0,0,
+                        mailText.split("\\n"),
+                        this.textoptions
+                    ).setOrigin(0,0);
+                    this.fakeOS.getActiveApp().addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
+                });
+        } else {
+            text = this.fakeOS.add.text(0,0,
+                element['contents'].split("\\n"),
+                this.textoptions
+            ).setOrigin(0,0)
+            this.fakeOS.getActiveApp().addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
+        }
+
     }
 }

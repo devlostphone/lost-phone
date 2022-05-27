@@ -24,6 +24,15 @@
     "hasNotifications": false
   },
   {
+    "type"   : "files",
+    "key"    : "FilesApp",
+    "icon"   : "files.png",
+    "configFile" : true,
+    "preInstalled": true,
+    "hasNotifications": false,
+    "favourite": false
+  },
+  {
     "type"   : "chat",
     "key"    : "ChatApp",
     "icon"   : "chat.png",

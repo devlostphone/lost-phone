@@ -1,6 +1,7 @@
 import BrowserApp from './BrowserApp';
 import ChatApp from './ChatApp';
 import ClockApp from './ClockApp';
+import FilesApp from './FilesApp';
 import GalleryApp from './GalleryApp';
 import HomescreenApp from './HomescreenApp';
 import MailApp from './MailApp';
@@ -18,6 +19,7 @@ const Store: any = {
     BrowserApp,
     ChatApp,
     ClockApp,
+    FilesApp,
     GalleryApp,
     HomescreenApp,
     MailApp,

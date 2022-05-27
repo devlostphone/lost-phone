@@ -8,6 +8,7 @@
     "copy-to-clipboard": "Copy to clipboard",
     "daysweek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "daysweekshort": ["Mo.", "Tu.", "We.", "Th.", "Fr.", "Sa.", "Su."],
+    "files": "Files",
     "download": "Download",
     "downloading": "Downloading...",
     "enter-passcode": "Enter passcode",

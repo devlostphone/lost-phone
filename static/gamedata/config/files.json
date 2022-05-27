@@ -1,0 +1,16 @@
+[
+    {
+        "id": "d001",
+        "type": "file",
+        "file": "gamedata/assets/emails/email1.txt",
+        "filename": "Fitxer 1.txt",
+        "condition": null
+    },
+    {
+        "id": "d002",
+        "type": "file",
+        "file": "gamedata/assets/emails/email1.txt",
+        "filename": "Fitxer 2.pdf",
+        "condition": null
+    }
+]

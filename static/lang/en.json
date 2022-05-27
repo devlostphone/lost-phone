@@ -33,5 +33,6 @@
     "store": "AppStore",
     "subject": "Subject",
     "title": "Title",
+    "toDo": "To Do",
     "unlock-screen": "Lock"
 }

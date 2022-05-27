@@ -11,24 +11,26 @@ import UnlockScreenApp from './UnlockScreenApp';
 import CalendarApp from './CalendarApp';
 import StoreApp from './StoreApp';
 import PhoneApp from './PhoneApp';
+import ToDoApp from './ToDoApp';
 
 /**
  * Contains all app definitions.
  */
 const Store: any = {
     BrowserApp,
+    CalendarApp,
     ChatApp,
     ClockApp,
     FilesApp,
     GalleryApp,
     HomescreenApp,
     MailApp,
+    PhoneApp,
     PodcastApp,
     SettingsApp,
-    CalendarApp,
-    UnlockScreenApp,
     StoreApp,
-    PhoneApp
+    ToDoApp,
+    UnlockScreenApp,
 }
 
 /**

@@ -108,5 +108,12 @@
     "icon": "browser.png",
     "preInstalled": true,
     "hasNotifications": false
+  },
+  {
+    "type": "toDo",
+    "key": "ToDoApp",
+    "icon": "toDo.png",
+    "preInstalled": false,
+    "hasNotifications": false
   }
 ]

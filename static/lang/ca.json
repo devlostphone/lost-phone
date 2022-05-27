@@ -33,5 +33,6 @@
     "store": "AppStore",
     "subject": "Assumpte",
     "title": "Títol",
+    "toDo": "Tasques",
     "unlock-screen": "Bloqueig"
 }

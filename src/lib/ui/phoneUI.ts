@@ -248,12 +248,15 @@ export default class phoneUI {
         this.fakeOS.addEventListener(
             PhoneEvents.NotificationFinished,
             () => {
-                setTimeout(() => {
-                    if (this.elements.drawer !== undefined) {
-                        this.elements.drawer.isNotificationYoyoing = false;
-                        this.elements.drawer.update_notification_counter();
-                    }
-                }, 1000);
+                if (this.elements.drawer !== undefined) {
+                    setTimeout(() => {
+                        if (this.elements.drawer !== undefined) {
+                            this.elements.drawer.isNotificationYoyoing = false;
+                        }
+                    }, 1000);
+
+                    this.elements.drawer.update_notification_counter();
+                }
             }
         );
     }

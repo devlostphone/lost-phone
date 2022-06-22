@@ -407,11 +407,21 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
     }
 
     public update_notification_counter(): void {
-        let total_notifications = this.fakeOS.registry.get('notifications').length;
+        let notifications = this.fakeOS.registry.get('notifications');
+        let pending = this.fakeOS.getUI().elements.drawer?.pendingNotifications;
+        if (pending != undefined) {
+            notifications = notifications.filter((x:any) => !pending.includes(x));
+        }
+        let total_notifications = notifications.length;
         let text = this.drawerNotificationCounter?.getByName('drawer-notify-counter');
 
         if (text instanceof Phaser.GameObjects.Text) {
-            text.setText(total_notifications);
+            if (total_notifications == 0) {
+                this.drawerNotificationCounter?.setVisible(false);
+            } else {
+                this.drawerNotificationCounter?.setVisible(true);
+                text.setText(total_notifications);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
 import AppIcon from '../../lib/ui/gameObjects/AppIcon';
+import { PhoneEvents } from '../../lib/events/GameEvents';
 
 /**
  * Homescreen app.
@@ -93,10 +94,21 @@ export default class HomescreenApp extends App {
         });
 
         this.addBalloons();
+
+        this.fakeOS.addEventListener(
+            PhoneEvents.NotificationFinished,
+            () => {
+                this.addBalloons()
+            }
+        );
     };
 
     protected addBalloons() {
         let notifications = this.fakeOS.registry.get('notifications');
+        let pending = this.fakeOS.getUI().elements.drawer?.pendingNotifications;
+        if (pending !== undefined) {
+            notifications = notifications.filter((x:any) => !pending.includes(x));
+        }
 
         for (let index in this.fakeOS.apps) {
             if (!this.fakeOS.apps[index].preInstalled && !this.fakeOS.checkDone(this.fakeOS.apps[index]['type'])) {

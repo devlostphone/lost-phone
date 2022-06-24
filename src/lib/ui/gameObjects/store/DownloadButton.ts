@@ -48,6 +48,10 @@ export default class DownloadButton extends Phaser.GameObjects.Container
         this.setSize(this.background.width, this.background.height);
     }
 
+    /**
+     * Sets the label for the "download" button.
+     * @param status
+     */
     public setLabel(status: string): void {
         let text = this.fakeOS.getString(status);
         let line_color = Phaser.Display.Color.IntegerToColor(0x0000ff);
@@ -70,6 +74,9 @@ export default class DownloadButton extends Phaser.GameObjects.Container
         this.background.setOrigin(0.5);
     }
 
+    /**
+     * Fake download function.
+     */
     public startDownload() {
         this.setLabel('downloading');
 

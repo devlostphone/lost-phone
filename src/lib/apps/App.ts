@@ -52,14 +52,11 @@ export default abstract class App {
      *
      * @param fakeOS FakeOS
      */
-    public constructor(fakeOS: FakeOS, options?: any) {
+    public constructor(fakeOS: FakeOS, options: any = []) {
         this.fakeOS = fakeOS;
         this.area = this.fakeOS.getUI().getAppRenderSize();
         this.activeLayer = 0;
-
-        if (options !== undefined) {
-            this.setOptions(options);
-        }
+        this.setOptions(options);
 
         this.layers = this.fakeOS.add.container(this.area.x, this.area.y);
         this.layers.add(new AppLayer(fakeOS, 0, 0, undefined, options));
@@ -206,6 +203,7 @@ export default abstract class App {
             }
         };
 
+        // Changes behaviour if we skip layer change animation
         if (this.skipLayerChangeAnim) {
             this.layers.x = - this.area.width * this.activeLayer;
             onComplete();
@@ -291,12 +289,12 @@ export default abstract class App {
     }
 
     /**
-     * Checks for unlocked elements.
+     * Checks for unlocked elements. Optionally overriden by child class.
      *
      * @param type
      * @returns
      */
-    public checkNewElements(type: string) {
+    public checkNewElements(type: string): any[] {
         let complete = Object.keys(this.fakeOS.registry.get('complete'));
         let notifications = this.fakeOS.registry.get('notifications');
         let content = this.fakeOS.cache.json.get(type);

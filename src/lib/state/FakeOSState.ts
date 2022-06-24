@@ -2,44 +2,18 @@ import { FakeOS } from "../../scenes/FakeOS";
 
 declare module "../../scenes/FakeOS" {
     interface FakeOS {
-
-        /**
-         * Resets FakeOS to "factory settings".
-         */
         cleanState(): void;
-
-        /**
-         * Deletes FakeOS data from local storage.
-         */
         deleteState(): void;
-
-        /**
-         * Retrieves FakeOS data from local storage.
-         */
         getState(): any;
-
-        /**
-         * Saves FakeOS data to local storage.
-         */
         saveState(): void;
-
-        /**
-         * Loads FakeOS data from a given password.
-         *
-         * @param password
-         */
         loadState(password?: any): void;
-
-        /**
-         * Adds specific data to FakeOS registry.
-         *
-         * @param key
-         * @param data
-         */
         addData(key:string, data:any): void;
     }
 }
 
+/**
+ * Resets FakeOS to "factory settings".
+ */
 FakeOS.prototype.cleanState = function() {
     this.log('Cleaning state');
     this.registry.reset();
@@ -52,21 +26,35 @@ FakeOS.prototype.cleanState = function() {
     this.initSettings();
 }
 
+/**
+ * Deletes FakeOS data from local storage.
+ */
 FakeOS.prototype.deleteState = function(): void {
     localStorage.setItem('lostandphone','');
 }
 
+/**
+ * Retrieves FakeOS data from local storage.
+ */
 FakeOS.prototype.getState = function(): any {
     return localStorage.getItem('lostandphone');
 }
 
+/**
+ * Saves FakeOS data to local storage.
+ */
 FakeOS.prototype.saveState = function() {
     this.log('Saving state');
 
-    let state = btoa(JSON.stringify(this.registry.getAll()));
+    let state = window.btoa(JSON.stringify(this.registry.getAll()));
     localStorage.setItem('lostandphone', state);
 }
 
+/**
+ * Loads FakeOS data from a given password.
+ *
+ * @param password
+ */
 FakeOS.prototype.loadState = function(password?: any) {
     let state;
 
@@ -79,7 +67,7 @@ FakeOS.prototype.loadState = function(password?: any) {
     this.log('Loading state: '+state);
 
     if (state !== null && state !== '') {
-        let values = JSON.parse(atob(state));
+        let values = JSON.parse(window.atob(state));
         for (let key in values) {
             this.registry.set(key, values[key]);
         }
@@ -88,6 +76,12 @@ FakeOS.prototype.loadState = function(password?: any) {
     this.settings.fullSync();
 }
 
+/**
+ * Adds specific data to FakeOS registry.
+ *
+ * @param key
+ * @param data
+ */
 FakeOS.prototype.addData = function(key: string, data: any) {
     this.registry.set(key, data);
     this.saveState();

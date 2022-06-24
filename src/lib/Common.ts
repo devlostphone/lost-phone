@@ -1,4 +1,5 @@
-// --- Common
+// Common auxiliary functions.
+
 Object.defineProperty(Phaser.Structs.List.prototype, 'current', {
     get() {
         return this.getAt(this.position);

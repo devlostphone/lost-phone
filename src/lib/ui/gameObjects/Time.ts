@@ -18,7 +18,7 @@ export default class Time extends Phaser.GameObjects.Text {
     }
 
     /**
-     * Updates the clock text.
+     * @inheritdoc
      */
     public update(): void {
         let date = new Date();

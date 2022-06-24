@@ -25,6 +25,9 @@ import { PhoneEvents } from '../events/GameEvents';
         this.tracks = this.fakeOS.cache.json.get('podcast');
     }
 
+    /**
+     * @inheritdoc
+     */
     public render() {
 
         this.currentTrack = undefined;
@@ -46,6 +49,9 @@ import { PhoneEvents } from '../events/GameEvents';
         this.addListeners();
     }
 
+    /**
+     * @inheritdoc
+     */
     public update(): void {
         if (this.currentTrack !== undefined) {
             let current_track = this.fakeOS.sound.get(this.currentTrack.key);
@@ -62,6 +68,10 @@ import { PhoneEvents } from '../events/GameEvents';
         }
     }
 
+    /**
+     * Shows an specific track.
+     * @param track
+     */
     public openTrack(track: any): void {
 
         let pic = this.fakeOS.add.image(
@@ -114,6 +124,9 @@ import { PhoneEvents } from '../events/GameEvents';
         this.getActiveLayer().add([pic, trackName, artist, progressBar, buttons, seek_time, total_time]);
     }
 
+    /**
+     * Adds listeners to player buttons.
+     */
     public addListeners(): void {
 
         // Play/pause button event
@@ -185,6 +198,12 @@ import { PhoneEvents } from '../events/GameEvents';
         );
     }
 
+    /**
+     * Auxiliary modulo function.
+     * @param n
+     * @param m
+     * @returns
+     */
     protected mod(n: number, m: number): number {
         return ((n % m) + m) % m;
     }

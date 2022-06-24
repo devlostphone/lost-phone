@@ -66,6 +66,9 @@ export default class NotificationBox extends Phaser.GameObjects.Container
         this.add(this.fakeOS.add.text(-100, 0, notification.title, { fontSize: "24px", wordWrap: {width: 400}}));
     }
 
+    /**
+     * Adds on click event to the notification icon.
+     */
     public addOnIconClick(): void {
         this.fakeOS.addInputEvent('pointerup', () => {
             this.icon.setTint(185273);

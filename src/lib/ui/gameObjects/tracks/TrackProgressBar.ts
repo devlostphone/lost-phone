@@ -65,6 +65,10 @@ export default class TrackProgressBar extends Phaser.GameObjects.Container
         });
     }
 
+    /**
+     * Updates the cursor position.
+     * @param x
+     */
     public update_cursor(x: number) {
         this.cursor.x = (-this.background.width / 2) + x*this.background.width;
     }

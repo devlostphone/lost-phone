@@ -14,6 +14,10 @@ export default class UnlockScreenApp extends App {
     protected numericPad: any;
     protected enterCode: string;
 
+    /**
+     * Class constructor.
+     * @param fakeOS
+     */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.password = this.fakeOS.cache.json.get('unlock-screen').password;
@@ -23,6 +27,9 @@ export default class UnlockScreenApp extends App {
         this.fakeOS.getUI().hideHomeButton();
     }
 
+    /**
+     * @inheritdoc
+     */
     public render(): void {
         this.showMessage();
         this.showDotsPIN();
@@ -30,13 +37,8 @@ export default class UnlockScreenApp extends App {
     }
 
     /**
-     * Update method.
-     *
-     * @param delta
-     * @param time
+     * Shows the numeric pad.
      */
-    public update(delta: any, time: any): void { }
-
     protected showNumericPad(): void {
         let numericLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9','', '0'];
         let numericSubLabels = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ'];
@@ -70,6 +72,9 @@ export default class UnlockScreenApp extends App {
         });
     }
 
+    /**
+     * Shows PIN dots.
+     */
     protected showDotsPIN(): void {
         let container = this.fakeOS.add.container();
 
@@ -86,6 +91,9 @@ export default class UnlockScreenApp extends App {
         });
     }
 
+    /**
+     * Shows status message.
+     */
     protected showMessage(): void {
         this.message = this.fakeOS.add.text(
             0,0,
@@ -95,8 +103,12 @@ export default class UnlockScreenApp extends App {
         this.addRow(this.message);
     }
 
-    // FIXME: notification.type is undefined
+    /**
+     * Checks the input PIN against the correct one.
+     * @param button
+     */
     protected checkPIN = (button: any) => {
+        // FIXME: notification.type is undefined
         this.fakeOS.log("checkPIN");
         button.label.setColor('#000');
         if (button.sublabel)

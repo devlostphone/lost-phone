@@ -78,5 +78,11 @@
         "type": "picture",
         "source": "gamedata/assets/pictures/dont-care-meme.jpg",
         "condition": "c003-0004"
+    },
+    {
+        "id": "g012",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/dont-care-meme.jpg",
+        "condition": "m001"
     }
 ]

@@ -9,11 +9,18 @@ export default class StoreApp extends App {
 
     protected apps: any;
 
+    /**
+     * Class constructor.
+     * @param fakeOS
+     */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS, {rows: 4});
         this.apps = this.fakeOS.cache.json.get('apps');
     }
 
+    /**
+     * @inheritdoc
+     */
     public render() {
 
         for (let i = 0; i < this.apps.length; i++) {

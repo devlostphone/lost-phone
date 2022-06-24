@@ -1,6 +1,5 @@
-import { PhoneEvents } from '../../../../lib/events/GameEvents';
 import { FakeOS } from '../../../../scenes/FakeOS';
-import phoneUI from '../../phoneUI';
+import phoneUI from '../../PhoneUI';
 import NotificationList from './NotificationList';
 /**
  * Notification Drawer.
@@ -19,7 +18,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
     public drawerNotificationCounter?: Phaser.GameObjects.Container;
 
     public notificationList?: NotificationList;
-    public pendingNotifications: any[];
+    public pendingNotifications: any[] = [];
     public isNotificationYoyoing: boolean;
 
     public hasDragZone: boolean;
@@ -136,11 +135,10 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             .setResolution(1)
             .setName('drawer-notify-counter')
         );
-
-        this.update_notification_counter();
-
         this.drawerArea?.add(this.drawerLauncher);
         this.drawerArea?.add(this.drawerNotificationCounter);
+
+        this.update_notification_counter();
     }
 
     /**
@@ -183,7 +181,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
      * Applies a mask to the notification list.
      */
     protected applyMask(): void {
-        if (this.drawerArea == undefined || this.drawerHide == undefined || this.notificationList == undefined) {
+        if (this.drawerArea === undefined || this.drawerHide === undefined || this.notificationList === undefined) {
             return;
         }
         this.graphicMask = new Phaser.GameObjects.Graphics(this.fakeOS);
@@ -313,8 +311,12 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
 
     }
 
+    /**
+     * Creates a drag zone if too many notifications.
+     * @returns
+     */
     public createDragZone(): void {
-        if (this.drawerArea == undefined || this.notificationList == undefined) {
+        if (this.drawerArea === undefined || this.notificationList === undefined) {
             return;
         }
 
@@ -341,8 +343,16 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
 
     }
 
+    /**
+     * Drag function for the drag zone.
+     * @param pointer
+     * @param gameobject
+     * @param dragX
+     * @param dragY
+     * @returns
+     */
     protected dragFunction(pointer:any, gameobject:any, dragX: any, dragY: any)  {
-        if (gameobject != this.notificationList || this.drawerArea == undefined || this.notificationList == undefined) {
+        if (gameobject != this.notificationList || this.drawerArea === undefined || this.notificationList === undefined) {
             return;
         }
 
@@ -354,8 +364,18 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         ));
     }
 
+    /**
+     * Wheel function for the drag zone.
+     *
+     * @param pointer
+     * @param gameobject
+     * @param deltaX
+     * @param deltaY
+     * @param deltaZ
+     * @returns
+     */
     protected wheelFunction(pointer:any, gameobject:any, deltaX: any, deltaY: any, deltaZ: any) {
-        if (gameobject != this.notificationList || this.drawerArea == undefined || this.notificationList == undefined) {
+        if (gameobject != this.notificationList || this.drawerArea === undefined || this.notificationList === undefined) {
             return;
         }
 
@@ -367,6 +387,9 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         ));
     }
 
+    /**
+     * Deletes the drag zone.
+     */
     public deleteDragZone(): void {
         if (this.hasDragZone) {
             this.notificationList?.disableInteractive();
@@ -377,10 +400,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
     }
 
     /**
-     * Update method.
-     *
-     * @param delta
-     * @returns
+     * @inheritdoc
      */
     public update(delta: any): void {
         if (this.isNotificationYoyoing) {
@@ -406,12 +426,13 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         }
     }
 
+    /**
+     * Updates the notification counter on the drawer launcher.
+     */
     public update_notification_counter(): void {
         let notifications = this.fakeOS.registry.get('notifications');
-        let pending = this.fakeOS.getUI().elements.drawer?.pendingNotifications;
-        if (pending != undefined) {
-            notifications = notifications.filter((x:any) => !pending.includes(x));
-        }
+        notifications = notifications.filter((x:any) => !this.pendingNotifications.includes(x));
+
         let total_notifications = notifications.length;
         let text = this.drawerNotificationCounter?.getByName('drawer-notify-counter');
 

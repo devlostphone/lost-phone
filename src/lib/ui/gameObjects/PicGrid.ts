@@ -240,6 +240,10 @@ export default class PicGrid extends Phaser.GameObjects.Container
         );
     }
 
+    /**
+     * Opens a file element from the gallery.
+     * @param element
+     */
     public openFile(element: any): void {
         this.fakeOS.getActiveApp().addLayer(0x333333);
         const area = this.fakeOS.getUI().getAppRenderSize();

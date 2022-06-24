@@ -27,6 +27,12 @@ export default class TextList extends Phaser.GameObjects.Container
         this.num_items = 0;
     }
 
+    /**
+     * Adds a new item to the list.
+     * @param id            Id of the item (for input event).
+     * @param text          Item text.
+     * @param forbidden     Whether the user can press the item.
+     */
     public addItem(id: number, text: string, forbidden: boolean = false) {
 
         let item_height = this.fakeOS.getActiveApp().area.height / 12;

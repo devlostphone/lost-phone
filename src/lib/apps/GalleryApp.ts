@@ -10,6 +10,10 @@ export default class GalleryApp extends App {
     protected media: any;
     protected picGrid?: PicGrid;
 
+    /**
+     * Class constructor.
+     * @param fakeOS
+     */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.media = this.fakeOS.cache.json.get('gallery');

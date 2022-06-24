@@ -4,28 +4,17 @@ import AppFactory from '../../lib/apps/AppFactory';
 
 declare module "../../scenes/FakeOS" {
     interface FakeOS {
-
-        /**
-         * Sets an activity as done (remove from notifications).
-         *
-         * @param id Activity ID
-         */
         setDone(id: string): void;
-
-        /**
-         * Check if conditions are done (activities viewed by the user).
-         *
-         * @param conditions
-         */
         checkDone(conditions: any): boolean;
-
-        /**
-         * Checks for new notifications based on user action.
-         */
         checkNew(): void;
     }
 }
 
+/**
+ * Sets an activity as done/completed (remove from notifications).
+ *
+ * @param id Activity ID
+ */
 FakeOS.prototype.setDone = function(id: string, value: any = undefined): void {
     let save = this.registry.get('complete');
 
@@ -45,12 +34,16 @@ FakeOS.prototype.setDone = function(id: string, value: any = undefined): void {
         }
     }
     this.registry.set('notifications', notifications);
-
     this.launchEvent(PhoneEvents.ActivityFinished);
-
     this.saveState();
 }
 
+
+/**
+ * Checks if conditions are done (activities viewed/completed by the user).
+ *
+ * @param conditions
+ */
 FakeOS.prototype.checkDone = function(conditions: any): boolean {
     let complete = true;
 
@@ -73,6 +66,9 @@ FakeOS.prototype.checkDone = function(conditions: any): boolean {
     return complete;
 }
 
+/**
+ * Checks for new notifications based on user action.
+ */
 FakeOS.prototype.checkNew = function(): void {
     let items: any[] = [];
     let apps = this.cache.json.get('apps');

@@ -10,15 +10,25 @@ export default class SettingsApp extends App {
     protected qr: any;
     protected qrtext: any;
 
+    /**
+     * Class constructor.
+     * @param fakeOS
+     */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
     }
 
+    /**
+     * @inheritdoc
+     */
     public render(): void {
         this.showTitle();
         this.showOptions();
     }
 
+    /**
+     * Shows app title.
+     */
     public showTitle(): void {
         this.addRow(this.fakeOS.add.text(0,0,this.fakeOS.getString('settings')));
         this.addRow(this.fakeOS.add.line(0,0,
@@ -28,12 +38,19 @@ export default class SettingsApp extends App {
         ));
     }
 
+    /**
+     * Shows app options.
+     */
     public showOptions(): void {
         this.addRow(this.notificationOption());
         this.addRow(this.showResetOption());
         this.addRow(this.showQROption());
     }
 
+    /**
+     * Shows "show notifications" option
+     * @returns Game elements to display
+     */
     protected notificationOption(): any[] {
 
         let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('showNotifications'));
@@ -52,6 +69,10 @@ export default class SettingsApp extends App {
         return [text, toggle];
     }
 
+    /**
+     * Shows "reset to factory settings " option
+     * @returns Game elements to display
+     */
     protected showResetOption(): any[] {
         let text = this.fakeOS.add.text(0,0, this.fakeOS.getString('reset-data'));
 
@@ -68,6 +89,10 @@ export default class SettingsApp extends App {
         return [text];
     }
 
+    /**
+     * Shows "show QR" option.
+     * @returns Game elements to display
+     */
     protected showQROption(): any[] {
         let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('getQR'));
         this.fakeOS.addInputEvent(
@@ -100,6 +125,9 @@ export default class SettingsApp extends App {
         return [text];
     }
 
+    /**
+     * Displays a QR with current game state.
+     */
     protected showQR(): void {
         let url = this.fakeOS.generateURL(
             this.fakeOS.getURL(),

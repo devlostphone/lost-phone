@@ -5,7 +5,6 @@ import { PhoneEvents } from '../../lib/events/GameEvents';
 
 /**
  * Homescreen app.
- * First app to be called by FakeOS.
  */
 export default class HomescreenApp extends App {
 
@@ -103,12 +102,13 @@ export default class HomescreenApp extends App {
         );
     };
 
+    /**
+     * Adds notifications ballons based on current notifications.
+     */
     protected addBalloons() {
         let notifications = this.fakeOS.registry.get('notifications');
-        let pending = this.fakeOS.getUI().elements.drawer?.pendingNotifications;
-        if (pending !== undefined) {
-            notifications = notifications.filter((x:any) => !pending.includes(x));
-        }
+        let pending = this.fakeOS.getUI().elements.drawer.pendingNotifications;
+        notifications = notifications.filter((x:any) => !pending.includes(x));
 
         for (let index in this.fakeOS.apps) {
             if (!this.fakeOS.apps[index].preInstalled && !this.fakeOS.checkDone(this.fakeOS.apps[index]['type'])) {

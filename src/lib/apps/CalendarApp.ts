@@ -28,6 +28,11 @@ export default class CalendarApp extends App {
     private events: any;
 
 
+    /**
+     * Class constructor.
+     *
+     * @param scene
+     */
     public constructor(
         scene: FakeOS
     ){
@@ -38,6 +43,9 @@ export default class CalendarApp extends App {
         this.events = this.fakeOS.cache.json.get('calendar');
     }
 
+    /**
+     * @inheritdoc
+     */
     public render(): void {
         // Clear layer
         this.getActiveLayer().clear();
@@ -45,8 +53,11 @@ export default class CalendarApp extends App {
         this.showCalendar();
     }
 
-    public update(delta: any, time: any): void { }
-
+    /**
+     * Switches from one month to the previous/next.
+     *
+     * @param direction     Direction to change to (back/forward)
+     */
     protected switchMonth(direction?: number): void {
         let app = this;
 
@@ -73,6 +84,9 @@ export default class CalendarApp extends App {
         this.getActiveLayer().add([this.backButton, this.forwardButton]);
     }
 
+    /**
+     * Shows the calendar.
+     */
     protected showCalendar() : void {
         let year: number = this.currentDate.getFullYear();
         let month: number = this.currentDate.getMonth() + 1;

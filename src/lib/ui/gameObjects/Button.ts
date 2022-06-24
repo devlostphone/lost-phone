@@ -31,6 +31,17 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
     public label: Phaser.GameObjects.Text;
     public sublabel?: Phaser.GameObjects.Text;
 
+    /**
+     * Class constructor.
+     *
+     * @param scene
+     * @param shape
+     * @param size
+     * @param label
+     * @param x
+     * @param y
+     * @param options
+     */
     public constructor (scene: Phaser.Scene,
                         shape: string,
                         size: string,

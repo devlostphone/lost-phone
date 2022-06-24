@@ -16,7 +16,7 @@ import App from '../../lib/apps/App';
     }
 
     /**
-     * Renders the app.
+     * @inheritdoc
      */
     public render(): void {
 

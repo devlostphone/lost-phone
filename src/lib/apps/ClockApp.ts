@@ -84,7 +84,7 @@ export default class ClockApp extends App {
     }
 
     /**
-     * Render method.
+     * @inheritdoc
      */
     public render(): void {
         this.graphics = this.fakeOS.add.graphics();
@@ -92,10 +92,7 @@ export default class ClockApp extends App {
     }
 
     /**
-     * Update method.
-     *
-     * @param delta
-     * @param time
+     * @inheritdoc
      */
     public update(delta: any, time: any): void {
         let p1;

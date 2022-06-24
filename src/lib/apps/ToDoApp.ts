@@ -16,7 +16,7 @@ import App from './App';
     }
 
     /**
-     * Renders the app.
+     * @inheritdoc
      */
     public render(): void {
 

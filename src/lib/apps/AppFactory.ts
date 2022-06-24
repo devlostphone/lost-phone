@@ -1,17 +1,17 @@
 import BrowserApp from './BrowserApp';
+import CalendarApp from './CalendarApp';
 import ChatApp from './ChatApp';
 import ClockApp from './ClockApp';
 import FilesApp from './FilesApp';
 import GalleryApp from './GalleryApp';
 import HomescreenApp from './HomescreenApp';
 import MailApp from './MailApp';
+import PhoneApp from './PhoneApp';
 import PodcastApp from './PodcastApp';
 import SettingsApp from './SettingsApp';
-import UnlockScreenApp from './UnlockScreenApp';
-import CalendarApp from './CalendarApp';
 import StoreApp from './StoreApp';
-import PhoneApp from './PhoneApp';
 import ToDoApp from './ToDoApp';
+import UnlockScreenApp from './UnlockScreenApp';
 
 /**
  * Contains all app definitions.

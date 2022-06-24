@@ -31,10 +31,9 @@ import { PhoneEvents } from '../events/GameEvents';
     }
 
     /**
-     * Renders the app.
+     * @inheritdoc
      */
     public render(): void {
-        //this.showTitle();
         this.currentMail = "";
         this.showMailList();
     }

@@ -40,7 +40,7 @@ export default class ChatApp extends App {
     }
 
     /**
-     * Render method.
+     * @inheritdoc
      */
     public render(): void {
 
@@ -126,7 +126,7 @@ export default class ChatApp extends App {
         this.fakeOS.anims.create(config);
 
         // Create conversation
-        this.createChatInteraction(conversation[Object.keys(conversation)[0]], this.lastMessage == undefined);
+        this.createChatInteraction(conversation[Object.keys(conversation)[0]], this.lastMessage === undefined);
     }
 
     /**
@@ -138,7 +138,7 @@ export default class ChatApp extends App {
      */
     protected createChatInteraction(conversation: any, newMessage: boolean = false): object | null {
 
-        if (conversation == undefined) {
+        if (conversation === undefined) {
             return null;
         }
 
@@ -174,10 +174,9 @@ export default class ChatApp extends App {
         } else {
             this.fakeOS.log("Checking conversation " + conversation['id'] + ' as done.');
             let notifications = this.fakeOS.registry.get('notifications');
-            //if (notifications.find((o:any) => o.id == conversation['id'])) {
-                this.fakeOS.setDone(conversation['id']);
-            //}
+            this.fakeOS.setDone(conversation['id']);
         }
+
         let avatar = conversation.pic !== undefined ? conversation.pic : this.chat[this.activeContact].id;
         if (conversation.notification) {
             avatar = null;

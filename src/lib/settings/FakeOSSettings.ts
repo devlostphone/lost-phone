@@ -5,22 +5,21 @@ declare module "../../scenes/FakeOS" {
     interface FakeOS {
         settings: GameSettings;
 
-        /**
-         * Initializes FakeOS settings.
-         */
         initSettings(): void;
-
-        /**
-         * Returns FakeOS settings.
-         */
         getSettings(): GameSettings;
     }
 }
 
+/**
+ * Initializes FakeOS settings.
+ */
 FakeOS.prototype.initSettings = function() {
     this.settings = new GameSettings(this);
 }
 
+/**
+ * Returns FakeOS settings.
+ */
 FakeOS.prototype.getSettings = function(): GameSettings {
     return this.settings;
 }

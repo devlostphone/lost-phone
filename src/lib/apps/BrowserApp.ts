@@ -3,7 +3,6 @@ import App from '../../lib/apps/App';
 import TextList from '../ui/gameObjects/list/TextList';
 import { PhoneEvents } from '../events/GameEvents';
 import SearchBox from '../ui/gameObjects/input/SearchBox';
-import { throws } from 'assert';
 
 /**
  * Browser app.
@@ -27,6 +26,9 @@ import { throws } from 'assert';
         this.isListOpen = false;
     }
 
+    /**
+     * @inheritdoc
+     */
     public render() {
 
         this.searchBox = new SearchBox(
@@ -57,6 +59,9 @@ import { throws } from 'assert';
         });
     }
 
+    /**
+     * Shows the search page list.
+     */
     protected showPageList(): void {
 
         this.pageList = new TextList(this.fakeOS, 0, 0);
@@ -80,6 +85,11 @@ import { throws } from 'assert';
         });
     }
 
+    /**
+     * Shows a specific page by given id.
+     *
+     * @param id
+     */
     protected showPage(id: string): void {
         this.getActiveLayer().setHandler(() => {
             this.body?.destroy();

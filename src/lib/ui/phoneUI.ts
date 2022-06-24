@@ -1,7 +1,16 @@
 import { FakeOS } from '../../scenes/FakeOS';
-import Time from '../../lib/ui/gameObjects/Time';
-import NotificationDrawer from '../../lib/ui/gameObjects/notifications/NotificationDrawer';
+import Time from './gameObjects/Time';
+import NotificationDrawer from './gameObjects/notifications/NotificationDrawer';
 import { PhoneEvents } from '../events/GameEvents';
+
+interface UIElements {
+    topBar: any,
+    bottomBar: any,
+    clock: any,
+    homeButton: any,
+    backButton: any,
+    drawer: any
+}
 
 /**
  * FakeOS UI.
@@ -16,19 +25,12 @@ export default class phoneUI {
     /**
      * UI elements.
      */
-    public elements: {
-        topBar?: any,
-        bottomBar?: any,
-        clock?: any,
-        homeButton?: any,
-        backButton?: any,
-        drawer?: NotificationDrawer
-    };
+    public elements: UIElements;
 
     /**
      * Container game object with all UI game objects.
      */
-    public container?: Phaser.GameObjects.Container;
+    public container: any;
 
     /**
      * Is the notification drawer open?
@@ -42,7 +44,14 @@ export default class phoneUI {
      */
     public constructor(fakeOS: FakeOS) {
         this.fakeOS = fakeOS;
-        this.elements = {};
+        this.elements = {
+            topBar: null,
+            bottomBar: null,
+            clock: null,
+            homeButton: null,
+            backButton: null,
+            drawer: null
+        };
         this.isDrawerOpen = false;
     }
 
@@ -64,6 +73,9 @@ export default class phoneUI {
         this.applyMask();
     }
 
+    /**
+     * @TODO
+     */
     protected applyMask(): void {
         let graphics = new Phaser.GameObjects.Graphics(this.fakeOS);
         graphics.fillRect(
@@ -75,7 +87,7 @@ export default class phoneUI {
             this.fakeOS,
             graphics
         );
-        this.container?.setMask(mask);
+        this.container.setMask(mask);
     }
 
     /**
@@ -149,8 +161,8 @@ export default class phoneUI {
           1.0
         ).setOrigin(0).setDepth(1000).setInteractive();
 
-        this.container?.add(this.elements.topBar);
-        this.container?.add(this.elements.bottomBar);
+        this.container.add(this.elements.topBar);
+        this.container.add(this.elements.bottomBar);
     }
 
     /**
@@ -177,8 +189,8 @@ export default class phoneUI {
         ).setVisible(false)
         .setDepth(1001);
 
-        this.container?.add(this.elements.homeButton);
-        this.container?.add(this.elements.backButton);
+        this.container.add(this.elements.homeButton);
+        this.container.add(this.elements.backButton);
     }
 
     /**
@@ -198,7 +210,7 @@ export default class phoneUI {
             }
         ).setOrigin(0.5, 0.5).setDepth(1001);
 
-        this.container?.add(this.elements.clock);
+        this.container.add(this.elements.clock);
     }
 
     /**
@@ -209,7 +221,7 @@ export default class phoneUI {
         this.elements.drawer = new NotificationDrawer(this.fakeOS, 0, 0).setDepth(1001);
         this.elements.drawer.refreshNotifications();
 
-        this.container?.add(this.elements.drawer);
+        this.container.add(this.elements.drawer);
     }
 
     /**
@@ -221,8 +233,8 @@ export default class phoneUI {
             () => {
                 this.fakeOS.log('Refreshing notifications');
                 this.fakeOS.checkNew();
-                this.elements.drawer?.refreshNotifications();
-                this.elements.drawer?.update_notification_counter();
+                this.elements.drawer.refreshNotifications();
+                this.elements.drawer.update_notification_counter();
             }
         );
 
@@ -230,7 +242,7 @@ export default class phoneUI {
             PhoneEvents.NotificationLaunched,
             (notification: any) => {
                 this.fakeOS.log('Launching notification ' + notification.id + ':' + notification.title);
-                this.elements.drawer?.launchNotification(notification);
+                this.elements.drawer.launchNotification(notification);
             }
         );
 
@@ -239,7 +251,7 @@ export default class phoneUI {
             (notification: any) => {
                 let app = notification.type.charAt(0).toUpperCase() + notification.type.slice(1) + 'App';
                 this.fakeOS.log('Clicked notification of type: ' + notification.type);
-                this.elements.drawer?.hideDrawer();
+                this.elements.drawer.hideDrawer();
                 this.fakeOS.launchApp(app);
                 this.fakeOS.getActiveApp().goToID(notification.id);
             }
@@ -277,7 +289,7 @@ export default class phoneUI {
             this.elements.backButton
         );
 
-        this.elements.drawer?.addEvents();
+        this.elements.drawer.addEvents();
     }
 
     /**
@@ -288,7 +300,7 @@ export default class phoneUI {
      */
     public update(delta:any, time: any): void {
         this.elements.clock.update(delta);
-        this.elements.drawer?.update(delta);
+        this.elements.drawer.update(delta);
 
         // Only showing back button when functions available.
         if (this.fakeOS.getBackFunction().length > 0) {

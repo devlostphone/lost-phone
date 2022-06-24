@@ -3,13 +3,17 @@ import App from './App';
 import PicGrid from '../ui/gameObjects/PicGrid';
 
 /**
- * Gallery app
+ * Files app
  */
-export default class DocumentsApp extends App {
+export default class FilesApp extends App {
 
     protected media: any;
     protected picGrid?: PicGrid;
 
+    /**
+     * Class constructor.
+     * @param fakeOS
+     */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.media = this.fakeOS.cache.json.get('files');

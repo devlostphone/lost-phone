@@ -383,7 +383,7 @@ export class FakeOS extends FakeOSScene {
         this.getActiveApp().addRow([input, enter], {y: 4});
 
         this.addInputEvent('pointerup', ()=>{
-            let user_input = input.getChildByName('password').value;
+            let user_input = (<HTMLInputElement>input.getChildByName('password')).value;
             this.log("Input password: " + user_input + " against " + password);
             if (password == user_input) {
                 this.launchEvent(SystemEvents.PasswordCorrect, id);

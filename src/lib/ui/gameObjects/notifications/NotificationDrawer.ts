@@ -1,6 +1,7 @@
 import { FakeOS } from '../../../../scenes/FakeOS';
 import phoneUI from '../../PhoneUI';
 import NotificationList from './NotificationList';
+import { PhoneEvents } from '../../../events/GameEvents';
 /**
  * Notification Drawer.
  * @todo: review this.
@@ -407,10 +408,16 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             return;
         }
         if (this.pendingNotifications.length > 0) {
-            if (this.notificationList?.launchNotification(this.pendingNotifications[0])) {
+            let current_notification = this.pendingNotifications.shift();
+
+            if (current_notification.type === this.fakeOS.getActiveApp().getType()) {
+                this.fakeOS.launchEvent(PhoneEvents.NotificationFinished);
+                return;
+            }
+
+            if (this.notificationList?.launchNotification(current_notification)) {
                 this.isNotificationYoyoing = true;
             }
-            this.pendingNotifications.shift();
         }
     }
 

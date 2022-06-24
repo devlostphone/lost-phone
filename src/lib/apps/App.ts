@@ -118,6 +118,14 @@ export default abstract class App {
     }
 
     /**
+     * Returns app type.
+     * @returns Type
+     */
+    public getType(): string {
+        return this.getKey().replace('App', '').toLowerCase();
+    }
+
+    /**
      * Arranges content in a new row.
      *
      * @param elements  A single Phaser GameObject or an array of them

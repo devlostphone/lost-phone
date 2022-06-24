@@ -138,7 +138,7 @@ export default class ChatApp extends App {
      */
     protected createChatInteraction(conversation: any, newMessage: boolean = false): object | null {
 
-        if (conversation === undefined) {
+        if (conversation === undefined || conversation === null) {
             return null;
         }
 

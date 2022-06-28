@@ -11,13 +11,22 @@ export default class Boot extends FakeOSScene {
      * Class constructor.
      */
     public constructor() {
-        super({ key: 'boot'});
+        super({
+            key: 'boot',
+            pack: {
+                "files" : [
+                    { type: "json", key: "config", url: "gamedata/config/config.json" },
+                    { type: "json", key: "apps", url: "gamedata/config/apps.json" },
+                    { type: "json", key: "colors", url: "gamedata/config/colors.json" }
+                ]
+            }
+        });
     }
 
     public preload(): void {
-        this.load.json('config', 'gamedata/config/config.json');
-        this.load.json('apps', 'gamedata/config/apps.json');
-        this.load.json('colors', 'gamedata/config/colors.json');
+        //this.load.json('config', 'gamedata/config/config.json');
+        //this.load.json('apps', 'gamedata/config/apps.json');
+        //this.load.json('colors', 'gamedata/config/colors.json');
         this.preload_app_config();
     }
 
@@ -26,22 +35,13 @@ export default class Boot extends FakeOSScene {
      */
     protected preload_app_config(): void {
         // Load json app files
-        /*let apps = this.cache.json.get('apps');
-          for (var i = 0; i < apps.length; i++) {
-          console.log('Loading ' + apps[i].type);
-          if (apps[i].configFile) {
-          this.load.json(apps[i].type, `config/${apps[i].type}.json`);
-          }
-          }*/
-        // @TODO: check this
-        this.load.json('browser', 'gamedata/config/browser.json');
-        this.load.json('mail', 'gamedata/config/mail.json');
-        this.load.json('gallery', 'gamedata/config/gallery.json');
-        this.load.json('chat', 'gamedata/config/chat.json');
-        this.load.json('podcast', 'gamedata/config/podcast.json');
-        this.load.json('unlock-screen', 'gamedata/config/unlock-screen.json');
-        this.load.json('calendar', 'gamedata/config/calendar.json');
-        this.load.json('files', 'gamedata/config/files.json');
+        let apps = this.cache.json.get('apps');
+
+        for (var i = 0; i < apps.length; i++) {
+            if (apps[i].configFile) {
+                this.load.json(apps[i].type, `gamedata/config/${apps[i].configFile}`);
+            }
+        }
     }
 
     /**

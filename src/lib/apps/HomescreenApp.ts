@@ -52,7 +52,13 @@ export default class HomescreenApp extends App {
             );
 
             if (this.fakeOS.apps[index].favourite != true) {
-                app.addLabel(this.fakeOS.getString(this.fakeOS.apps[index]['type']));
+                let icon_text;
+                if (typeof this.fakeOS.apps[index]['name'] !== "undefined") {
+                    icon_text = this.fakeOS.apps[index]['name'];
+                } else {
+                    icon_text = this.fakeOS.getString(this.fakeOS.apps[index]['type']);
+                }
+                app.addLabel(icon_text);
             }
 
             this.fakeOS.addInputEvent('pointerover', () => {

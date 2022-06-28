@@ -5,6 +5,7 @@ import ClockApp from './ClockApp';
 import FilesApp from './FilesApp';
 import GalleryApp from './GalleryApp';
 import HomescreenApp from './HomescreenApp';
+import LostagramApp from './LostagramApp';
 import MailApp from './MailApp';
 import PhoneApp from './PhoneApp';
 import PodcastApp from './PodcastApp';
@@ -24,6 +25,7 @@ const Store: any = {
     FilesApp,
     GalleryApp,
     HomescreenApp,
+    LostagramApp,
     MailApp,
     PhoneApp,
     PodcastApp,

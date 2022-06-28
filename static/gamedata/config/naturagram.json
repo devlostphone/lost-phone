@@ -1,0 +1,34 @@
+[
+    {
+        "id": "nat0001",
+        "user": "Wolf012",
+        "avatar": "gamedata/assets/profiles/calamar.png",
+        "pic": "gamedata/assets/pictures/butterfly.jpeg",
+        "text": "Papallona de l'espècie Hipparchia semele que vaig trobar ahir.",
+        "likes": "34",
+        "comments": [
+            {
+                "user": "Nature_addict_85",
+                "comment": "N'he vist de millors..."
+            },
+            {
+                "user": "Wolf012",
+                "comment": "I jo de millors comentaris."
+            }
+        ]
+    },
+    {
+        "id": "nat0002",
+        "user": "Ladybug",
+        "avatar": "gamedata/assets/profiles/menina.png",
+        "pic": "gamedata/assets/pictures/treebark.jpeg",
+        "text": "Voldria saber quin tipus d'au aprofita aquests forats per fer-hi niu.",
+        "likes": "102",
+        "comments": [
+            {
+                "user": "Wolf012",
+                "comment": "Maquíssim!"
+            }
+        ]
+    }
+]

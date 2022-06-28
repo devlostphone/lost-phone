@@ -47,6 +47,7 @@ export default class Preloader extends FakeOSScene {
         this.preload_gallery_images();
         this.preload_contact_images();
         this.preload_track_images();
+        this.preload_social_images();
 
         this.progressBar();
     }
@@ -145,6 +146,15 @@ export default class Preloader extends FakeOSScene {
 
         for (let i = 0; i < tracks.length; i++) {
             this.load.image(tracks[i].key, tracks[i].thumbnail);
+        }
+    }
+
+    protected preload_social_images(): void {
+        let social = this.cache.json.get('lostagram');
+
+        for (let i = 0; i < social.length; i++) {
+            this.load.image(social[i]['pic'], social[i]['pic']);
+            this.load.image(social[i]['avatar'], social[i]['avatar']);
         }
     }
 

@@ -1,6 +1,6 @@
 import {FakeOSScene} from '../lib/GameLib';
 import Handler from './Handler';
-import UI from '../lib/ui/PhoneUI';
+import UI from '../lib/ui/phoneUI';
 import App from '../lib/apps/App';
 import AppFactory from '../lib/apps/AppFactory';
 import { PhoneEvents, SystemEvents } from '../lib/events/GameEvents';

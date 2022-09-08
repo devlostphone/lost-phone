@@ -1,4 +1,16 @@
 {
-    "contacts": [],
-    "calls": []
+    "favourites": [],
+    "recent": [
+        {
+            "id": "ph0001",
+            "name": "Mama",
+            "date": "30/10/2021 15:23"
+        },
+        {
+            "id": "ph0002",
+            "name": "Sara",
+            "date": "29/10/2021 11:13"
+        }
+    ],
+    "contacts": []
 }

@@ -4,7 +4,7 @@ declare module "../../scenes/FakeOS" {
     interface FakeOS {
         eventListeners: object;
 
-        addInputEvent(eventType: string, func: Function, object?: Phaser.GameObjects.GameObject): void;
+        addInputEvent(eventType: string, func: Function, object?: Phaser.GameObjects.GameObject, area?: any, callback?: any): void;
         addEventListener(eventType: string, func: Function, once?: boolean): void;
         removeEventListener(eventType: string): void;
         launchEvent(eventType: string, ...args: any[]): void;
@@ -18,11 +18,15 @@ declare module "../../scenes/FakeOS" {
  * @param func
  * @param object
  */
-FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, object?: Phaser.GameObjects.GameObject): void {
+FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, object?: Phaser.GameObjects.GameObject, area?: any, callback?: any): void {
     let fakeOS = this;
 
     if (object !== undefined) {
-        object.setInteractive();
+        if (area !== undefined) {
+            object.setInteractive(area, callback);
+        } else {
+            object.setInteractive();
+        }
     }
     this.input.on(eventType, function(...args: any[]) {
         if (args[0].getDistanceY() > 0) {

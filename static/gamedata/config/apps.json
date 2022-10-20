@@ -84,6 +84,7 @@
     "type" : "unlock-screen",
     "key"  : "UnlockScreenApp",
     "icon" : "clock.png",
+    "configFile" : "unlock-screen.json",
     "preInstalled": false,
     "hasNotifications": false
   },

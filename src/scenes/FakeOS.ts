@@ -83,9 +83,9 @@ export class FakeOS extends FakeOSScene {
         this.colors = this.cache.json.get('colors');
         this.apps = this.cache.json.get('apps');
 
-        let wallpapers = this.cache.json.get('config').wallpapers;
+        let wallpapers = this.cache.json.get('config')['wallpapers'];
         for (let i = 0; i < wallpapers.length; i++) {
-            this.load.image(wallpapers[i]+ '-wallpaper', `themes/default/wallpapers/${wallpapers[i]}.png`);
+            this.load.image(wallpapers[i] + '-wallpaper', this.get_theme_path(`wallpapers/${wallpapers[i]}.png`));
         }
     }
 
@@ -254,6 +254,20 @@ export class FakeOS extends FakeOSScene {
                 this.launchApp('HomescreenApp');
             });
         }
+    }
+
+    /**
+     * Returns asset theme path, defaults to "default" theme.
+     *
+     * @param path
+     * @returns
+     */
+    protected get_theme_path(path: string): string {
+
+        let theme = 'themes/' + this.cache.json.get('config')['theme']+'/';
+        let defaultTheme = 'themes/default/';
+
+        return theme+path;
     }
 
     /**

@@ -17,16 +17,14 @@ export default class Boot extends FakeOSScene {
                 "files" : [
                     { type: "json", key: "config", url: "gamedata/config/config.json" },
                     { type: "json", key: "apps", url: "gamedata/config/apps.json" },
-                    { type: "json", key: "colors", url: "gamedata/config/colors.json" }
+                    { type: "json", key: "colors", url: "gamedata/config/colors.json" },
+                    { type: "json", key: "glsl", url: "gamedata/config/glsl.json"}
                 ]
             }
         });
     }
 
     public preload(): void {
-        //this.load.json('config', 'gamedata/config/config.json');
-        //this.load.json('apps', 'gamedata/config/apps.json');
-        //this.load.json('colors', 'gamedata/config/colors.json');
         this.preload_app_config();
     }
 
@@ -37,7 +35,7 @@ export default class Boot extends FakeOSScene {
         // Load json app files
         let apps = this.cache.json.get('apps');
 
-        for (var i = 0; i < apps.length; i++) {
+        for (let i:number = 0; i < apps.length; i++) {
             if (apps[i].configFile) {
                 this.load.json(apps[i].type, `gamedata/config/${apps[i].configFile}`);
             }

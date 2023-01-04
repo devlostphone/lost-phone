@@ -105,20 +105,20 @@ export default class phoneUI {
     }
 
     /**
-     * Sets the FakeOS wallpaper.
+     * Sets the default FakeOS wallpaper defined by 
      */
     protected setWallpaper(): void {
-        let wallpapers = this.fakeOS.cache.json.get('config').wallpapers;
-        let wallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)] + '-wallpaper';
-        let scale = this.fakeOS.textures.get(wallpaper).getSourceImage();
-        this.fakeOS.add.image(
-            Math.round(this.fakeOS.width / 2),
-            Math.round(this.fakeOS.height / 2),
-            wallpaper)
-        .setOrigin(0.5, 0.5)
-        .setScale(
-            this.fakeOS.width / scale.width,
-            this.fakeOS.height / scale.height
+
+        const rt = this.fakeOS.make.renderTexture({ width: 1242, height: 2209 }, false);
+        rt.fill(0xff00ff, 1, 0, 0, 1242, 2209);
+        rt.draw('miro-wallpaper', 0, 0);
+        rt.saveTexture('rt');
+        
+        const shader = this.fakeOS.add.shader('Pointillize Filter', 0, 0, 1242, 2209, ['noise', 'rt']);
+        shader.setOrigin(0);
+        shader.setScale(
+            this.fakeOS.width / shader.width,
+            this.fakeOS.height / shader.height
         );
     }
 
@@ -203,7 +203,7 @@ export default class phoneUI {
             this.fakeOS.width / 2,
             this.fakeOS.height * 0.025,
             {
-                fontFamily: 'Roboto',
+                fontFamily: 'RobotoCondensed',
                 fontSize : 32,
                 color: '#ffffff',
                 align: 'center'

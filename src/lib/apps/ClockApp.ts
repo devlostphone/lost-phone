@@ -115,7 +115,7 @@ export default class ClockApp extends App {
         this.mins = this.date.getMinutes() / 60;
         // @BUG: No dóna correctament les hores!
         // @DONE: Recorda que el rellotge no és de 24 hores, sinó de 12!
-        // Aquest bug es compartit amb la font oroginal
+        // Aquest bug es compartit amb la font original
         this.hours = this.date.getHours() / 12;
 
         //---  The hours hand

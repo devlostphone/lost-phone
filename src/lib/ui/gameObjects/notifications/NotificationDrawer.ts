@@ -125,7 +125,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             35,
             "0",
             {
-                fontFamily: 'Roboto',
+                fontFamily: 'RobotoCondensed',
                 fontSize : '26px',
                 color: '#ffffff',
                 align: 'center'

@@ -39,16 +39,21 @@ export default class Preloader extends FakeOSScene {
         }
         this.sceneStopped = false;
 
-        this.preload_images();
+        this.preload_general_images();
         this.preload_languages();
         this.preload_audio();
-
+        this.preload_shaders();
+        this.preload_textures();
+        
         // More specific preloads.
+        this.preload_app_icon_images();
         this.preload_gallery_images();
         this.preload_contact_images();
         this.preload_track_images();
         this.preload_social_images();
+        this.preload_shape_images();
 
+        // @TODO: Make something more visual specific
         this.progressBar();
     }
 
@@ -70,24 +75,40 @@ export default class Preloader extends FakeOSScene {
     }
 
     /**
+     * Preloads shader files.
+     */
+    protected preload_shaders(): void {
+        let shaders = this.cache.json.get('glsl');
+        this.load.glsl(shaders[0].key, shaders[0].path);
+    }
+
+    /**
+     * Preloads textures files.
+     */    
+    protected preload_textures(): void {
+        this.load.image('noise', 'gamedata/assets/textures/noise-medium.png');
+        this.load.image('brickwall', 'gamedata/assets/textures/brickwall.png');
+    }
+    
+    /**
      * Preload images method.
      */
-    protected preload_images(): void {
+    protected preload_general_images(): void {
         let imageSize = dpr * 128; // 64, 128, 256, 512
         this.load.image('app', this.get_theme_path('shaders/app@' + imageSize + 'x.png'));
 
-        // Icon apps
-        // TODO: Replace them by new ones made by hand
-        let apps = this.cache.json.get('apps');
-        for (let i = 0; i < apps.length; i++) {
-            this.load.image(apps[i].type, this.get_theme_path('icons/' + apps[i].icon));
-        }
+        // Get background picture defined at config
+        // Put all the background pictures at themes/<name of theme>/backgrounds folder
+        let background = this.cache.json.get('config').background;
+        // @TODO: collect all pictures inside backgrounds folder. Set default or random if there
+        // is more than one images.
+        // @TODO: Add support for multiple format images (png, webp, jpeg...)
+        this.load.image('background', this.get_theme_path('backgrounds/' + background + '.png'));
 
         this.load.image('guide', this.get_theme_path('shaders/720x1280-guide.png'));
 
         this.load.image('lorem-appsum', this.get_theme_path('shaders/iconApp-@2.png'));
         this.load.image('button-homescreen', this.get_theme_path('shaders/button-homescreen.png'));
-        this.load.image('background', this.get_theme_path('backgrounds/background.jpg'));
 
         this.load.image('play-button', this.get_theme_path('shaders/play-button.png'));
         this.load.image('back-button', this.get_theme_path('shaders/back.png'));
@@ -95,13 +116,38 @@ export default class Preloader extends FakeOSScene {
         this.load.image('default-avatar', this.get_theme_path('shaders/default-avatar.png'));
         this.load.spritesheet('typing', this.get_theme_path('shaders/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
 
-        // Buttons shapes
-        // TODO: Rewrite this by a simple value iteration
-        this.load.image('arc@144', this.get_theme_path('shaders/arc@144.png'));
-        this.load.image('arc@96', this.get_theme_path('shaders/arc@96.png'));
-        this.load.image('arc@72', this.get_theme_path('shaders/arc@72.png'));
-        this.load.image('rect@144', this.get_theme_path('shaders/rect@144.png'));
-        this.load.image('capsule@144', this.get_theme_path('shaders/capsule@144.png'));
+    }
+
+    /**
+     * Preloads shape images (for buttons i.e).
+     */
+    protected preload_shape_images(): void {
+        // @TODO: Rewrite this by a simple value iteration
+        // @TODO: or maybe Phaser can draw vector shapes instead of bitmaps? Shame of you!
+        this.load.image('arc@144', this.get_theme_path('shapes/arc@144.png'));
+        this.load.image('arc@96', this.get_theme_path('shapes/arc@96.png'));
+        this.load.image('arc@72', this.get_theme_path('shapes/arc@72.png'));
+    }
+    
+    /**
+     * Preloads icon app images.
+     */
+    protected preload_app_icon_images(): void {
+        let apps = this.cache.json.get('apps');
+        let iconsize = '@133';
+        let format = 'png';
+
+        for (let i = 0; i < apps.length; i++) {
+            // @TODO: Need to load icon app images related to screen size?
+            // switch (screen_size) {
+            //     case 'desktop':
+            // this.load.image(apps[i].type, this.get_theme_path('icons/' + apps[i].icon));
+            //     case 'tablet':
+
+            //     case 'mobile':
+            // }
+            this.load.image(apps[i].type, this.get_theme_path('icons/' + apps[i].type + iconsize + '.' + format));
+        }
     }
 
     /**
@@ -157,7 +203,7 @@ export default class Preloader extends FakeOSScene {
             this.load.image(social[i]['avatar'], social[i]['avatar']);
         }
     }
-
+    
     /**
      * Returns asset theme path, defaults to "default" theme.
      *

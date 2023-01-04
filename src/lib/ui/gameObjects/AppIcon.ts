@@ -65,8 +65,8 @@ export default class AppIcon extends Phaser.GameObjects.Container
         this.add(label);
         label.setOrigin(0.5, 0);
         // Set text depending on assetsDPR value
-        label.setFontSize(32);
-        label.setFontFamily('Roboto');
+        label.setFontSize(24);
+        label.setFontFamily('RobotoCondensed');
         label.setShadow(2, 2, '0x3f3f3f', 0.4);
         label.setResolution(1);
 
@@ -109,7 +109,7 @@ export default class AppIcon extends Phaser.GameObjects.Container
                 0,
                 counter.toString(),
                 {
-                    fontFamily: 'Roboto',
+                    fontFamily: 'RobotoCondensed',
                     fontSize : '32px',
                     color: '#ffffff',
                     align: 'center'

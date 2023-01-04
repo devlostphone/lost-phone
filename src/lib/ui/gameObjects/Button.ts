@@ -81,14 +81,14 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
             }
         }
 
-        this.label = new Phaser.GameObjects.Text(scene, 0, 0, label, { fontFamily: 'Arial', fontSize: fontSize });
+        this.label = new Phaser.GameObjects.Text(scene, 0, 0, label, { fontFamily: 'RobotoCondensed', fontSize: fontSize });
         this.label.setColor('#000000');
         this.label.setOrigin(0.5);
         this.add(this.label);
 
         // Set sublabel button if exists on options
         if (options.hasOwnProperty('sublabel')) {
-            this.sublabel = new Phaser.GameObjects.Text(scene, 0, 0, options.sublabel, { fontFamily: 'Arial', fontSize: '24px'});
+            this.sublabel = new Phaser.GameObjects.Text(scene, 0, 0, options.sublabel, { fontFamily: 'RobotoCondensed', fontSize: '24px'});
             this.sublabel.setColor('#000000');
             this.sublabel.setOrigin(0.5);
             this.label.y -= 8

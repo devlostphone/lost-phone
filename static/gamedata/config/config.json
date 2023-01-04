@@ -4,28 +4,30 @@
   "language": "ca",
   "preloader":
   {
-    "name": "IOC Operating System"
+      "name": "IOC Operating System"
   },
   "debug": true,
   "locked": "true",
   "notification_drawer_animation_duration": 400,
   "phone-scenes" :
   {
-    "ui" : "UI",
-    "home" : "Home"
+      "ui" : "UI",
+      "home" : "Home"
   },
   "colors" :
   {
-    "black" : "0x000000",
-    "white" : "0xffffff",
-    "red"   : "0xff0000",
-    "green" : "0x00ff00",
-    "blue"  : "0x0000ff",
-    "numberPad_buttons" : "0x869d98",
-    "numberPad_buttons_over" : "0x64867F",
-    "numberPad_enter" : "0x5deda0",
-    "numberPad_delete" : "0xff5624",
-    "numberPad_numbers" : "0x361f2e"
+      "black" : "0x000000",
+      "white" : "0xffffff",
+      "red"   : "0xff0000",
+      "green" : "0x00ff00",
+      "blue"  : "0x0000ff",
+      "numberPad_buttons" : "0x869d98",
+      "numberPad_buttons_over" : "0x64867F",
+      "numberPad_enter" : "0x5deda0",
+      "numberPad_delete" : "0xff5624",
+      "numberPad_numbers" : "0x361f2e"
   },
-  "wallpapers" : ["default", "wifi"]
+  "wallpapers" : ["default"],
+  "wallpaper"  : "default",
+  "background" : "default"
 }

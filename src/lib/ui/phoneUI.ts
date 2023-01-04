@@ -111,7 +111,7 @@ export default class phoneUI {
 
         const rt = this.fakeOS.make.renderTexture({ width: 1242, height: 2209 }, false);
         rt.fill(0xff00ff, 1, 0, 0, 1242, 2209);
-        rt.draw('miro-wallpaper', 0, 0);
+        rt.draw('default-wallpaper', 0, 0);
         rt.saveTexture('rt');
         
         const shader = this.fakeOS.add.shader('Pointillize Filter', 0, 0, 1242, 2209, ['noise', 'rt']);

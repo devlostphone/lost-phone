@@ -42,7 +42,7 @@
         "startURL": "./index.html",
         "theme": "#add8e6",
         "generateIconOptions": {
-            "baseIcon": "./static/themes/default/icons/podcast.png",
+            "baseIcon": "./static/themes/default/icons/podcast@133.png",
             "sizes": [
                 192,
                 384,

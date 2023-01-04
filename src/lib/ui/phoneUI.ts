@@ -105,15 +105,15 @@ export default class phoneUI {
     }
 
     /**
-     * Sets the default FakeOS wallpaper defined by 
+     * Sets the default FakeOS wallpaper defined by
      */
     protected setWallpaper(): void {
 
         const rt = this.fakeOS.make.renderTexture({ width: 1242, height: 2209 }, false);
         rt.fill(0xff00ff, 1, 0, 0, 1242, 2209);
-        rt.draw('default-wallpaper', 0, 0);
+        rt.draw(this.fakeOS.cache.json.get('config')['wallpaper'] + '-wallpaper', 0, 0);
         rt.saveTexture('rt');
-        
+
         const shader = this.fakeOS.add.shader('Pointillize Filter', 0, 0, 1242, 2209, ['noise', 'rt']);
         shader.setOrigin(0);
         shader.setScale(

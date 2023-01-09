@@ -15,7 +15,7 @@ export default class MailApp extends App {
     protected currentMail: string = "";
 
     protected textoptions = {
-        fontFamily: 'RobotoCondensed',
+        fontFamily: 'Roboto',
         fontSize: "24px",
         align: "left",
         wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
@@ -50,9 +50,9 @@ export default class MailApp extends App {
         //@TODO Add dynamic value for unread mails
         let unread = "10 no llegits";
         this.getActiveLayer().add(
-            this.fakeOS.add.text(this.fakeOS.width / 2, 36, title, { color: '#fff', fontFamily: 'RobotoCondensed', fontSize: '32px', align: 'center'}).setOrigin(0.5),
-            this.fakeOS.add.text(16, 128, "Actualitzat ara mateix" , { color: '#fff', fontFamily: 'RobotoCondensed', fontSize: '24px', align: 'left'}),
-            this.fakeOS.add.text(this.fakeOS.width - (unread.length * 9) - 16 , 128, unread , { color: '#f0f', fontFamily: 'RobotoCondensed', fontSize: '24px', align: 'right'})
+            this.fakeOS.add.text(this.fakeOS.width / 2, 36, title, { color: '#fff', fontFamily: 'Roboto-Bold', fontSize: '28px', align: 'center'}).setOrigin(0.5),
+            this.fakeOS.add.text(16, 128, "Actualitzat ara mateix" , { color: '#aaa', fontFamily: 'Roboto', fontSize: '22px', align: 'left'}),
+            this.fakeOS.add.text(this.fakeOS.width - (unread.length * 9) - 16 , 128, unread , { color: '#c0c', fontFamily: 'Roboto', fontSize: '22px', align: 'right'})
         );
     }
 

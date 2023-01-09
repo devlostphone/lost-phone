@@ -38,18 +38,21 @@ export default class MailApp extends App {
         this.currentMail = "";
         this.getActiveLayer().clear();
         this.setBackground();
-        this.showTitle();
+        this.showHeader();
         this.showMailList();
     }
 
     /**
      * Shows the app title.
      */
-    public showTitle(): void {
+    public showHeader(): void {
         let title = this.fakeOS.getString('mail');
-        console.log(title);
+        //@TODO Add dynamic value for unread mails
+        let unread = "10 no llegits";
         this.getActiveLayer().add(
-            this.fakeOS.add.text(this.fakeOS.width / 2, 36, this.fakeOS.getString('mail'), { color: '#fff', fontFamily: 'RobotoCondensed', fontSize: '32px', align: 'center'}).setOrigin(0.5)
+            this.fakeOS.add.text(this.fakeOS.width / 2, 36, title, { color: '#fff', fontFamily: 'RobotoCondensed', fontSize: '32px', align: 'center'}).setOrigin(0.5),
+            this.fakeOS.add.text(16, 128, "Actualitzat ara mateix" , { color: '#fff', fontFamily: 'RobotoCondensed', fontSize: '24px', align: 'left'}),
+            this.fakeOS.add.text(this.fakeOS.width - (unread.length * 9) - 16 , 128, unread , { color: '#f0f', fontFamily: 'RobotoCondensed', fontSize: '24px', align: 'right'})
         );
     }
 
@@ -69,9 +72,9 @@ export default class MailApp extends App {
 
             // Check if already read
             if(this.fakeOS.checkDone(id)) {
-                style = { color: '#ff00ff' };
+                style = { color: '#8c8c8c' };
             } else {
-                style = { color: '#00ff00' };
+                style = { color: '#fff' };
             }
             // @TODO: Rewrite this way of mail positioning
             let title = this.fakeOS.add.text(16, i * 72 + 128,
@@ -172,9 +175,9 @@ export default class MailApp extends App {
     protected setBackground(): void {
         let hours = new Date().getHours();
         if ( hours >= 9 && hours < 19 ) {
-            this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-white-wallpaper', 0);
+            this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-light-grey-wallpaper', 0);
         } else {
-            this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-black-wallpaper', 0);
+            this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-dark-grey-wallpaper', 0);
         }
         this.wallpaper.setOrigin(0, 0);
         this.wallpaper.setScale(

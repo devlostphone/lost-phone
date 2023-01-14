@@ -71,7 +71,7 @@ export default class phoneUI {
         this.createButtons();
         this.createClock();
         this.createDrawer();
-        this.setWallpaper();
+        this.setWallpaper('dramatic-wallpaper');
 
         this.fakeOS.log('Setting up UI listeners');
         this.addEventListeners();
@@ -111,47 +111,59 @@ export default class phoneUI {
     }
 
     /**
-     * Sets the default FakeOS wallpaper defined by
+     * Sets the default FakeOS wallpaper defined at App settings
      */
-    protected setWallpaper(): void {
+    public setWallpaper(keyTexture: string): void {
+        let wallpaper;
+        let arrObjects = this.fakeOS.children.getChildren();
+        let img = arrObjects.filter(obj => obj.type == "Image").find(image => image.texture.key != "background");
+        if (img == undefined) {
+            wallpaper = this.fakeOS.add.image(0, 0, keyTexture, 0).setOrigin(0, 0);
+            wallpaper.setScale(
+                this.fakeOS.width / wallpaper.width,
+                this.fakeOS.height / wallpaper.height
+            );
+        } else {
+            img.setTexture(keyTexture).setScale(
+                this.fakeOS.width / img.width,
+                this.fakeOS.height / img.height
+            );
+        }
 
-        let renderSize = this.getAppRenderSize();
+        //     // Update wallpaper
+        //     console.log("setWallpaper: " + wallpaper.type);
+        // }
+        // @TODO: Set wallpaper depending on gpu capabilites client: canvas or webgl.
+        // switch (kind) {
+        //     case 'solid-color' :
+        //         let hours = new Date().getHours();
+        //         if ( hours >= 9 && hours < 19 ) {
+        //             this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-light-grey-wallpaper', 0);
+        //         } else {
+        //             this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-dark-grey-wallpaper', 0);
+        //         }
+        //         this.wallpaper.setOrigin(0, 0);
+        //         this.wallpaper.setScale(
+        //             this.fakeOS.width / this.wallpaper.width,
+        //                     this.fakeOS.height / this.wallpaper.height
+        //         );
+        //         break;
+        //     case 'shader':
+        //         const rt = this.fakeOS.make.renderTexture({ width: 1242, height: 2209 }, false);
+        //         rt.fill(0xff00ff, 1, 0, 0, 1242, 2209);
+        //         rt.draw(this.fakeOS.cache.json.get('config')['wallpaper'] + '-wallpaper', 0, 0);
+        //         rt.saveTexture('rt');
 
-        let wallpaper = new Phaser.GameObjects.Image(
-            this.fakeOS,
-            0,
-            0,
-            this.fakeOS.cache.json.get('config')['wallpaper'] + '-wallpaper'
-        ).setOrigin(0);
-        wallpaper.setScale(
-            renderSize.width / wallpaper.width,
-            renderSize.width / wallpaper.width
-        );
-
-        const rt = this.fakeOS.make.renderTexture({
-            width: renderSize.width,
-            height: renderSize.height
-        }, false);
-        rt.fill(
-            0xff00ff,
-            1,
-            0,
-            0,
-            renderSize.width,
-            renderSize.height
-        );
-        rt.draw(wallpaper, 0, 0);
-        rt.saveTexture('rt');
-
-        const shader = this.fakeOS.add.shader(
-            'Pointillize Filter',
-            renderSize.x,
-            renderSize.y,
-            renderSize.width,
-            renderSize.height,
-            ['noise', 'rt']
-        );
-        shader.setOrigin(0);
+        //         const shader = this.fakeOS.add.shader('Pointillize Filter', 0, 0, 1242, 2209, ['noise', 'rt']);
+        //         shader.setOrigin(0);
+        //         shader.setScale(
+        //             this.fakeOS.width / shader.width,
+        //             this.fakeOS.height / shader.height
+        //         );
+        //         break;
+        //     default:
+        //         console.log("Sorry, no wallpaper well defined!");
+        // }
     }
 
     /**

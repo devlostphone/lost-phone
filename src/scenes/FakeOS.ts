@@ -14,7 +14,7 @@ export class FakeOS extends FakeOSScene {
     /**
      * FakeOS UI.
      */
-    protected UI: UI;
+    public UI: UI;
 
     /**
      * The app which is active.

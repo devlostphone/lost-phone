@@ -27,6 +27,7 @@ export default class HomescreenApp extends App {
      * Renders the homescreen app.
      */
     public render(): void {
+        this.fakeOS.UI.setWallpaper('dramatic-wallpaper');
         this.addIconApps();
     }
 

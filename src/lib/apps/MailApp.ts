@@ -1,4 +1,4 @@
-import { FakeOS } from '../../scenes/FakeOS';
+import { FakeOS } from '../../scenes/FakeOS'
 import App from '../../lib/apps/App';
 import { PhoneEvents } from '../events/GameEvents';
 
@@ -21,6 +21,8 @@ export default class MailApp extends App {
         wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
     };
 
+    protected unread_size: number = 0;
+
     /**
      * Class constructor.
      *
@@ -37,7 +39,7 @@ export default class MailApp extends App {
     public render(): void {
         this.currentMail = "";
         this.getActiveLayer().clear();
-        this.setBackground();
+        this.fakeOS.UI.setWallpaper('solid-dark-grey-wallpaper');
         this.showHeader();
         this.showMailList();
     }
@@ -47,13 +49,21 @@ export default class MailApp extends App {
      */
     public showHeader(): void {
         let title = this.fakeOS.getString('mail');
-        //@TODO Add dynamic value for unread mails
-        let unread = "10 no llegits";
-        this.getActiveLayer().add(
+
+        // Check for unread messages
+        for (let i=0; i < this.mails.length; i++) {
+            let id = this.mails[i]['id'];
+            // Check if can be shown
+            if (!this.fakeOS.checkDone(this.mails[i]['condition'])) continue;
+            if (!this.fakeOS.checkDone(id)) this.unread_size += 1;            
+        }
+        
+        let unread = this.unread_size + " no llegits";
+        this.getActiveLayer().add([
             this.fakeOS.add.text(this.fakeOS.width / 2, 36, title, { color: '#fff', fontFamily: 'Roboto-Bold', fontSize: '28px', align: 'center'}).setOrigin(0.5),
-            this.fakeOS.add.text(16, 128, "Actualitzat ara mateix" , { color: '#aaa', fontFamily: 'Roboto', fontSize: '22px', align: 'left'}),
-            this.fakeOS.add.text(this.fakeOS.width - (unread.length * 9) - 16 , 128, unread , { color: '#c0c', fontFamily: 'Roboto', fontSize: '22px', align: 'right'})
-        );
+            this.fakeOS.add.text(16, 64, "Actualitzat ara mateix" , { color: '#aaa', fontFamily: 'Roboto', fontSize: '22px', align: 'left'}),
+            this.fakeOS.add.text(this.fakeOS.width - (unread.length * 9) - 16 , 64, unread , { color: '#c0c', fontFamily: 'Roboto', fontSize: '22px', align: 'right'})
+        ]);
     }
 
     /**
@@ -75,13 +85,13 @@ export default class MailApp extends App {
                 style = { color: '#8c8c8c' };
             } else {
                 style = { color: '#fff' };
+                this.unread_size += 1;
             }
             // @TODO: Rewrite this way of mail positioning
             let title = this.fakeOS.add.text(16, i * 72 + 128,
                                              this.mails[i]['date'] + ' - ' +this.mails[i]['title'],
                                              {...style, ...this.textoptions}
                                             );
-
             // this.addRow(title);
 
             this.fakeOS.addInputEvent(
@@ -103,51 +113,61 @@ export default class MailApp extends App {
      */
     public openMail(mail: any): void {
 
+        // Reset unread_size
+        this.unread_size = 0;
+
         this.currentMail = mail['id'];
 
         // Adding a new layer for displaying mail contents.
         this.addLayer(0x333333);
 
-        let header = this.fakeOS.add.text(0,0,
-                                          this.fakeOS.getString('from') + ': ' + mail['from'] + "\n" +
-            this.fakeOS.getString('subject') + ': ' + mail['subject'],
-                                          this.textoptions
-                                         ).setOrigin(0, 0);
-        this.addRow(header);
+        // @TODO: Create solid background color for draggable or scrollable mail messages
+        // this.setBackground();
 
-        let text;
+        let header = this.fakeOS.add.text(16, 48, this.fakeOS.getString('from') + ': ' + mail['from'], this.textoptions);
+        let subject = this.fakeOS.add.text(16, 84, this.fakeOS.getString('subject') + ': ' + mail['subject'], this.textoptions);
 
-        if (mail['file']) {
-            fetch(mail['file'])
-                .then((response) => response.text())
-                .then((mailText) => {
-                    text = this.fakeOS.add.text(0,0,
-                                                mailText.split("\\n"),
-                                                this.textoptions
-                                               ).setOrigin(0,0);
-                    this.addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
-                });
-        } else {
-            text = this.fakeOS.add.text(0,0,
-                                        mail['body'].split("\\n"),
-                                        this.textoptions
-                                       ).setOrigin(0,0)
-            this.addRow(text, {position: Phaser.Display.Align.TOP_CENTER});
-        }
+        this.getActiveLayer().add([header, subject]);
 
-        let attachments = [];
-        if (mail['attachment'] !== null) {
-            for (let i = 0; i < mail['attachment'].length; i++) {
-                let attachment = this.fakeOS.generateAppLink(mail['attachment'][i]);
-                attachments.push(this.fakeOS.add.existing(attachment));
+        let txt;
+        // if (mail['file']) {
+        //     fetch(mail['file'])
+        //         .then((response) => response.text())
+        //         .then((mailText) => {
+        //             txt = this.fakeOS.add.text(16, 128,
+        //                                        // mailText.split("\\n"),
+        //                                        mail['body'],
+        //                                         this.textoptions
+        //                                        );
+        //             // this.addRow(txt, {position: Phaser.Display.Align.TOP_CENTER});
+        //         });
+        // } else {
+            txt = this.fakeOS.add.rexBBCodeText(16, 132, mail['body'], {
+                fontFamily: 'Serif',
+                fontSize: '24px',
+                color: '#acacac',
+                align: "left",
+                lineSpacing: 12,
+                wrap: { mode : 1, width: this.fakeOS.width - 32 },
+                images: { g001: { width : 256  }}
+            });
+        // }
 
-                // @TODO: change the way attachments look like
-                attachment.setOrigin(0.5, 1)
-                attachment.setScale(0.5, 0.5);
-            }
-        }
+        this.addRow(txt, {position: Phaser.Display.Align.TOP_CENTER});
+        // this.getActiveLayer().add(txt);
+        // let attachments = [];
+        // if (mail['attachment'] !== null) {
+        //     for (let i = 0; i < mail['attachment'].length; i++) {
+        //         let attachment = this.fakeOS.generateAppLink(mail['attachment'][i]);
+        //         attachments.push(this.fakeOS.add.existing(attachment));
 
-        this.addRow(attachments);
+        //         // @TODO: change the way attachments look like
+        //         attachment.setOrigin(0.5, 1)
+        //         attachment.setScale(0.5, 0.5);
+        //     }
+        // }
+
+        // this.addRow(attachments);
         this.fakeOS.setDone(mail['id']);
     }
 
@@ -165,25 +185,5 @@ export default class MailApp extends App {
      */
     public getCurrentID(): string {
         return this.currentMail;
-    }
-
-
-    /**
-     * Set solid color as background based on day time
-     *
-     */
-    protected setBackground(): void {
-        let hours = new Date().getHours();
-        if ( hours >= 9 && hours < 19 ) {
-            this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-light-grey-wallpaper', 0);
-        } else {
-            this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-dark-grey-wallpaper', 0);
-        }
-        this.wallpaper.setOrigin(0, 0);
-        this.wallpaper.setScale(
-            this.fakeOS.width / this.wallpaper.width,
-                    this.fakeOS.height / this.wallpaper.height
-        );
-        this.getActiveLayer().add(this.wallpaper);
-    }
+    } 
 }

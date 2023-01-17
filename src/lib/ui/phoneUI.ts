@@ -113,9 +113,43 @@ export default class phoneUI {
     /**
      * Sets the default FakeOS wallpaper defined at App settings
      */
-    public setWallpaper(keyTexture: string): void {
+    
+    // @TODO: Set wallpaper depending on gpu capabilites client: canvas or webgl.
+    public setWallpaper(expr: string): void {
+        let keyTexture;
         let wallpaper;
         let arrObjects = this.fakeOS.children.getChildren();
+
+        switch (expr) {
+            case 'solid':                
+                let hours = new Date().getHours();
+                if ( hours >= 9 && hours < 19 ) {
+                    keyTexture = 'solid-light-grey-wallpaper';
+                } else {
+                    keyTexture = 'solid-dark-grey-wallpaper';
+                }
+                break;
+            case 'shader':
+                console.log("[WARNING]: Shader as App wallpaper not implemented");
+                break;
+                // const rt = this.fakeOS.make.renderTexture({ width: 1242, height: 2209 }, false);
+                // rt.fill(0xff00ff, 1, 0, 0, 1242, 2209);
+                // rt.draw(this.fakeOS.cache.json.get('config')['wallpaper'] + '-wallpaper', 0, 0);
+                // rt.saveTexture('rt');
+
+                // const shader = this.fakeOS.add.shader('Pointillize Filter', 0, 0, 1242, 2209, ['noise', 'rt']);
+                // shader.setOrigin(0);
+                // shader.setScale(
+                //     this.fakeOS.width / shader.width,
+                //     this.fakeOS.height / shader.height
+                // );
+            default:
+                keyTexture = expr + '-wallpaper';
+                // @TODO: Handle not found images
+                // console.log(`Sorry, no wallpaper well defined: ${expr}`);
+                break;
+        }
+        
         let img = arrObjects.filter(obj => obj.type == "Image").find(image => image.texture.key != "background");
         if (img == undefined) {
             wallpaper = this.fakeOS.add.image(0, 0, keyTexture, 0).setOrigin(0, 0);
@@ -129,41 +163,6 @@ export default class phoneUI {
                 this.fakeOS.height / img.height
             );
         }
-
-        //     // Update wallpaper
-        //     console.log("setWallpaper: " + wallpaper.type);
-        // }
-        // @TODO: Set wallpaper depending on gpu capabilites client: canvas or webgl.
-        // switch (kind) {
-        //     case 'solid-color' :
-        //         let hours = new Date().getHours();
-        //         if ( hours >= 9 && hours < 19 ) {
-        //             this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-light-grey-wallpaper', 0);
-        //         } else {
-        //             this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-dark-grey-wallpaper', 0);
-        //         }
-        //         this.wallpaper.setOrigin(0, 0);
-        //         this.wallpaper.setScale(
-        //             this.fakeOS.width / this.wallpaper.width,
-        //                     this.fakeOS.height / this.wallpaper.height
-        //         );
-        //         break;
-        //     case 'shader':
-        //         const rt = this.fakeOS.make.renderTexture({ width: 1242, height: 2209 }, false);
-        //         rt.fill(0xff00ff, 1, 0, 0, 1242, 2209);
-        //         rt.draw(this.fakeOS.cache.json.get('config')['wallpaper'] + '-wallpaper', 0, 0);
-        //         rt.saveTexture('rt');
-
-        //         const shader = this.fakeOS.add.shader('Pointillize Filter', 0, 0, 1242, 2209, ['noise', 'rt']);
-        //         shader.setOrigin(0);
-        //         shader.setScale(
-        //             this.fakeOS.width / shader.width,
-        //             this.fakeOS.height / shader.height
-        //         );
-        //         break;
-        //     default:
-        //         console.log("Sorry, no wallpaper well defined!");
-        // }
     }
 
     /**

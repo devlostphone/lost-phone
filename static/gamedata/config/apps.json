@@ -75,6 +75,7 @@
         "type" : "mail",
         "key"  : "MailApp",
         "icon" : "mail.png",
+        "wallpaper" : "solid",
         "description": "Aplicació de correu electrònic",
         "configFile" : "mail.json",
         "preInstalled": true,

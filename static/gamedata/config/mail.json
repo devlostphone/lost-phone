@@ -1,83 +1,84 @@
 [
-  {
-    "id" : "m001",
-    "from" : "Persona 1",
-    "title": "Llegeix",
-    "subject" : "Llegeix",
-    "date" : "22/11/2020 10:03",
-    "body" : "Ut pharetra ipsum sodales nunc ultrices, non aliquam diam interdum.\\n Aenean imperdiet lacinia risus, et vulputate elit convallis quis. Maecenas pharetra a ex sed gravida. Nullam nec sem lorem. Suspendisse dui elit, ornare eu pretium quis, pharetra quis ipsum. Sed id libero ex. Nunc a suscipit mauris. Nunc sagittis volutpat turpis, sed imperdiet urna tempus et. Pellentesque commodo magna sit amet sapien ultrices accumsan. Aenean vel suscipit diam.",
-    "attachment" : ["gallery:g012", "gallery:g009"],
-    "condition" : null
-  },
-  {
-    "id" : "m002",
-    "from" : "Persona 2",
-    "title": "De què va aquest miniop?",
-    "subject" : "De què va aquest miniop?",
-    "date" : "28/11/2020 12:03",
-    "file": "gamedata/assets/emails/email1.txt",
-    "attachment" :null,
-    "condition" : "m001",
-    "delay": 10
-  },
-  {
-    "id" : "m003",
-    "from" : "Persona 3",
-    "title": "Instruccions de l'IOC",
-    "subject" : "Instruccions de l'IOC",
-    "date" : "8/12/2020 16:56",
-    "body" : "Vestibulum elementum est",
-    "attachment" :null,
-    "condition" : "m002"
-  },
-  {
-    "id" : "m004",
-    "from" : "Persona 4",
-    "title": "Normes de convivència lectora",
-    "subject" : "Normes de convivència lectora",
-    "date" : "10/12/2020 09:34",
-    "body" : "Vestibulum elementum est",
-    "attachment" :null,
-    "condition" : ["m001", "m002", "m003"]
-  },
-  {
-    "id" : "m005",
-    "from" : "Persona 5",
-    "title": "05 - Més mails",
-    "subject" : "05 - Més mails",
-    "date" : "10/12/2020 11:54",
-    "body" : "Vestibulum elementum est",
-    "attachment" :null,
-    "condition" : "m003"
-  },
-  {
-    "id" : "m006",
-    "from" : "Persona 5",
-    "title": "06 - Més mails",
-    "subject" : "06 - Més mails",
-    "date" : "10/12/2020 21:02",
-    "body" : "Vestibulum elementum est",
-    "attachment" :null,
-    "condition" : "m003"
-  },
-  {
-    "id" : "m007",
-    "from" : "Persona 5",
-    "title": "07 - Més mails",
-    "subject" : "07 - Més mails",
-    "date" : "10/12/2020 22:45",
-    "body" : "Vestibulum elementum est",
-    "attachment" :null,
-    "condition" : "m003"
-  },
-  {
-    "id" : "m008",
-    "from" : "Persona 5",
-    "title": "08 - Més mails",
-    "subject" : "08 - Més mails",
-    "date" : "10/12/2020 00:45",
-    "body" : "Vestibulum elementum est",
-    "attachment" :null,
-    "condition" : "m003"
-  }
+    {
+        "id" : "m001",
+        "from" : "Pare del Jaume",
+        "to": "jaumefarriols@mail.cat",
+        "title": "RW: NOU INCIDENT",
+        "subject" : "RW: NOU INCIDENT",
+        "date" : "dc, 30 març 19:02",
+        "body" : "Jaume,\n\n[b]Mira que m’ha enviat ara el veí![/b] Ja m’imagino que no has estat tu el del foc, però també n’estic fins a dalt d’aquesta dèria que t’ha agafat ara amb l’ecologisme, fill.\n\nEn parlarem quan arribi a casa\n\n_______________\n-RW-\n_______________\nBona tarda, Farriols,\n\nEl comportament del seu fill Jaume ja passa de mida.\nAvui he trobat una foguera que encara feia fum a la barrera que separa la meva propietat de la de vostè. Si no n’hi havia prou amb els seus cartellets pocasoltes sobre reciclatge i aquestes ximpleries, ara un foc!\nAdjunto les fotos.\n\nEstic fins al capdamunt de les cabòries ecologistes del seu fill. Que no ho veu, vostè, que aquest nen avui podria haver provocat un incendi gros?\n\nLi demano que controli el seu fill, altrament hauré de denunciar-lo a vostè per posar en perill la meva propietat. Recordi que vaig documentant les tonteries d’aquest galifardeu amb un seguit de fotos que, si cal, faré servir contra vostè.\nSalutacions,\n\nÀngel",
+        "attachment" : ["gallery:g012", "gallery:g009"],
+        "condition" : null
+    },
+    {
+        "id" : "m002",
+        "from" : "Persona 2",
+        "title": "De què va aquest miniop?",
+        "subject" : "De què va aquest miniop?",
+        "date" : "28/11/2020 12:03",
+        "file": "gamedata/assets/emails/email1.txt",
+        "attachment" :null,
+        "condition" : "m001",
+        "delay": 10
+    },
+    {
+        "id" : "m003",
+        "from" : "Persona 3",
+        "title": "Instruccions de l'IOC",
+        "subject" : "Instruccions de l'IOC",
+        "date" : "8/12/2020 16:56",
+        "body" : "Vestibulum elementum est",
+        "attachment" :null,
+        "condition" : "m002"
+    },
+    {
+        "id" : "m004",
+        "from" : "Persona 4",
+        "title": "Normes de convivència lectora",
+        "subject" : "Normes de convivència lectora",
+        "date" : "10/12/2020 09:34",
+        "body" : "Vestibulum elementum est",
+        "attachment" :null,
+        "condition" : ["m001", "m002", "m003"]
+    },
+    {
+        "id" : "m005",
+        "from" : "Persona 5",
+        "title": "05 - Més mails",
+        "subject" : "05 - Més mails",
+        "date" : "10/12/2020 11:54",
+        "body" : "Vestibulum elementum est",
+        "attachment" :null,
+        "condition" : "m003"
+    },
+    {
+        "id" : "m006",
+        "from" : "Persona 5",
+        "title": "06 - Més mails",
+        "subject" : "06 - Més mails",
+        "date" : "10/12/2020 21:02",
+        "body" : "Vestibulum elementum est",
+        "attachment" :null,
+        "condition" : "m003"
+    },
+    {
+        "id" : "m007",
+        "from" : "Persona 5",
+        "title": "07 - Més mails",
+        "subject" : "07 - Més mails",
+        "date" : "10/12/2020 22:45",
+        "body" : "Vestibulum elementum est",
+        "attachment" :null,
+        "condition" : "m003"
+    },
+    {
+        "id" : "m008",
+        "from" : "Persona 5",
+        "title": "08 - Més mails",
+        "subject" : "08 - Més mails",
+        "date" : "10/12/2020 00:45",
+        "body" : "Vestibulum elementum est",
+        "attachment" :null,
+        "condition" : "m003"
+    }
 ]

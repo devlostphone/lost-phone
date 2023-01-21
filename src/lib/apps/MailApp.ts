@@ -47,9 +47,13 @@ export default class MailApp extends App {
     /**
      * Set app wallpaper
      */
-    protected setWallpaper(): void {
-        let wallpaper = this.fakeOS.cache.json.get('apps').find(app => app.key == 'MailApp').wallpaper;
-        this.fakeOS.UI.setWallpaper(wallpaper);
+    protected setWallpaper(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setWallpaper(image);
+        } else {
+            let wallpaper = this.fakeOS.cache.json.get('apps').find(app => app.key == 'MailApp').wallpaper;
+            this.fakeOS.UI.setWallpaper(wallpaper);
+        }
     }
     
     /**
@@ -120,6 +124,8 @@ export default class MailApp extends App {
      * @param mail
      */
     protected openMail(mail: any): void {
+        // Change wallpaper for better mail reading
+        this.setWallpaper('solid-white');
 
         // Reset unread_size
         this.unread_size = 0;
@@ -129,15 +135,25 @@ export default class MailApp extends App {
         // Adding a new layer for displaying mail contents.
         this.addLayer(0x333333);
 
-        // Paint header, subject in a fancy way
+        // Paint header, subject and other contextual information inside dark grey box
+        this.getActiveLayer().add(
+            new Phaser.GameObjects.Rectangle(this.fakeOS,
+                                             0, 0,
+                                             this.fakeOS.width, 128,
+                                             0x1c1c1c
+                                            ).setOrigin(0)
+        );
+
         let header = this.fakeOS.add.text(0, 0, this.fakeOS.getString('subject') + ': ' + mail['subject'], {
             fontFamily: 'Roboto',
             fontSize: "32px",
             align: "left"
         });
         let subject = this.fakeOS.add.text(0, 0, this.fakeOS.getString('from') + ': ' + mail['from'], this.textoptions );
-        this.addRow(header);
-        this.addRow(subject, { y: 0 });
+        this.getActiveLayer().add([header, subject]);
+        
+        // this.addRow(header, { y: 0 });
+        // this.addRow(subject, { y: 0 });
 
         let txt;
         if (mail['file']) {
@@ -149,23 +165,23 @@ export default class MailApp extends App {
                                                         {
                                                             fontFamily: 'Serif',
                                                             fontSize: '24px',
-                                                            color: '#efefef',
+                                                            color: '#1c1c1c',
                                                             align: "left",
                                                             lineSpacing: 12,
                                                             wrap: { mode : 1, width: this.fakeOS.width - 72 }
                                                         });
-                    this.addRow(txt, { position: Phaser.Display.Align.TOP_CENTER });
+                    this.addRow(txt, { y: 1});
                 });
         } else {
             txt = this.fakeOS.add.rexBBCodeText(0, 0, mail['body'], {
                 fontFamily: 'Serif',
                 fontSize: '24px',
-                color: '#efefef',
+                color: '#1c1c1c',
                 align: "left",
                 lineSpacing: 12,
                 wrap: { mode : 1, width: this.fakeOS.width - 72 }
             });
-            this.addRow(txt, { position: Phaser.Display.Align.TOP_CENTER, y: 1 });
+            this.addRow(txt, { y: 7 });
         }
         let attachments = [];
         if (mail['attachment'] !== null) {

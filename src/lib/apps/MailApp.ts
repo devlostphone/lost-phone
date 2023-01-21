@@ -139,22 +139,35 @@ export default class MailApp extends App {
         this.getActiveLayer().add(
             new Phaser.GameObjects.Rectangle(this.fakeOS,
                                              0, 0,
-                                             this.fakeOS.width, 128,
+                                             this.fakeOS.width, 164,
                                              0x1c1c1c
                                             ).setOrigin(0)
         );
 
-        let header = this.fakeOS.add.text(0, 0, this.fakeOS.getString('subject') + ': ' + mail['subject'], {
+        let subject = this.fakeOS.add.text(this.fakeOS.width / 2, 48, mail['subject'], {
             fontFamily: 'Roboto',
             fontSize: "32px",
+            color: '#fff'
+        }).setOrigin(0.5);
+        let from_user = this.fakeOS.add.text(16, 72, mail['from'], {
+            fontFamily: 'Roboto',
+            fontSize: "24px",
             align: "left"
         });
-        let subject = this.fakeOS.add.text(0, 0, this.fakeOS.getString('from') + ': ' + mail['from'], this.textoptions );
-        this.getActiveLayer().add([header, subject]);
+        let date  = this.fakeOS.add.text(this.fakeOS.width - 16 - (mail['date'].length * 12), 72, mail['date'], {
+            fontFamily: 'Roboto',
+            fontSize: "24px",
+            align: "right",
+            color: '#ccc'
+        });
+        let to_user = this.fakeOS.add.rexBBCodeText(16, 104, '[b]' + this.fakeOS.getString('to') + '[/b]: [color=blue]' + mail['to'] + '[/color]', {
+            fontFamily: 'Roboto',
+            fontSize: "24px",
+            align: "right",
+            color: '#ccc'
+});
+        this.getActiveLayer().add([subject, from_user, date, to_user]);
         
-        // this.addRow(header, { y: 0 });
-        // this.addRow(subject, { y: 0 });
-
         let txt;
         if (mail['file']) {
             fetch(mail['file'])
@@ -193,7 +206,7 @@ export default class MailApp extends App {
                 attachment.setScale(0.5, 0.5);
             }
         }
-        // @TODO: attachments are partially visible at the bottom of the display screen
+        // @TODO: (picture) attachments are partially visible at the bottom of the screen's boundaries
         this.addRow(attachments);
         this.fakeOS.setDone(mail['id']);
     }

@@ -69,13 +69,23 @@ export default class MailApp extends App {
             if (!this.fakeOS.checkDone(this.mails[i]['condition'])) continue;
             if (!this.fakeOS.checkDone(id)) this.unread_size += 1;            
         }
-        
+
+        // Display header mail info
         let unread = this.unread_size + " no llegits";
         this.getActiveLayer().add([
-            this.fakeOS.add.text(this.fakeOS.width / 2, 36, title, { color: '#fff', fontFamily: 'Roboto-Bold', fontSize: '28px', align: 'center'}).setOrigin(0.5),
-            this.fakeOS.add.text(16, 64, "Actualitzat ara mateix" , { color: '#aaa', fontFamily: 'Roboto', fontSize: '22px', align: 'left'}),
-            this.fakeOS.add.text(this.fakeOS.width - (unread.length * 9) - 16 , 64, unread , { color: '#c0c', fontFamily: 'Roboto', fontSize: '22px', align: 'right'})
+            this.fakeOS.add.text(this.fakeOS.width / 2, 48, title, { color: '#fff', fontFamily: 'Roboto-Bold', fontSize: '28px', align: 'center'}).setOrigin(0.5),
+            this.fakeOS.add.text(16, 82, "Actualitzat ara mateix" , { color: '#aaa', fontFamily: 'Roboto', fontSize: '22px', align: 'left'}),
+            this.fakeOS.add.text(this.fakeOS.width - (unread.length * 9) - 16 , 82, unread , { color: '#c0c', fontFamily: 'Roboto', fontSize: '22px', align: 'right'})
         ]);
+
+        // Paint a simple horizontal line
+        this.getActiveLayer().add(
+            this.fakeOS.add.line(
+                16, 120,
+                0, 0,
+                this.fakeOS.width - 32, 0,
+                0xefefef
+            ).setLineWidth(0.75).setOrigin(0));
     }
 
     /**
@@ -100,12 +110,10 @@ export default class MailApp extends App {
                 this.unread_size += 1;
             }
             // @TODO: Rewrite this way of mail positioning
-            let title = this.fakeOS.add.text(16, i * 72 + 128,
+            let title = this.fakeOS.add.text(16, i * 72 + 158,
                                              this.mails[i]['date'] + ' - ' +this.mails[i]['title'],
                                              {...style, ...this.textoptions}
                                             );
-            // this.addRow(title);
-
             this.fakeOS.addInputEvent(
                 'pointerup',
                 () => {
@@ -114,7 +122,16 @@ export default class MailApp extends App {
                 title
             );
 
+            // Paint a simple horizontal line
+            let hl = this.fakeOS.add.line(
+                16, i * 72 + 198,
+                0, 0,
+                this.fakeOS.width - 32, 0,
+                0xacacac
+            ).setLineWidth(0.35).setOrigin(0);
+
             this.getActiveLayer().add(title);
+            this.getActiveLayer().add(hl);
         }
     }
 
@@ -139,28 +156,28 @@ export default class MailApp extends App {
         this.getActiveLayer().add(
             new Phaser.GameObjects.Rectangle(this.fakeOS,
                                              0, 0,
-                                             this.fakeOS.width, 164,
+                                             this.fakeOS.width, 192,
                                              0x1c1c1c
                                             ).setOrigin(0)
         );
 
-        let subject = this.fakeOS.add.text(this.fakeOS.width / 2, 48, mail['subject'], {
+        let subject = this.fakeOS.add.text(this.fakeOS.width / 2, 52, mail['subject'], {
             fontFamily: 'Roboto',
             fontSize: "32px",
             color: '#fff'
         }).setOrigin(0.5);
-        let from_user = this.fakeOS.add.text(16, 72, mail['from'], {
+        let from_user = this.fakeOS.add.text(16, 92, mail['from'], {
             fontFamily: 'Roboto',
             fontSize: "24px",
             align: "left"
         });
-        let date  = this.fakeOS.add.text(this.fakeOS.width - 16 - (mail['date'].length * 12), 72, mail['date'], {
+        let date  = this.fakeOS.add.text(this.fakeOS.width - 16 - (mail['date'].length * 12), 92, mail['date'], {
             fontFamily: 'Roboto',
             fontSize: "24px",
             align: "right",
             color: '#ccc'
         });
-        let to_user = this.fakeOS.add.rexBBCodeText(16, 104, '[b]' + this.fakeOS.getString('to') + '[/b]: [color=blue]' + mail['to'] + '[/color]', {
+        let to_user = this.fakeOS.add.rexBBCodeText(16, 132, '[b]' + this.fakeOS.getString('to') + '[/b]: [color=blue]' + mail['to'] + '[/color]', {
             fontFamily: 'Roboto',
             fontSize: "24px",
             align: "right",

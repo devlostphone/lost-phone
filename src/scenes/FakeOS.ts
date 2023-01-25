@@ -4,6 +4,7 @@ import UI from '../lib/ui/phoneUI';
 import App from '../lib/apps/App';
 import AppFactory from '../lib/apps/AppFactory';
 import { PhoneEvents, SystemEvents } from '../lib/events/GameEvents';
+import HomescreenApp from '../lib/apps/HomescreenApp';
 
 /**
  * FakeOS.
@@ -227,9 +228,15 @@ export class FakeOS extends FakeOSScene {
      *
      * @param key   The app key.
      */
-    public launchApp(key: string): void {
-        this.log('Shutting down: ' + this.activeApp?.constructor.name);
-        this.activeApp?.destroy();
+    public launchApp(key: string, icon?: any): void {
+        this.log('Shutting down: ' + this.activeApp?.getKey());
+        let animation = false;
+        let previousApp = this.activeApp;
+
+        if (previousApp?.getKey() == key) {
+            return;
+        }
+
         this.input.removeAllListeners();
         this.removePhoneEvents();
         this.time.removeAllEvents();
@@ -243,6 +250,60 @@ export class FakeOS extends FakeOSScene {
             this.activeApp = AppFactory.createInstance('HomescreenApp', this);
         }
         this.activeApp?.render();
+
+        // Was it launched from homescreen?
+        if (this.activeApp && this.activeApp.getKey() != 'HomescreenApp' && icon !== undefined) {
+            this.log("Launched from homescreen.");
+            animation = true;
+            let activeLayer = this.activeApp.getActiveLayer();
+            activeLayer.scaleX = icon.width / this.width;
+            activeLayer.scaleY = icon.height / this.height;
+            activeLayer.x = icon.x;
+            activeLayer.y = icon.y;
+
+            icon.destroy();
+
+            this.tweens.add({
+                targets: activeLayer,
+                x: 0,
+                y: 0,
+                scaleX: 1,
+                scaleY: 1,
+                duration: 100,
+                onComplete: () => {
+                    previousApp?.destroy();
+                }
+            });
+        }
+
+        // Going back to homescreen?
+        if (previousApp && this.activeApp instanceof HomescreenApp) {
+            this.log("Going back to homescreen.");
+            animation = true;
+            let previousAppLayer = previousApp.getActiveLayer();
+            let icon = this.activeApp.getIconByAppName(previousApp.getType());
+
+            if (icon !== undefined) {
+
+                icon.setAlpha(0);
+
+                this.tweens.add({
+                    targets: previousAppLayer,
+                    x: icon.x,
+                    y: icon.y,
+                    scaleX: icon.width / this.width,
+                    scaleY: icon.height / this.height,
+                    duration: 100,
+                    onComplete: () => {
+                        previousApp?.destroy();
+                        icon.setAlpha(1);
+                    }
+                });
+            } else {
+                animation = false;
+            }
+        }
+
         this.getUI().addInputListeners();
         this.getUI().addEventListeners();
 
@@ -253,6 +314,10 @@ export class FakeOS extends FakeOSScene {
             this.addBackFunction(() => {
                 this.launchApp('HomescreenApp');
             });
+        }
+
+        if (!animation) {
+            previousApp?.destroy();
         }
     }
 
@@ -281,12 +346,12 @@ export class FakeOS extends FakeOSScene {
         if (activeapp !== undefined) {
             let currentID = activeapp.getCurrentID();
             this.log('Clicked on element: ' + id);
-            this.log('Will go back to '+activeapp.constructor.name+' & ID: ' + currentID);
+            this.log('Will go back to '+activeapp.getKey()+' & ID: ' + currentID);
 
             this.clearBackFunction();
             this.addBackFunction(() => {
                 if (activeapp !== undefined) {
-                    this.launchApp(activeapp.constructor.name);
+                    this.launchApp(activeapp.getKey());
                     this.getActiveApp().goToID(currentID, true);
                 }
             });

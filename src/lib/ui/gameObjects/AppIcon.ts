@@ -10,6 +10,11 @@ export default class AppIcon extends Phaser.GameObjects.Container
     public icon: Phaser.GameObjects.Image;
 
     /**
+     * Icon label.
+     */
+    public label?: Phaser.GameObjects.Text;
+
+    /**
      * Config.
      */
     public config: any;
@@ -69,6 +74,8 @@ export default class AppIcon extends Phaser.GameObjects.Container
         label.setFontFamily('RobotoCondensed');
         label.setShadow(2, 2, '0x3f3f3f', 0.4);
         label.setResolution(1);
+
+        this.label = label;
 
         return this;
     }

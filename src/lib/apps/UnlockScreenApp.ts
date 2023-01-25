@@ -8,7 +8,7 @@ import App from '../../lib/apps/App';
 export default class UnlockScreenApp extends App {
 
     protected fakeOS: FakeOS;
-    private message: Phaser.GameObjects.Text;
+    private message?: Phaser.GameObjects.Text;
     private pin: string;
     private password: string;
     private dots: any;
@@ -27,6 +27,7 @@ export default class UnlockScreenApp extends App {
         this.dots = this.fakeOS.add.container();
         this.password = this.fakeOS.cache.json.get('unlock-screen').password;
         this.enterCode = "";
+        this.pin = "";
 
         // Hide home button and back button
         this.fakeOS.getUI().hideHomeButton();
@@ -66,12 +67,12 @@ export default class UnlockScreenApp extends App {
         let monthName = this.fakeOS.getString('month')[d.getMonth()];
         this.getActiveLayer().add(this.fakeOS.add.text(
             this.fakeOS.width / 2, 98,
-            // @TODO: Handle with locale prepositions? 
+            // @TODO: Handle with locale prepositions?
             dayName + ', ' + ('0' + d.getDate()).slice(-2) + ' de ' + monthName,
             { fontFamily: 'RobotoCondensed', fontSize: '32px', color: '#ffffff', align: 'center' }
         ).setOrigin(0.5, 0.5));
     }
-    
+
     /**
      * Shows feedback message.
      */
@@ -89,9 +90,9 @@ export default class UnlockScreenApp extends App {
      */
     protected displayDotsPIN(): void {
         let container = this.fakeOS.add.container();
-        let cell_width : Number = 128;
-        let dots_size : Number = 4;
-        let dot_rad : Number = 14;
+        let cell_width : number = 128;
+        let dots_size : number = 4;
+        let dot_rad : number = 14;
 
         for (let i = 0; i < dots_size; i++) {
             let dot = this.fakeOS.add.circle(0, 0, dot_rad, 0x0);
@@ -111,12 +112,12 @@ export default class UnlockScreenApp extends App {
         });
         this.getActiveLayer().add(this.dots);
     }
-    
+
     /**
      * Shows the numeric pad.
      */
     protected displayNumericPad(): void {
-        let ellipse_radius : Number = 128;
+        let ellipse_radius : number = 128;
         let digitLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9','-1', '0'];
         let characterLabels = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ'];
 
@@ -164,7 +165,7 @@ export default class UnlockScreenApp extends App {
                 },
                 button
             );
-            
+
             // Hide button with negative value
             if (button.getByName('value').text == '-1')
                 button.visible = false;
@@ -172,7 +173,7 @@ export default class UnlockScreenApp extends App {
             this.numericPad.add(button);
         }
 
-        let offset: Number = 42;
+        let offset: number = 42;
         Phaser.Actions.GridAlign(this.numericPad.getAll(), {
             width: 3,
             height: 4,
@@ -182,7 +183,7 @@ export default class UnlockScreenApp extends App {
             x: this.fakeOS.width / 2 - (ellipse_radius + offset),
             y: 420
         });
-        this.getActiveLayer().add(this.numericPad.getAll());        
+        this.getActiveLayer().add(this.numericPad.getAll());
     }
 
     /**

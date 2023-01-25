@@ -72,7 +72,7 @@ export default class HomescreenApp extends App {
             app.icon);
 
             this.fakeOS.addInputEvent('pointerup', () => {
-                home.fakeOS.launchApp(home.fakeOS.apps[index].key);
+                home.fakeOS.launchApp(home.fakeOS.apps[index].key, app);
             },
             app.icon);
 
@@ -126,4 +126,12 @@ export default class HomescreenApp extends App {
         }
     }
 
+    /**
+     * Retrieves an icon by its app name
+     *
+     * @param appName
+     */
+    public getIconByAppName(appName: any): any {
+        return this.icons[appName];
+    }
 }

@@ -9,29 +9,31 @@
     <link rel="stylesheet preload prefetch" as="style" href="../static/themes/default/fonts/RobotoCondensed-Regular.ttf" type="font/ttf" />
     <style media='screen' type='text/css'>
       @font-face {
-        font-family: Roboto;
-        src: url('../static/themes/default/fonts/Roboto-Regular.ttf');
-        font-weight:400;
-        font-weight:normal;
+          font-family: RobotoCondensed;
+          src: url('../static/themes/default/fonts/RobotoCondensed-Regular.ttf');
+          font-weight:400;
+          font-weight:normal;
       }
       @font-face {
-        font-family: Roboto-Bold;
-        src: url('../static/themes/default/fonts/Roboto-Bold.ttf');
-        font-weight:400;
-        font-weight:normal;
+          font-family: Roboto;
+          src: url('../static/themes/default/fonts/Roboto-Regular.ttf');
+          font-weight:400;
+          font-weight:normal;
       }
       @font-face {
-        font-family: RobotoCondensed;
-        src: url('../static/themes/default/fonts/RobotoCondensed-Regular.ttf');
-        font-weight:400;
-        font-weight:normal;
-      }
+          font-family: Roboto-Bold;
+          src: url('../static/themes/default/fonts/Roboto-Bold.ttf');
+          font-weight:400;
+          font-weight:normal;
+      }      
     </style>
   </head>
 
   <body style="margin:0; padding:0;">
     <!-- This hack is needed to allow custom fonts available -->
     <div style="font-family: RobotoCondensed; visibility: hidden"></div>
+    <div style="font-family: Roboto; visibility: hidden"></div>
+    <div style="font-family: Roboto-Bold; visibility: hidden"></div>
     <div id="game"></div>
   </body>
 </html>

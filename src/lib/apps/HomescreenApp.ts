@@ -35,7 +35,7 @@ export default class HomescreenApp extends App {
      * Set app wallpaper
      */
     protected setWallpaper(): void {
-        this.fakeOS.UI.setWallpaper('homescreen');
+        this.fakeOS.UI.setWallpaper(this.fakeOS.cache.json.get('config').wallpaper);
     }
     
     /**

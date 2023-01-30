@@ -45,7 +45,8 @@ export default class ChatSummary extends Phaser.GameObjects.Container
             this.fakeOS.getActiveApp().area.width - 2,
             this.fakeOS.getActiveApp().rowHeight()
         );
-        this.background.setStrokeStyle(1, 0xffffff);
+        //@TODO: Set color depending of daytime
+        this.background.setStrokeStyle(1, 0x000);
 
         this.contactName = this.fakeOS.add.text(
             - this.fakeOS.getActiveApp().area.width * 0.1,

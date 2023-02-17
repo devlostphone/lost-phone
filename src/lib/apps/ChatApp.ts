@@ -48,10 +48,13 @@ export default class ChatApp extends App {
 
             let chatRegistry = this.fakeOS.registry.get('chat');
             let lastTextId = chatRegistry[this.chat[i].id+'_lastchat'];
+            let initialLastText = this.chat[i].lastMessage;
             this.fakeOS.log('Contact '+this.chat[i].id+' last message was '+lastTextId);
             let lastText = this.fakeOS.getString('no-messages');
             if (lastTextId in this.chat[i].conversation) {
                 lastText = this.chat[i].conversation[lastTextId].text;
+            } else if (initialLastText in this.chat[i].conversation) {
+                lastText = this.chat[i].conversation[initialLastText].text;
             }
 
             let notifications = this.fakeOS.registry.get('notifications');
@@ -115,6 +118,9 @@ export default class ChatApp extends App {
 
         // Get last message
         this.lastMessage = this.fakeOS.registry.get('chat')[this.chat[this.activeContact].id+'_lastchat'];
+        if (this.lastMessage === undefined) {
+            this.lastMessage = this.chat[this.activeContact].lastMessage;
+        }
         this.fakeOS.log('Contact last message was ' + this.lastMessage);
 
         let config = {
@@ -363,12 +369,19 @@ export default class ChatApp extends App {
                 }
 
                 let first = true;
-                    for (let conversation in content[element]['conversation']) {
+                for (let conversation in content[element]['conversation']) {
 
                     if(complete.includes(content[element]['conversation'][conversation]['id']) || notifications.find((o:any) => o.id == content[element]['conversation'][conversation]['id'])) {
                         this.fakeOS.log('Skipping notification ' + content[element]['id']);
                         first = false;
                         continue;
+                    }
+
+                    if(content[element]['lastMessage'] !== undefined) {
+                        if(content[element]['conversation'][conversation]['id'] <= content[element]['lastMessage']) {
+                            this.fakeOS.log('Skipping notification (<lastMessage) ' + content[element]['id']);
+                            continue;
+                        }
                     }
 
                     let conditions = content[element]['conversation'][conversation]['condition'];

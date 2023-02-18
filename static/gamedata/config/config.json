@@ -7,7 +7,7 @@
       "name": "IOC Operating System"
   },
   "debug": true,
-  "locked": "true",
+  "locked": false,
   "notification_drawer_animation_duration": 400,
   "phone-scenes" :
   {

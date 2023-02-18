@@ -281,6 +281,7 @@ export class FakeOS extends FakeOSScene {
             this.log("Going back to homescreen.");
             animation = true;
             let previousAppLayer = previousApp.getActiveLayer();
+            previousAppLayer.setDepth(1000);
             let icon = this.activeApp.getIconByAppName(previousApp.getType());
 
             if (icon !== undefined) {

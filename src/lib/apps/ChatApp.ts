@@ -4,6 +4,7 @@ import ChatInteraction from '../ui/gameObjects/chat/ChatInteraction';
 import { PhoneEvents } from '../events/GameEvents';
 import ChoiceInputArea from '../ui/gameObjects/input/ChoiceInputArea';
 import ChatSummary from '../ui/gameObjects/chat/ChatSummary';
+import ChatTopBar from '../ui/gameObjects/chat/ChatTopBar';
 
 /**
  * Chat app
@@ -30,7 +31,7 @@ export default class ChatApp extends App {
         this.activeContact = 0;
 
         this.textOptions['wordWrap'] = {
-            width: this.area.width * 0.6,
+            width: this.area.width * 0.7,
             useAdvancedWrap: true
         };
         this.choiceTextOptions['wordWrap'] = {
@@ -46,21 +47,8 @@ export default class ChatApp extends App {
 
         for (let i = 0; i < this.chat.length; i++) {
 
-            let chatRegistry = this.fakeOS.registry.get('chat');
-            let lastTextId = chatRegistry[this.chat[i].id+'_lastchat'];
-            let initialLastText = this.chat[i].lastMessage;
-            this.fakeOS.log('Contact '+this.chat[i].id+' last message was '+lastTextId);
-            let lastText = this.fakeOS.getString('no-messages');
-            if (lastTextId in this.chat[i].conversation) {
-                lastText = this.chat[i].conversation[lastTextId].text;
-            } else if (initialLastText in this.chat[i].conversation) {
-                lastText = this.chat[i].conversation[initialLastText].text;
-            }
-
-            let notifications = this.fakeOS.registry.get('notifications');
-            if (notifications.find((o:any) => o.contact == this.chat[i]['id'])) {
-                lastText = this.fakeOS.getString('is_typing');
-            }
+            let lastText = this.getChatLastMessage(this.chat[i], true);
+            this.fakeOS.log('Contact '+this.chat[i].id+' last message was '+lastText);
 
             let contact = new ChatSummary(
                 this.fakeOS,
@@ -82,6 +70,57 @@ export default class ChatApp extends App {
 
             this.addRow(contact);
         }
+    }
+
+    /**
+     * Returns chat last message id.
+     *
+     * @param chat
+     * @returns
+     */
+    protected getChatLastMessageId(chat: any): string | undefined {
+        let chatRegistry = this.fakeOS.registry.get('chat');
+        let lastTextId = chatRegistry[chat.id+'_lastchat'];
+        let initialLastTextId = chat.lastMessage;
+
+        if (lastTextId in chat.conversation) {
+            return lastTextId;
+        } else if (initialLastTextId in chat.conversation) {
+            return initialLastTextId;
+        }
+
+        return undefined;
+    }
+
+    /**
+     * Returns chat last message text.
+     *
+     * @param chat
+     * @returns
+     */
+    protected getChatLastMessage(chat: any, chatList: boolean = false): string {
+        let lastText = undefined;
+
+        let lastTextId = this.getChatLastMessageId(chat);
+        if (lastTextId !== undefined) {
+            lastText = chat.conversation[lastTextId].text;
+        }
+
+        if (chatList) {
+            if (/^gallery/.test(lastText)) {
+                lastText = this.fakeOS.getString('user-sent-picture');
+            }
+
+            if (lastText === undefined) {
+                lastText = this.fakeOS.getString('no-messages');
+            }
+            let notifications = this.fakeOS.registry.get('notifications');
+            if (notifications.find((o:any) => o.contact == chat['id'])) {
+                lastText = this.fakeOS.getString('is_typing');
+            }
+        }
+
+        return lastText;
     }
 
     /**
@@ -117,10 +156,7 @@ export default class ChatApp extends App {
         this.addLayer(0x333333);
 
         // Get last message
-        this.lastMessage = this.fakeOS.registry.get('chat')[this.chat[this.activeContact].id+'_lastchat'];
-        if (this.lastMessage === undefined) {
-            this.lastMessage = this.chat[this.activeContact].lastMessage;
-        }
+        this.lastMessage = this.getChatLastMessageId(this.chat[this.activeContact]);
         this.fakeOS.log('Contact last message was ' + this.lastMessage);
 
         let config = {
@@ -131,8 +167,26 @@ export default class ChatApp extends App {
         };
         this.fakeOS.anims.create(config);
 
+        // Create top bar with avatar
+        this.createTopBar(this.chat[this.activeContact]);
+
         // Create conversation
         this.createChatInteraction(conversation[Object.keys(conversation)[0]], this.lastMessage === undefined);
+    }
+
+    /**
+     * Creates the conversation top bar with contact picture.
+     *
+     * @param conversation
+     */
+    protected createTopBar(conversation: any) {
+        let topBar = new ChatTopBar(
+            this.fakeOS,
+            300,
+            20,
+            conversation
+        ).setDepth(2000);
+        //this.addElements(topBar);
     }
 
     /**
@@ -183,17 +237,13 @@ export default class ChatApp extends App {
             this.fakeOS.setDone(conversation['id']);
         }
 
-        let avatar = conversation.pic !== undefined ? conversation.pic : this.chat[this.activeContact].id;
-        if (conversation.notification) {
-            avatar = null;
-        }
         this.addRow(new ChatInteraction(
                 this.fakeOS,
                 0,0,
                 conversation.id,
-                avatar,
                 conversation.text,
                 conversation.author,
+                conversation.time,
                 {...this.textOptions, new_message: newMessage, notification: conversation.notification}
             ).setName(conversation.id),
             newMessage ? this.newRowOptions : this.rowOptions
@@ -221,9 +271,9 @@ export default class ChatApp extends App {
                 this.fakeOS,
                 0,0,
                 conversation.id,
-                'default-avatar',
                 conversation.options,
                 conversation.author,
+                conversation.time,
                 {...this.textOptions, own_message: true, choose: true, new_message: true }
             ).setName(conversation.id), this.newRowOptions);
 
@@ -238,9 +288,9 @@ export default class ChatApp extends App {
                 this.fakeOS,
                 0,0,
                 conversation.id,
-                'default-avatar',
                 conversation.options[chosen].text,
                 conversation.author,
+                conversation.time,
                 {...this.textOptions, own_message: true }
             ).setName(conversation.id), this.rowOptions);
 
@@ -270,6 +320,8 @@ export default class ChatApp extends App {
             let interaction = this.getActiveLayer().getByName(conversation.id);
             interaction.setText(interaction.createText(
                 conversation.options[key]['text'],
+                conversation.options[key]['author'],
+                conversation.options[key]['time'],
                 {...this.textOptions, own_message: true }
             ));
             this.selectOption(conversation, key);

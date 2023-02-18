@@ -26,18 +26,14 @@ export default class ChatInteraction extends Phaser.GameObjects.Container
         x: number,
         y: number,
         conversation_id: string,
-        avatar: any,
         text: any,
         author: string|undefined,
+        time: string|undefined,
         options: any = undefined
     ) {
         super(scene, x, y, []);
         this.fakeOS = scene;
         this.id = conversation_id;
-
-        if (author !== undefined) {
-            text = author + ':\n' + text;
-        }
 
         // Create background
         this.background = this.fakeOS.add.rectangle(
@@ -46,17 +42,6 @@ export default class ChatInteraction extends Phaser.GameObjects.Container
             this.fakeOS.getActiveApp().rowHeight()
         );
         this.add(this.background);
-
-        // Create avatar
-        if (avatar != null) {
-            let avatar_x = - this.fakeOS.getActiveApp().area.width * 0.3;
-            if (options['own_message'] !== undefined && options['own_message']) {
-                avatar_x = this.fakeOS.getActiveApp().area.width * 0.3;
-            }
-
-            this.pic = this.fakeOS.add.image(avatar_x, 0, avatar);
-            this.add(this.pic);
-        }
 
         // Create interaction
         if (options['new_message'] !== undefined && options['new_message']) {
@@ -75,27 +60,17 @@ export default class ChatInteraction extends Phaser.GameObjects.Container
                     1500,
                     () => {
                         this.remove(this.text, true);
-                        this.text = this.createText(text, options);
-                        let text_bounds = this.text.getBounds();
-                        if (this.pic !== undefined && text_bounds.height > this.pic.height) {
-                            this.pic.y = text_bounds.height + text_bounds.y - this.pic.height ;
-                        }
+                        this.text = this.createText(text, author, time, options);
                         this.add(this.text);
                         this.fakeOS.launchEvent(PhoneEvents.NewConversation);
                     }
                 );
             }
         } else {
-            this.text = this.createText(text, options);
-        }
-
-        let text_bounds = this.text.getBounds();
-        if (this.pic !== undefined && text_bounds.height > this.pic.height) {
-            this.pic.y = text_bounds.height + text_bounds.y - this.pic.height ;
+            this.text = this.createText(text, author, time, options);
         }
 
         this.add(this.text);
-
     }
 
     /**
@@ -115,16 +90,7 @@ export default class ChatInteraction extends Phaser.GameObjects.Container
      * @param options
      * @returns
      */
-    public createText(text: string, options: any) {
-
-        let bubble_x = 100;
-        if (options['own_message'] !== undefined && options['own_message']) {
-            bubble_x = -100;
-        }
-
-        if (options['notification'] !== undefined) {
-            bubble_x = 0;
-        }
+    public createText(text: string, author: string|undefined, time: string|undefined,  options: any) {
 
         let position = 'left';
         if (options['own_message'] !== undefined) {
@@ -136,8 +102,10 @@ export default class ChatInteraction extends Phaser.GameObjects.Container
 
         return new ChatBubble(
             this.fakeOS,
-            bubble_x, 0,
+            0, 0,
             text,
+            author,
+            time,
             options,
             position
         );

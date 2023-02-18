@@ -6,7 +6,8 @@
         "conversation" : {
             "c001-0001": {
                 "id": "c001-0001",
-                "text": "Ei! Bones! Com va el dia?",
+                "text": "Ei! Bones! Fa molt temps que no parlem i avui m'he enrecordat de tú. Com va el dia?",
+                "time": "21:02",
                 "next": "c001-0002",
                 "condition": null
             },
@@ -29,6 +30,7 @@
                 "id": "c001-0003",
                 "text": "Me n'alegro molt!",
                 "condition": null,
+                "time": "21:04",
                 "next": "c001-0005"
             },
             "c001-0004": {
@@ -109,6 +111,7 @@
         "id": "contact003",
         "contactName": "Family",
         "contactPic": "gamedata/assets/profiles/family.png",
+        "lastMessage": "c003-0004",
         "conversation" : {
             "c003-0001": {
                 "id": "c003-0001",
@@ -116,36 +119,31 @@
                 "pic": "gamedata/assets/profiles/menina.png",
                 "text": "feliz jawelin",
                 "next": "c003-0002",
+                "time": "20:54",
                 "condition": null
             },
             "c003-0002": {
                 "id": "c003-0002",
-                "author": "Vanesa",
                 "pic": "gamedata/assets/profiles/menina.png",
                 "text": "grupo, soy Vanesa!",
                 "next": "c003-0003",
+                "time": "20:55",
                 "condition": null
             },
             "c003-0003": {
                 "id": "c003-0003",
-                "options": {
-                    "c003-ans0001" : {
-                        "id": "c003-ans0001",
-                        "text": "No se dice jawelin, se dice jalojein",
-                        "next": "c003-0004"
-                    },
-                    "c003-ans0002" : {
-                        "id": "c002-ans0002",
-                        "text": "No tinc temps per perdre amb això...",
-                        "next": "c003-0004"
-                    }
-                }
+                "notification": true,
+                "text": "Dimarts 17 de febrer",
+                "next": "c003-0004",
+                "condition": null
             },
             "c003-0004": {
                 "id": "c003-0004",
+                "author": "Sun Yoon",
                 "pic": "gamedata/assets/profiles/calamar.png",
                 "text": "gallery:g011",
                 "next": "c003-0005",
+                "time": "21:02",
                 "condition": null
             },
             "c003-0005": {

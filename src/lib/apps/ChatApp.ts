@@ -185,8 +185,8 @@ export default class ChatApp extends App {
             300,
             20,
             conversation
-        ).setDepth(2000);
-        //this.addElements(topBar);
+        );
+        this.fakeOS.getUI().fixedElements?.add(topBar);
     }
 
     /**

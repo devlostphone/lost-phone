@@ -237,6 +237,7 @@ export class FakeOS extends FakeOSScene {
             return;
         }
 
+        this.getUI().fixedElements?.removeAll(true);
         this.input.removeAllListeners();
         this.removePhoneEvents();
         this.time.removeAllEvents();

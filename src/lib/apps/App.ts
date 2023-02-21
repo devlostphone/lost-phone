@@ -199,6 +199,7 @@ export default abstract class App {
         let oldLayer = this.getLayer(this.activeLayer);
         let newLayer = this.getLayer(layer);
         this.activeLayer = layer;
+        this.fakeOS.getUI().fixedElements?.removeAll(true);
 
         newLayer.moveTo(newLayer.getByName('start-point'), 0);
 

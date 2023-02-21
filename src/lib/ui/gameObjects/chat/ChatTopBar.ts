@@ -30,11 +30,12 @@ export default class ChatTopBar extends Phaser.GameObjects.Container
         // Create avatar
         if (contact.contactPic != null) {
             let avatar_x = - this.fakeOS.getActiveApp().area.width * 0.3;
-            this.pic = this.fakeOS.add.image(avatar_x, 0, contact.contactPic).setDepth(2000);
+            this.pic = this.fakeOS.add.image(avatar_x, 11, contact.contactPic);
+            this.pic.setScale(0.5);
             this.add(this.pic);
         }
 
-        this.chatName = this.fakeOS.add.text(-130,0,contact.contactName);
+        this.chatName = this.fakeOS.add.text(-160,0,contact.contactName,{fontSize: "20px"});
         this.add(this.chatName);
     }
 }

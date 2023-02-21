@@ -28,6 +28,11 @@ export default class phoneUI {
     public elements: UIElements;
 
     /**
+     * Fixed containers, to be removed after changing layers or launching apps.
+     */
+    public fixedElements?: Phaser.GameObjects.Container;
+
+    /**
      * Container game object with all UI game objects.
      */
     public container: any;
@@ -59,8 +64,9 @@ export default class phoneUI {
      * Renders the UI.
      */
     public render(): void {
-        this.container = this.fakeOS.add.container(0,0).setDepth(1000);
         this.fakeOS.log('Loading UI');
+        this.container = this.fakeOS.add.container(0,0).setDepth(1000);
+        this.fixedElements = this.fakeOS.add.container(0,0).setDepth(2000);
         this.createBars();
         this.createButtons();
         this.createClock();

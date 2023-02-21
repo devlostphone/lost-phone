@@ -293,7 +293,7 @@ export class FakeOS extends FakeOSScene {
 
                 this.tweens.add({
                     targets: previousAppLayer,
-                    x: icon.x,
+                    x: icon.x + previousApp.activeLayer * this.width,
                     y: icon.y,
                     alpha: 0.3,
                     scaleX: icon.width / this.width,

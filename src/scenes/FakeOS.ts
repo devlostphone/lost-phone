@@ -260,6 +260,7 @@ export class FakeOS extends FakeOSScene {
             activeLayer.scaleY = icon.height / this.height;
             activeLayer.x = icon.x;
             activeLayer.y = icon.y;
+            activeLayer.alpha = 0;
 
             icon.destroy();
 
@@ -267,9 +268,10 @@ export class FakeOS extends FakeOSScene {
                 targets: activeLayer,
                 x: 0,
                 y: 0,
+                alpha: 1,
                 scaleX: 1,
                 scaleY: 1,
-                duration: 100,
+                duration: 150,
                 onComplete: () => {
                     previousApp?.destroy();
                 }
@@ -292,16 +294,28 @@ export class FakeOS extends FakeOSScene {
                     targets: previousAppLayer,
                     x: icon.x,
                     y: icon.y,
+                    alpha: 0.3,
                     scaleX: icon.width / this.width,
                     scaleY: icon.height / this.height,
-                    duration: 100,
+                    duration: 150,
                     onComplete: () => {
                         previousApp?.destroy();
                         icon.setAlpha(1);
                     }
                 });
             } else {
-                animation = false;
+                this.tweens.add({
+                    targets: previousAppLayer,
+                    x: this.width*0.1,
+                    y: this.height*0.1,
+                    alpha: 0.3,
+                    scaleX: 0.8,
+                    scaleY: 0.8,
+                    duration: 150,
+                    onComplete: () => {
+                        previousApp?.destroy();
+                    }
+                });
             }
         }
 

@@ -29,5 +29,5 @@
   },
   "wallpapers" : ["default"],
   "wallpaper"  : "default",
-  "background" : "default"
+  "background" : "background"
 }

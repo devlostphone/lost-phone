@@ -61,11 +61,11 @@ export default class phoneUI {
     public render(): void {
         this.container = this.fakeOS.add.container(0,0).setDepth(1000);
         this.fakeOS.log('Loading UI');
-        this.setWallpaper();
         this.createBars();
         this.createButtons();
         this.createClock();
         this.createDrawer();
+        this.setWallpaper();
 
         this.fakeOS.log('Setting up UI listeners');
         this.addEventListeners();
@@ -109,17 +109,43 @@ export default class phoneUI {
      */
     protected setWallpaper(): void {
 
-        const rt = this.fakeOS.make.renderTexture({ width: 1242, height: 2209 }, false);
-        rt.fill(0xff00ff, 1, 0, 0, 1242, 2209);
-        rt.draw(this.fakeOS.cache.json.get('config')['wallpaper'] + '-wallpaper', 0, 0);
+        let renderSize = this.getAppRenderSize();
+
+        let wallpaper = new Phaser.GameObjects.Image(
+            this.fakeOS,
+            0,
+            0,
+            this.fakeOS.cache.json.get('config')['wallpaper'] + '-wallpaper'
+        ).setOrigin(0);
+        wallpaper.setScale(
+            renderSize.width / wallpaper.width,
+            renderSize.width / wallpaper.width
+        );
+
+        const rt = this.fakeOS.make.renderTexture({
+            width: renderSize.width,
+            height: renderSize.height
+        }, false);
+        rt.fill(
+            0xff00ff,
+            1,
+            0,
+            0,
+            renderSize.width,
+            renderSize.height
+        );
+        rt.draw(wallpaper, 0, 0);
         rt.saveTexture('rt');
 
-        const shader = this.fakeOS.add.shader('Pointillize Filter', 0, 0, 1242, 2209, ['noise', 'rt']);
-        shader.setOrigin(0);
-        shader.setScale(
-            this.fakeOS.width / shader.width,
-            this.fakeOS.height / shader.height
+        const shader = this.fakeOS.add.shader(
+            'Pointillize Filter',
+            renderSize.x,
+            renderSize.y,
+            renderSize.width,
+            renderSize.height,
+            ['noise', 'rt']
         );
+        shader.setOrigin(0);
     }
 
     /**

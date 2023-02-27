@@ -1,86 +1,26 @@
 [
     {
         "id": "contact001",
-        "contactName": "John Doe",
+        "contactName": "Àvia",
         "contactPic": "gamedata/assets/profiles/profile-0.png",
         "conversation" : {
             "c001-0001": {
                 "id": "c001-0001",
-                "text": "Ei! Bones! Com va el dia?",
+                "text": "Àvia, tu ho sabies, oi?, que els pares m’havien comprat el mòbil. M’encantaaaa!",
                 "next": "c001-0002",
                 "condition": null
             },
             "c001-0002": {
-                "id": "c001-0002",
-                "options": {
-                    "c001-ans0001": {
-                        "id": "c001-ans0001",
-                        "text": "Doncs molt bé, gràcies! I tú?",
-                        "next": "c001-0003"
-                    },
-                    "c001-ans0002": {
-                        "id": "c001-ans0002",
-                        "text": "El dia? El dia, una mierda",
-                        "next": "c001-0004"
-                    }
-                }
-            },
-            "c001-0003": {
-                "id": "c001-0003",
-                "text": "Me n'alegro molt!",
-                "condition": null,
-                "next": "c001-0005"
-            },
-            "c001-0004": {
-                "id": "c001-0004",
-                "text": "Tú també et veus l'APM!",
-                "condition": null,
-                "next": "c001-0005"
-            },
-            "c001-0005": {
-                "id": "c001-0005",
-                "text": "browser:page001:Ei! Has llegit el mail del miniop?",
-                "condition": ["m001", "c001-0002"],
-                "next": "c001-0006"
-            },
-            "c001-0006": {
-                "id": "c001-0006",
-                "options": {
-                    "ans0003": {
-                        "id": "ans0003",
-                        "text": "Com ho has sapigut?",
-                        "next": "c001-0007"
-                    },
-                    "ans0004": {
-                        "id": "ans0004",
-                        "text": "It's none of your business!",
-                        "next": "c001-0008"
-                    }
-                }
-            },
-            "c001-0007": {
-                "id": "c001-0007",
-                "text": "It's magic!",
-                "condition": null,
-                "next": "c001-0009"
-            },
-            "c001-0008": {
-                "id": "c001-0008",
-                "text": ":-(",
-                "condition": null,
-                "next": null
-            },
-            "c001-0009": {
-                "id": "c001-0009",
-                "text": "Ja t'ho explicaré",
-                "condition": null,
-                "next": null
+                "id": "c001-0001",
+                "text": "Ja té mòbil, senyor Jaume! Ara no deixi de venir a veure’m, que em pansiria tota sola en aquesta sala…",
+                "next": "c002-0003",
+                "condition": null
             }
         }
     },
     {
         "id": "contact002",
-        "contactName": "Jane Doe",
+        "contactName": "Rosa",
         "contactPic": "gamedata/assets/profiles/profile-1.png",
         "conversation" : {
             "c002-0001": {
@@ -107,8 +47,8 @@
     },
     {
         "id": "contact003",
-        "contactName": "Family",
-        "contactPic": "gamedata/assets/profiles/family.png",
+        "contactName": "Grup de família",
+        "contactPic": "gamedata/assets/profiles/profile-2.png",
         "conversation" : {
             "c003-0001": {
                 "id": "c003-0001",
@@ -143,7 +83,7 @@
             },
             "c003-0004": {
                 "id": "c003-0004",
-                "pic": "gamedata/assets/profiles/calamar.png",
+                "pic": "gamedata/assets/profiles/profile-0.png",
                 "text": "gallery:g011",
                 "next": "c003-0005",
                 "condition": null

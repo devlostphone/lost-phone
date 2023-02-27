@@ -114,7 +114,7 @@ export default class Preloader extends FakeOSScene {
         this.load.image('back-button', this.get_theme_path('shaders/back.png'));
 
         this.load.image('default-avatar', this.get_theme_path('shaders/default-avatar.png'));
-        this.load.spritesheet('typing', this.get_theme_path('shaders/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
+        this.load.spritesheet('typing', this.get_theme_path('sprites/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
 
     }
 

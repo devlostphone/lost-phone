@@ -1,130 +1,130 @@
 [
-  {
-      "type": "phone",
-      "key": "PhoneApp",
-      "icon": "phone.png",
-      "configFile" : "phone.json",
-      "preInstalled": true,
-      "hasNotifications": true,
-      "favourite": true
-  },
-  {
-      "type" : "clock",
-      "key"  : "ClockApp",
-      "icon" : "clock.png",
-      "preInstalled": true,
-      "hasNotifications": false
-  },
-  {
-      "type"   : "gallery",
-      "key"    : "GalleryApp",
-      "icon"   : "gallery.png",
-      "configFile" : "gallery.json",
-      "preInstalled": true,
-      "hasNotifications": false
-  },
-  {
-      "type"   : "files",
-      "key"    : "FilesApp",
-      "icon"   : "files.png",
-      "configFile" : "files.json",
-      "preInstalled": true,
-      "hasNotifications": false,
-      "favourite": false
-  },
-  {
-      "type"   : "chat",
-      "key"    : "ChatApp",
-      "icon"   : "chat.png",
-      "configFile" : "chat.json",
-      "preInstalled": true,
-      "hasNotifications": true,
-      "favourite": true
-  },
-  {
-      "type" : "podcast",
-      "key"  : "PodcastApp",
-      "icon" : "podcast.png",
-      "configFile" : "podcast.json",
-      "preInstalled": false,
-      "hasNotifications": false
-  },
-  {
-      "type" : "calculator",
-      "key"  : "calculatorApp",
-      "icon" : "calculator.png",
-      "preInstalled": true,
-      "hasNotifications": false
-  },
-  {
-      "type" : "calendar",
-      "key"  : "CalendarApp",
-      "icon" : "calendar.png",
-      "configFile"  : "calendar.json",
-      "preInstalled": true,
-      "hasNotifications": false
-  },
-  {
-      "type" : "notes",
-      "key"  : "notesApp",
-      "icon" : "notes.png",
-      "preInstalled": true,
-      "hasNotifications": false
-  },
-  {
-      "type" : "mail",
-      "key"  : "MailApp",
-      "icon" : "mail.png",
-      "description": "Aplicació de correu electrònic",
-      "configFile" : "mail.json",
-      "preInstalled": true,
-      "hasNotifications": true,
-      "favourite": true
-  },
-  {
-      "type" : "unlock-screen",
-      "key"  : "creenApp",
-      "icon" : "clock.png",
-      "configFile" : "unlock-screen.json",
-      "preInstalled": false,
-      "hasNotifications": false
-  },
-  {
-      "type" : "settings",
-      "key"  : "SettingsApp",
-      "icon" : "settings.png",
-      "preInstalled": true,
-      "hasNotifications": false,
-      "favourite": true
-  },
-  {
-      "type" : "store",
-      "key"  : "StoreApp",
-      "icon" : "store.png",
-      "preInstalled": true,
-      "hasNotifications": false
-  },
-  {
-      "type": "browser",
-      "key": "BrowserApp",
-      "icon": "browser.png",
-      "preInstalled": true,
-      "hasNotifications": false
-  },
-  {
-      "type": "todo",
-      "key": "ToDoApp",
-      "icon": "todo.png",
-      "preInstalled": false,
-      "hasNotifications": false
-  },
-  {
-      "type": "lostagram",
-      "name": "Lostagram",
-      "key": "LostagramApp",
-      "icon": "lostagram.png",
-      "configFile" : "naturagram.json",
-      "preInstalled": true,
-      "hasNotifications": true
-  }
+    {
+        "type": "phone",
+        "key": "PhoneApp",
+        "icon": "phone.png",
+        "configFile" : "phone.json",
+        "preInstalled": true,
+        "hasNotifications": true,
+        "favourite": true
+    },
+    {
+        "type" : "clock",
+        "key"  : "ClockApp",
+        "icon" : "clock.png",
+        "preInstalled": true,
+        "hasNotifications": false
+    },
+    {
+        "type"   : "gallery",
+        "key"    : "GalleryApp",
+        "icon"   : "gallery.png",
+        "configFile" : "gallery.json",
+        "preInstalled": true,
+        "hasNotifications": false
+    },
+    {
+        "type"   : "files",
+        "key"    : "FilesApp",
+        "icon"   : "files.png",
+        "configFile" : "files.json",
+        "preInstalled": true,
+        "hasNotifications": false,
+        "favourite": false
+    },
+    {
+        "type"   : "chat",
+        "key"    : "ChatApp",
+        "icon"   : "chat.png",
+        "configFile" : "chat.json",
+        "preInstalled": true,
+        "hasNotifications": true,
+        "favourite": true
+    },
+    {
+        "type" : "podcast",
+        "key"  : "PodcastApp",
+        "icon" : "podcast.png",
+        "configFile" : "podcast.json",
+        "preInstalled": false,
+        "hasNotifications": false
+    },
+    {
+        "type" : "calculator",
+        "key"  : "calculatorApp",
+        "icon" : "calculator.png",
+        "preInstalled": true,
+        "hasNotifications": false
+    },
+    {
+        "type" : "calendar",
+        "key"  : "CalendarApp",
+        "icon" : "calendar.png",
+        "configFile"  : "calendar.json",
+        "preInstalled": true,
+        "hasNotifications": false
+    },
+    {
+        "type" : "notes",
+        "key"  : "notesApp",
+        "icon" : "notes.png",
+        "preInstalled": true,
+        "hasNotifications": false
+    },
+    {
+        "type" : "mail",
+        "key"  : "MailApp",
+        "icon" : "mail.png",
+        "description": "Aplicació de correu electrònic",
+        "configFile" : "mail.json",
+        "preInstalled": true,
+        "hasNotifications": true,
+        "favourite": true
+    },
+    {
+        "type" : "unlock-screen",
+        "key"  : "creenApp",
+        "icon" : "clock.png",
+        "configFile" : "unlock-screen.json",
+        "preInstalled": false,
+        "hasNotifications": false
+    },
+    {
+        "type" : "settings",
+        "key"  : "SettingsApp",
+        "icon" : "settings.png",
+        "preInstalled": true,
+        "hasNotifications": false,
+        "favourite": true
+    },
+    {
+        "type" : "store",
+        "key"  : "StoreApp",
+        "icon" : "store.png",
+        "preInstalled": true,
+        "hasNotifications": false
+    },
+    {
+        "type": "browser",
+        "key": "BrowserApp",
+        "icon": "browser.png",
+        "preInstalled": true,
+        "hasNotifications": false
+    },
+    {
+        "type": "todo",
+        "key": "ToDoApp",
+        "icon": "todo.png",
+        "preInstalled": false,
+        "hasNotifications": false
+    },
+    {
+        "type": "lostagram",
+        "name": "Lostagram",
+        "key": "LostagramApp",
+        "icon": "lostagram.png",
+        "configFile" : "naturagram.json",
+        "preInstalled": true,
+        "hasNotifications": true
+    }
 ]

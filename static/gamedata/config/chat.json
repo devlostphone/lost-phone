@@ -3,15 +3,24 @@
         "id": "contact001",
         "contactName": "Àvia",
         "contactPic": "gamedata/assets/profiles/profile-0.png",
+        "lastMessage": "c001-0003",
         "conversation" : {
             "c001-0001": {
-                "id": "c001-0001",
+                "id": "c001-ans0001",
                 "text": "Àvia, tu ho sabies, oi?, que els pares m’havien comprat el mòbil. M’encantaaaa!",
+                "time": "21:00",
                 "next": "c001-0002",
                 "condition": null
             },
             "c001-0002": {
-                "id": "c001-0001",
+                "id": "c001-0003",
+                "notification": true,
+                "text": "Dissabte XX/XX/XX",
+                "next": "c001-0003",
+                "condition": null
+            },
+            "c001-0003": {
+                "id": "c001-0003",
                 "text": "Ja té mòbil, senyor Jaume! Ara no deixi de venir a veure’m, que em pansiria tota sola en aquesta sala…",
                 "next": "c002-0003",
                 "condition": null

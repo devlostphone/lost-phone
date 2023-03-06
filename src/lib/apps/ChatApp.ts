@@ -211,6 +211,13 @@ export default class ChatApp extends App {
 
         // User options
         if (conversation.options !== undefined) {
+            if (Object.keys(conversation.options).length == 1) {
+                let chatOptions = this.fakeOS.registry.get('chat');
+                chatOptions[conversation.id] = conversation.options[Object.keys(conversation.options)[0]].id;
+                this.fakeOS.setDone(conversation.id);
+                this.fakeOS.addData('chat', chatOptions);
+            }
+
             next = this.createChatOptions(conversation);
         }
 

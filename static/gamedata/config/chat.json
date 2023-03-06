@@ -3,6 +3,7 @@
         "id": "contact001",
         "contactName": "John Doe",
         "contactPic": "gamedata/assets/profiles/calamar.png",
+        "lastMessage": "c001-0003",
         "conversation" : {
             "c001-0001": {
                 "id": "c001-0001",
@@ -17,12 +18,9 @@
                     "c001-ans0001": {
                         "id": "c001-ans0001",
                         "text": "Doncs molt bé, gràcies! I tú?",
-                        "next": "c001-0003"
-                    },
-                    "c001-ans0002": {
-                        "id": "c001-ans0002",
-                        "text": "El dia? El dia, una mierda",
-                        "next": "c001-0004"
+                        "time": "21:03",
+                        "next": "c001-0003",
+                        "condition": null
                     }
                 }
             },

@@ -65,6 +65,7 @@
                 "pic": "gamedata/assets/profiles/profile-1.png",
                 "text": "feliz jawelin",
                 "next": "c003-0002",
+                "time": "20:54",
                 "condition": null
             },
             "c003-0002": {
@@ -73,6 +74,7 @@
                 "pic": "gamedata/assets/profiles/profile-1.png",
                 "text": "grupo, soy Vanesa!",
                 "next": "c003-0003",
+                "time": "20:55",
                 "condition": null
             },
             "c003-0003": {
@@ -95,6 +97,7 @@
                 "pic": "gamedata/assets/profiles/profile-0.png",
                 "text": "gallery:g011",
                 "next": "c003-0005",
+                "time": "21:02",
                 "condition": null
             },
             "c003-0005": {

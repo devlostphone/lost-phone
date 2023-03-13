@@ -3,107 +3,217 @@
         "id": "contact001",
         "contactName": "Àvia",
         "contactPic": "gamedata/assets/profiles/profile-0.png",
-        "lastMessage": "c001-0003",
+        "lastMessage": "c000-0025",
         "conversation" : {
-            "c001-0001": {
-                "id": "c001-ans0001",
-                "text": "Àvia, tu ho sabies, oi?, que els pares m’havien comprat el mòbil. M’encantaaaa!",
-                "time": "21:00",
-                "next": "c001-0002",
-                "condition": null
-            },
-            "c001-0002": {
-                "id": "c001-0003",
+            "c000-0001": {
+                "id": "c000-0001",
                 "notification": true,
-                "text": "Dissabte XX/XX/XX",
-                "next": "c001-0003",
+                "text": "22 de juny de 2021",
+                "next": "c000-0002",
                 "condition": null
             },
-            "c001-0003": {
-                "id": "c001-0003",
+            "c000-0002": {
+                "options": {
+                    "c000-ans0002" : {
+                        "id": "c000-ans0002",
+                        "text": "Àvia, tu ho sabies, oi?, que els pares m’havien comprat el mòbil. M’encantaaaa!",
+                        "time": "21:07",
+                        "next": "c000-0003",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0003": {
+                "id": "c000-0003",
                 "text": "Ja té mòbil, senyor Jaume! Ara no deixi de venir a veure’m, que em pansiria tota sola en aquesta sala…",
-                "next": "c002-0003",
+                "time": "21:08",
+                "next": "c000-0004",
                 "condition": null
-            }
-        }
-    },
-    {
-        "id": "contact002",
-        "contactName": "Rosa",
-        "contactPic": "gamedata/assets/profiles/profile-1.png",
-        "conversation" : {
-            "c002-0001": {
-                "id": "c002-0001",
+            },
+            "c000-0004": {
                 "options": {
-                    "c002-ans0001" : {
-                        "id": "c002-ans0001",
-                        "text": "Hola! Quant de temps!",
-                        "next": "c002-0002"
-                    },
-                    "c002-ans0002" : {
-                        "id": "c002-ans0002",
-                        "text": "Infanta Margarita Teresa de Austria, ets tu?",
-                        "next": "c002-0002"
+                    "c000-ans0004" : {
+                        "id": "c000-ans0004",
+                        "text": "I ara àvia! Ara ja et podré enviar fotos de les flors del jardí i no te m'enyoraràs tant",
+                        "time": "21:09",
+                        "next": "c000-0005",
+                        "condition": null
                     }
                 }
             },
-            "c002-0002": {
-                "id": "c002-0002",
-                "text": "Deixa'm en pau! No vull parlar amb tú.",
-                "condition": null
-            }
-        }
-    },
-    {
-        "id": "contact003",
-        "contactName": "Grup de família",
-        "contactPic": "gamedata/assets/profiles/profile-2.png",
-        "conversation" : {
-            "c003-0001": {
-                "id": "c003-0001",
-                "author": "Vanesa",
-                "pic": "gamedata/assets/profiles/profile-1.png",
-                "text": "feliz jawelin",
-                "next": "c003-0002",
-                "time": "20:54",
-                "condition": null
-            },
-            "c003-0002": {
-                "id": "c003-0002",
-                "author": "Vanesa",
-                "pic": "gamedata/assets/profiles/profile-1.png",
-                "text": "grupo, soy Vanesa!",
-                "next": "c003-0003",
-                "time": "20:55",
-                "condition": null
-            },
-            "c003-0003": {
-                "id": "c003-0003",
-                "options": {
-                    "c003-ans0001" : {
-                        "id": "c003-ans0001",
-                        "text": "No se dice jawelin, se dice jalojein",
-                        "next": "c003-0004"
-                    },
-                    "c003-ans0002" : {
-                        "id": "c002-ans0002",
-                        "text": "No tinc temps per perdre amb això...",
-                        "next": "c003-0004"
-                    }
-                }
-            },
-            "c003-0004": {
-                "id": "c003-0004",
-                "pic": "gamedata/assets/profiles/profile-0.png",
-                "text": "gallery:g011",
-                "next": "c003-0005",
-                "time": "21:02",
-                "condition": null
-            },
-            "c003-0005": {
-                "id": "c003-0005",
+            "c000-0005": {
+                "id": "c000-0005",
                 "notification": true,
-                "text": "Sun Yoon ha marxat del grup",
+                "text": "26 de juny de 2021",
+                "next": "c000-0006",
+                "condition": null
+            },
+            "c000-0006": {
+                "options": {
+                    "c000-ans0006" : {
+                        "id": "c000-ans0006",
+                        "text": "Àvia, el vidre del mòbil! Està trencat, de segur que me l’han trencat ells! Puc venir a veure’t? No hi ha dret, àvia, sempre estan igual; és nou, ara el papa i la mama s’enfadaran",
+                        "time": "9:47",
+                        "next": "c000-0007",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0007": {
+                "id": "c000-0007",
+                "text": "I ara, per què ningú t’havia de fer malbé el mòbil, fill? No deus pas haver dormit amb el telèfon i que t’hagi caigut, oi?",
+                "time": "9:54",
+                "next": "c000-0008",
+                "condition": null
+            },
+            "c000-0008": {
+                "options": {
+                    "c000-ans0008" : {
+                        "id": "c000-ans0008",
+                        "text": "Tu, no, si us plau, àvia! Puc venir? Digues que sí…",
+                        "time": "9:55",
+                        "next": "c000-0009",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0009": {
+                "id": "c000-0009",
+                "text": "Vine, fill, que l’àvia t’estima molt",
+                "time": "9:56",
+                "next": "c000-0010",
+                "condition": null
+            },
+            "c000-0010": {
+                "id": "c000-0010",
+                "notification": true,
+                "text": "3 de juliol 2021",
+                "next": "c000-0012",
+                "condition": null
+            },
+            "c000-0011": {
+                "id": "c000-0011",
+                "text": "Senyor Jaume?",
+                "time": "12:08",
+                "next": "c000-0012",
+                "condition": null
+            },
+            "c000-0012": {
+                "options": {
+                    "c000-ans0012" : {
+                        "id": "c000-ans0012",
+                        "text": "Hola, àvia! Digues!",
+                        "time": "13:01",
+                        "next": "c000-0013",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0013": {
+                "id": "c000-0013",
+                "text": "Que vindràs a veure’m avui?",
+                "time": "13:12",
+                "next": "c000-0014",
+                "condition": null
+            },
+            "c000-0014": {
+                "options": {
+                    "c000-ans0014" : {
+                        "id": "c000-ans0014",
+                        "text": "Sí, a les 18 h. Et va bé?",
+                        "time": "13:13",
+                        "next": "c000-0015",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0015": {
+                "id": "c000-0015",
+                "text": "I tant, t’esperaré a la saleta, com sempre.",
+                "time": "13:14",
+                "next": "c000-0016",
+                "condition": null
+            },
+            "c000-0016": {
+                "options": {
+                    "c000-ans0016" : {
+                        "id": "c000-ans0016",
+                        "text": "Un petó",
+                        "time": "13:15",
+                        "next": "c000-0017",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0017": {
+                "id": "c000-0017",
+                "text": "Un petó, rei meu",
+                "time": "13:16",
+                "next": "c000-0018",
+                "condition": null
+            },
+            "c000-0018": {
+                "id": "c000-0018",
+                "notification": true,
+                "text": "25 de juliol de 2021",
+                "next": "c000-0019",
+                "condition": null
+            },
+            "c000-0019": {
+                "id": "c000-0019",
+                "text": "Avui és el seu sant, senyor Jaume. Per molts anys!",
+                "time": "8:52",
+                "next": "c000-0020",
+                "condition": null
+            },
+            "c000-0020": {
+                "id": "c000-0020",
+                "text": "Ja sap que si no li ho diu a ningú, farem que les orelles se li posin vermelles!",
+                "time": "8:53",
+                "next": "c000-0021",
+                "condition": null
+            },
+            "c000-0021": {
+                "options": {
+                    "c000-ans0021" : {
+                        "id": "c000-ans0021",
+                        "text": "🤭",
+                        "time": "9:13",
+                        "next": "c000-0022",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0022": {
+                "id": "c000-0022",
+                "text": "Aquesta és la darrera copa d’un joc que l’avi havia comprat a Viena. N’és l’última i és per a vostè!",
+                "time": "9:14",
+                "next": "c000-0023",
+                "condition": null
+            },
+            "c000-0023": {
+                "options": {
+                    "c000-ans0023" : {
+                        "id": "c000-ans0023",
+                        "text": "Gràcieeeeees!",
+                        "time": "9:14",
+                        "next": "c000-0024",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0024": {
+                "id": "c000-0024",
+                "notification": true,
+                "text": "5 de gener de 2022",
+                "next": "c000-0025",
+                "condition": null
+            },
+            "c000-0025": {
+                "id": "c000-0025",
+                "text": "Senyor Jaume, aquesta nit passen els Reis.",
+                "time": "20:05",
+                "next": "c000-0026",
                 "condition": null
             }
         }

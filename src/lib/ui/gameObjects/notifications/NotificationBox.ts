@@ -63,7 +63,12 @@ export default class NotificationBox extends Phaser.GameObjects.Container
             this.add(this.icon);
         }
 
-        this.add(this.fakeOS.add.text(-100, 0, notification.title, { fontSize: "24px", wordWrap: {width: 400}}));
+        this.add(this.fakeOS.add.text(
+            -100,
+            0,
+            this.fakeOS.stripAppTag(notification.title),
+            { fontSize: "24px", wordWrap: {width: 400}}
+        ));
     }
 
     /**

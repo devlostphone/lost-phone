@@ -348,7 +348,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
 
                 this.y = Math.round(Phaser.Math.Clamp(
                     dragY,
-                    -(this.getBounds().height - this.area.height - this.area.y),
+                    -(this.getBounds().height - this.area.height - this.area.y) - 100,
                     0
                 ));
             }
@@ -363,7 +363,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
 
                 this.y = Math.round(Phaser.Math.Clamp(
                     this.y - deltaY,
-                    -(this.getBounds().height - this.area.height - this.area.y),
+                    -(this.getBounds().height - this.area.height - this.area.y) - 100,
                     0
                 ));
             }

@@ -416,6 +416,21 @@ export class FakeOS extends FakeOSScene {
     }
 
     /**
+     * Strips tag from text.
+     *
+     * @param tag
+     * @returns
+     */
+    public stripAppTag(tag: string): string {
+        if (/[gallery|browser|document]:/.test(tag)) {
+            let matches = tag.match(/[gallery|browser|document]:(.*):(.*)/i);
+            return matches ? matches[2]: tag;
+        }
+
+        return tag;
+    }
+
+    /**
      * Generates a Phaser GameObject with event attached for switching apps.
      */
     public generateAppLink(tag: string, options?: any): any {

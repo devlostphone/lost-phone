@@ -3,7 +3,7 @@
         "id": "contact001",
         "contactName": "Àvia",
         "contactPic": "gamedata/assets/profiles/profile-0.png",
-        "lastMessage": "c000-0025",
+        "lastMessage": "c000-0028",
         "conversation" : {
             "c000-0001": {
                 "id": "c000-0001",
@@ -215,6 +215,35 @@
                 "time": "20:05",
                 "next": "c000-0026",
                 "condition": null
+            },
+            "c000-0026": {
+                "options": {
+                    "c000-ans0026" : {
+                        "id": "c000-ans0026",
+                        "text": "Síii",
+                        "time": "20:05",
+                        "next": "c000-0027",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0027": {
+                "id": "c000-0027",
+                "text": "Doncs no vagi a dormir tard!",
+                "time": "20:06",
+                "next": "c000-0028",
+                "condition": null
+            },
+            "c000-0028": {
+                "options": {
+                    "c000-ans0028" : {
+                        "id": "c000-ans0028",
+                        "text": ";-)",
+                        "time": "20:06",
+                        "next": "c000-0029",
+                        "condition": null
+                    }
+                }
             }
         }
     }

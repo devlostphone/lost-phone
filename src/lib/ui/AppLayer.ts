@@ -279,7 +279,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
     protected checkAutoScroll(options: any): void {
         if (options['autoscroll'] !== undefined && this.last_row > this.rows) {
             this.fakeOS.log("Auto-scrolling");
-            let y = - ((this.last_row - this.rows) * this.rowHeight()) - this.rowHeight();
+            let y = - this.getBounds().height + this.area.height;
 
             if (options['autoscroll'] === 'fast') {
                 this.y = y;
@@ -326,7 +326,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
             this.input.hitArea = new Phaser.Geom.Rectangle(
                 0,0,
                 this.area.width,
-                this.getBounds().bottom
+                this.getBounds().height
             );
             return;
         }
@@ -335,7 +335,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
         this.setInteractive(new Phaser.Geom.Rectangle(
             0,0,
             this.area.width,
-            this.getBounds().bottom
+            this.getBounds().height
         ), Phaser.Geom.Rectangle.Contains);
         this.fakeOS.input.setDraggable(this);
 

@@ -3,7 +3,7 @@
         "id": "contact001",
         "contactName": "Àvia",
         "contactPic": "gamedata/assets/profiles/profile-0.png",
-        "lastMessage": "c000-0036",
+        "lastMessage": "c000-0049",
         "conversation" : {
             "c000-0001": {
                 "id": "c000-0001",
@@ -316,6 +316,105 @@
                         "condition": null
                     }
                 }
+            },
+            "c000-0037": {
+                "id": "c000-0037",
+                "notification": true,
+                "text": "19 de juny de 2022",
+                "next": "c000-0038",
+                "condition": null
+            },
+            "c000-0038": {
+                "options": {
+                    "c000-ans0038" : {
+                        "id": "c000-ans0038",
+                        "text": "Àvia, el Ramon i la Maria han passat la nit a la teulada! I hi han vist com es feia de dia! M’han tornat a deixar de banda. Tant me fa!",
+                        "time": "7:03",
+                        "next": "c000-0039",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0039": {
+                "options": {
+                    "c000-ans0039" : {
+                        "id": "c000-ans0039",
+                        "text": "Perquè això ells no ho han vist ni ho veuran.",
+                        "time": "7:03",
+                        "next": "c000-0040",
+                        "condition": null
+                    }
+                }
+            },
+            "c000-0040": {
+                "id": "c000-0040",
+                "text": "Sí que em fa quedar parada, senyor Jaume…",
+                "time": "7:04",
+                "next": "c000-0041",
+                "condition": null
+            },
+            "c000-0041": {
+                "id": "c000-0041",
+                "text": "Les teulades són per estar-hi a sota",
+                "time": "7:04",
+                "next": "c000-0042",
+                "condition": null
+            },
+            "c000-0042": {
+                "id": "c000-0042",
+                "text": "No hi vagi mai, vostè",
+                "time": "7:07",
+                "next": "c000-0043",
+                "condition": null
+            },
+            "c000-0043": {
+                "id": "c000-0043",
+                "text": "Jaume, on ets, fill?",
+                "time": "17:32",
+                "next": "c000-0044",
+                "condition": null
+            },
+            "c000-0044": {
+                "id": "c000-0044",
+                "text": "Jaume, encara estàs dolgut? L’àvia t’estima molt. Vine si pots!",
+                "time": "18:38",
+                "next": "c000-0045",
+                "condition": null
+            },
+            "c000-0045": {
+                "id": "c000-0045",
+                "text": "Senyor Jaume, vingui que compartirem un glopet dolç i li deixaré tocar-ho tot, no em faci patir",
+                "time": "19:01",
+                "next": "c000-0046",
+                "condition": null
+            },
+            "c000-0046": {
+                "id": "c000-0046",
+                "text": "Que potser ets amb l’Àngel tirant fotos del jardí? Ai, aquest noi, fill, … Per què no fas cas de l’àvia?",
+                "time": "20:05",
+                "next": "c000-0047",
+                "condition": null
+            },
+            "c000-0047": {
+                "id": "c000-0047",
+                "text": "Rei, contesta’m, si us plau!",
+                "time": "20:12",
+                "next": "c000-0048",
+                "condition": null
+            },
+            "c000-0048": {
+                "id": "c000-0048",
+                "text": "Què passa, Jaume? Ara he vist la Maria, amb cara blanca i trista com una aparició",
+                "time": "20:53",
+                "next": "c000-0049",
+                "condition": null
+            },
+            "c000-0049": {
+                "id": "c000-0049",
+                "text": "Jaume, la casa és tota fressa! Fill meu, que això no fa per tu; ja en tenim prou del Ramon! Vine, vine a casa que soparàs amb l’Armanda i dormiràs al teu llitet i demà serà un altre dia",
+                "time": "21:01",
+                "next": "c000-0050",
+                "condition": null
             }
         }
     }

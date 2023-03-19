@@ -13,11 +13,11 @@
                 "condition": null
             },
             "c000-0002": {
+                "time": "21:07",
                 "options": {
                     "c000-ans0002" : {
                         "id": "c000-ans0002",
                         "text": "Àvia, tu ho sabies, oi?, que els pares m’havien comprat el mòbil. M’encantaaaa!",
-                        "time": "21:07",
                         "next": "c000-0003",
                         "condition": null
                     }
@@ -31,11 +31,11 @@
                 "condition": null
             },
             "c000-0004": {
+                "time": "21:09",
                 "options": {
                     "c000-ans0004" : {
                         "id": "c000-ans0004",
                         "text": "I ara àvia! Ara ja et podré enviar fotos de les flors del jardí i no te m'enyoraràs tant",
-                        "time": "21:09",
                         "next": "c000-0005",
                         "condition": null
                     }
@@ -49,11 +49,11 @@
                 "condition": null
             },
             "c000-0006": {
+                "time": "9:47",
                 "options": {
                     "c000-ans0006" : {
                         "id": "c000-ans0006",
                         "text": "Àvia, el vidre del mòbil! Està trencat, de segur que me l’han trencat ells! Puc venir a veure’t? No hi ha dret, àvia, sempre estan igual; és nou, ara el papa i la mama s’enfadaran",
-                        "time": "9:47",
                         "next": "c000-0007",
                         "condition": null
                     }
@@ -67,11 +67,11 @@
                 "condition": null
             },
             "c000-0008": {
+                "time": "9:55",
                 "options": {
                     "c000-ans0008" : {
                         "id": "c000-ans0008",
                         "text": "Tu, no, si us plau, àvia! Puc venir? Digues que sí…",
-                        "time": "9:55",
                         "next": "c000-0009",
                         "condition": null
                     }
@@ -99,11 +99,11 @@
                 "condition": null
             },
             "c000-0012": {
+                "time": "13:01",
                 "options": {
                     "c000-ans0012" : {
                         "id": "c000-ans0012",
                         "text": "Hola, àvia! Digues!",
-                        "time": "13:01",
                         "next": "c000-0013",
                         "condition": null
                     }
@@ -117,11 +117,11 @@
                 "condition": null
             },
             "c000-0014": {
+                "time": "13:13",
                 "options": {
                     "c000-ans0014" : {
                         "id": "c000-ans0014",
                         "text": "Sí, a les 18 h. Et va bé?",
-                        "time": "13:13",
                         "next": "c000-0015",
                         "condition": null
                     }
@@ -135,11 +135,11 @@
                 "condition": null
             },
             "c000-0016": {
+                "time": "13:15",
                 "options": {
                     "c000-ans0016" : {
                         "id": "c000-ans0016",
                         "text": "Un petó",
-                        "time": "13:15",
                         "next": "c000-0017",
                         "condition": null
                     }
@@ -174,11 +174,11 @@
                 "condition": null
             },
             "c000-0021": {
+                "time": "9:13",
                 "options": {
                     "c000-ans0021" : {
                         "id": "c000-ans0021",
                         "text": "🤭",
-                        "time": "9:13",
                         "next": "c000-0022",
                         "condition": null
                     }
@@ -192,11 +192,11 @@
                 "condition": null
             },
             "c000-0023": {
+                "time": "9:14",
                 "options": {
                     "c000-ans0023" : {
                         "id": "c000-ans0023",
                         "text": "Gràcieeeeees!",
-                        "time": "9:14",
                         "next": "c000-0024",
                         "condition": null
                     }
@@ -217,11 +217,11 @@
                 "condition": null
             },
             "c000-0026": {
+                "time": "20:05",
                 "options": {
                     "c000-ans0026" : {
                         "id": "c000-ans0026",
                         "text": "Síii",
-                        "time": "20:05",
                         "next": "c000-0027",
                         "condition": null
                     }
@@ -235,11 +235,11 @@
                 "condition": null
             },
             "c000-0028": {
+                "time": "20:06",
                 "options": {
                     "c000-ans0028" : {
                         "id": "c000-ans0028",
                         "text": ";-)",
-                        "time": "20:06",
                         "next": "c000-0029",
                         "condition": null
                     }
@@ -253,11 +253,11 @@
                 "condition": null
             },
             "c000-0030": {
+                "time": "20:00",
                 "options": {
                     "c000-ans0030" : {
                         "id": "c000-ans0030",
                         "text": "He estat a punt de caure a la piscina, quin ensurt, àvia.",
-                        "time": "20:00",
                         "next": "c000-0031",
                         "condition": null
                     }
@@ -271,11 +271,11 @@
                 "condition": null
             },
             "c000-0032": {
+                "time": "20:21",
                 "options": {
                     "c000-ans0032" : {
                         "id": "c000-ans0032",
                         "text": "Haha, segur que t’ho inventes, això",
-                        "time": "20:21",
                         "next": "c000-0033",
                         "condition": null
                     }
@@ -289,11 +289,11 @@
                 "condition": null
             },
             "c000-0034": {
+                "time": "20:26",
                 "options": {
                     "c000-ans0034" : {
                         "id": "c000-ans0034",
                         "text": "Com ho saps, si era invisible!",
-                        "time": "20:26",
                         "next": "c000-0035",
                         "condition": null
                     }
@@ -307,11 +307,11 @@
                 "condition": null
             },
             "c000-0036": {
+                "time": "20:28",
                 "options": {
                     "c000-ans0036" : {
                         "id": "c000-ans0036",
                         "text": "Doncs espero que no hagi sigut el meu amic Àngel qui m’hagi empès avui!",
-                        "time": "20:28",
                         "next": "c000-0037",
                         "condition": null
                     }
@@ -325,22 +325,22 @@
                 "condition": null
             },
             "c000-0038": {
+                "time": "7:03",
                 "options": {
                     "c000-ans0038" : {
                         "id": "c000-ans0038",
                         "text": "Àvia, el Ramon i la Maria han passat la nit a la teulada! I hi han vist com es feia de dia! M’han tornat a deixar de banda. Tant me fa!",
-                        "time": "7:03",
                         "next": "c000-0039",
                         "condition": null
                     }
                 }
             },
             "c000-0039": {
+                "time": "7:03",
                 "options": {
                     "c000-ans0039" : {
                         "id": "c000-ans0039",
                         "text": "Perquè això ells no ho han vist ni ho veuran.",
-                        "time": "7:03",
                         "next": "c000-0040",
                         "condition": null
                     }

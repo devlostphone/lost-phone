@@ -3,6 +3,7 @@ import { FakeOS } from "../../scenes/FakeOS";
 declare module "../../scenes/FakeOS" {
     interface FakeOS {
         eventListeners: object;
+        lastClickTime: number;
 
         addInputEvent(eventType: string, func: Function, object?: Phaser.GameObjects.GameObject, area?: any, callback?: any): void;
         addEventListener(eventType: string, func: Function, once?: boolean): void;
@@ -43,7 +44,23 @@ FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, obj
             fakeOS.log('Launching event ' + eventType);
         }
 
-        func(...args);
+        let willLaunch = true;
+
+        if (eventType == 'pointerup') {
+            const currentTime = Date.now();
+            if (fakeOS.lastClickTime === undefined) {
+                fakeOS.lastClickTime = 0;
+            }
+            if (currentTime - fakeOS.lastClickTime > 300) {
+                fakeOS.lastClickTime = currentTime;
+            } else {
+                willLaunch = false;
+            }
+        }
+
+        if (willLaunch) {
+            func(...args);
+        }
     });
 }
 

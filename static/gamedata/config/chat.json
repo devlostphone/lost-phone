@@ -417,5 +417,21 @@
                 "condition": null
             }
         }
+    },
+    {
+        "id": "contact002",
+        "contactName": "Família Farriols Valldaura ",
+        "contactPic": "gamedata/assets/profiles/profile-0.png",
+        "lastMessage": "c000-0001",
+        "conversation" : {
+            "c000-0001": {
+                "id": "c000-0001",
+                "notification": true,
+                "text": "Mama t’ha afegit al grup Família Farriols Valldaura",
+                "next": "c000-0002",
+                "condition": null
+            }
+        }
     }
+        
 ]

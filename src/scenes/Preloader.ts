@@ -97,13 +97,20 @@ export default class Preloader extends FakeOSScene {
         let imageSize = dpr * 128; // 64, 128, 256, 512
         this.load.image('app', this.get_theme_path('shaders/app@' + imageSize + 'x.png'));
 
-        // Get background picture defined at config
-        // Put all the background pictures at themes/<name of theme>/backgrounds folder
-        let background = this.cache.json.get('config').background;
+        // Wallpaper: solid color or bitmap
+        let wallpaper = this.cache.json.get('config').wallpaper;
+        if (!wallpaper.match(/[0x]?[0-9A-Fa-f]{6}/g)) {
+            console.log("Sets image as wallapper: " + wallpaper + '.png');
+            this.load.image('wallpaper', this.get_theme_path('wallpapers/' + wallpaper + '.png'));
+        } else {
+            console.log("Sets wallpaper solid color: " + wallpaper);
+        }
+
+        // Get app backgrounds picture defined at config
+        // Put the background pictures at themes/<name of theme>/app-backgrounds folder
         // @TODO: collect all pictures inside backgrounds folder. Set default or random if there
         // is more than one images.
         // @TODO: Add support for multiple format images (png, webp, jpeg...)
-        this.load.image('background', this.get_theme_path('backgrounds/' + background + '.png'));
 
         this.load.image('guide', this.get_theme_path('shaders/720x1280-guide.png'));
 

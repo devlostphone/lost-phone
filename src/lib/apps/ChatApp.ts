@@ -45,7 +45,7 @@ export default class ChatApp extends App {
      */
     public render(): void {
 
-        this.setWallpaper();
+        this.setBackground();
 
         for (let i = 0; i < this.chat.length; i++) {
 
@@ -77,12 +77,12 @@ export default class ChatApp extends App {
     /**
      * Set app wallpaper
      */
-    protected setWallpaper(image?: string): void {
+    protected setBackground(image?: string): void {
         if (image !== undefined) {
-            this.fakeOS.UI.setWallpaper(image);
+            this.fakeOS.UI.setBackground(image);
         } else {
-            let wallpaper = this.fakeOS.cache.json.get('apps').find(app => app.key == 'ChatApp').wallpaper;
-            this.fakeOS.UI.setWallpaper(wallpaper);
+            let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'ChatApp').wallpaper;
+            this.fakeOS.UI.setBackground(background);
         }
     }
 

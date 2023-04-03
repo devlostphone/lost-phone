@@ -8,7 +8,31 @@
     {
         "id": "g002",
         "type": "picture",
-        "source": "gamedata/assets/pictures/pic2.jpg",
+        "source": "gamedata/assets/pictures/bassa.jpg",
+        "condition": null
+    },
+    {
+        "id": "g003",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/vaixell.png",
+        "condition": null
+    },
+    {
+        "id": "g004",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/maria.png",
+        "condition": null
+    },
+    {
+        "id": "g005",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/pare.png",
+        "condition": null
+    },
+     {
+        "id": "g006",
+        "type": "picture",
+        "source" : "gamedata/assets/pictures/espiadimonis.jpg",
         "condition": null
     },
     {
@@ -17,31 +41,6 @@
         "source": "gamedata/assets/videos/v001.mp4",
         "condition": null,
         "password": 1234
-    },
-    {
-        "id": "g003",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic3.jpg",
-        "condition": null,
-        "password": 1234
-    },
-    {
-        "id": "g004",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic4.jpg",
-        "condition": null
-    },
-    {
-        "id": "g005",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic5.jpg",
-        "condition": null
-    },
-    {
-        "id": "g006",
-        "type": "picture",
-        "source" : "gamedata/assets/pictures/pic1.jpg",
-        "condition": null
     },
     {
         "id": "g007",

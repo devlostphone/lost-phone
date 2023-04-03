@@ -909,5 +909,564 @@
         "condition": null
       }
     }
+  },
+  {
+    "id": "contact003",
+    "contactName": "Grup de germans",
+    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "lastMessage": "m60",
+    "conversation": {
+      "m0": {
+        "id": "m0",
+        "notification": true,
+        "text": "Has creat el grup de germans",
+        "time": "22 de juny de 2021",
+        "next": "m1",
+        "condition": null
+      },
+      "m1": {
+        "time": "21:02",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "🤸🏻‍♀️🤸🏻🤸🏿‍♂️ XD",
+            "next": "m2",
+            "condition": null
+          }
+        }
+      },
+      "m2": {
+        "time": "21:02",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Ja tinc mòbil i vacances! Anem al jardí?",
+            "next": "m3",
+            "condition": null
+          }
+        }
+      },
+      "m3": {
+        "id": "m3",
+        "notification": true,
+        "text": "26 de juny 2021",
+        "next": "m4",
+        "condition": null
+      },
+      "m4": {
+        "id": "m4",
+        "author": "Ramon",
+        "text": "Jaume, bocamoll, ja li estàs explicant històries a l’àvia?",
+        "time": "10:22",
+        "next": "m5",
+        "condition": null
+      },
+      "m5": {
+        "id": "m5",
+        "author": "Maria",
+        "text": "Com sempre! Ara serà culpa nostra tinguis les mans balbes…",
+        "time": "10:23",
+        "next": "m6",
+        "condition": null
+      },
+      "m6": {
+        "id": "m6",
+        "author": "Ramon",
+        "text": "Ets un bleda, noi",
+        "time": "10:23",
+        "next": "m7",
+        "condition": null
+      },
+      "m7": {
+        "id": "m7",
+        "author": "Maria",
+        "text": "Mira, Jaume, jo també sé parlar-li a l’àvia, i l’àvia m’escolta!",
+        "time": "10:24",
+        "next": "m8",
+        "condition": null
+      },
+      "m8": {
+        "id": "m8",
+        "author": "Ramon",
+        "text": "A mi, no, però passo",
+        "time": "10:25",
+        "next": "m9",
+        "condition": null
+      },
+      "m9": {
+        "id": "m9",
+        "author": "Ramon",
+        "text": "Jaume, vigila, que si el papa em castiga per culpa teva a l’estiu, te’n penediràs, tros d’ase!",
+        "time": "10:26",
+        "next": "m10",
+        "condition": null
+      },
+      "m10": {
+        "id": "m10",
+        "author": "Maria",
+        "text": "Això, això, com em perdi la setmana de platja a casa dels Balsareny, ja ho veuràs, ja!",
+        "time": "10:27",
+        "next": "m11",
+        "condition": null
+      },
+      "m11": {
+        "id": "m11",
+        "author": "Maria",
+        "text": "Ben mirat, Ramon, el papa em creurà només a mi 😜",
+        "time": "10:28",
+        "next": "m12",
+        "condition": null
+      },
+      "m12": {
+        "time": "10:35",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Prou! No puc més!",
+            "next": "m13",
+            "condition": null
+          }
+        }
+      },
+      "m13": {
+        "id": "m13",
+        "notification": true,
+        "text": "7 de juliol 2021",
+        "next": "m14",
+        "condition": null
+      },
+      "m14": {
+        "time": "14:52",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Veniu a la bassa? 😃",
+            "next": "m15",
+            "condition": null
+          }
+        }
+      },
+      "m15": {
+        "time": "15:00",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Va, veniu. Jo ja hi sóc!",
+            "next": "m16",
+            "condition": null
+          }
+        }
+      },
+      "m16": {
+        "time": "15:00",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "gallery:g002",
+            "next": "m17",
+            "condition": null
+          }
+        }
+      },
+      "m17": {
+        "time": "15:10",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Tinc una cosa que hem de provar. Mireu!",
+            "next": "m18",
+            "condition": null
+          }
+        }
+      },
+      "m18": {
+        "time": "15:00",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "gallery:g003",
+            "next": "m19",
+            "condition": null
+          }
+        }
+      },
+      "m19": {
+        "id": "m19",
+        "author": "Maria",
+        "text": "L’has fet tu?",
+        "time": "15:11",
+        "next": "m20",
+        "condition": null
+      },
+      "m20": {
+        "id": "m20",
+        "author": "Ramon",
+        "text": "Segur que l’ha feta l’Armanda, aquesta vela 🙄",
+        "time": "15:11",
+        "next": "m21",
+        "condition": null
+      },
+      "m21": {
+        "time": "15:12",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Sempre igual… I què n’has de fer tu? ",
+            "next": "m22",
+            "condition": null
+          }
+        }
+      },
+      "m22": {
+        "id": "m22",
+        "author": "Ramon",
+        "text": "No res, ui, ui, ui…",
+        "time": "15:13",
+        "next": "m23",
+        "condition": null
+      },
+      "m23": {
+        "time": "15:14",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Oi que és maco?",
+            "next": "m24",
+            "condition": null
+          }
+        }
+      },
+      "m24": {
+        "id": "m24",
+        "author": "Maria",
+        "text": "🤦‍♀️",
+        "time": "15:14",
+        "next": "m25",
+        "condition": null
+      },
+      "m25": {
+        "id": "m25",
+        "notification": true,
+        "text": "25 de juliol de 2021",
+        "next": "m26",
+        "condition": null
+      },
+      "m26": {
+        "time": "12:37",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Anem a la bassa a celebrar el meu sant!?",
+            "next": "m27",
+            "condition": null
+          }
+        }
+      },
+      "m27": {
+        "id": "m27",
+        "author": "Maria",
+        "text": "...",
+        "time": "12:38",
+        "next": "m28",
+        "condition": null
+      },
+      "m28": {
+        "id": "m28",
+        "author": "Ramon",
+        "text": "No veus quin vent que fa!",
+        "time": "12:41",
+        "next": "m29",
+        "condition": null
+      },
+      "m29": {
+        "id": "m29",
+        "notification": true,
+        "text": "27 d'octubre de 2021",
+        "next": "m30",
+        "condition": null
+      },
+      "m30": {
+        "id": "m30",
+        "author": "Maria",
+        "text": "Jaumet?",
+        "time": "15:35",
+        "next": "m31",
+        "condition": null
+      },
+      "m31": {
+        "time": "15:35",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "M’agrada que em diguis Jaumet, Marieta! 😉",
+            "next": "m32",
+            "condition": null
+          }
+        }
+      },
+      "m32": {
+        "id": "m32",
+        "author": "Maria",
+        "text": "Ah sí? No t’estimes més senyor Jaume?",
+        "time": "15:36",
+        "next": "m33",
+        "condition": null
+      },
+      "m33": {
+        "time": "15:36",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Ja hi som… Ets ofensiva, Maria!",
+            "next": "m34",
+            "condition": null
+          }
+        }
+      },
+      "m34": {
+        "id": "m34",
+        "author": "Maria",
+        "text": "Qui té cua de palla, aviat s’encén…",
+        "time": "15:37",
+        "next": "m35",
+        "condition": null
+      },
+      "m35": {
+        "id": "m35",
+        "author": "Ramon",
+        "text": "El nen de la iaia, hahaha",
+        "time": "15:37",
+        "next": "m36",
+        "condition": null
+      },
+      "m36": {
+        "time": "15:39",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "No em provoquis, Maria. No deus voler que li digui a l’àvia qui li has furtat l’agulla a la Rosa",
+            "next": "m37",
+            "condition": null
+          }
+        }
+      },
+      "m37": {
+        "id": "m37",
+        "author": "Maria",
+        "text": "Jo? No hauràs estat tu?",
+        "time": "15:40",
+        "next": "m38",
+        "condition": null
+      },
+      "m38": {
+        "time": "15:41",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "En tinc proves…",
+            "next": "m39",
+            "condition": null
+          }
+        }
+      },
+      "m39": {
+        "id": "m39",
+        "author": "Ramon",
+        "text": "Pensa-t’ho bé, Jaumet 🥊",
+        "time": "15:41",
+        "next": "m40",
+        "condition": null
+      },
+      "m40": {
+        "time": "15:42",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "O què, m’enforcaràs,, Ramon?",
+            "next": "m41",
+            "condition": null
+          }
+        }
+      },
+      "m41": {
+        "id": "m41",
+        "notification": true,
+        "text": "4 de novembre de 2021",
+        "next": "m42",
+        "condition": null
+      },
+      "m42": {
+        "id": "m42",
+        "author": "Maria",
+        "text": "Soc guapa!",
+        "time": "18:42",
+        "next": "m43",
+        "condition": null
+      },
+      "m43": {
+        "id": "m43",
+        "author": "Maria",
+        "text": "gallery:g004",
+        "time": "18:42",
+        "next": "m44",
+        "condition": null
+      },
+      "m44": {
+        "id": "m44",
+        "author": "Ramon",
+        "text": "Ets preciosa! Te l’ha feta l’Armanda, oi?",
+        "time": "18:42",
+        "next": "m45",
+        "condition": null
+      },
+      "m45": {
+        "id": "m45",
+        "author": "Maria",
+        "text": "Síiiiiii, mentre berenàvem tu i jo",
+        "time": "18:43",
+        "next": "m46",
+        "condition": null
+      },
+      "m46": {
+        "time": "18:45",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Caram! Aquest gest em recorda molt al papà",
+            "next": "m47",
+            "condition": null
+          }
+        }
+      },
+      "m47": {
+        "id": "m47",
+        "author": "Maria",
+        "text": "Vols dir?",
+        "time": "18:46",
+        "next": "m48",
+        "condition": null
+      },
+      "m48": {
+        "time": "18:46",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "I tant Mira-ho si no t’ho creus ",
+            "next": "m49",
+            "condition": null
+          }
+        }
+      },
+      "m49": {
+        "time": "18:46",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "gallery:g005",
+            "next": "m50",
+            "condition": null
+          }
+        }
+      },
+      "m50": {
+        "id": "m50",
+        "author": "Maria",
+        "text": "Quina foto! Tenia mal de cap o què?",
+        "time": "18:47",
+        "next": "m51",
+        "condition": null
+      },
+      "m51": {
+        "time": "18:48",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "No ho sé. Ell mai no m’explica res a mi",
+            "next": "m52",
+            "condition": null
+          }
+        }
+      },
+      "m52": {
+        "id": "m52",
+        "author": "Ramon",
+        "text": "A mi tampoc em fa gaire cas…",
+        "time": "18:49",
+        "next": "m53",
+        "condition": null
+      },
+      "m53": {
+        "id": "m53",
+        "author": "Maria",
+        "text": "Perquè només m’estima a mi! Em diu t’estàs convertint en una criatura preciosa",
+        "time": "18:49",
+        "next": "m54",
+        "condition": null
+      },
+      "m54": {
+        "id": "m54",
+        "notification": true,
+        "text": "26 de març 2022",
+        "next": "m55",
+        "condition": null
+      },
+      "m55": {
+        "time": "9:14",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Teniu l’espiadimonis o l’heu matat?",
+            "next": "m56",
+            "condition": null
+          }
+        }
+      },
+      "m56": {
+        "id": "m56",
+        "author": "Maria",
+        "text": "De què parles, llangardaix fastigós?",
+        "time": "9:23",
+        "next": "m57",
+        "condition": null
+      },
+      "m57": {
+        "time": "9:23",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "M’heu obert els pots. On és l’espiadimonis?",
+            "next": "m58",
+            "condition": null
+          }
+        }
+      },
+      "m58": {
+        "id": "m58",
+        "author": "Ramon",
+        "text": "És guapa, la nostra germaneta, eh?",
+        "time": "9:24",
+        "next": "m59",
+        "condition": null
+      },
+      "m59": {
+        "id": "m59",
+        "author": "Ramon",
+        "text": "gallery:g006",
+        "time": "9:24",
+        "next": "m60",
+        "condition": null
+      },
+      "m60": {
+        "time": "9:25",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "No és germana nostra!",
+            "next": "m61",
+            "condition": null
+          }
+        }
+      }
+    }
   }
 ]

@@ -1,437 +1,913 @@
 [
-    {
-        "id": "contact001",
-        "contactName": "Àvia",
-        "contactPic": "gamedata/assets/profiles/profile-0.png",
-        "lastMessage": "c000-0049",
-        "conversation" : {
-            "c000-0001": {
-                "id": "c000-0001",
-                "notification": true,
-                "text": "22 de juny de 2021",
-                "next": "c000-0002",
-                "condition": null
-            },
-            "c000-0002": {
-                "time": "21:07",
-                "options": {
-                    "c000-ans0002" : {
-                        "id": "c000-ans0002",
-                        "text": "Àvia, tu ho sabies, oi?, que els pares m’havien comprat el mòbil. M’encantaaaa!",
-                        "next": "c000-0003",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0003": {
-                "id": "c000-0003",
-                "text": "Ja té mòbil, senyor Jaume! Ara no deixi de venir a veure’m, que em pansiria tota sola en aquesta sala…",
-                "time": "21:08",
-                "next": "c000-0004",
-                "condition": null
-            },
-            "c000-0004": {
-                "time": "21:09",
-                "options": {
-                    "c000-ans0004" : {
-                        "id": "c000-ans0004",
-                        "text": "I ara àvia! Ara ja et podré enviar fotos de les flors del jardí i no te m'enyoraràs tant",
-                        "next": "c000-0005",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0005": {
-                "id": "c000-0005",
-                "notification": true,
-                "text": "26 de juny de 2021",
-                "next": "c000-0006",
-                "condition": null
-            },
-            "c000-0006": {
-                "time": "9:47",
-                "options": {
-                    "c000-ans0006" : {
-                        "id": "c000-ans0006",
-                        "text": "Àvia, el vidre del mòbil! Està trencat, de segur que me l’han trencat ells! Puc venir a veure’t? No hi ha dret, àvia, sempre estan igual; és nou, ara el papa i la mama s’enfadaran",
-                        "next": "c000-0007",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0007": {
-                "id": "c000-0007",
-                "text": "I ara, per què ningú t’havia de fer malbé el mòbil, fill? No deus pas haver dormit amb el telèfon i que t’hagi caigut, oi?",
-                "time": "9:54",
-                "next": "c000-0008",
-                "condition": null
-            },
-            "c000-0008": {
-                "time": "9:55",
-                "options": {
-                    "c000-ans0008" : {
-                        "id": "c000-ans0008",
-                        "text": "Tu, no, si us plau, àvia! Puc venir? Digues que sí…",
-                        "next": "c000-0009",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0009": {
-                "id": "c000-0009",
-                "text": "Vine, fill, que l’àvia t’estima molt",
-                "time": "9:56",
-                "next": "c000-0010",
-                "condition": null
-            },
-            "c000-0010": {
-                "id": "c000-0010",
-                "notification": true,
-                "text": "3 de juliol 2021",
-                "next": "c000-0012",
-                "condition": null
-            },
-            "c000-0011": {
-                "id": "c000-0011",
-                "text": "Senyor Jaume?",
-                "time": "12:08",
-                "next": "c000-0012",
-                "condition": null
-            },
-            "c000-0012": {
-                "time": "13:01",
-                "options": {
-                    "c000-ans0012" : {
-                        "id": "c000-ans0012",
-                        "text": "Hola, àvia! Digues!",
-                        "next": "c000-0013",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0013": {
-                "id": "c000-0013",
-                "text": "Que vindràs a veure’m avui?",
-                "time": "13:12",
-                "next": "c000-0014",
-                "condition": null
-            },
-            "c000-0014": {
-                "time": "13:13",
-                "options": {
-                    "c000-ans0014" : {
-                        "id": "c000-ans0014",
-                        "text": "Sí, a les 18 h. Et va bé?",
-                        "next": "c000-0015",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0015": {
-                "id": "c000-0015",
-                "text": "I tant, t’esperaré a la saleta, com sempre.",
-                "time": "13:14",
-                "next": "c000-0016",
-                "condition": null
-            },
-            "c000-0016": {
-                "time": "13:15",
-                "options": {
-                    "c000-ans0016" : {
-                        "id": "c000-ans0016",
-                        "text": "Un petó",
-                        "next": "c000-0017",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0017": {
-                "id": "c000-0017",
-                "text": "Un petó, rei meu",
-                "time": "13:16",
-                "next": "c000-0018",
-                "condition": null
-            },
-            "c000-0018": {
-                "id": "c000-0018",
-                "notification": true,
-                "text": "25 de juliol de 2021",
-                "next": "c000-0019",
-                "condition": null
-            },
-            "c000-0019": {
-                "id": "c000-0019",
-                "text": "Avui és el seu sant, senyor Jaume. Per molts anys!",
-                "time": "8:52",
-                "next": "c000-0020",
-                "condition": null
-            },
-            "c000-0020": {
-                "id": "c000-0020",
-                "text": "Ja sap que si no li ho diu a ningú, farem que les orelles se li posin vermelles!",
-                "time": "8:53",
-                "next": "c000-0021",
-                "condition": null
-            },
-            "c000-0021": {
-                "time": "9:13",
-                "options": {
-                    "c000-ans0021" : {
-                        "id": "c000-ans0021",
-                        "text": "🤭",
-                        "next": "c000-0022",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0022": {
-                "id": "c000-0022",
-                "text": "Aquesta és la darrera copa d’un joc que l’avi havia comprat a Viena. N’és l’última i és per a vostè!",
-                "time": "9:14",
-                "next": "c000-0023",
-                "condition": null
-            },
-            "c000-0023": {
-                "time": "9:14",
-                "options": {
-                    "c000-ans0023" : {
-                        "id": "c000-ans0023",
-                        "text": "Gràcieeeeees!",
-                        "next": "c000-0024",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0024": {
-                "id": "c000-0024",
-                "notification": true,
-                "text": "5 de gener de 2022",
-                "next": "c000-0025",
-                "condition": null
-            },
-            "c000-0025": {
-                "id": "c000-0025",
-                "text": "Senyor Jaume, aquesta nit passen els Reis.",
-                "time": "20:05",
-                "next": "c000-0026",
-                "condition": null
-            },
-            "c000-0026": {
-                "time": "20:05",
-                "options": {
-                    "c000-ans0026" : {
-                        "id": "c000-ans0026",
-                        "text": "Síii",
-                        "next": "c000-0027",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0027": {
-                "id": "c000-0027",
-                "text": "Doncs no vagi a dormir tard!",
-                "time": "20:06",
-                "next": "c000-0028",
-                "condition": null
-            },
-            "c000-0028": {
-                "time": "20:06",
-                "options": {
-                    "c000-ans0028" : {
-                        "id": "c000-ans0028",
-                        "text": ";-)",
-                        "next": "c000-0029",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0029": {
-                "id": "c000-0029",
-                "notification": true,
-                "text": "4 de juny de 2022",
-                "next": "c000-0030",
-                "condition": null
-            },
-            "c000-0030": {
-                "time": "20:00",
-                "options": {
-                    "c000-ans0030" : {
-                        "id": "c000-ans0030",
-                        "text": "He estat a punt de caure a la piscina, quin ensurt, àvia.",
-                        "next": "c000-0031",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0031": {
-                "id": "c000-0031",
-                "text": "Tu tens, teu, ben teu, un àngel de la guarda",
-                "time": "20:20",
-                "next": "c000-0032",
-                "condition": null
-            },
-            "c000-0032": {
-                "time": "20:21",
-                "options": {
-                    "c000-ans0032" : {
-                        "id": "c000-ans0032",
-                        "text": "Haha, segur que t’ho inventes, això",
-                        "next": "c000-0033",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0033": {
-                "id": "c000-0033",
-                "text": "De petita, jo en tenia un, era invisible però sé que tenia ales, era ros i li brillaven dos ulls blaus",
-                "time": "20:26",
-                "next": "c000-0034",
-                "condition": null
-            },
-            "c000-0034": {
-                "time": "20:26",
-                "options": {
-                    "c000-ans0034" : {
-                        "id": "c000-ans0034",
-                        "text": "Com ho saps, si era invisible!",
-                        "next": "c000-0035",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0035": {
-                "id": "c000-0035",
-                "text": "Perquè el vent entre les fulles, el fan les ales de l’àngel.",
-                "time": "20:27",
-                "next": "c000-0036",
-                "condition": null
-            },
-            "c000-0036": {
-                "time": "20:28",
-                "options": {
-                    "c000-ans0036" : {
-                        "id": "c000-ans0036",
-                        "text": "Doncs espero que no hagi sigut el meu amic Àngel qui m’hagi empès avui!",
-                        "next": "c000-0037",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0037": {
-                "id": "c000-0037",
-                "notification": true,
-                "text": "19 de juny de 2022",
-                "next": "c000-0038",
-                "condition": null
-            },
-            "c000-0038": {
-                "time": "7:03",
-                "options": {
-                    "c000-ans0038" : {
-                        "id": "c000-ans0038",
-                        "text": "Àvia, el Ramon i la Maria han passat la nit a la teulada! I hi han vist com es feia de dia! M’han tornat a deixar de banda. Tant me fa!",
-                        "next": "c000-0039",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0039": {
-                "time": "7:03",
-                "options": {
-                    "c000-ans0039" : {
-                        "id": "c000-ans0039",
-                        "text": "Perquè això ells no ho han vist ni ho veuran.",
-                        "next": "c000-0040",
-                        "condition": null
-                    }
-                }
-            },
-            "c000-0040": {
-                "id": "c000-0040",
-                "text": "Sí que em fa quedar parada, senyor Jaume…",
-                "time": "7:04",
-                "next": "c000-0041",
-                "condition": null
-            },
-            "c000-0041": {
-                "id": "c000-0041",
-                "text": "Les teulades són per estar-hi a sota",
-                "time": "7:04",
-                "next": "c000-0042",
-                "condition": null
-            },
-            "c000-0042": {
-                "id": "c000-0042",
-                "text": "No hi vagi mai, vostè",
-                "time": "7:07",
-                "next": "c000-0043",
-                "condition": null
-            },
-            "c000-0043": {
-                "id": "c000-0043",
-                "text": "Jaume, on ets, fill?",
-                "time": "17:32",
-                "next": "c000-0044",
-                "condition": null
-            },
-            "c000-0044": {
-                "id": "c000-0044",
-                "text": "Jaume, encara estàs dolgut? L’àvia t’estima molt. Vine si pots!",
-                "time": "18:38",
-                "next": "c000-0045",
-                "condition": null
-            },
-            "c000-0045": {
-                "id": "c000-0045",
-                "text": "Senyor Jaume, vingui que compartirem un glopet dolç i li deixaré tocar-ho tot, no em faci patir",
-                "time": "19:01",
-                "next": "c000-0046",
-                "condition": null
-            },
-            "c000-0046": {
-                "id": "c000-0046",
-                "text": "Que potser ets amb l’Àngel tirant fotos del jardí? Ai, aquest noi, fill, … Per què no fas cas de l’àvia?",
-                "time": "20:05",
-                "next": "c000-0047",
-                "condition": null
-            },
-            "c000-0047": {
-                "id": "c000-0047",
-                "text": "Rei, contesta’m, si us plau!",
-                "time": "20:12",
-                "next": "c000-0048",
-                "condition": null
-            },
-            "c000-0048": {
-                "id": "c000-0048",
-                "text": "Què passa, Jaume? Ara he vist la Maria, amb cara blanca i trista com una aparició",
-                "time": "20:53",
-                "next": "c000-0049",
-                "condition": null
-            },
-            "c000-0049": {
-                "id": "c000-0049",
-                "text": "Jaume, la casa és tota fressa! Fill meu, que això no fa per tu; ja en tenim prou del Ramon! Vine, vine a casa que soparàs amb l’Armanda i dormiràs al teu llitet i demà serà un altre dia",
-                "time": "21:01",
-                "next": "c000-0050",
-                "condition": null
-            }
+  {
+    "id": "contact001",
+    "contactName": "Àvia",
+    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "lastMessage": "c000-0049",
+    "conversation": {
+      "c000-0001": {
+        "id": "c000-0001",
+        "notification": true,
+        "text": "22 de juny de 2021",
+        "next": "c000-0002",
+        "condition": null
+      },
+      "c000-0002": {
+        "time": "21:07",
+        "options": {
+          "c000-ans0002": {
+            "id": "c000-ans0002",
+            "text": "Àvia, tu ho sabies, oi?, que els pares m’havien comprat el mòbil. M’encantaaaa!",
+            "next": "c000-0003",
+            "condition": null
+          }
         }
-    },
-    {
-        "id": "contact002",
-        "contactName": "Família Farriols Valldaura ",
-        "contactPic": "gamedata/assets/profiles/profile-0.png",
-        "lastMessage": "c000-0001",
-        "conversation" : {
-            "c000-0001": {
-                "id": "c000-0001",
-                "notification": true,
-                "text": "Mama t’ha afegit al grup Família Farriols Valldaura",
-                "next": "c000-0002",
-                "condition": null
-            }
+      },
+      "c000-0003": {
+        "id": "c000-0003",
+        "text": "Ja té mòbil, senyor Jaume! Ara no deixi de venir a veure’m, que em pansiria tota sola en aquesta sala…",
+        "time": "21:08",
+        "next": "c000-0004",
+        "condition": null
+      },
+      "c000-0004": {
+        "time": "21:09",
+        "options": {
+          "c000-ans0004": {
+            "id": "c000-ans0004",
+            "text": "I ara àvia! Ara ja et podré enviar fotos de les flors del jardí i no te m'enyoraràs tant",
+            "next": "c000-0005",
+            "condition": null
+          }
         }
+      },
+      "c000-0005": {
+        "id": "c000-0005",
+        "notification": true,
+        "text": "26 de juny de 2021",
+        "next": "c000-0006",
+        "condition": null
+      },
+      "c000-0006": {
+        "time": "9:47",
+        "options": {
+          "c000-ans0006": {
+            "id": "c000-ans0006",
+            "text": "Àvia, el vidre del mòbil! Està trencat, de segur que me l’han trencat ells! Puc venir a veure’t? No hi ha dret, àvia, sempre estan igual; és nou, ara el papa i la mama s’enfadaran",
+            "next": "c000-0007",
+            "condition": null
+          }
+        }
+      },
+      "c000-0007": {
+        "id": "c000-0007",
+        "text": "I ara, per què ningú t’havia de fer malbé el mòbil, fill? No deus pas haver dormit amb el telèfon i que t’hagi caigut, oi?",
+        "time": "9:54",
+        "next": "c000-0008",
+        "condition": null
+      },
+      "c000-0008": {
+        "time": "9:55",
+        "options": {
+          "c000-ans0008": {
+            "id": "c000-ans0008",
+            "text": "Tu, no, si us plau, àvia! Puc venir? Digues que sí…",
+            "next": "c000-0009",
+            "condition": null
+          }
+        }
+      },
+      "c000-0009": {
+        "id": "c000-0009",
+        "text": "Vine, fill, que l’àvia t’estima molt",
+        "time": "9:56",
+        "next": "c000-0010",
+        "condition": null
+      },
+      "c000-0010": {
+        "id": "c000-0010",
+        "notification": true,
+        "text": "3 de juliol 2021",
+        "next": "c000-0012",
+        "condition": null
+      },
+      "c000-0011": {
+        "id": "c000-0011",
+        "text": "Senyor Jaume?",
+        "time": "12:08",
+        "next": "c000-0012",
+        "condition": null
+      },
+      "c000-0012": {
+        "time": "13:01",
+        "options": {
+          "c000-ans0012": {
+            "id": "c000-ans0012",
+            "text": "Hola, àvia! Digues!",
+            "next": "c000-0013",
+            "condition": null
+          }
+        }
+      },
+      "c000-0013": {
+        "id": "c000-0013",
+        "text": "Que vindràs a veure’m avui?",
+        "time": "13:12",
+        "next": "c000-0014",
+        "condition": null
+      },
+      "c000-0014": {
+        "time": "13:13",
+        "options": {
+          "c000-ans0014": {
+            "id": "c000-ans0014",
+            "text": "Sí, a les 18 h. Et va bé?",
+            "next": "c000-0015",
+            "condition": null
+          }
+        }
+      },
+      "c000-0015": {
+        "id": "c000-0015",
+        "text": "I tant, t’esperaré a la saleta, com sempre.",
+        "time": "13:14",
+        "next": "c000-0016",
+        "condition": null
+      },
+      "c000-0016": {
+        "time": "13:15",
+        "options": {
+          "c000-ans0016": {
+            "id": "c000-ans0016",
+            "text": "Un petó",
+            "next": "c000-0017",
+            "condition": null
+          }
+        }
+      },
+      "c000-0017": {
+        "id": "c000-0017",
+        "text": "Un petó, rei meu",
+        "time": "13:16",
+        "next": "c000-0018",
+        "condition": null
+      },
+      "c000-0018": {
+        "id": "c000-0018",
+        "notification": true,
+        "text": "25 de juliol de 2021",
+        "next": "c000-0019",
+        "condition": null
+      },
+      "c000-0019": {
+        "id": "c000-0019",
+        "text": "Avui és el seu sant, senyor Jaume. Per molts anys!",
+        "time": "8:52",
+        "next": "c000-0020",
+        "condition": null
+      },
+      "c000-0020": {
+        "id": "c000-0020",
+        "text": "Ja sap que si no li ho diu a ningú, farem que les orelles se li posin vermelles!",
+        "time": "8:53",
+        "next": "c000-0021",
+        "condition": null
+      },
+      "c000-0021": {
+        "time": "9:13",
+        "options": {
+          "c000-ans0021": {
+            "id": "c000-ans0021",
+            "text": "🤭",
+            "next": "c000-0022",
+            "condition": null
+          }
+        }
+      },
+      "c000-0022": {
+        "id": "c000-0022",
+        "text": "Aquesta és la darrera copa d’un joc que l’avi havia comprat a Viena. N’és l’última i és per a vostè!",
+        "time": "9:14",
+        "next": "c000-0023",
+        "condition": null
+      },
+      "c000-0023": {
+        "time": "9:14",
+        "options": {
+          "c000-ans0023": {
+            "id": "c000-ans0023",
+            "text": "Gràcieeeeees!",
+            "next": "c000-0024",
+            "condition": null
+          }
+        }
+      },
+      "c000-0024": {
+        "id": "c000-0024",
+        "notification": true,
+        "text": "5 de gener de 2022",
+        "next": "c000-0025",
+        "condition": null
+      },
+      "c000-0025": {
+        "id": "c000-0025",
+        "text": "Senyor Jaume, aquesta nit passen els Reis.",
+        "time": "20:05",
+        "next": "c000-0026",
+        "condition": null
+      },
+      "c000-0026": {
+        "time": "20:05",
+        "options": {
+          "c000-ans0026": {
+            "id": "c000-ans0026",
+            "text": "Síii",
+            "next": "c000-0027",
+            "condition": null
+          }
+        }
+      },
+      "c000-0027": {
+        "id": "c000-0027",
+        "text": "Doncs no vagi a dormir tard!",
+        "time": "20:06",
+        "next": "c000-0028",
+        "condition": null
+      },
+      "c000-0028": {
+        "time": "20:06",
+        "options": {
+          "c000-ans0028": {
+            "id": "c000-ans0028",
+            "text": ";-)",
+            "next": "c000-0029",
+            "condition": null
+          }
+        }
+      },
+      "c000-0029": {
+        "id": "c000-0029",
+        "notification": true,
+        "text": "4 de juny de 2022",
+        "next": "c000-0030",
+        "condition": null
+      },
+      "c000-0030": {
+        "time": "20:00",
+        "options": {
+          "c000-ans0030": {
+            "id": "c000-ans0030",
+            "text": "He estat a punt de caure a la piscina, quin ensurt, àvia.",
+            "next": "c000-0031",
+            "condition": null
+          }
+        }
+      },
+      "c000-0031": {
+        "id": "c000-0031",
+        "text": "Tu tens, teu, ben teu, un àngel de la guarda",
+        "time": "20:20",
+        "next": "c000-0032",
+        "condition": null
+      },
+      "c000-0032": {
+        "time": "20:21",
+        "options": {
+          "c000-ans0032": {
+            "id": "c000-ans0032",
+            "text": "Haha, segur que t’ho inventes, això",
+            "next": "c000-0033",
+            "condition": null
+          }
+        }
+      },
+      "c000-0033": {
+        "id": "c000-0033",
+        "text": "De petita, jo en tenia un, era invisible però sé que tenia ales, era ros i li brillaven dos ulls blaus",
+        "time": "20:26",
+        "next": "c000-0034",
+        "condition": null
+      },
+      "c000-0034": {
+        "time": "20:26",
+        "options": {
+          "c000-ans0034": {
+            "id": "c000-ans0034",
+            "text": "Com ho saps, si era invisible!",
+            "next": "c000-0035",
+            "condition": null
+          }
+        }
+      },
+      "c000-0035": {
+        "id": "c000-0035",
+        "text": "Perquè el vent entre les fulles, el fan les ales de l’àngel.",
+        "time": "20:27",
+        "next": "c000-0036",
+        "condition": null
+      },
+      "c000-0036": {
+        "time": "20:28",
+        "options": {
+          "c000-ans0036": {
+            "id": "c000-ans0036",
+            "text": "Doncs espero que no hagi sigut el meu amic Àngel qui m’hagi empès avui!",
+            "next": "c000-0037",
+            "condition": null
+          }
+        }
+      },
+      "c000-0037": {
+        "id": "c000-0037",
+        "notification": true,
+        "text": "19 de juny de 2022",
+        "next": "c000-0038",
+        "condition": null
+      },
+      "c000-0038": {
+        "time": "7:03",
+        "options": {
+          "c000-ans0038": {
+            "id": "c000-ans0038",
+            "text": "Àvia, el Ramon i la Maria han passat la nit a la teulada! I hi han vist com es feia de dia! M’han tornat a deixar de banda. Tant me fa!",
+            "next": "c000-0039",
+            "condition": null
+          }
+        }
+      },
+      "c000-0039": {
+        "time": "7:03",
+        "options": {
+          "c000-ans0039": {
+            "id": "c000-ans0039",
+            "text": "Perquè això ells no ho han vist ni ho veuran.",
+            "next": "c000-0040",
+            "condition": null
+          }
+        }
+      },
+      "c000-0040": {
+        "id": "c000-0040",
+        "text": "Sí que em fa quedar parada, senyor Jaume…",
+        "time": "7:04",
+        "next": "c000-0041",
+        "condition": null
+      },
+      "c000-0041": {
+        "id": "c000-0041",
+        "text": "Les teulades són per estar-hi a sota",
+        "time": "7:04",
+        "next": "c000-0042",
+        "condition": null
+      },
+      "c000-0042": {
+        "id": "c000-0042",
+        "text": "No hi vagi mai, vostè",
+        "time": "7:07",
+        "next": "c000-0043",
+        "condition": null
+      },
+      "c000-0043": {
+        "id": "c000-0043",
+        "text": "Jaume, on ets, fill?",
+        "time": "17:32",
+        "next": "c000-0044",
+        "condition": null
+      },
+      "c000-0044": {
+        "id": "c000-0044",
+        "text": "Jaume, encara estàs dolgut? L’àvia t’estima molt. Vine si pots!",
+        "time": "18:38",
+        "next": "c000-0045",
+        "condition": null
+      },
+      "c000-0045": {
+        "id": "c000-0045",
+        "text": "Senyor Jaume, vingui que compartirem un glopet dolç i li deixaré tocar-ho tot, no em faci patir",
+        "time": "19:01",
+        "next": "c000-0046",
+        "condition": null
+      },
+      "c000-0046": {
+        "id": "c000-0046",
+        "text": "Que potser ets amb l’Àngel tirant fotos del jardí? Ai, aquest noi, fill, … Per què no fas cas de l’àvia?",
+        "time": "20:05",
+        "next": "c000-0047",
+        "condition": null
+      },
+      "c000-0047": {
+        "id": "c000-0047",
+        "text": "Rei, contesta’m, si us plau!",
+        "time": "20:12",
+        "next": "c000-0048",
+        "condition": null
+      },
+      "c000-0048": {
+        "id": "c000-0048",
+        "text": "Què passa, Jaume? Ara he vist la Maria, amb cara blanca i trista com una aparició",
+        "time": "20:53",
+        "next": "c000-0049",
+        "condition": null
+      },
+      "c000-0049": {
+        "id": "c000-0049",
+        "text": "Jaume, la casa és tota fressa! Fill meu, que això no fa per tu; ja en tenim prou del Ramon! Vine, vine a casa que soparàs amb l’Armanda i dormiràs al teu llitet i demà serà un altre dia",
+        "time": "21:01",
+        "next": "c000-0050",
+        "condition": null
+      }
     }
-        
+  },
+  {
+    "id": "contact002",
+    "contactName": "Família Farriols Valldaura ",
+    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "lastMessage": "c59-60",
+    "conversation": {
+      "c00-01": {
+        "id": "c00-01",
+        "notification": true,
+        "text": "Mama t’ha afegit al grup Família Farriols Valldaura",
+        "time": "22 de juny de 2021",
+        "next": "c01-02",
+        "condition": null
+      },
+      "c01-02": {
+        "id": "c01-02",
+        "author": "Papa",
+        "text": "Benvingut al grup, Jaume!",
+        "time": "20:38",
+        "next": "c02-03",
+        "condition": null
+      },
+      "c02-03": {
+        "id": "c02-03",
+        "author": "Papa",
+        "text": "Ja tens mòbil, eh? Era el que volies!",
+        "time": "20:39",
+        "next": "c03-04",
+        "condition": null
+      },
+      "c03-04": {
+        "id": "c03-04",
+        "author": "Mama",
+        "text": "Sí, te l’has ben guanyat!",
+        "time": "20:39",
+        "next": "c04-05",
+        "condition": null
+      },
+      "c04-05": {
+        "time": "20:40",
+        "options": {
+          "c0-ans0": {
+            "id": "c0-ans0",
+            "text": "Gràcies, mamà bonica! Gràcies papà!",
+            "next": "c05-06",
+            "condition": null
+          }
+        }
+      },
+      "c05-06": {
+        "id": "c05-06",
+        "author": "Ramón",
+        "text": "Ui, sí, acabar sisè…",
+        "time": "20:42",
+        "next": "c06-07",
+        "condition": null
+      },
+      "c06-07": {
+        "id": "c06-07",
+        "author": "Maria",
+        "text": "Hehehe, vegem quan li dura…",
+        "time": "20:44",
+        "next": "c07-08",
+        "condition": null
+      },
+      "c07-08": {
+        "id": "c07-08",
+        "author": "Papa",
+        "text": "No hi haurà mòbils nous per a ningú fins que no acabeu l’ESO",
+        "time": "20:46",
+        "next": "c08-09",
+        "condition": null
+      },
+      "c08-09": {
+        "id": "c08-09",
+        "author": "Ramon",
+        "text": "Que ja t’has pensat la contrasenya, germanet?",
+        "time": "20:49",
+        "next": "c09-10",
+        "condition": null
+      },
+      "c09-10": {
+        "id": "c09-10",
+        "author": "Maria",
+        "text": "La data del seu sant, segur…",
+        "time": "20:50",
+        "next": "c10-11",
+        "condition": null
+      },
+      "c10-11": {
+        "time": "20:50",
+        "options": {
+          "c0-ans1": {
+            "id": "c0-ans1",
+            "text": "Sííí! El dia i el mes!",
+            "next": "c11-12",
+            "condition": null
+          }
+        }
+      },
+      "c11-12": {
+        "id": "c11-12",
+        "author": "Ramon",
+        "text": "😱",
+        "time": "20:52",
+        "next": "c12-13",
+        "condition": null
+      },
+      "c12-13": {
+        "id": "c12-13",
+        "author": "Mama",
+        "text": "Fill, has de trobar claus més difícils d’endevinar; pensa que el mòbil ara és com un calaixet només per tu i que has de vetllar que no te l’obrin…",
+        "time": "20:52",
+        "next": "c13-14",
+        "condition": null
+      },
+      "c13-14": {
+        "time": "20:54",
+        "options": {
+          "c0-ans2": {
+            "id": "c0-ans2",
+            "text": "En canvio l’ordre, doncs",
+            "next": "c14-15",
+            "condition": null
+          }
+        }
+      },
+      "c14-15": {
+        "id": "c14-15",
+        "author": "Maria",
+        "text": "Ets tan predictible, Jaume…",
+        "time": "20:55",
+        "next": "c15-16",
+        "condition": null
+      },
+      "c15-16": {
+        "time": "20:57",
+        "options": {
+          "c0-ans3": {
+            "id": "c0-ans3",
+            "text": "Ja està! Ja tinc contrasenya per a tot",
+            "next": "c16-17",
+            "condition": null
+          }
+        }
+      },
+      "c16-17": {
+        "id": "c16-17",
+        "author": "Papà",
+        "text": "Demà ens ho mirem, fill, no convé gens, tenir-ne una de sola!",
+        "time": "20:58",
+        "next": "c17-18",
+        "condition": null
+      },
+      "c17-18": {
+        "id": "c17-18",
+        "notification": true,
+        "text": "26 de juny 2021",
+        "next": "c18-19",
+        "condition": null
+      },
+      "c18-19": {
+        "id": "c18-19",
+        "author": "Maria",
+        "text": "Papa, ho veus? Mòbil del Jaume… 🙄",
+        "time": "10:29",
+        "next": "c19-20",
+        "condition": null
+      },
+      "c19-20": {
+        "id": "c19-20",
+        "author": "Maria",
+        "text": "gallery:g001",
+        "time": "10:29",
+        "next": "c20-21",
+        "condition": null
+      },
+      "c20-21": {
+        "id": "c20-21",
+        "author": "Maria",
+        "text": "I ara diu que som en Ramon i jo que l’hem esberlat!",
+        "time": "10:29",
+        "next": "c21-22",
+        "condition": null
+      },
+      "c21-22": {
+        "id": "c21-22",
+        "author": "Papà",
+        "text": "Jaume, estimat, ni una setmana t’ha durat?",
+        "time": "10:30",
+        "next": "c22-23",
+        "condition": null
+      },
+      "c22-23": {
+        "id": "c22-23",
+        "author": "Mamà",
+        "text": "Jaume, és veritat, això?",
+        "time": "10:31",
+        "next": "c23-24",
+        "condition": null
+      },
+      "c23-24": {
+        "id": "c23-24",
+        "author": "Papà",
+        "text": "Tant és, Sofia, no en tindrà cap altre!",
+        "time": "10:32",
+        "next": "c24-25",
+        "condition": null
+      },
+      "c24-25": {
+        "id": "c24-25",
+        "author": "Ramon",
+        "text": "Això ja ho veurem, que ara li plorarà a l’àvia, com sempre!",
+        "time": "10:33",
+        "next": "c26-27",
+        "condition": null
+      },
+      "c26-27": {
+        "time": "10:35",
+        "options": {
+          "ans0": {
+            "id": "ans0",
+            "text": "Ja està bé! Com podeu ser tan dolents! I deixeu estar l’àvia!",
+            "next": "c27-28",
+            "condition": null
+          }
+        }
+      },
+      "c27-28": {
+        "id": "c27-28",
+        "notification": true,
+        "text": "25 de juliol de 2021",
+        "next": "c28-29",
+        "condition": null
+      },
+      "c28-29": {
+        "id": "c28-29",
+        "author": "Mamà",
+        "text": "Moltes felicitats, Jaume!",
+        "time": "12:12",
+        "next": "c29-30",
+        "condition": null
+      },
+      "c29-30": {
+        "id": "c29-30",
+        "author": "Papà",
+        "text": "Per molts anys, que és el teu sant!",
+        "time": "12:14",
+        "next": "c30-31",
+        "condition": null
+      },
+      "c30-31": {
+        "time": "12:14",
+        "options": {
+          "ans1": {
+            "id": "ans1",
+            "text": "Gràcies!",
+            "next": "c31-32",
+            "condition": null
+          }
+        }
+      },
+      "c31-32": {
+        "id": "c31-32",
+        "author": "Maria",
+        "text": "Passa un bon dia, germanet",
+        "time": "12:15",
+        "next": "c32-33",
+        "condition": null
+      },
+      "c32-33": {
+        "id": "c32-33",
+        "author": "Jaume",
+        "text": "Felicitats",
+        "time": "12:15",
+        "next": "c33-34",
+        "condition": null
+      },
+      "c33-34": {
+        "time": "12:21",
+        "options": {
+          "ans3": {
+            "id": "ans3",
+            "text": "Gràcies! 🤸🏻‍♀️🤸🏻🤸🏿‍♂️",
+            "next": "c34-35",
+            "condition": null
+          }
+        }
+      },
+      "c34-35": {
+        "id": "c34-35",
+        "notification": true,
+        "text": "14 d'octubre de 2021",
+        "next": "c35-36",
+        "condition": null
+      },
+      "c35-36": {
+        "id": "c35-36",
+        "author": "Papà",
+        "text": "Nois, la Rosa m’ha explicat que no troba l’agulla que li vam regalar",
+        "time": "17:00",
+        "next": "c36-37",
+        "condition": null
+      },
+      "c36-37": {
+        "id": "c36-37",
+        "author": "Mamà",
+        "text": "Que li vas regalar tu, Eladi",
+        "time": "17:03",
+        "next": "c37-38",
+        "condition": null
+      },
+      "c37-38": {
+        "id": "c37-38",
+        "author": "Papà",
+        "text": "Sofia, va ser un obsequi d’agraïment de part de tota la família",
+        "time": "17:03",
+        "next": "c38-39",
+        "condition": null
+      },
+      "c38-39": {
+        "id": "c38-39",
+        "author": "Maria",
+        "text": "Per nosaltres no calia, papà 😆",
+        "time": "17:03",
+        "next": "c39-40",
+        "condition": null
+      },
+      "c39-40": {
+        "id": "c39-40",
+        "author": "Ramon",
+        "text": "hehe",
+        "time": "17:03",
+        "next": "c40-41",
+        "condition": null
+      },
+      "c40-41": {
+        "id": "c40-41",
+        "author": "Eladi",
+        "text": "Ramon i Maria, en tinc la pipa plena de les vostres gracietes! No deu ser pas una altra de les vostres bromes, oi? Tant és ara que sigui un objecte preuat per a la Rosa, és perillós per a vosaltres!",
+        "time": "17:04",
+        "next": "c41-42",
+        "condition": null
+      },
+      "c41-42": {
+        "id": "c41-42",
+        "author": "Maria",
+        "text": "I ara, papà!",
+        "time": "17:05",
+        "next": "c42-43",
+        "condition": null
+      },
+      "c42-43": {
+        "id": "c42-43",
+        "author": "Eladi",
+        "text": "Us podeu fer molt de mal, bonica, amb aquella punta…",
+        "time": "17:05",
+        "next": "c43-44",
+        "condition": null
+      },
+      "c43-44": {
+        "id": "c43-44",
+        "author": "Ramon",
+        "text": "Nosaltres no en sabem res! I al Jaume no li preguntes?",
+        "time": "17:05",
+        "next": "c44-45",
+        "condition": null
+      },
+      "c44-45": {
+        "time": "17:06",
+        "options": {
+          "ans4": {
+            "id": "ans4",
+            "text": "Jo no he sigut, papà!",
+            "next": "c45-46",
+            "condition": null
+          }
+        }
+      },
+      "c45-46": {
+        "id": "c45-46",
+        "author": "Ramon",
+        "text": "És clar, Jaumet, tu no, mai…",
+        "time": "17:06",
+        "next": "c46-47",
+        "condition": null
+      },
+      "c46-47": {
+        "id": "c46-47",
+        "author": "Sofia",
+        "text": "En això tens raó, Eladi. A banda de cara, l’agulla és perillosa",
+        "time": "17:07",
+        "next": "c47-48",
+        "condition": null
+      },
+      "c47-48": {
+        "id": "c47-48",
+        "author": "Eladi",
+        "text": "Prou, tinc feina ara. En parlarem a l’hora de sopar",
+        "time": "17:08",
+        "next": "c49-50",
+        "condition": null
+      },
+      "c49-50": {
+        "id": "c49-50",
+        "notification": true,
+        "text": "19 de juny de 2022",
+        "next": "c50-51",
+        "condition": null
+      },
+      "c50-51": {
+        "id": "c50-51",
+        "author": "Mamà",
+        "text": "Jaume, bonic, on pares? Vols fer el favor de contestar?",
+        "time": "20:26",
+        "next": "c51-52",
+        "condition": null
+      },
+      "c51-52": {
+        "id": "c51-52",
+        "author": "Mamà",
+        "text": "Ramon, Maria, que l’heu vist?",
+        "time": "20:27",
+        "next": "c52-53",
+        "condition": null
+      },
+      "c52-53": {
+        "id": "c52-53",
+        "author": "Papà",
+        "text": "Fill, ens tens molt preocupats. Contesta!",
+        "time": "20:27",
+        "next": "c53-54",
+        "condition": null
+      },
+      "c53-54": {
+        "id": "c53-54",
+        "author": "Mamà",
+        "text": "Truca, Jaume, si us plau. Ens fas patir, petitó meu…",
+        "time": "20:28",
+        "next": "c54-55",
+        "condition": null
+      },
+      "c54-55": {
+        "id": "c54-55",
+        "author": "Maria",
+        "text": "Ø aquest missatge s’ha suprimit",
+        "time": "20:29",
+        "next": "c55-56",
+        "condition": null
+      },
+      "c55-56": {
+        "id": "c55-56",
+        "author": "Papà",
+        "text": "Maria, quina l’heu feta!? ON ÉS EL JAUME?",
+        "time": "20:29",
+        "next": "c56-57",
+        "condition": null
+      },
+      "c56-57": {
+        "id": "c56-57",
+        "author": "Papà",
+        "text": "Jaume, avui, tant m’és tot: em sentiràs! I vosaltres dos, Ramon i Maria; que ja no sou cap criatura ni l’un ni l’altre! Ramon, rebràs!",
+        "time": "20:50",
+        "next": "c57-58",
+        "condition": null
+      },
+      "c57-58": {
+        "id": "c57-58",
+        "author": "Mamà",
+        "text": "De debò, Eladi? Ara ets el pare preocupat i autoritari?",
+        "time": "20:51",
+        "next": "c58-59",
+        "condition": null
+      },
+      "c58-59": {
+        "id": "c58-59",
+        "author": "Mamà",
+        "text": "Vaig cap a la bassa, és ben capaç d’estar jugant encara amb el vaixell.. O mirant les musaranyes…",
+        "time": "20:51",
+        "next": "c59-60",
+        "condition": null
+      },
+      "c59-60": {
+        "id": "c59-60",
+        "author": "Mamà",
+        "text": "Ai, aquests fills meus… I, a tu, Maria, d’això d’avui no te’n lliura ni el teu pare ni l’àvia",
+        "time": "20:52",
+        "next": "000000",
+        "condition": null
+      }
+    }
+  }
 ]

@@ -28,6 +28,6 @@
         "numberPad_numbers" : "0x361f2e"
     },
     "backgrounds" : ["default", "solid-black", "solid-white", "solid-dark-grey", "solid-light-grey", "dramatic", "fog", "miro", "homescreen", "chat"],
-    "homescreenBackground" : "miro",
-    "wallpaper" : "0x1c1c4c"
+    "homescreenBackground" : "homescreen",
+    "wallpaper" : "0x0"
 }

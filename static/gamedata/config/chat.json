@@ -1818,5 +1818,252 @@
         "condition": null
       }
     }
+  },
+  {
+    "id": "contact003",
+    "contactName": "Armanda",
+    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "lastMessage": "m27",
+    "conversation": {
+      "m0": {
+        "id": "m0",
+        "notification": true,
+        "text": "22 de juny de 2021",
+        "next": "m1",
+        "condition": null
+      },
+      "m1": {
+        "time": "21:32",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Armandaaa! Mira, aquest és el meu mòbil! Me l’han regalat el papa i la mama per a celebrar que he acabat la primària!",
+            "next": "m2",
+            "condition": null
+          }
+        }
+      },
+      "m2": {
+        "id": "m2",
+        "author": "Armanda",
+        "text": "Qui ho havia de dir! Fa no res que eres un mec i vet aquí ja ets un noiet fet!",
+        "time": "21:33",
+        "next": "m3",
+        "condition": null
+      },
+      "m3": {
+        "time": "21:34",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "hehe",
+            "next": "m4",
+            "condition": null
+          }
+        }
+      },
+      "m4": {
+        "id": "m4",
+        "author": "Armanda",
+        "text": "Però no et distreguis, ara, amb tot això dels mòbils i l’institut. Has de menjar molt i fer cas al metge!",
+        "time": "21:34",
+        "next": "m5",
+        "condition": null
+      },
+      "m5": {
+        "id": "m5",
+        "notification": true,
+        "text": "26 de juny de 2021",
+        "next": "m6",
+        "condition": null
+      },
+      "m6": {
+        "id": "m6",
+        "author": "Armanda",
+        "text": "Hem d’anar a mirar la càmera, que l’àvia ja n’ha parlat amb el fotògraf.",
+        "time": "17:00",
+        "next": "m7",
+        "condition": null
+      },
+      "m7": {
+        "time": "17:10",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Sóc a la piscina",
+            "next": "m8",
+            "condition": null
+          }
+        }
+      },
+      "m8": {
+        "id": "m8",
+        "author": "Armanda",
+        "text": "Au, surt de l’aigua i marxem, dimoniet. Que ves a saber com has entabanat l’àvia!",
+        "time": "17:11",
+        "next": "m9",
+        "condition": null
+      },
+      "m9": {
+        "time": "17:11",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "😊 És que a ella li fan falta les fotos del jardí, pobreta, que ja no hi pot sortir",
+            "next": "m10",
+            "condition": null
+          }
+        }
+      },
+      "m10": {
+        "id": "m10",
+        "author": "Armanda",
+        "text": "Tota la raó, rei! Va, afanya’t",
+        "time": "17:12",
+        "next": "m11",
+        "condition": null
+      },
+      "m11": {
+        "time": "17:12",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "👍",
+            "next": "m12",
+            "condition": null
+          }
+        }
+      },
+      "m12": {
+        "id": "m12",
+        "notification": true,
+        "text": "2 d'abril de 2022",
+        "next": "m14",
+        "condition": null
+      },
+      "m14": {
+        "time": "11:05",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Li ho havies de dir, al pare això de la topada d’ahir al carrer?",
+            "next": "m15",
+            "condition": null
+          }
+        }
+      },
+      "m15": {
+        "id": "m15",
+        "author": "Armanda",
+        "text": "Oi tant, aquest veí nostre és un malànima i algun dia tindrem un disgust…",
+        "time": "11:05",
+        "next": "m16",
+        "condition": null
+      },
+      "m16": {
+        "time": "11:06",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Sí, m’ha fet passar molta por i quines coses tan horribles que ha dit de mi",
+            "next": "m17",
+            "condition": null
+          }
+        }
+      },
+      "m17": {
+        "id": "m17",
+        "author": "Armanda",
+        "text": "Mira de no pensar-hi més, Jaume",
+        "time": "11:07",
+        "next": "m18",
+        "condition": null
+      },
+      "m18": {
+        "time": "11:09",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Ja m’agradaria, Armanda. No és tan fàcil, saps? Tothom em recorda contínuament que no soc com els altres nens, que soc un esguerrat, feble i a més, un somiatruites!",
+            "next": "m19",
+            "condition": null
+          }
+        }
+      },
+      "m19": {
+        "id": "m19",
+        "author": "Armanda",
+        "text": "Això ni ho diguis ni ho pensis! Ets un àngel, Jaume!",
+        "time": "11:10",
+        "next": "m20",
+        "condition": null
+      },
+      "m20": {
+        "time": "11:12",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "😞",
+            "next": "m21",
+            "condition": null
+          }
+        }
+      },
+      "m21": {
+        "id": "m21",
+        "author": "Armanda",
+        "text": "Fes cas del teu pare, que cadascú a casa seva recicli com vulgui.  I ves amb compte que mai no se sap amb gent com ell",
+        "time": "11:15",
+        "next": "m22",
+        "condition": null
+      },
+      "m22": {
+        "id": "m22",
+        "notification": true,
+        "text": "19 de juny de 2022",
+        "next": "m23",
+        "condition": null
+      },
+      "m23": {
+        "id": "m23",
+        "author": "Armanda",
+        "text": "Jaume, noi, què passa avui?",
+        "time": "20:05",
+        "next": "m24",
+        "condition": null
+      },
+      "m24": {
+        "id": "m24",
+        "author": "Armanda",
+        "text": "Vine, que les píndoles es floriran!",
+        "time": "20:45",
+        "next": "m25",
+        "condition": null
+      },
+      "m25": {
+        "id": "m25",
+        "author": "Armanda",
+        "text": "On ets? Te les has de prendre mitja hora abans de sopar! I gairebé son dos quarts",
+        "time": "20:21",
+        "next": "m26",
+        "condition": null
+      },
+      "m26": {
+        "id": "m26",
+        "author": "Armanda",
+        "text": "Jaume, o vens o aviso a ta mare!",
+        "time": "20:23",
+        "next": "m27",
+        "condition": null
+      },
+      "m27": {
+        "id": "m27",
+        "author": "Armanda",
+        "text": "Jaume, tens tothom a la casa pendent de tu! No deus pas haver tornat a ficar-t’hi amb aquell brètol del veí, oi?! Si us plau, digue’m que estàs bé, ara!",
+        "time": "20:48",
+        "next": "m28",
+        "condition": null
+      }
+    }
   }
 ]

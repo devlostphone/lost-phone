@@ -34,6 +34,18 @@
         "type": "picture",
         "source" : "gamedata/assets/pictures/espiadimonis.jpg",
         "condition": null
+     },
+        {
+        "id": "g007",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/jaume_lligat.jpg",
+        "condition": null
+        },
+    {
+        "id": "g008",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/germans.png",
+        "condition": null
     },
     {
         "id": "v001",
@@ -41,18 +53,6 @@
         "source": "gamedata/assets/videos/v001.mp4",
         "condition": null,
         "password": 1234
-    },
-    {
-        "id": "g007",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic2.jpg",
-        "condition": null
-    },
-    {
-        "id": "g008",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic3.jpg",
-        "condition": null
     },
     {
         "id": "v002",

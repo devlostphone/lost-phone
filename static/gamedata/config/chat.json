@@ -914,7 +914,7 @@
     "id": "contact003",
     "contactName": "Grup de germans",
     "contactPic": "gamedata/assets/profiles/profile-0.png",
-    "lastMessage": "m60",
+    "lastMessage": "m77",
     "conversation": {
       "m0": {
         "id": "m0",
@@ -1466,6 +1466,356 @@
             "condition": null
           }
         }
+      },
+      "m61": {
+        "id": "m61",
+        "notification": true,
+        "text": "6 d'abril 2022",
+        "next": "m62",
+        "condition": null
+      },
+      "m62": {
+        "id": "m62",
+        "author": "Ramon",
+        "text": "Arri, arri, Jaume!",
+        "time": "16:37",
+        "next": "m63",
+        "condition": null
+      },
+      "m63": {
+        "id": "m63",
+        "author": "Maria",
+        "text": "Ruc, et veiem en línia i no ens dius res?",
+        "time": "16:43",
+        "next": "m64",
+        "condition": null
+      },
+      "m64": {
+        "id": "m64",
+        "author": "Ramon",
+        "text": "Deixa’l,  que reflexioni per burro. Que això dels residus del barri no és cosa seva i que ja està bé de fer-nos quedar malament a tot arreu",
+        "time": "16:44",
+        "next": "m65",
+        "condition": null
+      },
+      "m65": {
+        "id": "m65",
+        "author": "Ramon",
+        "text": "Que ho entens, ximple?",
+        "time": "16:44",
+        "next": "m66",
+        "condition": null
+      },
+      "m66": {
+        "id": "m66",
+        "author": "Ramon",
+        "text": "Maria, oi que estava maco, amb aquelles fulles de lliri al cap? La brossa i el plàstic t'afavoreixen, cap buit!",
+        "time": "16:46",
+        "next": "m67",
+        "condition": null
+      },
+      "m67": {
+        "id": "m67",
+        "author": "Maria",
+        "text": "Ui sí! Però les orellotes que té són més d’elefant que no d’ase",
+        "time": "16:46",
+        "next": "m68",
+        "condition": null
+      },
+      "m68": {
+        "id": "m68",
+        "author": "Ramon",
+        "text": "I com el vam fer córrer, eh?",
+        "time": "16:47",
+        "next": "m69",
+        "condition": null
+      },
+      "m69": {
+        "id": "m69",
+        "author": "Maria",
+        "text": "Arri, arri!",
+        "time": "16:47",
+        "next": "m70",
+        "condition": null
+      },
+      "m70": {
+        "id": "m70",
+        "author": "Ramon",
+        "text": "Sí, amb aquelles cames. I al final gairebé s’ofega, el nyicris",
+        "time": "16:47",
+        "next": "m71",
+        "condition": null
+      },
+      "m71": {
+        "id": "m71",
+        "author": "Maria",
+        "text": "Calla! Ens hauria tocat avisar el Doctor Falguera perquè li posés una injecció de les que el mantenen en vida",
+        "time": "16:48",
+        "next": "m72",
+        "condition": null
+      },
+      "m72": {
+        "id": "m72",
+        "author": "Ramon",
+        "text": "Estava tan esgotat que no em va costar gens lligar-lo a l’arbre",
+        "time": "16:49",
+        "next": "m73",
+        "condition": null
+      },
+      "m73": {
+        "id": "m73",
+        "author": "Maria",
+        "text": "T’hi devies estar una bona estona, fins que es va fer fosc, eh Jaume?",
+        "time": "16:50",
+        "next": "m74",
+        "condition": null
+      },
+      "m74": {
+        "id": "m74",
+        "author": "Ramon",
+        "text": "I mort de por que les formigues se’l mengessin",
+        "time": "16:51",
+        "next": "m75",
+        "condition": null
+      },
+      "m75": {
+        "id": "m75",
+        "author": "Ramon",
+        "text": "gallery:g007",
+        "time": "16:51",
+        "next": "m76",
+        "condition": null
+      },
+      "m76": {
+        "id": "m76",
+        "author": "Ramon",
+        "text": "Té! De record!",
+        "time": "16:51",
+        "next": "m77",
+        "condition": null
+      },
+      "m77": {
+        "time": "16:55",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "Sou horribles I tu, Maria, ets una arreplegada! Ben mirat feu bona parella…",
+            "next": "m78",
+            "condition": null
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "contact003",
+    "contactName": "Rosa",
+    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "lastMessage": "m22",
+    "conversation": {
+      "m0": {
+        "id": "m0",
+        "notification": true,
+        "text": "22 de juny de 2021",
+        "next": "m1",
+        "condition": null
+      },
+      "m1": {
+        "time": "21:45",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Hola Rosa! Ja tinc mòbil! La mamà m’ha donat el teu telèfon i m’ha dit que el curs que ve també seràs la meva profe particular ",
+            "next": "m2",
+            "condition": null
+          }
+        }
+      },
+      "m2": {
+        "id": "m2",
+        "notification": true,
+        "text": "23 de juny de 2021",
+        "next": "m3",
+        "condition": null
+      },
+      "m3": {
+        "id": "m3",
+        "author": "Rosa",
+        "text": "Sí, el curs que ve, més, Jaume. Ara gaudeix de l’estiu i de les vacances que te les has ben guanyat amb tant d’esforç. Bona revetlla i bon Sant Joan!",
+        "time": "15:36",
+        "next": "m4",
+        "condition": null
+      },
+      "m4": {
+        "id": "m4",
+        "notification": true,
+        "text": "6 d'abril de 2022",
+        "next": "m5",
+        "condition": null
+      },
+      "m5": {
+        "id": "m5",
+        "author": "Rosa",
+        "text": "Jaume, fa deu minuts que hauríem d’haver començat la classe. He de marxar puntual. Ets a la teva habitació encara?  Vine a la sala ",
+        "time": "18:30",
+        "next": "m6",
+        "condition": null
+      },
+      "m6": {
+        "time": "18:31",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Rosa, ho podem deixar avui? Els pares et pagaran l’hora igual.",
+            "next": "m7",
+            "condition": null
+          }
+        }
+      },
+      "m7": {
+        "id": "m7",
+        "author": "Rosa",
+        "text": "No, Jaume. Sóc aquí i hem de repassar",
+        "time": "18:36",
+        "next": "m8",
+        "condition": null
+      },
+      "m8": {
+        "time": "18:38",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Rosa, de debò, no puc.. Avui tinc por de tot",
+            "next": "m9",
+            "condition": null
+          }
+        }
+      },
+      "m9": {
+        "time": "18:38",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "gallery:g007",
+            "next": "m10",
+            "condition": null
+          }
+        }
+      },
+      "m10": {
+        "id": "m10",
+        "author": "Rosa",
+        "text": "Calla, calla, calla … que ja ets massa gran!",
+        "time": "18:40",
+        "next": "m11",
+        "condition": null
+      },
+      "m11": {
+        "id": "m11",
+        "notification": true,
+        "text": "30 de maig de 2022",
+        "next": "m12",
+        "condition": null
+      },
+      "m12": {
+        "id": "m12",
+        "author": "Rosa",
+        "text": "Jaume!",
+        "time": "17:00",
+        "next": "m13",
+        "condition": null
+      },
+      "m13": {
+        "id": "m13",
+        "author": "Rosa",
+        "text": "gallery:g008",
+        "time": "17:40",
+        "next": "m14",
+        "condition": null
+      },
+      "m14": {
+        "id": "m14",
+        "author": "Rosa",
+        "text": "Heu quedat la mar de bé, oi?",
+        "time": "17:40",
+        "next": "m15",
+        "condition": null
+      },
+      "m15": {
+        "time": "17:35",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Sí, el vaixell és el que ha quedat millor ;-)",
+            "next": "m16",
+            "condition": null
+          }
+        }
+      },
+      "m16": {
+        "id": "m16",
+        "author": "Rosa",
+        "text": "Per què no la portem a revelar i l’hi regaleu al vostre pare per l’aniversari?",
+        "time": "17:40",
+        "next": "m17",
+        "condition": null
+      },
+      "m17": {
+        "time": "18:38",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Ok, però digue-ho tu als meus germans… jo no",
+            "next": "m18",
+            "condition": null
+          }
+        }
+      },
+      "m18": {
+        "id": "m18",
+        "author": "Rosa",
+        "text": "Ja hi som, Jaume. Fes el favor de no ser tan criatura",
+        "time": "17:43",
+        "next": "m19",
+        "condition": null
+      },
+      "m19": {
+        "time": "17:44",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Si us plau, Rosa",
+            "next": "m20",
+            "condition": null
+          }
+        }
+      },
+      "m20": {
+        "id": "m20",
+        "author": "Rosa",
+        "text": "Bé, ho faré, però no s’hi avindran… no accepten res que no hagin pensat ells i encara aprofitaran per dir-me també alguna barrabassada",
+        "time": "17:45",
+        "next": "m21",
+        "condition": null
+      },
+      "m21": {
+        "time": "17:47",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Ø aquest missatge s’ha suprimit.",
+            "next": "m22",
+            "condition": null
+          }
+        }
+      },
+      "m22": {
+        "id": "m22",
+        "author": "Rosa",
+        "text": "Sou molt capritxosos tots plegats!",
+        "time": "17:48",
+        "next": "m23",
+        "condition": null
       }
     }
   }

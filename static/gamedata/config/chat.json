@@ -2065,5 +2065,411 @@
         "condition": null
       }
     }
+  },
+  {
+    "id": "contact003",
+    "contactName": "Àngel",
+    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "lastMessage": "m27",
+    "conversation": {
+      "m0": {
+        "id": "m0",
+        "notification": true,
+        "text": "16 de març de 2022",
+        "next": "m1",
+        "condition": null
+      },
+      "m1": {
+        "time": "18:25",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Àngel! Ja he decidit com faré el projecte de ciències",
+            "next": "m2",
+            "condition": null
+          }
+        }
+      },
+      "m2": {
+        "id": "m2",
+        "author": "Àngel",
+        "text": "Ah, sí?",
+        "time": "18:25",
+        "next": "m3",
+        "condition": null
+      },
+      "m3": {
+        "time": "18:26",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Serà un quadern de camp a Instagram",
+            "next": "m4",
+            "condition": null
+          }
+        }
+      },
+      "m4": {
+        "time": "18:27",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "De les plantes i animals que hi ha a la torre",
+            "next": "m5",
+            "condition": null
+          }
+        }
+      },
+      "m5": {
+        "id": "m5",
+        "author": "Àngel",
+        "text": "Quina torre?",
+        "time": "18:28",
+        "next": "m6",
+        "condition": null
+      },
+      "m6": {
+        "time": "18:28",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Casa meva",
+            "next": "m7",
+            "condition": null
+          }
+        }
+      },
+      "m7": {
+        "time": "18:28",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "gallery:g009",
+            "next": "m8",
+            "condition": null
+          }
+        }
+      },
+      "m8": {
+        "id": "m8",
+        "author": "Àngel",
+        "text": "!!! Ets de casa bona, nano…",
+        "time": "18:28",
+        "next": "m9",
+        "condition": null
+      },
+      "m9": {
+        "time": "18:29",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "😅és de l’àvia, m’ajudarà perquè ho sap tot del jardí!",
+            "next": "m10",
+            "condition": null
+          }
+        }
+      },
+      "m10": {
+        "id": "m10",
+        "author": "Àngel",
+        "text": "Vaja… has nascut amb la “flor” al cul 🙄 ",
+        "time": "18:29",
+        "next": "m11",
+        "condition": null
+      },
+      "m11": {
+        "time": "18:29",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "😬",
+            "next": "m12",
+            "condition": null
+          }
+        }
+      },
+      "m12": {
+        "id": "m12",
+        "author": "Àngel",
+        "text": "Va, quedem i m’ho ensenyes?",
+        "time": "18:30",
+        "next": "m13",
+        "condition": null
+      },
+      "m13": {
+        "time": "18:30",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Síiii! Li demanaré a ma mare si pots venir divendres a la tarda",
+            "next": "m14",
+            "condition": null
+          }
+        }
+      },
+      "m14": {
+        "id": "m14",
+        "author": "Àngel",
+        "text": "D’acord, nen de la mare…",
+        "time": "18:30",
+        "next": "m15",
+        "condition": null
+      },
+      "m15": {
+        "time": "18:30",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Parlarem del projecte de ciències",
+            "next": "m16",
+            "condition": null
+          }
+        }
+      },
+      "m16": {
+        "id": "m16",
+        "author": "Àngel",
+        "text": "Sí, però el que vull veure és el teu palau! ",
+        "time": "18:31",
+        "next": "m17",
+        "condition": null
+      },
+      "m17": {
+        "time": "18:31",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "T’ensenyaré tot el jardi i el parc de casa.",
+            "next": "m18",
+            "condition": null
+          }
+        }
+      },
+      "m18": {
+        "time": "18:31",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "El parc està ple de sorpreses!",
+            "next": "m19",
+            "condition": null
+          }
+        }
+      },
+      "m19": {
+        "time": "18:32",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Saps que hi ha una bassa? ",
+            "next": "m20",
+            "condition": null
+          }
+        }
+      },
+      "m20": {
+        "time": "18:32",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "gallery:g002",
+            "next": "m21",
+            "condition": null
+          }
+        }
+      },
+      "m21": {
+        "id": "m21",
+        "author": "Àngel",
+        "text": "Quina ràbia que fas, Jaumet",
+        "time": "18:33",
+        "next": "m22",
+        "condition": null
+      },
+      "m22": {
+        "id": "m22",
+        "notification": true,
+        "text": "17 de març de 2022",
+        "next": "m23",
+        "condition": null
+      },
+      "m23": {
+        "time": "18:05",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Fet! @jardi_goday_valldaura",
+            "next": "m24",
+            "condition": null
+          }
+        }
+      },
+      "m24": {
+        "id": "m24",
+        "author": "Àngel",
+        "text": "ja hi tens una fotito",
+        "time": "18:06",
+        "next": "m25",
+        "condition": null
+      },
+      "m25": {
+        "id": "m25",
+        "author": "Àngel",
+        "text": "I a que ja has oblidat la contrasenya?",
+        "time": "18:06",
+        "next": "m27",
+        "condition": null
+      },
+      "m27": {
+        "time": "18:07",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "No, la tinc anotada… No sóc tan burro.",
+            "next": "m28",
+            "condition": null
+          }
+        }
+      },
+      "m28": {
+        "time": "18:07",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "N’havia fet una llista a Notes i n’he triat la millor.",
+            "next": "m29",
+            "condition": null
+          }
+        }
+      },
+      "m29": {
+        "id": "m29",
+        "author": "Àngel",
+        "text": "🤡",
+        "time": "18:07",
+        "next": "m30",
+        "condition": null
+      },
+      "m30": {
+        "time": "18:08",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "No te’n fotis, Àngel!",
+            "next": "m31",
+            "condition": null
+          }
+        }
+      },
+      "m31": {
+        "id": "m31",
+        "author": "Àngel",
+        "text": "Va, demà em fas la visita guiada d’aquest marquesat on vius",
+        "time": "18:08",
+        "next": "m32",
+        "condition": null
+      },
+      "m32": {
+        "time": "18:09",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "🤸🤸🤸",
+            "next": "m33",
+            "condition": null
+          }
+        }
+      },
+      "m33": {
+        "id": "m33",
+        "notification": true,
+        "text": "20 de març de 2022",
+        "next": "m34",
+        "condition": null
+      },
+      "m34": {
+        "id": "m34",
+        "author": "Àngel",
+        "text": "aume, amb una casa com la teva qualsevol fa el projecte de ciències. Ho tens tot a mà…",
+        "time": "15:30",
+        "next": "m35",
+        "condition": null
+      },
+      "m35": {
+        "time": "15:30",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "Però no és només tenir-ho a prop, també s’ha de saber mirar i identificar cada espècie",
+            "next": "m36",
+            "condition": null
+          }
+        }
+      },
+      "m36": {
+        "time": "15:31",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "No tinc sort de la casa, sinó de la meva àvia. Ella sí que en sap de plantes!",
+            "next": "m37",
+            "condition": null
+          }
+        }
+      },
+      "m37": {
+        "id": "m37",
+        "author": "Àngel",
+        "text": "I la Maria?",
+        "time": "15:31",
+        "next": "m38",
+        "condition": null
+      },
+      "m38": {
+        "time": "15:32",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "?",
+            "next": "m39",
+            "condition": null
+          }
+        }
+      },
+      "m39": {
+        "id": "m39",
+        "author": "Àngel",
+        "text": "A la Maria també me l’enduré",
+        "time": "15:32",
+        "next": "m40",
+        "condition": null
+      },
+      "m40": {
+        "time": "15:33",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "?",
+            "next": "m41",
+            "condition": null
+          }
+        }
+      },
+      "m41": {
+        "id": "m41",
+        "notification": true,
+        "text": "19 de juny de 2022",
+        "next": "m42",
+        "condition": null
+      },
+      "m42": {
+        "id": "m42",
+        "author": "Àngel",
+        "text": "Jaume, perdona’m, no he volgut fer-te mal, però la idea d’un Lostagram  d’il·lustració botànica va ser meva.  Estic segur que ara sí que trobaràs el teu món… Molta sort, amic!",
+        "time": "17:25",
+        "next": "m43",
+        "condition": null
+      }
+    }
   }
 ]

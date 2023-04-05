@@ -48,6 +48,13 @@
         "condition": null
     },
     {
+        "id": "g009",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/torre.jpg",
+        "condition": null
+    },
+
+    {
         "id": "v001",
         "type": "video",
         "source": "gamedata/assets/videos/v001.mp4",
@@ -58,12 +65,6 @@
         "id": "v002",
         "type": "video",
         "source": "gamedata/assets/videos/v002.mp4",
-        "condition": null
-    },
-    {
-        "id": "g009",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic4.jpg",
         "condition": null
     },
     {

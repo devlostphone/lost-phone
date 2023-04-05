@@ -39,7 +39,7 @@ export default class MailApp extends App {
     public render(): void {
         this.currentMail = "";
         this.getActiveLayer().clear();
-        this.setWallpaper();
+        this.setBackground();
         this.showHeader();
         this.showMailList();
     }
@@ -47,12 +47,12 @@ export default class MailApp extends App {
     /**
      * Set app wallpaper
      */
-    protected setWallpaper(image?: string): void {
+    protected setBackground(image?: string): void {
         if (image !== undefined) {
-            this.fakeOS.UI.setWallpaper(image);
+            this.fakeOS.UI.setBackground(image);
         } else {
             let wallpaper = this.fakeOS.cache.json.get('apps').find(app => app.key == 'MailApp').wallpaper;
-            this.fakeOS.UI.setWallpaper(wallpaper);
+            this.fakeOS.UI.setBackground(wallpaper);
         }
     }
     
@@ -142,7 +142,7 @@ export default class MailApp extends App {
      */
     protected openMail(mail: any): void {
         // Change wallpaper for better mail reading
-        this.setWallpaper('solid-white');
+        this.setBackground('solid-white');
 
         // Reset unread_size
         this.unread_size = 0;

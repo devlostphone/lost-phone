@@ -1,4 +1,4 @@
-import { FakeOS } from '../../scenes/FakeOS'
+import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
 import { PhoneEvents } from '../events/GameEvents';
 
@@ -45,7 +45,7 @@ export default class MailApp extends App {
     }
 
     /**
-     * Set app wallpaper
+     * Set app background
      */
     protected setBackground(image?: string): void {
         if (image !== undefined) {
@@ -55,7 +55,7 @@ export default class MailApp extends App {
             this.fakeOS.UI.setBackground(wallpaper);
         }
     }
-    
+
     /**
      * Shows the app title.
      */
@@ -213,17 +213,19 @@ export default class MailApp extends App {
             });
             this.addRow(txt, { y: 7 });
         }
+
         let attachments = [];
         if (mail['attachment'] !== null) {
             for (let i = 0; i < mail['attachment'].length; i++) {
                 let attachment = this.fakeOS.generateAppLink(mail['attachment'][i]);
                 attachments.push(this.fakeOS.add.existing(attachment));
+
                 // @TODO: change the way attachments look like
                 attachment.setOrigin(0.5, 1)
                 attachment.setScale(0.5, 0.5);
             }
         }
-        // @TODO: (picture) attachments are partially visible at the bottom of the screen's boundaries
+
         this.addRow(attachments);
         this.fakeOS.setDone(mail['id']);
     }
@@ -242,5 +244,5 @@ export default class MailApp extends App {
      */
     public getCurrentID(): string {
         return this.currentMail;
-    } 
+    }
 }

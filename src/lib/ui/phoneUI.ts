@@ -121,7 +121,7 @@ export default class phoneUI {
         let arrObjects = this.fakeOS.children.getChildren();
 
         switch (expr) {
-            case 'solid':                
+            case 'solid':
                 let hours = new Date().getHours();
                 if ( hours >= 9 && hours < 19 ) {
                     keyTexture = 'solid-light-grey-background';
@@ -149,7 +149,7 @@ export default class phoneUI {
                 // console.log(`Sorry, no background well defined: ${expr}`);
                 break;
         }
-        
+
         let img = arrObjects.filter(obj => obj.type == "Image").find(image => image.texture.key != "background");
         if (img == undefined) {
             background = this.fakeOS.add.image(0, 0, keyTexture, 0).setOrigin(0, 0);

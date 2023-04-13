@@ -138,7 +138,7 @@ export class FakeOS extends FakeOSScene {
                 .setScale(1.5);
         }
     }
-    
+
     /**
      * Returns the UI object.
      *

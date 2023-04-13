@@ -39,7 +39,7 @@ export default class HomescreenApp extends App {
         console.info("Homescreen Background: " + answer);
         this.fakeOS.UI.setBackground(answer);
     }
-    
+
     /**
      * Adds all the app icons in a grid.
      */

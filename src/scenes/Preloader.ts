@@ -44,7 +44,7 @@ export default class Preloader extends FakeOSScene {
         this.preload_audio();
         this.preload_shaders();
         this.preload_textures();
-        
+
         // More specific preloads.
         this.preload_app_icon_images();
         this.preload_gallery_images();
@@ -84,12 +84,12 @@ export default class Preloader extends FakeOSScene {
 
     /**
      * Preloads textures files.
-     */    
+     */
     protected preload_textures(): void {
         this.load.image('noise', 'gamedata/assets/textures/noise-medium.png');
         this.load.image('brickwall', 'gamedata/assets/textures/brickwall.png');
     }
-    
+
     /**
      * Preload images method.
      */
@@ -135,7 +135,7 @@ export default class Preloader extends FakeOSScene {
         this.load.image('arc@96', this.get_theme_path('shapes/arc@96.png'));
         this.load.image('arc@72', this.get_theme_path('shapes/arc@72.png'));
     }
-    
+
     /**
      * Preloads icon app images.
      */
@@ -210,7 +210,7 @@ export default class Preloader extends FakeOSScene {
             this.load.image(social[i]['avatar'], social[i]['avatar']);
         }
     }
-    
+
     /**
      * Returns asset theme path, defaults to "default" theme.
      *

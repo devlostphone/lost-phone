@@ -1,9 +1,16 @@
+/**
+ * @TODO: see below
+ * - Change background wallpaper to solid color (black)
+ * - overall UI overhaul needed (clonify iPhone calendar)
+ * - Work on UI date events
+ */
+
 import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
 import Button from '../../lib/ui/gameObjects/Button';
 
 /**
- * Calendar app.
+ * Calendar App
  */
 
 export default class CalendarApp extends App {
@@ -50,6 +57,7 @@ export default class CalendarApp extends App {
      * @inheritdoc
      */
     public render(): void {
+        // Clear layer
         this.getActiveLayer().clear();
         this.setBackground();
         this.addGeometry();

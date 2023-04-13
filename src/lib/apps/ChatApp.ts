@@ -75,7 +75,7 @@ export default class ChatApp extends App {
     }
 
     /**
-     * Set app wallpaper
+     * Set app background
      */
     protected setBackground(image?: string): void {
         if (image !== undefined) {
@@ -261,7 +261,7 @@ export default class ChatApp extends App {
         this.addRow(new ChatInteraction(
                 this.fakeOS,
                 0,0,
-                conversation.id,              
+                conversation.id,
                 conversation.text,
                 conversation.author,
                 conversation.time,

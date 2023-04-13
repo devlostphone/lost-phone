@@ -17,7 +17,7 @@
                 "options": {
                     "c001-ans0001": {
                         "id": "c001-ans0001",
-                        "text": "Doncs molt bé, gràcies! I tú?",
+                        "text": "gallery:g011",
                         "time": "21:03",
                         "next": "c001-0003",
                         "condition": null
@@ -26,7 +26,7 @@
             },
             "c001-0003": {
                 "id": "c001-0003",
-                "text": "Me n'alegro molt!",
+                "text": "gallery:g011",
                 "condition": null,
                 "time": "21:04",
                 "next": "c001-0005"

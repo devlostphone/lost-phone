@@ -1,3 +1,4 @@
+import { start } from "repl";
 import { FakeOS } from "../../../scenes/FakeOS";
 import { SystemEvents } from "../../events/GameEvents";
 
@@ -103,8 +104,46 @@ export default class PicGrid extends Phaser.GameObjects.Container
     protected printImage(image: any): Phaser.GameObjects.Image {
         let renderArea = this.fakeOS.getUI().getAppRenderSize();
         let element = this.fakeOS.add.image(0, 0, image.id).setName(image.id);
-        element.displayWidth = renderArea.width / 2;
-        element.displayHeight = renderArea.height / 4;
+        let panel_size_x = (renderArea.width / 2);
+        let panel_size_y = (renderArea.height / 4);
+
+        let scale_x = panel_size_x / element.displayWidth;
+        let scale_y = panel_size_y / element.displayHeight;
+        let starting_point = 0;
+        let rectangle;
+
+        if (scale_x > scale_y) {
+            starting_point = (element.displayHeight - (panel_size_y / scale_x)) / 2;
+            element.setCrop(
+                0,
+                starting_point,
+                element.displayWidth,
+                panel_size_y / scale_x
+            );
+            rectangle = new Phaser.Geom.Rectangle(
+                element.x,
+                element.y + starting_point,
+                element.displayWidth,
+                panel_size_y / scale_x
+            );
+            element.setScale(scale_x, scale_x);
+
+        } else {
+            starting_point = (element.displayWidth - (panel_size_x / scale_y)) / 2;
+            element.setCrop(
+                starting_point,
+                0,
+                panel_size_x / scale_y,
+                element.displayHeight
+            );
+            rectangle = new Phaser.Geom.Rectangle(
+                element.x + starting_point,
+                element.y,
+                panel_size_x / scale_y,
+                element.displayHeight
+            );
+            element.setScale(scale_y, scale_y);
+        }
 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -121,6 +160,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
             },
             element
         );
+        element.input.hitArea = rectangle;
 
         return element;
     }
@@ -207,10 +247,19 @@ export default class PicGrid extends Phaser.GameObjects.Container
         const area = this.fakeOS.getUI().getAppRenderSize();
 
         let zoomedImage = this.fakeOS.add.image(0, 0, element.texture);
-        zoomedImage.displayWidth = area.width;
-        zoomedImage.displayHeight = area.height / 2;
+        let scale_x = area.width / zoomedImage.displayWidth;
+        let scale_y = area.height / zoomedImage.displayHeight;
 
-        this.fakeOS.getActiveApp().addRow(zoomedImage, {y: 4});
+        if (scale_y > scale_x) {
+            zoomedImage.setScale(scale_x, scale_x);
+        } else {
+            zoomedImage.setScale(scale_y, scale_y);
+        }
+
+        zoomedImage.x = (area.width / 2);
+        zoomedImage.y = (area.height / 2);
+
+        this.fakeOS.getActiveApp().addElements(zoomedImage);
     }
 
     /**

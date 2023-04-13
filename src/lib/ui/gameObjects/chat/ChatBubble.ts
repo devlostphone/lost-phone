@@ -60,6 +60,7 @@ export default class ChatBubble extends Phaser.GameObjects.Container
             bubble_text = this.fakeOS.add.existing(applink);
             bubble_text.setOrigin(0.5);
             if (bubble_text instanceof Phaser.GameObjects.Image) {
+                this.y += 20;
                 bubble_text.y = -50;
                 bubble_text.setOrigin(0.5, 0);
                 bubble_text.displayWidth = this.fakeOS.getActiveApp().getActiveLayer().area.width / 2;
@@ -116,6 +117,10 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         if (bubble_text instanceof Phaser.GameObjects.Image) {
             bubble.y = bubble_text.height / 2;
             bubble.x = bubble_text.width / 2 + bubble_text.x - offsetX*3;
+
+            if (position == 'right') {
+                bubble.x = bubble_text.width / 2 - bubble_text.x - offsetX*3;
+            }
 
             triangle_coords['x1']['y'] = -offsetY;
             triangle_coords['x2']['y'] = -offsetY;

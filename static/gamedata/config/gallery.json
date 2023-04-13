@@ -34,7 +34,7 @@
     {
         "id": "g005",
         "type": "picture",
-        "source": "gamedata/assets/pictures/pic5.jpg",
+        "source": "gamedata/assets/pictures/homescreen.jpg",
         "condition": null
     },
     {
@@ -82,7 +82,7 @@
     {
         "id": "g012",
         "type": "picture",
-        "source": "gamedata/assets/pictures/dont-care-meme.jpg",
-        "condition": "m001"
+        "source": "gamedata/assets/pictures/pic6.jpg",
+        "condition": null
     }
 ]

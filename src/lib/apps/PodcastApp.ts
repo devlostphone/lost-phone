@@ -39,7 +39,7 @@ import { PhoneEvents } from '../events/GameEvents';
             this.fakeOS.addInputEvent(
                 'pointerup',
                 () => {
-                    this.addLayer(0x333333);
+                    this.addLayer();
                     this.openTrack(this.tracks[i])
                 },
                 preview

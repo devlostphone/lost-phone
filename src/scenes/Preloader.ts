@@ -44,7 +44,7 @@ export default class Preloader extends FakeOSScene {
         this.preload_audio();
         this.preload_shaders();
         this.preload_textures();
-        
+
         // More specific preloads.
         this.preload_app_icon_images();
         this.preload_gallery_images();
@@ -84,12 +84,12 @@ export default class Preloader extends FakeOSScene {
 
     /**
      * Preloads textures files.
-     */    
+     */
     protected preload_textures(): void {
         this.load.image('noise', 'gamedata/assets/textures/noise-medium.png');
         this.load.image('brickwall', 'gamedata/assets/textures/brickwall.png');
     }
-    
+
     /**
      * Preload images method.
      */
@@ -97,13 +97,20 @@ export default class Preloader extends FakeOSScene {
         let imageSize = dpr * 128; // 64, 128, 256, 512
         this.load.image('app', this.get_theme_path('shaders/app@' + imageSize + 'x.png'));
 
-        // Get background picture defined at config
-        // Put all the background pictures at themes/<name of theme>/backgrounds folder
-        let background = this.cache.json.get('config').background;
+        // Wallpaper: solid color or bitmap
+        let wallpaper = this.cache.json.get('config').wallpaper;
+        if (!wallpaper.match(/[0x]?[0-9A-Fa-f]{6}/g)) {
+            console.log("Sets image as wallapper: " + wallpaper + '.png');
+            this.load.image('wallpaper', this.get_theme_path('wallpapers/' + wallpaper + '.png'));
+        } else {
+            console.log("Sets wallpaper solid color: " + wallpaper);
+        }
+
+        // Get app backgrounds picture defined at config
+        // Put the background pictures at themes/<name of theme>/app-backgrounds folder
         // @TODO: collect all pictures inside backgrounds folder. Set default or random if there
         // is more than one images.
         // @TODO: Add support for multiple format images (png, webp, jpeg...)
-        this.load.image('background', this.get_theme_path('backgrounds/' + background + '.png'));
 
         this.load.image('guide', this.get_theme_path('shaders/720x1280-guide.png'));
 
@@ -114,7 +121,7 @@ export default class Preloader extends FakeOSScene {
         this.load.image('back-button', this.get_theme_path('shaders/back.png'));
 
         this.load.image('default-avatar', this.get_theme_path('shaders/default-avatar.png'));
-        this.load.spritesheet('typing', this.get_theme_path('shaders/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
+        this.load.spritesheet('typing', this.get_theme_path('sprites/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
 
     }
 
@@ -128,7 +135,7 @@ export default class Preloader extends FakeOSScene {
         this.load.image('arc@96', this.get_theme_path('shapes/arc@96.png'));
         this.load.image('arc@72', this.get_theme_path('shapes/arc@72.png'));
     }
-    
+
     /**
      * Preloads icon app images.
      */
@@ -203,7 +210,7 @@ export default class Preloader extends FakeOSScene {
             this.load.image(social[i]['avatar'], social[i]['avatar']);
         }
     }
-    
+
     /**
      * Returns asset theme path, defaults to "default" theme.
      *

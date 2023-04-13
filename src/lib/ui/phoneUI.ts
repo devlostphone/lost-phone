@@ -71,7 +71,7 @@ export default class phoneUI {
         this.createButtons();
         this.createClock();
         this.createDrawer();
-        this.setWallpaper();
+        this.setBackground('dramatic-wallpaper');
 
         this.fakeOS.log('Setting up UI listeners');
         this.addEventListeners();
@@ -111,47 +111,58 @@ export default class phoneUI {
     }
 
     /**
-     * Sets the default FakeOS wallpaper defined by
+     * Sets the default FakeOS background defined at App settings
      */
-    protected setWallpaper(): void {
 
-        let renderSize = this.getAppRenderSize();
+    // @TODO: Set background depending on gpu capabilites client: canvas or webgl.
+    public setBackground(expr: string): void {
+        let keyTexture;
+        let background;
+        let arrObjects = this.fakeOS.children.getChildren();
 
-        let wallpaper = new Phaser.GameObjects.Image(
-            this.fakeOS,
-            0,
-            0,
-            this.fakeOS.cache.json.get('config')['wallpaper'] + '-wallpaper'
-        ).setOrigin(0);
-        wallpaper.setScale(
-            renderSize.width / wallpaper.width,
-            renderSize.width / wallpaper.width
-        );
+        switch (expr) {
+            case 'solid':
+                let hours = new Date().getHours();
+                if ( hours >= 9 && hours < 19 ) {
+                    keyTexture = 'solid-light-grey-background';
+                } else {
+                    keyTexture = 'solid-dark-grey-background';
+                }
+                break;
+            case 'shader':
+                console.log("[WARNING]: Shader as App background not implemented");
+                break;
+                // const rt = this.fakeOS.make.renderTexture({ width: 1242, height: 2209 }, false);
+                // rt.fill(0xff00ff, 1, 0, 0, 1242, 2209);
+                // rt.draw(this.fakeOS.cache.json.get('config')['background'] + '-background', 0, 0);
+                // rt.saveTexture('rt');
 
-        const rt = this.fakeOS.make.renderTexture({
-            width: renderSize.width,
-            height: renderSize.height
-        }, false);
-        rt.fill(
-            0xff00ff,
-            1,
-            0,
-            0,
-            renderSize.width,
-            renderSize.height
-        );
-        rt.draw(wallpaper, 0, 0);
-        rt.saveTexture('rt');
+                // const shader = this.fakeOS.add.shader('Pointillize Filter', 0, 0, 1242, 2209, ['noise', 'rt']);
+                // shader.setOrigin(0);
+                // shader.setScale(
+                //     this.fakeOS.width / shader.width,
+                //     this.fakeOS.height / shader.height
+                // );
+            default:
+                keyTexture = expr + '-background';
+                // @TODO: Handle not found images
+                // console.log(`Sorry, no background well defined: ${expr}`);
+                break;
+        }
 
-        const shader = this.fakeOS.add.shader(
-            'Pointillize Filter',
-            renderSize.x,
-            renderSize.y,
-            renderSize.width,
-            renderSize.height,
-            ['noise', 'rt']
-        );
-        shader.setOrigin(0);
+        let img = arrObjects.filter(obj => obj.type == "Image").find(image => image.texture.key != "background");
+        if (img == undefined) {
+            background = this.fakeOS.add.image(0, 0, keyTexture, 0).setOrigin(0, 0);
+            background.setScale(
+                this.fakeOS.width / background.width,
+                this.fakeOS.height / background.height
+            );
+        } else {
+            img.setTexture(keyTexture).setScale(
+                this.fakeOS.width / img.width,
+                this.fakeOS.height / img.height
+            );
+        }
     }
 
     /**

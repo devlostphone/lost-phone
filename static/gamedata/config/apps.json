@@ -37,8 +37,9 @@
         "key"    : "ChatApp",
         "icon"   : "chat.png",
         "configFile" : "chat.json",
+        "wallpaper" : "solid-light-grey",
         "preInstalled": true,
-        "hasNotifications": true,
+        "hasNotifications": false,
         "favourite": true
     },
     {
@@ -75,10 +76,11 @@
         "type" : "mail",
         "key"  : "MailApp",
         "icon" : "mail.png",
+        "wallpaper" : "solid-black",
         "description": "Aplicació de correu electrònic",
         "configFile" : "mail.json",
         "preInstalled": true,
-        "hasNotifications": true,
+        "hasNotifications": false,
         "favourite": true
     },
     {

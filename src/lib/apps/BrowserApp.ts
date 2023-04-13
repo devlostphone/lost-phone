@@ -95,7 +95,7 @@ import SearchBox from '../ui/gameObjects/input/SearchBox';
             this.body?.destroy();
             this.reRender();
         });
-        this.addLayer(0x333333);
+        this.addLayer();
         this.addElements(this.searchBox);
 
         const page = this.pages.find((element: any) => element.id == id);

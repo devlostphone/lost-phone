@@ -14,7 +14,7 @@ export class FakeOS extends FakeOSScene {
     /**
      * FakeOS UI.
      */
-    protected UI: UI;
+    public UI: UI;
 
     /**
      * The app which is active.
@@ -84,9 +84,11 @@ export class FakeOS extends FakeOSScene {
         this.colors = this.cache.json.get('colors');
         this.apps = this.cache.json.get('apps');
 
-        let wallpapers = this.cache.json.get('config')['wallpapers'];
-        for (let i = 0; i < wallpapers.length; i++) {
-            this.load.image(wallpapers[i] + '-wallpaper', this.get_theme_path(`wallpapers/${wallpapers[i]}.png`));
+        // Load all the App Backgrounds defined at config
+        let backgrounds = this.cache.json.get('config').backgrounds;
+        for (let i = 0; i < backgrounds.length; i++) {
+            this.load.image(backgrounds[i] +  '-background', this.get_theme_path(`backgrounds/${backgrounds[i]}.png`));
+            this.log("Load " + this.get_theme_path(`backgrounds/${backgrounds[i]}.png`));
         }
     }
 
@@ -103,7 +105,7 @@ export class FakeOS extends FakeOSScene {
             this.handlerScene?.updateResize(this);
         }
 
-        this.setBackground();
+        this.setWallpaper();
 
         // Render the UI
         this.UI.render();
@@ -121,15 +123,20 @@ export class FakeOS extends FakeOSScene {
     }
 
     /**
-     * Sets the background.
+     * Sets the Camera Wallpaper.
      */
-    public setBackground(): void {
-        this.background = this.add.image(
-            this.width / 2,
-            this.height / 2,
-            'background'
-        ).setOrigin(0.5, 0.5)
-        .setScale(1.5);
+    public setWallpaper(): void {
+        let wallpaper = this.cache.json.get('config').wallpaper;
+        if (wallpaper.match(/[0x]?[0-9A-Fa-f]{6}/g)) {
+            this.cameras.main.setBackgroundColor(wallpaper);
+        } else {
+            this.background = this.add.image(
+                this.width / 2,
+                this.height / 2,
+                'wallpaper'
+            ).setOrigin(0.5, 0.5)
+                .setScale(1.5);
+        }
     }
 
     /**

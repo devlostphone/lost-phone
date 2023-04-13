@@ -190,7 +190,7 @@ export default class CalendarApp extends App {
 
                             // Show event details
                             container2.setInteractive(new Phaser.Geom.Circle(0, 0, 32), Phaser.Geom.Circle.Contains).on('pointerup', () => {
-                                this.addLayer(0xff0000);
+                                this.addLayer();
                                 this.setBackground();
 
                                 // Simple header text

@@ -243,7 +243,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
      * @param element
      */
     public openImage(element: Phaser.GameObjects.Image): void {
-        this.fakeOS.getActiveApp().addLayer(0x333333);
+        this.fakeOS.getActiveApp().addLayer();
         const area = this.fakeOS.getUI().getAppRenderSize();
 
         let zoomedImage = this.fakeOS.add.image(0, 0, element.texture);
@@ -267,7 +267,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
      * @param element
      */
      public openVideo(element: Phaser.GameObjects.Video): void {
-        this.fakeOS.getActiveApp().addLayer(0x333333);
+        this.fakeOS.getActiveApp().addLayer();
         const area = this.fakeOS.getUI().getAppRenderSize();
 
         let zoomedVideo = this.fakeOS.add.video(0, 0, element.getVideoKey());
@@ -294,7 +294,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
      * @param element
      */
     public openFile(element: any): void {
-        this.fakeOS.getActiveApp().addLayer(0x333333);
+        this.fakeOS.getActiveApp().addLayer();
         const area = this.fakeOS.getUI().getAppRenderSize();
 
         let text;

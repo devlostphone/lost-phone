@@ -75,16 +75,10 @@ export default class AppLayer extends Phaser.GameObjects.Container
             .setOrigin(0,0);
         this.add(this.start_point);
 
-        // @TODO: check what to do with background
-        /*this.background = this.fakeOS.add.rectangle(
-            0,
-            0,
-            this.area.width,
-            this.area.height,
-            background ? background : '',
-            background ? 1 : 0
-        ).setOrigin(0,0).setInteractive().setName('background');
-        this.add(this.background);*/
+        if (background !== undefined) {
+            this.fakeOS.UI.setBackground(background);
+        }
+
         this.hasDragZone = false;
 
         if (options['columns'] !== undefined) {

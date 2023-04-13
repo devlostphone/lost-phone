@@ -1,22 +1,15 @@
-/**
- * @TODO: see below
- * - Change background wallpaper to solid color (black)
- * - overall UI overhaul needed (clonify iPhone calendar)
- * - Work on UI date events
- */
-
 import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
 import Button from '../../lib/ui/gameObjects/Button';
 
 /**
- * Calendar App
+ * Calendar app.
  */
 
 export default class CalendarApp extends App {
 
     protected fakeOS: FakeOS;
-    private wallpaper: Phaser.GameObjects.Image;
+    private background: Phaser.GameObjects.Image;
     private objDate: Object;
     private days: Array<Day> = new Array<Day>();
     private currentDate: Date = new Date();
@@ -57,9 +50,8 @@ export default class CalendarApp extends App {
      * @inheritdoc
      */
     public render(): void {
-        // Clear layer
         this.getActiveLayer().clear();
-        this.setWallpaper();
+        this.setBackground();
         this.addGeometry();
         this.switchMonth();
         this.showCalendar();
@@ -199,7 +191,7 @@ export default class CalendarApp extends App {
                             // Show event details
                             container2.setInteractive(new Phaser.Geom.Circle(0, 0, 32), Phaser.Geom.Circle.Contains).on('pointerup', () => {
                                 this.addLayer(0xff0000);
-                                this.setWallpaper();
+                                this.setBackground();
 
                                 // Simple header text
                                 this.getActiveLayer().add(
@@ -312,25 +304,25 @@ export default class CalendarApp extends App {
     }
 
     /**
-     * Set wallpaper texture defined on app preferences.
+     * Set background texture defined on app preferences.
      *
      */
-    protected setWallpaper(): void {
-        let typeOfWallpaper = this.fakeOS.cache.json.get('calendar')['wallpaper']['type'];
-        switch(typeOfWallpaper) {
+    protected setBackground(): void {
+        let typeOfBackground = this.fakeOS.cache.json.get('calendar')['background']['type'];
+        switch(typeOfBackground) {
             case 'solid': {
                 let hours = new Date().getHours();
                 if ( hours >= 9 && hours <= 20 ) {
-                    this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-white-wallpaper', 0);
+                    this.background = this.fakeOS.add.image(0, 0, 'solid-white-background', 0);
                 } else {
-                    this.wallpaper = this.fakeOS.add.image(0, 0, 'solid-black-wallpaper', 0);
+                    this.background = this.fakeOS.add.image(0, 0, 'solid-black-background', 0);
                 }
-                this.wallpaper.setOrigin(0, 0);
-                this.wallpaper.setScale(
-                    this.fakeOS.width / this.wallpaper.width,
-                    this.fakeOS.height / this.wallpaper.height
+                this.background.setOrigin(0, 0);
+                this.background.setScale(
+                    this.fakeOS.width / this.background.width,
+                    this.fakeOS.height / this.background.height
                 );
-                this.getActiveLayer().add(this.wallpaper);
+                this.getActiveLayer().add(this.background);
                 break;
             }
             default: {

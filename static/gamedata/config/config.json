@@ -27,7 +27,7 @@
         "numberPad_delete" : "0xff5624",
         "numberPad_numbers" : "0x361f2e"
     },
-    "wallpapers" : ["default"],
-    "wallpaper"  : "default",
-    "background" : "background"
+    "backgrounds" : ["default", "solid-black", "solid-white", "solid-dark-grey", "solid-light-grey", "dramatic", "fog", "miro", "homescreen", "chat"],
+    "homescreenBackground" : "homescreen",
+    "wallpaper" : "0x0"
 }

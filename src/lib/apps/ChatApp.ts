@@ -13,8 +13,8 @@ export default class ChatApp extends App {
 
     protected chat: any;
     protected contacts: any;
-    protected textOptions: any = { align: "left", fontSize: "24px" };
-    protected choiceTextOptions: any = { align: "left", fontSize: "24px" };
+    protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto-Bold' };
+    protected choiceTextOptions: any = { align: "left", fontSize: "12px", color: '#000' };
     protected newRowOptions = { autoscroll: true };
     protected rowOptions = { autoscroll: 'fast' };
     protected activeContact: number;
@@ -45,6 +45,8 @@ export default class ChatApp extends App {
      */
     public render(): void {
 
+        this.setBackground();
+
         for (let i = 0; i < this.chat.length; i++) {
 
             let lastText = this.getChatLastMessage(this.chat[i], true);
@@ -69,6 +71,18 @@ export default class ChatApp extends App {
             this.contacts.push(contact);
 
             this.addRow(contact);
+        }
+    }
+
+    /**
+     * Set app wallpaper
+     */
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'ChatApp').wallpaper;
+            this.fakeOS.UI.setBackground(background);
         }
     }
 

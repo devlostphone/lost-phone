@@ -27,7 +27,17 @@ export default class HomescreenApp extends App {
      * Renders the homescreen app.
      */
     public render(): void {
+        this.setBackground();
         this.addIconApps();
+    }
+
+    /**
+     * Set app homescreen default background
+     */
+    protected setBackground(): void {
+        let answer = this.fakeOS.cache.json.get('config').homescreenBackground;
+        this.fakeOS.log("Homescreen Background: " + answer);
+        this.fakeOS.UI.setBackground(answer);
     }
 
     /**

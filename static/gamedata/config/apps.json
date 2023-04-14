@@ -37,7 +37,7 @@
         "key"    : "ChatApp",
         "icon"   : "chat.png",
         "configFile" : "chat.json",
-        "wallpaper" : "chat",
+        "wallpaper" : "solid-white",
         "preInstalled": true,
         "hasNotifications": false,
         "favourite": true

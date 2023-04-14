@@ -167,7 +167,7 @@ export default class ChatApp extends App {
         this.activeContact = contact;
         this.fakeOS.log("Opening chat with " + this.chat[this.activeContact].contactName);
         const conversation = this.chat[this.activeContact].conversation;
-        this.addLayer(0x333333);
+        this.addLayer('chat');
 
         // Get last message
         this.lastMessage = this.getChatLastMessageId(this.chat[this.activeContact]);

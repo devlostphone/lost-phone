@@ -243,7 +243,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
      * @param element
      */
     public openImage(element: Phaser.GameObjects.Image): void {
-        this.fakeOS.getActiveApp().addLayer();
+        this.fakeOS.getActiveApp().addLayer('solid-black');
         const area = this.fakeOS.getUI().getAppRenderSize();
 
         let zoomedImage = this.fakeOS.add.image(0, 0, element.texture);

@@ -13,12 +13,14 @@ export default class ChatApp extends App {
 
     protected chat: any;
     protected contacts: any;
-    protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto-Bold' };
+    protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto-Bold', lineSpacing: 5 };
     protected choiceTextOptions: any = { align: "left", fontSize: "12px", color: '#000' };
     protected newRowOptions = { autoscroll: true };
     protected rowOptions = { autoscroll: 'fast' };
     protected activeContact: number;
     protected lastMessage?: string;
+
+    public rows = 24;
 
     /**
      * Class constructor.
@@ -75,7 +77,7 @@ export default class ChatApp extends App {
     }
 
     /**
-     * Set app wallpaper
+     * Set app background
      */
     protected setBackground(image?: string): void {
         if (image !== undefined) {
@@ -167,7 +169,7 @@ export default class ChatApp extends App {
         this.activeContact = contact;
         this.fakeOS.log("Opening chat with " + this.chat[this.activeContact].contactName);
         const conversation = this.chat[this.activeContact].conversation;
-        this.addLayer('solid-black');
+        this.addLayer('chat');
 
         // Get last message
         this.lastMessage = this.getChatLastMessageId(this.chat[this.activeContact]);

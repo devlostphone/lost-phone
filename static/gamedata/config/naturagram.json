@@ -2,9 +2,10 @@
     {
         "id": "nat0001",
         "user": "Wolf012",
+        "location": "Barcelona, Cat",
         "avatar": "gamedata/assets/profiles/calamar.png",
         "pic": "gamedata/assets/pictures/butterfly.jpeg",
-        "text": "Papallona de l'espècie Hipparchia semele que vaig trobar ahir.",
+        "text": "Papallona de l'espècie Hipparchia semele que vaig trobar ahir.\n#papallona\n#hipparchia",
         "likes": "34",
         "comments": [
             {

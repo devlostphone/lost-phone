@@ -43,12 +43,12 @@ export default class ChatBubble extends Phaser.GameObjects.Container
             0, 0,
             text,
             textOptions
-        ).setOrigin(0.5);
+        ).setOrigin(0.5, 0);
         let bubble_author = this.fakeOS.add.text(
             0, 0,
             '',
             textOptions
-        ).setOrigin(0.5);
+        ).setOrigin(0.5, 0);
 
         let applink = this.fakeOS.generateAppLink(text, {
             ...textOptions,
@@ -58,17 +58,15 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         if (applink !== undefined) {
             bubble_text.destroy();
             bubble_text = this.fakeOS.add.existing(applink);
-            bubble_text.setOrigin(0.5);
+            bubble_text.setOrigin(0.5, 0);
             if (bubble_text instanceof Phaser.GameObjects.Image) {
                 this.y += 20;
-                bubble_text.y = -50;
-                bubble_text.setOrigin(0.5, 0);
                 bubble_text.displayWidth = this.fakeOS.getActiveApp().getActiveLayer().area.width / 2;
                 bubble_text.scaleY = bubble_text.scaleX;
             }
             if (author !== undefined) {
                 bubble_author.text =  author + ':\n';
-                bubble_author.y = -68;
+                bubble_author.y = -30;
                 offsetY += 20;
             }
         } else if (author !== undefined) {
@@ -80,7 +78,7 @@ export default class ChatBubble extends Phaser.GameObjects.Container
 
         if (position == 'left') {
             bubble_text.x = -this.fakeOS.getActiveApp().area.width/2 + text_bounds.width/2 + offsetX*3;
-            bubble_author.x = -this.fakeOS.getActiveApp().area.width/2 + text_bounds.width/3;
+            bubble_author.x = -this.fakeOS.getActiveApp().area.width/2 + bubble_author.getBounds().width/2 + offsetX*3;
             color = this.otherColor;
         } else if (position == 'right') {
             bubble_text.x = this.fakeOS.getActiveApp().area.width/2 - text_bounds.width/2 - offsetX*3;
@@ -90,10 +88,16 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         text_bounds = bubble_text.getBounds();
 
         let bubble = this.fakeOS.add.graphics();
+
+        if (time !== undefined && bubble_text.width < 40) {
+            bubble_text.width = 40;
+            text_bounds.width = 40;
+        }
+
         bubble.fillStyle(color, 1);
         bubble.fillRoundedRect(
             bubble_text.x - bubble_text.width/2 - offsetX,
-            bubble_text.y - bubble_text.height/2 - offsetY,
+            text_bounds.top  - offsetY,
             text_bounds.width + (offsetX * 2),
             text_bounds.height + (offsetY * 2) + timeOffset,
             16
@@ -102,29 +106,23 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         const left_bound = bubble_text.getBounds().width / 2;
         const top_bound = bubble_text.getBounds().height / 2;
         let triangle_coords = {
-            x1: { x: - left_bound + bubble_text.x, y: - top_bound },
-            x2: { x: - left_bound + bubble_text.x - 30, y: - top_bound },
-            x3 :{ x: - left_bound + bubble_text.x, y: - top_bound + 25 }
+            x1: { x: - left_bound + bubble_text.x, y: 0 },
+            x2: { x: - left_bound + bubble_text.x - 30, y: 0 },
+            x3 :{ x: - left_bound + bubble_text.x, y:  25 }
         }
 
         if (position == 'right') {
-            // TODO: why + 30?
             triangle_coords['x1']['x'] = left_bound + bubble_text.x + 30;
             triangle_coords['x2']['x'] = left_bound + bubble_text.x + 60;
             triangle_coords['x3']['x'] = left_bound + bubble_text.x + 30;
         }
 
         if (bubble_text instanceof Phaser.GameObjects.Image) {
-            bubble.y = bubble_text.height / 2;
             bubble.x = bubble_text.width / 2 + bubble_text.x - offsetX*3;
 
             if (position == 'right') {
                 bubble.x = bubble_text.width / 2 - bubble_text.x - offsetX*3;
             }
-
-            triangle_coords['x1']['y'] = -offsetY;
-            triangle_coords['x2']['y'] = -offsetY;
-            triangle_coords['x3']['y'] = -offsetY + 25;
         }
         this.add(bubble);
 
@@ -147,14 +145,10 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         if (time !== undefined) {
             let timeText = this.fakeOS.add.text(
                 left_bound + bubble_text.x,
-                top_bound + 10,
+                top_bound * 2 + 10,
                 time
             ).setOrigin(1,0);
             this.add(timeText);
-
-            if (bubble_text instanceof Phaser.GameObjects.Image) {
-                timeText.y = top_bound - bubble_text.y*2 + 10;
-            }
         }
     }
 }

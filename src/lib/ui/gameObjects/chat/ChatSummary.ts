@@ -49,13 +49,18 @@ export default class ChatSummary extends Phaser.GameObjects.Container
         this.background.setStrokeStyle(1, 0x000);
 
         this.contactName = this.fakeOS.add.text(
-            - this.fakeOS.getActiveApp().area.width * 0.1,
-            -this.pic.height / 6,
+            - this.fakeOS.getActiveApp().area.width * 0.15,
+            -this.pic.height / 4,
             contact.contactName,
             textOptions
         );
+
+        if (text.length > 35) {
+            text = text.substring(0, 35) + '...';
+        }
+
         this.lastMessage = this.fakeOS.add.text(
-            - this.fakeOS.getActiveApp().area.width * 0.1,
+            - this.fakeOS.getActiveApp().area.width * 0.15,
             10,
             text,
             textOptions

@@ -10,6 +10,7 @@
     "daysweek": ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"],
     "daysweekshort": ["Dl.", "Dt.", "Dc.", "Dj.", "Dv.", "Ds.", "Dm."],
     "files": "Documents",
+    "follow": "Segueix",
     "download": "Baixa",
     "downloading": "Baixant...",
     "enter-passcode": "Introdueix el PIN per desbloquejar",
@@ -20,6 +21,7 @@
     "getQR": "Obtenir QR",
     "installed": "Instal·lada",
     "is_typing": "...està escrivint...",
+    "likes": "likes",
     "mail": "Correu",
     "month": ["Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"],
     "no-description": "No s'ha proporcionat descripció",
@@ -37,6 +39,7 @@
     "subject": "Assumpte",
     "title": "Títol",
     "toDo": "Tasques",
+    "unfollow": "Deixa de seguir",
     "unlock-screen": "Bloqueig",
     "user-sent-picture": "Ha enviat una imatge"
 }

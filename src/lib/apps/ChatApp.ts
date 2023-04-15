@@ -13,12 +13,14 @@ export default class ChatApp extends App {
 
     protected chat: any;
     protected contacts: any;
-    protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto-Bold' };
+    protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto-Bold', lineSpacing: 5 };
     protected choiceTextOptions: any = { align: "left", fontSize: "12px", color: '#000' };
     protected newRowOptions = { autoscroll: true };
     protected rowOptions = { autoscroll: 'fast' };
     protected activeContact: number;
     protected lastMessage?: string;
+
+    public rows = 24;
 
     /**
      * Class constructor.

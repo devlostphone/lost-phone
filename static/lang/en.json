@@ -15,11 +15,13 @@
     "enter-passcode": "Enter passcode",
     "enter-passcode-failure": "Incorrect passcode. Try again.",
     "favorites": "Favorites",
+    "follow": "Follow",
     "from": "From",
     "gallery": "Galeria",
     "getQR": "Get QR",
     "installed": "Installed",
     "is_typing": "...is typing...",
+    "likes": "likes",
     "mail": "Mail",
     "month": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     "no-description": "No description available",
@@ -37,6 +39,7 @@
     "subject": "Subject",
     "title": "Title",
     "toDo": "To Do",
+    "unfollow": "Un-follow",
     "unlock-screen": "Lock",
     "user-sent-picture": "Sent a picture"
 }

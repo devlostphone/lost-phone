@@ -41,12 +41,30 @@ export default class SocialPost extends Phaser.GameObjects.Container
         this.textOptions = {
             fontSize: "24px",
             align: "left",
+            color: '#1c1c1c',
+            fontFamily: 'Roboto-Bold',
             wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
         };
 
+        this.likeOptions = {
+            fontSize: "22px",
+            align: "left",
+            color: '#1c1c1c',
+            fontFamily: 'Roboto-Bold',
+        };
+
+        this.locationOptions = {
+            fontSize: "22px",
+            align: "left",
+            color: '#404040',
+            fontFamily: 'Roboto-Bold',
+        };
+       
         this.commentOptions = {
             fontSize: "24px",
             align: "left",
+            color: '#1c1c1c',
+            fontFamily: 'Roboto',
             wordWrap: { width: this.fakeOS.width - 110, useAdvancedWrap: true }
         };
 
@@ -82,7 +100,8 @@ export default class SocialPost extends Phaser.GameObjects.Container
         this.location = this.fakeOS.add.text(
             this.avatar.getBounds().right + 20,
             this.author.getBounds().bottom + 10,
-            post['location']
+            post['location'],
+            this.locationOptions
         );
 
         this.pic = this.fakeOS.add.image(
@@ -106,7 +125,8 @@ export default class SocialPost extends Phaser.GameObjects.Container
         this.likes = this.fakeOS.add.text(
             -this.fakeOS.getActiveApp().area.width / 2 + 30,
             this.social_bar.getBounds().bottom + 10,
-            post['likes'] + ' ' + this.fakeOS.getString('likes')
+            post['likes'] + ' ' + this.fakeOS.getString('likes'),
+            this.likeOptions
         );
 
         this.text = this.fakeOS.add.text(

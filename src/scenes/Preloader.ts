@@ -123,6 +123,12 @@ export default class Preloader extends FakeOSScene {
         this.load.image('default-avatar', this.get_theme_path('shaders/default-avatar.png'));
         this.load.spritesheet('typing', this.get_theme_path('sprites/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
 
+        // Lostagram Icons
+        this.load.image('heart-icon', this.get_theme_path('icons/heart-icon.png'));
+        this.load.image('bubble-icon', this.get_theme_path('icons/bubble-icon.png'));
+        this.load.image('share-icon', this.get_theme_path('icons/shareit-icon.png'));
+        this.load.image('bookmark-icon', this.get_theme_path('icons/bookmark-icon.png'));
+        
     }
 
     /**

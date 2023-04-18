@@ -23,6 +23,7 @@ export default class LostagramApp extends App {
      * @inheritdoc
      */
     public render(): void {
+        this.setBackground();
         this.showPosts();
     }
 
@@ -31,4 +32,17 @@ export default class LostagramApp extends App {
             this.addRow(new SocialPost(this.fakeOS, 0, 0, this.posts[i]));
         }
     }
+
+    /**
+     * Set app background
+     */
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'ChatApp').wallpaper;
+            this.fakeOS.UI.setBackground(background);
+        }
+    }
+
 }

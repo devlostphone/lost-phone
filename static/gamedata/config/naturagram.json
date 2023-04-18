@@ -1,34 +1,26 @@
 [
     {
-        "id": "nat0001",
-        "user": "Wolf012",
+        "id": "post-1",
+        "user": "Torre dels Valldaura",
         "location": "Barcelona, Cat",
-        "avatar": "gamedata/assets/profiles/calamar.png",
-        "pic": "gamedata/assets/pictures/butterfly.jpeg",
-        "text": "Papallona de l'espècie Hipparchia semele que vaig trobar ahir.\n#papallona\n#hipparchia",
-        "likes": "34",
-        "comments": [
-            {
-                "user": "Nature_addict_85",
-                "comment": "N'he vist de millors..."
-            },
-            {
-                "user": "Wolf012",
-                "comment": "I jo de millors comentaris."
-            }
-        ]
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-1.png",
+        "text": "Animalia, Annelida, Clitellata Lumbricidae\nCuc de terra\nA l’estiu, quan el nivell de l’aigua de la bassa baixa, el llot de les vores està atapeït de cucs i fulles mortes.\n\n\n#projecteciencies\n#santgervasiverd\n#esgarrifat",
+        "likes": "1",
+        "comments": [ ]
     },
     {
-        "id": "nat0002",
-        "user": "Ladybug",
-        "avatar": "gamedata/assets/profiles/menina.png",
-        "pic": "gamedata/assets/pictures/treebark.jpeg",
-        "text": "Voldria saber quin tipus d'au aprofita aquests forats per fer-hi niu.",
-        "likes": "102",
+        "id": "post-2",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Cat",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-2.png",
+        "text": "Animalia, Pieris, Pieris rapae\nPapallona blanqueta de la col\nS’empaitaven, entraven i sortien de les branques com si fossin flors que no es poguessin estar quietes.\n\n\n#projecteciencies\n#santgervasiverd\n#extasiat",
+        "likes": "1",
         "comments": [
             {
-                "user": "Wolf012",
-                "comment": "Maquíssim!"
+                "user": "@angel",
+                "comment": "Veus visions, nen"
             }
         ]
     }

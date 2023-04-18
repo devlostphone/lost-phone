@@ -141,16 +141,13 @@ export default class MailApp extends App {
      * @param mail
      */
     protected openMail(mail: any): void {
-        // Change wallpaper for better mail reading
-        this.setBackground('solid-white');
-
         // Reset unread_size
         this.unread_size = 0;
 
         this.currentMail = mail['id'];
 
         // Adding a new layer for displaying mail contents.
-        this.addLayer(0x333333);
+        this.addLayer('solid-white');
 
         // Paint header, subject and other contextual information inside dark grey box
         this.getActiveLayer().add(

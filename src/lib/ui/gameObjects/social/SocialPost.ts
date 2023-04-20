@@ -95,7 +95,8 @@ export default class SocialPost extends Phaser.GameObjects.Container
 
         this.fakeOS.addInputEvent('pointerup', () => {
             this.follow_link.text = this.follow_link.text === this.fakeOS.getString('follow') ? this.fakeOS.getString('unfollow') : this.fakeOS.getString('follow');
-        });
+        },
+        this.follow_link);
 
         this.location = this.fakeOS.add.text(
             this.avatar.getBounds().right + 20,

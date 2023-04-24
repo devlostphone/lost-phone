@@ -111,7 +111,7 @@ export default class Preloader extends FakeOSScene {
         // @TODO: collect all pictures inside backgrounds folder. Set default or random if there
         // is more than one images.
         // @TODO: Add support for multiple format images (png, webp, jpeg...)
-
+        
         this.load.image('guide', this.get_theme_path('shaders/720x1280-guide.png'));
 
         this.load.image('lorem-appsum', this.get_theme_path('shaders/iconApp-@2.png'));
@@ -122,7 +122,7 @@ export default class Preloader extends FakeOSScene {
 
         this.load.image('default-avatar', this.get_theme_path('shaders/default-avatar.png'));
         this.load.spritesheet('typing', this.get_theme_path('sprites/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
-
+                
         // Lostagram Icons
         this.load.image('heart-icon', this.get_theme_path('icons/heart-icon.png'));
         this.load.image('bubble-icon', this.get_theme_path('icons/bubble-icon.png'));
@@ -255,7 +255,12 @@ export default class Preloader extends FakeOSScene {
      * Prints a progress bar.
      */
     public progressBar(): void {
-        // simple preload again
+        let iocosLogo = this.add.image(
+            this.canvasWidth / 2,
+            this.canvasHeight / 2 - 64,
+            'ioc-os-logo'
+        ).setOrigin(0.5, 0.5);
+        
         let progressBox = this.add.graphics();
         progressBox.fillStyle(0x0, 0.8);
         progressBox.fillRect(
@@ -278,6 +283,7 @@ export default class Preloader extends FakeOSScene {
         });
 
         this.load.on('complete', () => {
+            iocosLogo.destroy();
             progressBar.destroy();
             progressBox.destroy();
             this.time.addEvent({

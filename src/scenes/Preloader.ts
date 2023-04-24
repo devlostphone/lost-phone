@@ -111,14 +111,14 @@ export default class Preloader extends FakeOSScene {
         // @TODO: collect all pictures inside backgrounds folder. Set default or random if there
         // is more than one images.
         // @TODO: Add support for multiple format images (png, webp, jpeg...)
-        
-        this.load.image('guide', this.get_theme_path('shaders/720x1280-guide.png'));
 
-        this.load.image('lorem-appsum', this.get_theme_path('shaders/iconApp-@2.png'));
-        this.load.image('button-homescreen', this.get_theme_path('shaders/button-homescreen.png'));
-
-        this.load.image('play-button', this.get_theme_path('shaders/play-button.png'));
-        this.load.image('back-button', this.get_theme_path('shaders/back.png'));
+        // OS icons and other related stuff
+        this.load.image('button-homescreen', this.get_theme_path('os/button-homescreen.png'));
+        this.load.image('back-button', this.get_theme_path('os/back.png'));
+        this.load.image('signal', this.get_theme_path('os/signal.png'));
+        this.load.image('wifi', this.get_theme_path('os/wifi.png'));
+        this.load.image('battery', this.get_theme_path('os/battery.png'));
+        this.load.image('play-button', this.get_theme_path('os/play-button.png'));
 
         this.load.image('default-avatar', this.get_theme_path('shaders/default-avatar.png'));
         this.load.spritesheet('typing', this.get_theme_path('sprites/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});

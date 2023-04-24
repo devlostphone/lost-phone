@@ -6,6 +6,7 @@ import { PhoneEvents } from '../events/GameEvents';
 interface UIElements {
     topBar: any,
     bottomBar: any,
+    signal: any,
     clock: any,
     homeButton: any,
     backButton: any,
@@ -52,6 +53,10 @@ export default class phoneUI {
         this.elements = {
             topBar: null,
             bottomBar: null,
+            signal: null,
+            operator: null,
+            wifi: null,
+            battery: null,
             clock: null,
             homeButton: null,
             backButton: null,
@@ -69,6 +74,11 @@ export default class phoneUI {
         this.fixedElements = this.fakeOS.add.container(0,0).setDepth(2000);
         this.createBars();
         this.createButtons();
+        this.createSignal();
+        this.createOperatorProvider();
+        this.createWiFi();
+        this.createBattery();
+        this.createPecentageBatteryNumber();
         this.createClock();
         this.createDrawer();
         this.setBackground('dramatic-wallpaper');
@@ -190,7 +200,7 @@ export default class phoneUI {
             0,
             this.fakeOS.width,
             this.fakeOS.height * 0.05,
-            this.fakeOS.colors.ui.UIBarsColor,
+            '#000',
             1.0
         ).setOrigin(0).setDepth(1000).setInteractive();
 
@@ -200,7 +210,7 @@ export default class phoneUI {
             this.fakeOS.height - this.fakeOS.height * 0.1,
             this.fakeOS.width,
             this.fakeOS.height * 0.1,
-            this.fakeOS.colors.ui.UIBarsColor,
+            '#000',
           1.0
         ).setOrigin(0).setDepth(1000).setInteractive();
 
@@ -237,6 +247,83 @@ export default class phoneUI {
     }
 
     /**
+     * Creates the signal icon at the left-top bar.
+     */
+    protected createSignal(): void {
+        this.fakeOS.log("Creating signal icon");
+        this.elements.signal = this.fakeOS.add.image(
+            this.fakeOS.width * 0.028,
+            this.fakeOS.height * 0.025,
+            'signal'
+        ).setOrigin(0.5).setDepth(1001);        
+        this.container.add(this.elements.signal);
+    }
+
+    /**
+     * Adds operator name at the left-top bar.
+     */
+    protected createOperatorProvider(): void {
+        this.fakeOS.log("Add operator provider name");
+        this.elements.operator = this.fakeOS.add.text(
+            this.fakeOS.width * 0.125,
+            this.fakeOS.height * 0.025,
+            'IOCtel+',
+            {
+                fontFamily: 'RobotoCondensed',
+                fontSize : 28,
+                color: '#ffffff',
+                align: 'left'
+            }
+        ).setOrigin(0.5).setDepth(1001);
+        this.container.add(this.elements.operator);
+    }
+
+    /**
+     * Creates the wifi icon at the left-top bar.
+     */
+    protected createWiFi(): void {
+        this.fakeOS.log("Creating signal icon");
+        this.elements.wifi = this.fakeOS.add.image(
+            this.fakeOS.width * 0.22,
+            this.fakeOS.height * 0.025,
+            'wifi'
+        ).setOrigin(0.5).setDepth(1001);        
+        this.container.add(this.elements.wifi);
+    }
+
+    /**
+     * Creates the battery icon at the right-top bar.
+     */
+    protected createBattery(): void {
+        this.fakeOS.log("Creating battery icon");
+        this.elements.battery = this.fakeOS.add.image(
+            this.fakeOS.width * 0.89,
+            this.fakeOS.height * 0.025,
+            'battery'
+        ).setOrigin(0.5).setDepth(1001);        
+        this.container.add(this.elements.battery);
+    }
+
+    /**
+     * Adds battery percentage number at the right-top bar
+     */
+    protected createPecentageBatteryNumber(): void {
+        this.fakeOS.log("Add percentage battery number");
+        this.elements.percentage = this.fakeOS.add.text(
+            this.fakeOS.width * 0.82,
+            this.fakeOS.height * 0.025,
+            '23%',
+            {
+                fontFamily: 'RobotoCondensed',
+                fontSize : 28,
+                color: '#ffffff',
+                align: 'left'
+            }
+        ).setOrigin(0.5).setDepth(1001);
+        this.container.add(this.elements.percentage);
+    }
+    
+    /**
      * Creates the clock at the top bar.
      */
     protected createClock(): void {
@@ -247,7 +334,7 @@ export default class phoneUI {
             this.fakeOS.height * 0.025,
             {
                 fontFamily: 'RobotoCondensed',
-                fontSize : 32,
+                fontSize : 28,
                 color: '#ffffff',
                 align: 'center'
             }

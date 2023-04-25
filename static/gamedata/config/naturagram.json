@@ -2,7 +2,7 @@
     {
         "id": "post-1",
         "user": "Torre dels Valldaura",
-        "location": "Barcelona, Cat",
+        "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-1.png",
         "text": "Animalia, Annelida, Clitellata Lumbricidae\n\n\nCuc de terra\nA l’estiu, quan el nivell de l’aigua de la bassa baixa, el llot de les vores està atapeït de cucs i fulles mortes.\n\n\n#projecteciencies\n#santgervasiverd\n#esgarrifat",
@@ -17,7 +17,7 @@
     {
         "id": "post-2",
         "user": "Torre dels Valldaura",
-        "location": "Barcelona, Cat",
+        "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-2.png",
         "text": "Animalia, Steatoda, Steatoda bipunctata\n\n\nAvui, una aranya despenjada d’una branca.\n\n\n#projecteciencies\n#santgervasiverd\n#fràgil",
@@ -36,7 +36,7 @@
     {
         "id": "post-3",
         "user": "Torre dels Valldaura",
-        "location": "Barcelona, Cat",
+        "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-3.png",
         "text": "Animalia, Pieris, Pieris rapae\n\n\nPapallona blanqueta de la col\nS’empaitaven, entraven i sortien de les branques com si fossin flors que no es poguessin estar quietes.\n\n\n#projecteciencies\n#santgervasiverd\n#extasiat",
@@ -51,7 +51,7 @@
     {
         "id": "post-4",
         "user": "Torre dels Valldaura",
-        "location": "Barcelona, Cat",
+        "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-4.png",
         "text": "Plantae, Disphyscium, Disphyscium foliosum\n\n\nLa molsa\n\n\n#projecteciencies\n#santgervasiverd\n#aïllat",
@@ -61,7 +61,7 @@
     {
         "id": "post-5",
         "user": "Torre dels Valldaura",
-        "location": "Barcelona, Cat",
+        "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-5.png",
         "text": "Plantae, Pteridium,Pteridium aquilinum\n\nSota els arbres tot és més fosc. La molsa i les falgueres amb cargolins darrera de les fulles que fan ventall tenen verds profunds\n\n\n#projecteciencies #santgervasiverd #apartat",
@@ -84,7 +84,7 @@
     {
         "id": "post-6",
         "user": "Torre dels Valldaura",
-        "location": "Barcelona, Cat",
+        "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-6.png",
         "text": "Animalia, Apis, Apis mellifera\n\n\nAvui, una abella morta. M’agrada estar-hi tot sol, al jardí. Sempre hi trobo coses noves\n\n\n#projecteciencies\n#santgervasiverd\n#pensarós",
@@ -94,7 +94,7 @@
     {
         "id": "post-7",
         "user": "Torre dels Valldaura",
-        "location": "Barcelona, Cat",
+        "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-7.png",
         "text": "Plantae, Castanea, Castanea Sativa Castanyers \n\n\nEls castanyers a banda i banda del caminal que va del reixat a casa: al fons, els tres pisos de la torre, amb les dues torratxes i amb les teulades de rajola verda.\n\nAviat, també brotaran les peònies i les begònies dels parterres dels costats del passeig dels castanyers.\n\n\n#projecteciencies\n#santgervasiverd\n#orgullós",
@@ -121,7 +121,7 @@
     {
         "id": "post-8",
         "user": "Torre dels Valldaura",
-        "location": "Barcelona, Cat",
+        "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-8.png",
         "text": "Plantae, Lilium, Lilium candidum\n\n\nLliri blanc\n\n\n#projecteciencies\n#santgervasiverd\n#tranquil",
@@ -141,10 +141,10 @@
             }
         ]
     },
-     {
+    {
         "id": "post-9",
         "user": "Torre dels Valldaura",
-        "location": "Barcelona, Cat",
+        "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-9.png",
         "text": "Animalia, Hymenoptera: Formicidae, Formigues\n\n\nLes agafo d’una a una a la sortida dels caus i les fico en una capsa grossa fins que s’assequen i es tornen una truita negra.\n\n\n#projecteciencies\n#santgervasiverd\n#fascinat",
@@ -155,5 +155,74 @@
                 "comment": "I la truita, te la menges? Això sembla un joc de nens de casa bona, més que no un treball de ciències 🫣"
             }
         ]
+    },
+    {
+        "id": "post-10",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Catalunya",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-10.png",
+        "text": "Animalia, Aeshna, Aeshna affinis\nEspiadimonis blau\n\n\nHe capturat aquest espiadimonis tan gros. El tindré al meu costat a la tauleta de nit perquè em faci companyia. \n\n\n#projecteciencies\n#santgervasiverd\n#content",
+        "likes": "4",
+        "comments": [
+            {
+                "user": "@RamonFValldaura",
+                "comment": "Pobre Jaume, si es queda sense el seu amic no podrà dormir."
+            },
+            {
+                "user": "@angel",
+                "comment": "Ramon, no deus estar pensant el mateix que jo…?"
+            }
+        ]
+    },
+    {
+        "id": "post-11",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Catalunya",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-11.png",
+        "text": "Animalia, Streptopelia, Streptopelia turtur\nTórtora\n\n\nDe color de cafè amb llet i amb un collaret negre a mig coll. Fan els nius en branques altes, parrupegen constantment… Són ocells de bruixa que piquen els ulls i se’ls mengen.\n\n\n#projecteciencies\n#santgervasiverd\n#assetjat",
+        "likes": "1",
+        "comments": []
+    },
+    {
+        "id": "post-12",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Catalunya",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-12.png",
+        "text": "Plantae, Hedera, Hedera helix\nHeura\n\n\nL’heura s’arrossega per terra i fa raïms, uns granets negres, apilotats, que tenen un gust amarg.\n\n\n#projecteciencies\n#santgervasiverd\n#desolat",
+        "likes": "5",
+        "comments": [
+            {
+                "user": "@RamonFValldaura",
+                "comment": "Germanet, ja ho sabies que m’agrada venir a mirar l’heura de la bassa i pixar-hi..."
+            }
+        ]
+    },
+    {
+        "id": "post-13",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Catalunya",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-13.png",
+        "text": "Plantae, Laurus, Laurus nobilis\nLlorer\n\n\nUna nit de tempesta, un llamp va esqueixar la branca mare del llorer… De la soca, si la rasco amb una pedra cantelluda, en surt suc a poc a poc.\n\n\n#projecteciencies\n#santgervasiverd\n#amenaçat",
+        "likes": "6",
+        "comments": [
+            {
+                "user": "@MariaFarriols",
+                "comment": "El llorer, quan el vent el fa gronxar, sembla un mar d’aigua negra"
+            }
+        ]
+    },
+    {
+        "id": "post-14",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Catalunya",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-14.png",
+        "text": "Plantae, Wisteria, Wisteria sinensis\nGlicina\n\n\nUna glicina de casa meva, al costat dels bancs de pedra\n\n\n#projecteciencies\n#santgervasiverd\n#expectant",
+        "likes": "4",
+        "comments": []
     }
 ]

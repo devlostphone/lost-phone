@@ -5,9 +5,14 @@
         "location": "Barcelona, Cat",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-1.png",
-        "text": "Animalia, Annelida, Clitellata Lumbricidae\nCuc de terra\nA l’estiu, quan el nivell de l’aigua de la bassa baixa, el llot de les vores està atapeït de cucs i fulles mortes.\n\n\n#projecteciencies\n#santgervasiverd\n#esgarrifat",
+        "text": "Animalia, Annelida, Clitellata Lumbricidae\n\n\nCuc de terra\nA l’estiu, quan el nivell de l’aigua de la bassa baixa, el llot de les vores està atapeït de cucs i fulles mortes.\n\n\n#projecteciencies\n#santgervasiverd\n#esgarrifat",
         "likes": "1",
-        "comments": [ ]
+        "comments": [
+            {
+                "user": "@angel",
+                "comment": "Quin final, Jaume..."
+            }
+        ]
     },
     {
         "id": "post-2",
@@ -15,13 +20,65 @@
         "location": "Barcelona, Cat",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-2.png",
-        "text": "Animalia, Pieris, Pieris rapae\nPapallona blanqueta de la col\nS’empaitaven, entraven i sortien de les branques com si fossin flors que no es poguessin estar quietes.\n\n\n#projecteciencies\n#santgervasiverd\n#extasiat",
+        "text": "Animalia, Steatoda, Steatoda bipunctata\n\n\nAvui, una aranya despenjada d’una branca.\n\n\n#projecteciencies\n#santgervasiverd\n#fràgil",
+        "likes": "3",
+        "comments": [
+            {
+                "user": "@RamonFValldaura",
+                "comment": "Mira, Maria, com la que ens fregà el front el dia que jugàvem a caminar d’esquena i caiguérem dos, tu i jo, a l’aigua. Com xisclàrem 🤭"
+            },
+            {
+                "user": "@MariaFarriols",
+                "comment": "I tant que ho recordo, Ramon 🥰"
+            }            
+        ]
+    },
+    {
+        "id": "post-3",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Cat",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-3.png",
+        "text": "Animalia, Pieris, Pieris rapae\n\n\nPapallona blanqueta de la col\nS’empaitaven, entraven i sortien de les branques com si fossin flors que no es poguessin estar quietes.\n\n\n#projecteciencies\n#santgervasiverd\n#extasiat",
         "likes": "1",
         "comments": [
             {
                 "user": "@angel",
-                "comment": "Veus visions, nen"
+                "comment": "Veus visions, nen... ja té raó la teva àvia!"
             }
         ]
-    }
+    },
+    {
+        "id": "post-4",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Cat",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-4.png",
+        "text": "Plantae, Disphyscium, Disphyscium foliosum\n\n\nLa molsa\n\n\n#projecteciencies\n#santgervasiverd\n#aïllat",
+        "likes": "1",
+        "comments": [ ]
+    },
+    {
+        "id": "post-5",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Cat",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-5.png",
+        "text": "Plantae, Pteridium,Pteridium aquilinum\n\nSota els arbres tot és més fosc. La molsa i les falgueres amb cargolins darrera de les fulles que fan ventall tenen verds profunds\n\n\n#projecteciencies #santgervasiverd #apartat",
+        "likes": "1",
+        "comments": [
+            {
+                "user": "@MariaFarriols",
+                "comment": "Ja t’has tornat a quedar adormit a sota dels arbres?!"
+            },
+            {
+                "user": "@RamonFValldaura",
+                "comment": "I sort perquè si no adéu al tip de sargantanes que hem matat! Fins a 5! Després d’estabornir-les, els he tallat la cua amb el filferro 🐉"
+            },
+            {
+                "user": "@MariaFarriols",
+                "comment": "Ens haguessis  aigualit la festa amb tot allò dels drets dels animals, oi, Jaume? 🦎🦎🦎🤪"
+            }           
+        ]
+    }    
 ]

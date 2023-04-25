@@ -44,7 +44,7 @@
         "comments": [
             {
                 "user": "@angel",
-                "comment": "Veus visions, nen... ja té raó la teva àvia!"
+                "comment": "Veus visions, nen... ja té raó, la teva àvia!"
             }
         ]
     },
@@ -80,5 +80,80 @@
                 "comment": "Ens haguessis  aigualit la festa amb tot allò dels drets dels animals, oi, Jaume? 🦎🦎🦎🤪"
             }           
         ]
-    }    
+    },
+    {
+        "id": "post-6",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Cat",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-6.png",
+        "text": "Animalia, Apis, Apis mellifera\n\n\nAvui, una abella morta. M’agrada estar-hi tot sol, al jardí. Sempre hi trobo coses noves\n\n\n#projecteciencies\n#santgervasiverd\n#pensarós",
+        "likes": "5",
+        "comments": [ ]
+    },
+    {
+        "id": "post-7",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Cat",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-7.png",
+        "text": "Plantae, Castanea, Castanea Sativa Castanyers \n\n\nEls castanyers a banda i banda del caminal que va del reixat a casa: al fons, els tres pisos de la torre, amb les dues torratxes i amb les teulades de rajola verda.\n\nAviat, també brotaran les peònies i les begònies dels parterres dels costats del passeig dels castanyers.\n\n\n#projecteciencies\n#santgervasiverd\n#orgullós",
+        "likes": "3",
+        "comments": [
+            {
+                "user": "@RamonFValldaura",
+                "comment": "Em recorden al papà quan surt de casa, caminant-hi per sota fins a la porteta del costat del reixat…"
+            },
+            {
+                "user": "@MariaFarriols",
+                "comment": "Sííí! I ja sabem què fa sempre després…"
+            },
+            {
+                "user": "@TorredelsValldaura",
+                "comment": "Riiiiinng 🦁"
+            },
+            {
+                "user": "@angel",
+                "comment": "Mi-te’ls, els 3 germanets Farriols, que ben avinguts avui, parlant de la nissaga i de la propietat! 💰✊"
+            }
+        ]
+    },
+    {
+        "id": "post-8",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Cat",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-8.png",
+        "text": "Plantae, Lilium, Lilium candidum\n\n\nLliri blanc\n\n\n#projecteciencies\n#santgervasiverd\n#tranquil",
+        "likes": "3",
+        "comments": [
+            {
+                "user": "@angel",
+                "comment": "Jaumeeeee! Tu sempre amb el lliri a la mà!"
+            },
+            {
+                "user": "@RamonFValldaura",
+                "comment": "Quines fulles, orelles d’ase"
+            },
+            {
+                "user": "@MariaFarriols",
+                "comment": "🤣🤣🤣"
+            }
+        ]
+    },
+     {
+        "id": "post-9",
+        "user": "Torre dels Valldaura",
+        "location": "Barcelona, Cat",
+        "avatar": "gamedata/assets/avatars/torre.png",
+        "pic": "gamedata/assets/lostagram/post-9.png",
+        "text": "Animalia, Hymenoptera: Formicidae, Formigues\n\n\nLes agafo d’una a una a la sortida dels caus i les fico en una capsa grossa fins que s’assequen i es tornen una truita negra.\n\n\n#projecteciencies\n#santgervasiverd\n#fascinat",
+        "likes": "2",
+        "comments": [
+            {
+                "user": "@angel",
+                "comment": "I la truita, te la menges? Això sembla un joc de nens de casa bona, més que no un treball de ciències 🫣"
+            }
+        ]
+    }
 ]

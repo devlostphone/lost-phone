@@ -51,7 +51,7 @@ export default class MailApp extends App {
         if (image !== undefined) {
             this.fakeOS.UI.setBackground(image);
         } else {
-            let wallpaper = this.fakeOS.cache.json.get('apps').find(app => app.key == 'MailApp').wallpaper;
+            let wallpaper = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'MailApp').wallpaper;
             this.fakeOS.UI.setBackground(wallpaper);
         }
     }
@@ -67,7 +67,7 @@ export default class MailApp extends App {
             let id = this.mails[i]['id'];
             // Check if can be shown
             if (!this.fakeOS.checkDone(this.mails[i]['condition'])) continue;
-            if (!this.fakeOS.checkDone(id)) this.unread_size += 1;            
+            if (!this.fakeOS.checkDone(id)) this.unread_size += 1;
         }
 
         // Display header mail info
@@ -181,7 +181,7 @@ export default class MailApp extends App {
             color: '#ccc'
 });
         this.getActiveLayer().add([subject, from_user, date, to_user]);
-        
+
         let txt;
         if (mail['file']) {
             fetch(mail['file'])

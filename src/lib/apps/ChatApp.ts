@@ -13,7 +13,7 @@ export default class ChatApp extends App {
 
     protected chat: any;
     protected contacts: any;
-    protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto-Bold', lineSpacing: 5 };
+    protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto', lineSpacing: 5 };
     protected choiceTextOptions: any = { align: "left", fontSize: "12px", color: '#000' };
     protected newRowOptions = { autoscroll: true };
     protected rowOptions = { autoscroll: 'fast' };
@@ -83,7 +83,7 @@ export default class ChatApp extends App {
         if (image !== undefined) {
             this.fakeOS.UI.setBackground(image);
         } else {
-            let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'ChatApp').wallpaper;
+            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'ChatApp').wallpaper;
             this.fakeOS.UI.setBackground(background);
         }
     }
@@ -198,8 +198,8 @@ export default class ChatApp extends App {
     protected createTopBar(conversation: any) {
         let topBar = new ChatTopBar(
             this.fakeOS,
-            300,
-            20,
+            280,
+            this.fakeOS.getUI().elements.topBar.height + 30,
             conversation
         );
         this.fakeOS.getUI().fixedElements?.add(topBar);

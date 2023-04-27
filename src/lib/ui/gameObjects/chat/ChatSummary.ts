@@ -52,7 +52,7 @@ export default class ChatSummary extends Phaser.GameObjects.Container
             - this.fakeOS.getActiveApp().area.width * 0.15,
             -this.pic.height / 4,
             contact.contactName,
-            textOptions
+            {...textOptions, fontFamily: 'Roboto-Bold'}
         );
 
         if (text.length > 35) {

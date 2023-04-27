@@ -10,7 +10,11 @@ interface UIElements {
     clock: any,
     homeButton: any,
     backButton: any,
-    drawer: any
+    drawer: any,
+    battery: any,
+    operator: any,
+    wifi: any,
+    percentage: any
 }
 
 /**
@@ -60,7 +64,8 @@ export default class phoneUI {
             clock: null,
             homeButton: null,
             backButton: null,
-            drawer: null
+            drawer: null,
+            percentage: null
         };
         this.isDrawerOpen = false;
     }
@@ -71,7 +76,7 @@ export default class phoneUI {
     public render(): void {
         this.fakeOS.log('Loading UI');
         this.container = this.fakeOS.add.container(0,0).setDepth(1000);
-        this.fixedElements = this.fakeOS.add.container(0,0).setDepth(2000);
+        this.fixedElements = this.fakeOS.add.container(0,0).setDepth(1100);
         this.createBars();
         this.createButtons();
         this.createSignal();
@@ -123,10 +128,10 @@ export default class phoneUI {
     /**
      * Sets the default FakeOS background defined at App settings
      */
-    
+
     // @TODO: Set background depending on gpu capabilites client: canvas or webgl.
     public setBackground(expr: string): void {
-        let keyTexture;
+        let keyTexture = '';
         let background;
         let arrObjects = this.fakeOS.children.getChildren();
 
@@ -200,7 +205,7 @@ export default class phoneUI {
             0,
             this.fakeOS.width,
             this.fakeOS.height * 0.05,
-            '#000',
+            0x000000,
             1.0
         ).setOrigin(0).setDepth(1000).setInteractive();
 
@@ -210,7 +215,7 @@ export default class phoneUI {
             this.fakeOS.height - this.fakeOS.height * 0.1,
             this.fakeOS.width,
             this.fakeOS.height * 0.1,
-            '#000',
+            0x000000,
           1.0
         ).setOrigin(0).setDepth(1000).setInteractive();
 
@@ -232,7 +237,7 @@ export default class phoneUI {
             'button-homescreen'
         ).setInteractive()
         .setOrigin(0.5, 0.5)
-        .setDepth(1001);
+        .setDepth(1200);
 
         // Create back button
         this.elements.backButton = this.fakeOS.add.image(
@@ -240,7 +245,7 @@ export default class phoneUI {
             this.fakeOS.height - this.fakeOS.height * 0.05,
             'back-button'
         ).setVisible(false)
-        .setDepth(1001);
+        .setDepth(1200);
 
         this.container.add(this.elements.homeButton);
         this.container.add(this.elements.backButton);
@@ -255,7 +260,7 @@ export default class phoneUI {
             this.fakeOS.width * 0.028,
             this.fakeOS.height * 0.025,
             'signal'
-        ).setOrigin(0.5).setDepth(1001);        
+        ).setOrigin(0.5).setDepth(1200);
         this.container.add(this.elements.signal);
     }
 
@@ -270,11 +275,11 @@ export default class phoneUI {
             'IOCtel+',
             {
                 fontFamily: 'RobotoCondensed',
-                fontSize : 28,
+                fontSize : '28px',
                 color: '#ffffff',
                 align: 'left'
             }
-        ).setOrigin(0.5).setDepth(1001);
+        ).setOrigin(0.5).setDepth(1200);
         this.container.add(this.elements.operator);
     }
 
@@ -287,7 +292,7 @@ export default class phoneUI {
             this.fakeOS.width * 0.22,
             this.fakeOS.height * 0.025,
             'wifi'
-        ).setOrigin(0.5).setDepth(1001);        
+        ).setOrigin(0.5).setDepth(1200);
         this.container.add(this.elements.wifi);
     }
 
@@ -300,7 +305,7 @@ export default class phoneUI {
             this.fakeOS.width * 0.89,
             this.fakeOS.height * 0.025,
             'battery'
-        ).setOrigin(0.5).setDepth(1001);        
+        ).setOrigin(0.5).setDepth(1200);
         this.container.add(this.elements.battery);
     }
 
@@ -315,14 +320,14 @@ export default class phoneUI {
             '23%',
             {
                 fontFamily: 'RobotoCondensed',
-                fontSize : 28,
+                fontSize : '28px',
                 color: '#ffffff',
                 align: 'left'
             }
-        ).setOrigin(0.5).setDepth(1001);
+        ).setOrigin(0.5).setDepth(1200);
         this.container.add(this.elements.percentage);
     }
-    
+
     /**
      * Creates the clock at the top bar.
      */
@@ -338,7 +343,7 @@ export default class phoneUI {
                 color: '#ffffff',
                 align: 'center'
             }
-        ).setOrigin(0.5, 0.5).setDepth(1001);
+        ).setOrigin(0.5, 0.5).setDepth(1200);
 
         this.container.add(this.elements.clock);
     }
@@ -348,8 +353,7 @@ export default class phoneUI {
      */
     protected createDrawer(): void {
         this.fakeOS.log('Creating drawer');
-        this.elements.drawer = new NotificationDrawer(this.fakeOS, 0, 0).setDepth(1001);
-        this.elements.drawer.refreshNotifications();
+        this.elements.drawer = new NotificationDrawer(this.fakeOS, 0, 0).setDepth(1200);
 
         this.container.add(this.elements.drawer);
     }
@@ -363,7 +367,6 @@ export default class phoneUI {
             () => {
                 this.fakeOS.log('Refreshing notifications');
                 this.fakeOS.checkNew();
-                this.elements.drawer.refreshNotifications();
                 this.elements.drawer.update_notification_counter();
             }
         );

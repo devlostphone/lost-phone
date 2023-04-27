@@ -89,7 +89,7 @@ export class FakeOS extends FakeOSScene {
         for (let i = 0; i < backgrounds.length; i++) {
             this.load.image(backgrounds[i] +  '-background', this.get_theme_path(`backgrounds/${backgrounds[i]}.png`));
             console.info("Load " + this.get_theme_path(`backgrounds/${backgrounds[i]}.png`));
-        }        
+        }
     }
 
     /**
@@ -123,7 +123,7 @@ export class FakeOS extends FakeOSScene {
     }
 
     /**
-     * Sets the Camera Wallpaper. 
+     * Sets the Camera Wallpaper.
      */
     public setWallpaper(): void {
         let wallpaper = this.cache.json.get('config').wallpaper;

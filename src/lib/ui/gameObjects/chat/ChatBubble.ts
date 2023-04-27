@@ -47,7 +47,7 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         let bubble_author = this.fakeOS.add.text(
             0, 0,
             '',
-            textOptions
+            {...textOptions, fontFamily: 'Roboto-Bold'}
         ).setOrigin(0.5, 0);
 
         let applink = this.fakeOS.generateAppLink(text, {

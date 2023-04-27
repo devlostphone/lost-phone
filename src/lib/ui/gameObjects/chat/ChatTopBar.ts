@@ -31,6 +31,7 @@ export default class ChatTopBar extends Phaser.GameObjects.Container
         if (contact.contactPic != null) {
             let avatar_x = - this.fakeOS.getActiveApp().area.width * 0.3;
             this.pic = this.fakeOS.add.image(avatar_x, 11, contact.id);
+            // @TODO: this doesn't affect the scale of profile picture
             this.pic.setScale(0.5);
             this.add(this.pic);
         }

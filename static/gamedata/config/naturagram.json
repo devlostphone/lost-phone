@@ -1,6 +1,7 @@
 [
     {
         "id": "post-1",
+        "title": "Animalia, Annelida, Clitellata Lumbricidae",
         "user": "Torre dels Valldaura",
         "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
@@ -16,6 +17,7 @@
     },
     {
         "id": "post-2",
+        "title": "Animalia, Steatoda, Steatoda bipunctata",
         "user": "Torre dels Valldaura",
         "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
@@ -30,8 +32,9 @@
             {
                 "user": "@MariaFarriols",
                 "comment": "I tant que ho recordo, Ramon 🥰"
-            }            
-        ]
+            }
+        ],
+        "condition": null
     },
     {
         "id": "post-3",
@@ -78,7 +81,7 @@
             {
                 "user": "@MariaFarriols",
                 "comment": "Ens haguessis  aigualit la festa amb tot allò dels drets dels animals, oi, Jaume? 🦎🦎🦎🤪"
-            }           
+            }
         ]
     },
     {

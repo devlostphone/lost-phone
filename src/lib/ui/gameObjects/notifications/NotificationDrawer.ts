@@ -328,7 +328,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             this.drawerArea.x,
             this.drawerArea.y,
             this.drawerArea.width,
-            this.drawerArea.height
+            this.notificationList.getBounds().height
         ), Phaser.Geom.Rectangle.Contains);
         this.fakeOS.input.setDraggable(this.notificationList);
 
@@ -386,7 +386,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         // TO DO: change min
         this.notificationList.y = Math.round(Phaser.Math.Clamp(
             this.notificationList.y - deltaY,
-            -(this.notificationList.getBounds().height),
+            -(this.notificationList.getBounds().height) + this.fakeOS.height - 200,
             this.UI.elements.topBar.height
         ));
     }

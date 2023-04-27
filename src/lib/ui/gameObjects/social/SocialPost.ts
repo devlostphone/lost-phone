@@ -9,7 +9,10 @@ export default class SocialPost extends Phaser.GameObjects.Container
     protected fakeOS: FakeOS;
     protected textOptions: any;
     protected commentOptions: any;
+    protected likeOptions: any;
+    protected locationOptions: any;
 
+    public id: string;
     public background: Phaser.GameObjects.Rectangle;
     public pic: Phaser.GameObjects.Image;
     public text: Phaser.GameObjects.Text;
@@ -38,6 +41,8 @@ export default class SocialPost extends Phaser.GameObjects.Container
         super(scene, x, y, []);
         this.fakeOS = scene;
 
+        this.id = post.id;
+
         this.textOptions = {
             fontSize: "24px",
             align: "left",
@@ -59,7 +64,7 @@ export default class SocialPost extends Phaser.GameObjects.Container
             color: '#404040',
             fontFamily: 'Roboto-Bold',
         };
-       
+
         this.commentOptions = {
             fontSize: "24px",
             align: "left",

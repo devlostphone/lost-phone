@@ -367,6 +367,7 @@ export default class phoneUI {
             () => {
                 this.fakeOS.log('Refreshing notifications');
                 this.fakeOS.checkNew();
+                this.elements.drawer.refreshNotifications();
                 this.elements.drawer.update_notification_counter();
             }
         );

@@ -19,6 +19,7 @@ export default class ChatApp extends App {
     protected rowOptions = { autoscroll: 'fast' };
     protected activeContact: number;
     protected lastMessage?: string;
+    protected header?: Phaser.GameObjects.Text;
 
     public rows = 24;
 
@@ -52,12 +53,13 @@ export default class ChatApp extends App {
         // Add header
         this.header = this.fakeOS.add.text(
             0, 0,
-            "Xats",
+            this.fakeOS.getString('chats'),
             { align: "left", fontSize: "64px", color: '#000', fontFamily: 'Roboto-Bold' }
         );
 
-        this.addRow(this.header, { x: 0, position: Phaser.Display.Align.LEFT });
-        
+        this.addRow(this.header, {'position': Phaser.Display.Align.TOP_LEFT});
+        this.header.setPadding(30,40,0,20);
+
         for (let i = 0; i < this.chat.length; i++) {
 
             let lastText = this.getChatLastMessage(this.chat[i], true);

@@ -16,12 +16,21 @@ export default class SettingsApp extends App {
      */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
+        this.textOptions = {
+            fontSize: "24px",
+            align: "left",
+            color: '#1c1c1c',
+            fontFamily: 'Roboto-Bold',
+            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+        };
+
     }
 
     /**
      * @inheritdoc
      */
     public render(): void {
+        this.setBackground();
         this.showTitle();
         this.showOptions();
     }
@@ -30,11 +39,14 @@ export default class SettingsApp extends App {
      * Shows app title.
      */
     public showTitle(): void {
-        this.addRow(this.fakeOS.add.text(0,0,this.fakeOS.getString('settings')));
+        this.addRow(this.fakeOS.add.text(0,0,
+                                         this.fakeOS.getString('settings'),
+                                         this.textOptions
+                                        ));
         this.addRow(this.fakeOS.add.line(0,0,
             0, 0,
             this.fakeOS.width*0.8, 0,
-            0xffffff
+            0x0
         ));
     }
 
@@ -148,5 +160,17 @@ export default class SettingsApp extends App {
         }, this.qrtext);
 
         this.fakeOS.textures.off('onload');
+    }
+
+    /**
+     * Set app background
+     */
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'SettingsApp').background;
+            this.fakeOS.UI.setBackground(background);
+        }
     }
 }

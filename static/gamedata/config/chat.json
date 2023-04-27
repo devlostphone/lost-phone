@@ -2,7 +2,7 @@
   {
     "id": "contact001",
     "contactName": "Àvia",
-    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "contactPic": "gamedata/assets/profiles/avia.png",
     "lastMessage": "c000-0049",
     "conversation": {
       "c000-0001": {
@@ -421,7 +421,7 @@
   {
     "id": "contact002",
     "contactName": "Família Farriols Valldaura ",
-    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "contactPic": "gamedata/assets/profiles/familia.png",
     "lastMessage": "c59-60",
     "conversation": {
       "c00-01": {
@@ -913,7 +913,7 @@
   {
     "id": "contact003",
     "contactName": "Grup de germans",
-    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "contactPic": "gamedata/assets/profiles/germans.png",
     "lastMessage": "m77",
     "conversation": {
       "m0": {
@@ -1608,9 +1608,9 @@
     }
   },
   {
-    "id": "contact003",
+    "id": "contact004",
     "contactName": "Rosa",
-    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "contactPic": "gamedata/assets/profiles/rosa.png",
     "lastMessage": "m22",
     "conversation": {
       "m0": {
@@ -1820,9 +1820,9 @@
     }
   },
   {
-    "id": "contact003",
+    "id": "contact005",
     "contactName": "Armanda",
-    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "contactPic": "gamedata/assets/profiles/armanda.png",
     "lastMessage": "m27",
     "conversation": {
       "m0": {
@@ -2067,9 +2067,9 @@
     }
   },
   {
-    "id": "contact003",
+    "id": "contact006",
     "contactName": "Àngel",
-    "contactPic": "gamedata/assets/profiles/profile-0.png",
+    "contactPic": "gamedata/assets/profiles/angel.png",
     "lastMessage": "m27",
     "conversation": {
       "m0": {

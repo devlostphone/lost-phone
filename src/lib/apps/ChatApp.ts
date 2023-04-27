@@ -49,6 +49,15 @@ export default class ChatApp extends App {
 
         this.setBackground();
 
+        // Add header
+        this.header = this.fakeOS.add.text(
+            0, 0,
+            "Xats",
+            { align: "left", fontSize: "64px", color: '#000', fontFamily: 'Roboto-Bold' }
+        );
+
+        this.addRow(this.header, { x: 0, position: Phaser.Display.Align.LEFT });
+        
         for (let i = 0; i < this.chat.length; i++) {
 
             let lastText = this.getChatLastMessage(this.chat[i], true);

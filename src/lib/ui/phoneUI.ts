@@ -14,7 +14,8 @@ interface UIElements {
     battery: any,
     operator: any,
     wifi: any,
-    percentage: any
+    percentage: any,
+    brokenScreen: any
 }
 
 /**
@@ -92,6 +93,10 @@ export default class phoneUI {
         this.addEventListeners();
         this.addInputListeners();
         this.applyMask();
+
+        if (this.fakeOS.isScreenBroken) {
+            this.createBrokenScreen();
+        }
     }
 
     /**
@@ -367,7 +372,6 @@ export default class phoneUI {
             () => {
                 this.fakeOS.log('Refreshing notifications');
                 this.fakeOS.checkNew();
-                this.elements.drawer.refreshNotifications();
                 this.elements.drawer.update_notification_counter();
             }
         );
@@ -442,5 +446,21 @@ export default class phoneUI {
         } else {
             this.elements.backButton.setVisible(false);
         }
+    }
+
+    protected createBrokenScreen() {
+
+        let broken_screen = this.fakeOS.add.image(
+            0,0,
+            'broken-screen'
+        ).setOrigin(0,0)
+        .setDepth(3000);
+
+        broken_screen.setScale(
+            this.fakeOS.width / broken_screen.width,
+            this.fakeOS.height / broken_screen.height
+        );
+
+        this.elements.brokenScreen = broken_screen;
     }
 }

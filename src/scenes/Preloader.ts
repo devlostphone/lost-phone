@@ -122,13 +122,15 @@ export default class Preloader extends FakeOSScene {
 
         this.load.image('default-avatar', this.get_theme_path('shaders/default-avatar.png'));
         this.load.spritesheet('typing', this.get_theme_path('sprites/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
-                
+
         // Lostagram Icons
         this.load.image('heart-icon', this.get_theme_path('icons/heart-icon.png'));
         this.load.image('bubble-icon', this.get_theme_path('icons/bubble-icon.png'));
         this.load.image('share-icon', this.get_theme_path('icons/shareit-icon.png'));
         this.load.image('bookmark-icon', this.get_theme_path('icons/bookmark-icon.png'));
-        
+
+        let config = this.cache.json.get('config');
+        this.load.image('broken-screen', this.get_theme_path('backgrounds/' + config.isScreenBroken));
     }
 
     /**
@@ -228,15 +230,6 @@ export default class Preloader extends FakeOSScene {
         let theme = 'themes/' + this.cache.json.get('config')['theme']+'/';
         let defaultTheme = 'themes/default/';
 
-        /*let http = new XMLHttpRequest();
-        http.open('HEAD', theme+path, false);
-        http.send();
-
-        if (http.status != 404) {
-            return theme+path;
-        } else {
-            return defaultTheme+path;
-        }*/
         return theme+path;
     }
 
@@ -260,7 +253,7 @@ export default class Preloader extends FakeOSScene {
             this.canvasHeight / 2 - 64,
             'ioc-os-logo'
         ).setOrigin(0.5, 0.5);
-        
+
         let progressBox = this.add.graphics();
         progressBox.fillStyle(0x0, 0.8);
         progressBox.fillRect(

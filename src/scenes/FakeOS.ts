@@ -51,6 +51,8 @@ export class FakeOS extends FakeOSScene {
      */
     protected isLocked: boolean = false;
 
+    public isScreenBroken: boolean = false;
+
     /**
      * Class constructor.
      */
@@ -83,6 +85,7 @@ export class FakeOS extends FakeOSScene {
         this.debug = this.cache.json.get('config').debug;
         this.colors = this.cache.json.get('colors');
         this.apps = this.cache.json.get('apps');
+        this.isScreenBroken = this.cache.json.get('config').isScreenBroken !== false;
 
         // Load all the App Backgrounds defined at config
         let backgrounds = this.cache.json.get('config').backgrounds;

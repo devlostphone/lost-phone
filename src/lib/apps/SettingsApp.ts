@@ -9,7 +9,8 @@ export default class SettingsApp extends App {
 
     protected qr: any;
     protected qrtext: any;
-
+    protected header?: Phaser.GameObjects.Text;
+    
     /**
      * Class constructor.
      * @param fakeOS
@@ -17,13 +18,12 @@ export default class SettingsApp extends App {
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
         this.textOptions = {
-            fontSize: "24px",
+            fontSize: "48px",
             align: "left",
             color: '#1c1c1c',
             fontFamily: 'Roboto-Bold',
             wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
         };
-
     }
 
     /**
@@ -39,24 +39,24 @@ export default class SettingsApp extends App {
      * Shows app title.
      */
     public showTitle(): void {
-        this.addRow(this.fakeOS.add.text(0,0,
-                                         this.fakeOS.getString('settings'),
-                                         this.textOptions
-                                        ));
-        this.addRow(this.fakeOS.add.line(0,0,
-            0, 0,
-            this.fakeOS.width*0.8, 0,
-            0x0
-        ));
+        this.header = this.fakeOS.add.text(0, 0,
+                                          this.fakeOS.getString('settings'),
+                                          this.textOptions
+                                         ); 
+        this.addRow( this.header, {'position': Phaser.Display.Align.TOP_LEFT});
+        this.header.setPadding(30,0,0,0);
+
+        let line = this.fakeOS.add.line(0, 0, 30, -30, this.fakeOS.width*0.8, -30, 0x808080);
+        this.addRow(line, {'position': Phaser.Display.Align.TOP_LEFT});
     }
 
     /**
      * Shows app options.
      */
     public showOptions(): void {
-        this.addRow(this.notificationOption());
-        this.addRow(this.showResetOption());
-        this.addRow(this.showQROption());
+        this.addRow(this.notificationOption(), {'position': Phaser.Display.Align.TOP_LEFT});
+        this.addRow(this.showResetOption(), {'position': Phaser.Display.Align.TOP_LEFT});
+        this.addRow(this.showQROption(), {'position': Phaser.Display.Align.TOP_LEFT});
     }
 
     /**
@@ -65,10 +65,17 @@ export default class SettingsApp extends App {
      */
     protected notificationOption(): any[] {
 
-        let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('showNotifications'));
-        let notificationSetting = this.fakeOS.getSettings().getSettingValue('notificationPopup');
-        let toggle = this.fakeOS.add.text(0,0, notificationSetting ? 'O' :'X');
+        let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('showNotifications'), this.textOptions);
+        text.setFontSize(24);
+        text.setPadding(30,0,0,0);
 
+        let notificationSetting = this.fakeOS.getSettings().getSettingValue('notificationPopup');
+        let toggle = this.fakeOS.add.text(0,0, notificationSetting ? 'O' :'X', this.textOptions);
+        toggle.setFontSize(24);
+        toggle.setPadding(18,0,0,0);
+
+        // let line = this.fakeOS.add.line(0, 0, 30, -30, this.fakeOS.width*0.8, -30, 0xc0c0c0);
+        
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {
@@ -86,8 +93,10 @@ export default class SettingsApp extends App {
      * @returns Game elements to display
      */
     protected showResetOption(): any[] {
-        let text = this.fakeOS.add.text(0,0, this.fakeOS.getString('reset-data'));
-
+        let text = this.fakeOS.add.text(0,0, this.fakeOS.getString('reset-data'), this.textOptions);
+        text.setFontSize(24);
+        text.setPadding(30,0,0,0);
+        
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {
@@ -97,7 +106,7 @@ export default class SettingsApp extends App {
             },
             text
         );
-
+        
         return [text];
     }
 
@@ -106,7 +115,10 @@ export default class SettingsApp extends App {
      * @returns Game elements to display
      */
     protected showQROption(): any[] {
-        let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('getQR'));
+        let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('getQR'), this.textOptions);
+        text.setFontSize(24);
+        text.setPadding(30,0,0,0);
+
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {

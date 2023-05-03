@@ -492,14 +492,16 @@ export class FakeOS extends FakeOSScene {
         this.getActiveApp().addLayer();
         let text = this.add.text(
             0,0,
-            this.getString('fill-password')
+            this.getString('fill-password'),
+            {fontSize: "32px", fontFamily: 'Roboto'}
         );
         this.getActiveApp().addRow(text, {y: 3});
 
-        let input = this.add.dom(0,0).createFromHTML('<input type="text" name="password" />');
+        let input = this.add.dom(0,0).createFromHTML('<input type="text" style="height:32px;" name="password" />');
         let enter = this.add.text(
             0,0,
-            'ENTER'
+            this.getString('submit'),
+            {fontSize: "32px", fontFamily: 'Roboto'}
         );
         this.getActiveApp().addRow([input, enter], {y: 4});
 

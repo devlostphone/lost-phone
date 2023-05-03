@@ -7,6 +7,7 @@ import GalleryApp from './GalleryApp';
 import HomescreenApp from './HomescreenApp';
 import LostagramApp from './LostagramApp';
 import MailApp from './MailApp';
+import NotesApp from './NotesApp';
 import PhoneApp from './PhoneApp';
 import PodcastApp from './PodcastApp';
 import SettingsApp from './SettingsApp';
@@ -27,6 +28,7 @@ const Store: any = {
     HomescreenApp,
     LostagramApp,
     MailApp,
+    NotesApp,
     PhoneApp,
     PodcastApp,
     SettingsApp,

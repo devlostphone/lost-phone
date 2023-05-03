@@ -68,8 +68,12 @@
     },
     {
         "type" : "notes",
-        "key"  : "notesApp",
+        "key"  : "NotesApp",
         "icon" : "notes.png",
+        "wallpaper" : "solid-black",
+        "name" : "Notes",
+        "description": "Aplicació de notes",
+        "configFile" : "notes.json",
         "preInstalled": true,
         "hasNotifications": false
     },

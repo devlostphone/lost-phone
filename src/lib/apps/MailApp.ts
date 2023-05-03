@@ -158,29 +158,39 @@ export default class MailApp extends App {
                                             ).setOrigin(0)
         );
 
-        let subject = this.fakeOS.add.text(this.fakeOS.width / 2, 52, mail['subject'], {
-            fontFamily: 'Roboto',
-            fontSize: "32px",
-            color: '#fff'
-        }).setOrigin(0.5);
-        let from_user = this.fakeOS.add.text(16, 92, mail['from'], {
-            fontFamily: 'Roboto',
-            fontSize: "24px",
-            align: "left"
-        });
-        let date  = this.fakeOS.add.text(this.fakeOS.width - 16 - (mail['date'].length * 12), 92, mail['date'], {
-            fontFamily: 'Roboto',
-            fontSize: "24px",
-            align: "right",
-            color: '#ccc'
-        });
-        let to_user = this.fakeOS.add.rexBBCodeText(16, 132, '[b]' + this.fakeOS.getString('to') + '[/b]: [color=blue]' + mail['to'] + '[/color]', {
-            fontFamily: 'Roboto',
-            fontSize: "24px",
-            align: "right",
-            color: '#ccc'
-});
-        this.getActiveLayer().add([subject, from_user, date, to_user]);
+        let elements = [];
+
+        if (mail['subject'] !== undefined) {
+            elements.push(this.fakeOS.add.text(this.fakeOS.width / 2, 52, mail['subject'], {
+                fontFamily: 'Roboto',
+                fontSize: "32px",
+                color: '#fff'
+            }).setOrigin(0.5));
+        }
+        if (mail['from'] !== undefined) {
+            elements.push(this.fakeOS.add.text(16, 92, mail['from'], {
+                fontFamily: 'Roboto',
+                fontSize: "24px",
+                align: "left"
+            }));
+        }
+        if (mail['date'] !== undefined) {
+            elements.push(this.fakeOS.add.text(this.fakeOS.width - 16 - (mail['date'].length * 12), 92, mail['date'], {
+                fontFamily: 'Roboto',
+                fontSize: "24px",
+                align: "right",
+                color: '#ccc'
+            }));
+        }
+        if (mail['to'] !== undefined) {
+            elements.push(this.fakeOS.add.rexBBCodeText(16, 132, '[b]' + this.fakeOS.getString('to') + '[/b]: [color=blue]' + mail['to'] + '[/color]', {
+                fontFamily: 'Roboto',
+                fontSize: "24px",
+                align: "right",
+                color: '#ccc'
+            }));
+        }
+        this.getActiveLayer().add(elements);
 
         let txt;
         if (mail['file']) {
@@ -188,15 +198,15 @@ export default class MailApp extends App {
                 .then((response) => response.text())
                 .then((mailText) => {
                     txt = this.fakeOS.add.rexBBCodeText(0, 0,
-                                                        mailText.split("\\n"),
-                                                        {
-                                                            fontFamily: 'Serif',
-                                                            fontSize: '24px',
-                                                            color: '#1c1c1c',
-                                                            align: "left",
-                                                            lineSpacing: 12,
-                                                            wrap: { mode : 1, width: this.fakeOS.width - 72 }
-                                                        });
+                        mailText.split("\\n"),
+                        {
+                            fontFamily: 'Serif',
+                            fontSize: '24px',
+                            color: '#1c1c1c',
+                            align: "left",
+                            lineSpacing: 12,
+                            wrap: { mode : 1, width: this.fakeOS.width - 72 }
+                        });
                     this.addRow(txt, { y: 1});
                 });
         } else {
@@ -206,8 +216,9 @@ export default class MailApp extends App {
                 color: '#1c1c1c',
                 align: "left",
                 lineSpacing: 12,
+                valign: "top",
                 wrap: { mode : 1, width: this.fakeOS.width - 72 }
-            });
+            }).setOrigin(0.5, 0);
             this.addRow(txt, { y: 7 });
         }
 

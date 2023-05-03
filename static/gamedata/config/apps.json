@@ -116,6 +116,7 @@
         "type": "browser",
         "key": "BrowserApp",
         "icon": "browser.png",
+        "configFile" : "browser.json",
         "preInstalled": true,
         "hasNotifications": false
     },

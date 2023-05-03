@@ -320,11 +320,11 @@ export default class CalendarApp extends App {
         switch(typeOfBackground) {
             case 'solid': {
                 let hours = new Date().getHours();
-                if ( hours >= 9 && hours <= 20 ) {
+                //if ( hours >= 9 && hours <= 20 ) {
                     this.background = this.fakeOS.add.image(0, 0, 'solid-white-background', 0);
-                } else {
-                    this.background = this.fakeOS.add.image(0, 0, 'solid-black-background', 0);
-                }
+                //} else {
+                    //this.background = this.fakeOS.add.image(0, 0, 'solid-black-background', 0);
+                //}
                 this.background.setOrigin(0, 0);
                 this.background.setScale(
                     this.fakeOS.width / this.background.width,

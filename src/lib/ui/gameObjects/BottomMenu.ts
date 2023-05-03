@@ -34,7 +34,7 @@ export default class BottomMenu extends Phaser.GameObjects.Container
             let button_position_y = scene.getActiveApp().area.height - 130;
             let button = new Button(
                 scene,
-                'arc',
+                'rect',
                 'small',
                 scene.getString(menus[i].text),
                 button_position_x,

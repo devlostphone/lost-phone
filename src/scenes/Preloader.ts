@@ -120,6 +120,9 @@ export default class Preloader extends FakeOSScene {
         this.load.image('battery', this.get_theme_path('os/battery.png'));
         this.load.image('play-button', this.get_theme_path('os/play-button.png'));
 
+        //Phone app icons
+        this.load.image('received-call', this.get_theme_path('icons/received-call.png'));
+
         this.load.image('default-avatar', this.get_theme_path('shaders/default-avatar.png'));
         this.load.spritesheet('typing', this.get_theme_path('sprites/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
 
@@ -142,6 +145,10 @@ export default class Preloader extends FakeOSScene {
         this.load.image('arc@144', this.get_theme_path('shapes/arc@144.png'));
         this.load.image('arc@96', this.get_theme_path('shapes/arc@96.png'));
         this.load.image('arc@72', this.get_theme_path('shapes/arc@72.png'));
+
+        this.load.image('rect@144', this.get_theme_path('shapes/rect@144.png'));
+        this.load.image('rect@96', this.get_theme_path('shapes/rect@96.png'));
+        this.load.image('rect@72', this.get_theme_path('shapes/rect@72.png'));
     }
 
     /**

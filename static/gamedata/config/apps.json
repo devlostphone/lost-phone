@@ -46,6 +46,7 @@
         "type" : "podcast",
         "key"  : "PodcastApp",
         "icon" : "podcast.png",
+        "name" : "Notes de veu",
         "configFile" : "podcast.json",
         "preInstalled": false,
         "hasNotifications": false

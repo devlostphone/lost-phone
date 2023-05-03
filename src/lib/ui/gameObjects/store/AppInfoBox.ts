@@ -40,12 +40,18 @@ export default class AppInfoBox extends Phaser.GameObjects.Container
         this.add(this.background);
 
         // Create app icon
+        let icon_text;
+        if (typeof app['name'] !== "undefined") {
+            icon_text = app['name'];
+        } else {
+            icon_text = this.fakeOS.getString(app['type']);
+        }
         this.icon = new AppIcon(
             this.fakeOS,
             app,
             - this.fakeOS.getActiveApp().area.width * 0.15, 0,
             app.type
-        ).addLabel(this.fakeOS.getString(app['type']));
+        ).addLabel(icon_text);
         this.add(this.icon);
 
         // Create text

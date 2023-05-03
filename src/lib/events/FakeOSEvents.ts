@@ -46,7 +46,7 @@ FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, obj
 
         let willLaunch = true;
 
-        if (eventType == 'pointerup') {
+        if (eventType == 'pointerup' && object !== undefined) {
             const currentTime = Date.now();
             if (fakeOS.lastClickTime === undefined) {
                 fakeOS.lastClickTime = 0;

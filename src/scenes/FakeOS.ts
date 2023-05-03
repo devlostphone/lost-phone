@@ -86,6 +86,7 @@ export class FakeOS extends FakeOSScene {
         this.colors = this.cache.json.get('colors');
         this.apps = this.cache.json.get('apps');
         this.isScreenBroken = this.cache.json.get('config').isScreenBroken !== false;
+        this.sound.pauseOnBlur = false;
 
         // Load all the App Backgrounds defined at config
         let backgrounds = this.cache.json.get('config').backgrounds;

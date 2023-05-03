@@ -1,29 +1,56 @@
 [
   {
     "key" : "track001",
-    "name" : "Bensound - Cute",
-    "url" : "gamedata/assets/audios/bensound-cute.mp3",
-    "artist" : "Bensound",
-    "title" : "Cute",
-    "thumbnail" : "gamedata/assets/pictures/cute.jpg",
+    "name" : "Enregistrament 001",
+    "url" : "gamedata/assets/audios/track001.mp3",
+    "artist" : "Nota de veu",
+    "title" : "Enregistrament 001",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
     "volume" : 1
   },
   {
     "key" : "track002",
-    "name" : "Bensound - Tomorrow",
-    "url" : "gamedata/assets/audios/bensound-tomorrow.mp3",
-    "artist" : "Bensound",
-    "title" : "Tomorrow",
-    "thumbnail" : "gamedata/assets/pictures/tomorrow.jpg",
-    "volume" : 0.75
+    "name" : "Enregistrament 002",
+    "url" : "gamedata/assets/audios/track002.mp3",
+    "artist" : "Nota de veu",
+    "title" : "Enregistrament 002",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
   },
   {
     "key" : "track003",
-    "name" : "Bensound - Birth of a Hero",
-    "url" : "gamedata/assets/audios/bensound-birthofahero.mp3",
-    "artist" : "Bensound",
-    "title" : "Birth of a Hero",
-    "thumbnail" : "gamedata/assets/pictures/birthofahero.jpg",
-    "volume" : 0.75
+    "name" : "Enregistrament 003",
+    "url" : "gamedata/assets/audios/track003.mp3",
+    "artist" : "Nota de veu",
+    "title" : "Enregistrament 003",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
+  },
+  {
+    "key" : "track004",
+    "name" : "Enregistrament 004",
+    "url" : "gamedata/assets/audios/track004.mp3",
+    "artist" : "Nota de veu",
+    "title" : "Enregistrament 004",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
+  },
+  {
+    "key" : "track005",
+    "name" : "Enregistrament 005",
+    "url" : "gamedata/assets/audios/track005.mp3",
+    "artist" : "Nota de veu",
+    "title" : "Enregistrament 005",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
+  },
+  {
+    "key" : "track006",
+    "name" : "Enregistrament 006",
+    "url" : "gamedata/assets/audios/track006.mp3",
+    "artist" : "Nota de veu",
+    "title" : "Enregistrament 006",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
   }
 ]

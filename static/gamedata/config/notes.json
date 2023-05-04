@@ -1,20 +1,47 @@
 [
     {
         "id" : "n001",
-        "title" : "Nota 01",
-        "subject" : "Nota 01",
-        "date" : "dc, 30 març 19:02",
-        "body" : "Nota personal - Curabitur dapibus magna feugiat eros suscipit feugiat. Ut egestas eget nibh non rutrum. Fusce pulvinar ligula neque, sit amet dignissim metus mollis at. Nam id ullamcorper dolor, ut scelerisque arcu. Nam rhoncus, ipsum sed pulvinar rhoncus, urna magna hendrerit turpis, a vulputate mauris justo in tortor. Cras id tristique mi. Suspendisse eget porta odio, vel dictum purus. Donec luctus purus odio, sit amet congue libero commodo eu. Vivamus quis bibendum nisl. In vulputate, nisl ut rhoncus bibendum, erat turpis euismod justo, ut porta enim turpis quis eros. Vestibulum ornare gravida risus condimentum iaculis. Sed nec eros et magna auctor semper. Fusce ex nisl, aliquet id enim sit amet, convallis aliquet ligula. Sed mollis massa et metus rutrum, ac auctor nibh pretium. Ut in aliquet arcu.\n\nCurabitur dapibus magna feugiat eros suscipit feugiat. Ut egestas eget nibh non rutrum. Fusce pulvinar ligula neque, sit amet dignissim metus mollis at. Nam id ullamcorper dolor, ut scelerisque arcu. Nam rhoncus, ipsum sed pulvinar rhoncus, urna magna hendrerit turpis, a vulputate mauris justo in tortor. Cras id tristique mi. Suspendisse eget porta odio, vel dictum purus. Donec luctus purus odio, sit amet congue libero commodo eu. Vivamus quis bibendum nisl. In vulputate, nisl ut rhoncus bibendum, erat turpis euismod justo, ut porta enim turpis quis eros. Vestibulum ornare gravida risus condimentum iaculis. Sed nec eros et magna auctor semper. Fusce ex nisl, aliquet id enim sit amet, convallis aliquet ligula. Sed mollis massa et metus rutrum, ac auctor nibh pretium. Ut in aliquet arcu.",
+        "title" : "Combinacions infal·libles contrasenya",
+        "subject" : "Combinacions infal·libles contrasenya",
+        "date" : "23 de juny del 2021",
+        "body" : "Llorer09\n2009Llo\n09llorer\nlloreR09\nlloRer09\n09lloreR",
         "attachment" : [],
         "condition" : null
     },
     {
         "id" : "n002",
-        "title" : "Nota 02",
-        "subject" : "Nota 02",
-        "date" : "dv, 15 abril ?",
-        "body" : "La mare i jo...",
-        "attachment" : ["gallery:g005"],
+        "title" : "Apunts per al projecte de ciències",
+        "subject" : "Apunts per al projecte de ciències",
+        "date" : "14 de març del 2022",
+        "body" : "",
+        "attachment" : ["gallery:g013"],
+        "condition" : null
+    },
+    {
+        "id" : "n003",
+        "title" : "Coses que he de fer de totes totes!",
+        "subject" : "Coses que he de fer de totes totes!",
+        "date" : "15 de juny de 2022",
+        "body" : "⚪️parlar amb l’Àngel d’una vegada",
+        "attachment" : [],
+        "condition" : null
+    },
+    {
+        "id" : "n004",
+        "title" : "Regals",
+        "subject" : "Regals",
+        "date" : "7 de desembre del 2021",
+        "body" : "⚪️ Una samarreta amb missatge! per a la Maria\n⚪️Filtres de color per a la càmera del Ramon (com els que hi havia a la casa de fotografia)\n⚪️ Uns guants de princesa per a la mamà 💝\n⚪️ ??? (i dolços, he he he) per a l’àvia!\n⚪️ Un bon llibre per al papà (parlar-ne amb la Rosa…)\n⚪️ Una ampolla de cava bona (de les de casa) per a l’Armanda\n⚪️Una crema per a la pell que faci bona olor, com les de la mamà, per a la Rosa\n⚪️ Una làmina, semblant a la meva del llorer, per a l’Àngel 🤙",
+        "attachment" : [],
+        "condition" : null
+    },
+    {
+        "id" : "n005",
+        "title" : "Poemes per a l’herbari?",
+        "subject" : "Poemes per a l’herbari?",
+        "date" : "Sense data",
+        "body" : "PAPALLONA\n\n\nCollí dos pètals de rosa\nun àngel, i els va bufar;\nun altre, com qui no gosa,\namb l’arc iris els pintà.\n\nVolo damunt la flor morta,\njo, flor viva i vacil·lant;\ni si vull, de tant en tant,\nfulla sóc, en branca forta.\n\nOcell voraç, de vegades,\nmedita vils emboscades\npressós de bec i amatent:\n\nPerò inconscient i atordida\nli defujo l'envestida\ni no pas expressament\n\nMercè Rodoreda, Bestioles\n\n\nCUCA DE LLUM\n\nCarregueu-me bé la pila\nque he de fer molta claror,\nasseguda en branquilló,\nque és cosa que molt s’estila.\n\nJa ve la fosca, i tot d’una,\nencenc el meu fanal verd,\ninstal·lada prop d’un gerd\nper engelosir la lluna.\n\nSóc un estel de la terra;\nsi mal incivil em desterra\ni em reclou dintre d’un got\n\nm’apagaré de seguida,\ni que la mà entossudida\nem torni a encendre si pot.\n\nMercè Rodoreda, Bestioles\n\n\nFORMIGA\n\nÉs petit el gra de blat\ni molts fan créixer la pila.\n–Jo sóc la que més vigila\nque tot estigui endreçat.\n\nLa pallofa de moresc\nrossa és i nutritiva.\nNo colliu, la comitiva,\ntèrbola bola de vesc.\n\nPortem dol i anem per feina;\namb les mans, sense cap eina,\ntreballem en grups de mil.\n\nI quan l’estiu s’enderroca,\nentre l’arrel i la soca\nresistim fins a l’abril.\n\n Mercè Rodoreda, Bestioles",
+        "attachment" : [],
         "condition" : null
     }
 ]

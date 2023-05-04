@@ -97,5 +97,11 @@
         "type": "picture",
         "source": "gamedata/assets/pictures/dont-care-meme.jpg",
         "condition": "m001"
+    },
+    {
+        "id": "g013",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/note-herbari.png",
+        "condition": null
     }
 ]

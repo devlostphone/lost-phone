@@ -100,9 +100,29 @@ export default class SettingsApp extends App {
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {
-                this.fakeOS.cleanState();
-                this.fakeOS.saveState();
-                location.reload();
+                this.addLayer();
+                let warning = this.fakeOS.add.text(0,0,"Atenció!", this.textOptions);
+                warning.setFontSize(64);
+                this.addRow(warning, {'position': Phaser.Display.Align.CENTER});
+
+                let message = this.fakeOS.add.text(0,0,"Reiniciar el mòbil significa perdre tot el recorregut que heu realitzat fins ara. Esteu segurs que voleu reiniciar el mòbil?", this.textOptions);
+                message.setFontSize(24);
+                this.addRow(message, {'position': Phaser.Display.Align.CENTER});
+                
+                let confirm = this.fakeOS.add.text(0,0,"Sí, vull reiniciar!", this.textOptions);
+                confirm.setFontSize(32);
+                confirm.setColor('#ff0000');
+                this.addRow(confirm, {'position': Phaser.Display.Align.CENTER});
+
+                this.fakeOS.addInputEvent(
+                    'pointerup',
+                    () => {
+                        this.fakeOS.cleanState();
+                        this.fakeOS.saveState();
+                        location.reload();
+                    },
+                    confirm
+                );
             },
             text
         );

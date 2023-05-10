@@ -207,6 +207,9 @@ export default abstract class App {
 
         let onComplete = () => {
             oldLayer.bringToTop(oldLayer.getByName('start-point'));
+            oldLayer.iterate(function(child: any) {
+                child.setActive(false);
+            });
             if (action !== undefined) {
                 action();
             }

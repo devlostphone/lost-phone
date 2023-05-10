@@ -51,6 +51,8 @@ export class FakeOS extends FakeOSScene {
      */
     protected isLocked: boolean = false;
 
+    protected frameTime: number = 0;
+
     public isScreenBroken: boolean = false;
 
     /**
@@ -215,9 +217,15 @@ export class FakeOS extends FakeOSScene {
      * @param time
      */
     public update(delta: any, time: any): void {
-        this.UI?.update(delta, time);
-        if (typeof this.activeApp?.update === 'function') {
-            this.activeApp?.update(delta, time);
+        this.frameTime += delta
+
+        if (this.frameTime > 16.5) {
+            this.frameTime = 0;
+            // Code that relies on a consistent 60hz update
+            this.UI?.update(delta, time);
+            if (typeof this.activeApp?.update === 'function') {
+                this.activeApp?.update(delta, time);
+            }
         }
     }
 

@@ -34,6 +34,13 @@ FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, obj
             return;
         }
 
+        if (args[0].worldX < 0 || args[0].worldX > fakeOS.width) {
+            return;
+        }
+        if (args[0].worldY < 0 || args[0].worldY > fakeOS.height) {
+            return;
+        }
+
         if (object !== undefined) {
             if (args[1] != object && Array.isArray(args[1]) && args[1][0] != object) {
                 return;

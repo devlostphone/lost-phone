@@ -95,6 +95,7 @@ export default class ClockApp extends App {
      * @inheritdoc
      */
     public update(delta: any, time: any): void {
+        super.update(delta, time);
         let p1;
         let p2;
 

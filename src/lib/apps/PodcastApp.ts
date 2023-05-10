@@ -52,7 +52,8 @@ import { PhoneEvents } from '../events/GameEvents';
     /**
      * @inheritdoc
      */
-    public update(): void {
+    public update(delta: any, time: any): void {
+        super.update(delta, time);
         if (this.currentTrack !== undefined) {
             let current_track = this.fakeOS.sound.get(this.currentTrack.key);
             if (current_track instanceof Phaser.Sound.WebAudioSound) {

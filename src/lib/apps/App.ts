@@ -92,7 +92,27 @@ export default abstract class App {
      * @param delta
      * @param time
      */
-    public update(delta: any, time: any): void {}
+    public update(delta: any, time: any): void {
+
+        this.fakeOS.children.each((gameObject) => {
+            const camera = new Phaser.Geom.Rectangle(
+                0,0,
+                this.fakeOS.width,
+                this.fakeOS.height
+            );
+            const bounds = gameObject.getBounds();
+            const intersection = Phaser.Geom.Rectangle.Intersection(camera, bounds);
+
+            const isVisible = intersection.width > 0 && intersection.height > 0;
+
+            // Si el gameobject no está visible, desactivarlo
+            if (!isVisible) {
+                gameObject.setVisible(false);
+            } else {
+                gameObject.setVisible(true);
+            }
+        });
+    }
 
     /**
      * Goes to specific item ID (launched by notification)

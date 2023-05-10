@@ -4,6 +4,7 @@ declare module "../../scenes/FakeOS" {
     interface FakeOS {
         eventListeners: object;
         lastClickTime: number;
+        lastPointerFunc: any;
 
         addInputEvent(eventType: string, func: Function, object?: Phaser.GameObjects.GameObject, area?: any, callback?: any): void;
         addEventListener(eventType: string, func: Function, once?: boolean): void;
@@ -58,11 +59,13 @@ FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, obj
             if (fakeOS.lastClickTime === undefined) {
                 fakeOS.lastClickTime = 0;
             }
-            if (currentTime - fakeOS.lastClickTime > 600) {
+
+            if (func != fakeOS.lastPointerFunc || currentTime - fakeOS.lastClickTime > 500) {
                 fakeOS.lastClickTime = currentTime;
             } else {
                 willLaunch = false;
             }
+            fakeOS.lastPointerFunc = func;
         }
 
         if (willLaunch) {

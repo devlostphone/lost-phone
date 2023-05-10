@@ -10,7 +10,7 @@ export default class SettingsApp extends App {
     protected qr: any;
     protected qrtext: any;
     protected header?: Phaser.GameObjects.Text;
-    
+
     /**
      * Class constructor.
      * @param fakeOS
@@ -42,7 +42,7 @@ export default class SettingsApp extends App {
         this.header = this.fakeOS.add.text(0, 0,
                                           this.fakeOS.getString('settings'),
                                           this.textOptions
-                                         ); 
+                                         );
         this.addRow( this.header, {'position': Phaser.Display.Align.TOP_LEFT});
         this.header.setPadding(30,0,0,0);
 
@@ -75,7 +75,7 @@ export default class SettingsApp extends App {
         toggle.setPadding(18,0,0,0);
 
         // let line = this.fakeOS.add.line(0, 0, 30, -30, this.fakeOS.width*0.8, -30, 0xc0c0c0);
-        
+
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {
@@ -96,7 +96,7 @@ export default class SettingsApp extends App {
         let text = this.fakeOS.add.text(0,0, this.fakeOS.getString('reset-data'), this.textOptions);
         text.setFontSize(24);
         text.setPadding(30,0,0,0);
-        
+
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {
@@ -108,7 +108,7 @@ export default class SettingsApp extends App {
                 let message = this.fakeOS.add.text(0,0,"Reiniciar el mòbil significa perdre tot el recorregut que heu realitzat fins ara. Esteu segurs que voleu reiniciar el mòbil?", this.textOptions);
                 message.setFontSize(24);
                 this.addRow(message, {'position': Phaser.Display.Align.CENTER});
-                
+
                 let confirm = this.fakeOS.add.text(0,0,"Sí, vull reiniciar!", this.textOptions);
                 confirm.setFontSize(32);
                 confirm.setColor('#ff0000');
@@ -126,7 +126,7 @@ export default class SettingsApp extends App {
             },
             text
         );
-        
+
         return [text];
     }
 

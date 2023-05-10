@@ -232,7 +232,7 @@ export default abstract class App {
      */
     public backOneLayer(): void {
         let layer = this.getActiveLayer();
-        this.changeLayer(this.activeLayer - 1, () => layer.destroy());
+        this.changeLayer(this.activeLayer - 1, () => layer.destroy(true));
     }
 
     /**

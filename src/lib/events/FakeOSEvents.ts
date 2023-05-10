@@ -51,7 +51,7 @@ FakeOS.prototype.addInputEvent = function(eventType: string, func: Function, obj
             if (fakeOS.lastClickTime === undefined) {
                 fakeOS.lastClickTime = 0;
             }
-            if (currentTime - fakeOS.lastClickTime > 300) {
+            if (currentTime - fakeOS.lastClickTime > 600) {
                 fakeOS.lastClickTime = currentTime;
             } else {
                 willLaunch = false;

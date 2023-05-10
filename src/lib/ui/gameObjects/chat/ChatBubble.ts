@@ -95,12 +95,11 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         }
 
         bubble.fillStyle(color, 1);
-        bubble.fillRoundedRect(
+        bubble.fillRect(
             bubble_text.x - bubble_text.width/2 - offsetX,
             text_bounds.top  - offsetY,
             text_bounds.width + (offsetX * 2),
-            text_bounds.height + (offsetY * 2) + timeOffset,
-            16
+            text_bounds.height + (offsetY * 2) + timeOffset
         );
 
         const left_bound = bubble_text.getBounds().width / 2;

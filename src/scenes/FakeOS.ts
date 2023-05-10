@@ -100,7 +100,6 @@ export class FakeOS extends FakeOSScene {
      * Create method.
      */
     public create(): void {
-
         this.input.setTopOnly(false);
         this.input.setGlobalTopOnly(false);
 

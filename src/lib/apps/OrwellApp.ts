@@ -1,13 +1,14 @@
 import { FakeOS } from '../../scenes/FakeOS';
-import GalleryApp from './GalleryApp';
-import PicGrid from '../../lib/ui/gameObjects/PicGrid';
+import App from '../../lib/apps/App';
+import BrowserGrid from '../../lib/ui/gameObjects/BrowserGrid';
 
 /**
  * Orwell Browser App
  */
-export default class OrwellApp extends GalleryApp {
+export default class OrwellApp extends App {
 
-    protected picGrid?: PicGrid;
+    protected sites: any;
+    protected browserGrid?: BrowserGrid;
     
     /**
      * Class constructor.
@@ -16,20 +17,20 @@ export default class OrwellApp extends GalleryApp {
      */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
-        this.media = this.fakeOS.cache.json.get('orwell');
+        this.sites = this.fakeOS.cache.json.get('orwell');
     }
 
     /**
      * @inheritdoc
      */
     public render(): void {
-        this.picGrid = new PicGrid(
+        this.browserGrid = new BrowserGrid(
             this.fakeOS,
             0, 0,
-            this.media
+            this.sites
         );
-        this.fakeOS.add.existing(this.picGrid);
-        this.addElements(this.picGrid);
+        this.fakeOS.add.existing(this.browserGrid);
+        this.addElements(this.browserGrid);
         this.setBackground();
     }
 

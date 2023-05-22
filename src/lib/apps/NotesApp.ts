@@ -3,7 +3,7 @@ import MailApp from './MailApp';
 import { PhoneEvents } from '../events/GameEvents';
 
 /**
- * Mail app.
+ * Notes app.
  */
 export default class NotesApp extends MailApp {
 

@@ -1,0 +1,9 @@
+[
+    {
+        "id": "0",
+        "type": "picture",
+        "thumbnail" : "gamedata/assets/pictures/thumbnail-0.png",
+        "website"   : "gamedata/assets/pictures/sample.png",
+        "condition": null
+    }
+]

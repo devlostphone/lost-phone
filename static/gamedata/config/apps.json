@@ -121,6 +121,14 @@
         "hasNotifications": false
     },
     {
+        "type": "orwell",
+        "key": "OrwellApp",
+        "icon": "orwell.png",
+        "configFile" : "orwell.json",
+        "preInstalled": true,
+        "hasNotifications": false
+    },    
+    {
         "type": "todo",
         "key": "ToDoApp",
         "icon": "todo.png",

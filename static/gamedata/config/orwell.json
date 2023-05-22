@@ -1,9 +1,8 @@
 [
     {
-        "id": "0",
+        "id": "s001",
         "type": "picture",
-        "thumbnail" : "gamedata/assets/pictures/thumbnail-0.png",
-        "website"   : "gamedata/assets/pictures/sample.png",
+        "thumbnail" : "gamedata/assets/orwell/thumbnail-infok.png",
         "condition": null
     }
 ]

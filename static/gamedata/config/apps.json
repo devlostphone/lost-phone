@@ -126,7 +126,8 @@
         "icon": "orwell.png",
         "configFile" : "orwell.json",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "wallpaper" : "solid-black"
     },    
     {
         "type": "todo",

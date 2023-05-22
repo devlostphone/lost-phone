@@ -1,8 +1,14 @@
 [
     {
         "id": "s001",
-        "type": "picture",
         "thumbnail" : "gamedata/assets/orwell/thumbnail-infok.png",
+        "stamp" : "29 de març de 2022",
+        "condition": null
+    },
+    {
+        "id": "s002",
+        "thumbnail" : "gamedata/assets/orwell/thumbnail-rutes.png",
+        "stamp" : "22 de març de 2022",
         "condition": null
     }
 ]

@@ -37,6 +37,11 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
      *
      */
     public showOpenTabs(): void {
+        let sites = [];
+        let stamps = [];
+        let renderArea = this.fakeOS.getUI().getAppRenderSize();
+        let panel_size_y = (renderArea.height / 8);
+        
         for (let i = 0; i < this.tabs.length; i++) {
             let tab: any;
 
@@ -45,12 +50,13 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
             }
 
             tab = this.displayTab(this.tabs[i]);
-
             this.add(tab);
-        }
 
+            sites.push(this.fakeOS.add.text(0, 0, this.tabs[i].title, this.textOptions));
+            stamps.push(this.fakeOS.add.text(0, 0, this.tabs[i].stamps, this.textOptions));
+        }
+        
         let thumbnails = this.getAll();
-        console.info(thumbnails);
 
         this.fakeOS.getActiveApp().addGrid(
             thumbnails,
@@ -58,9 +64,23 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
                 columns: 2,
                 rows: 4,
                 paddingX: 16,
-                paddingY: 48,
+                paddingY: 72,
                 y: 1
             });
+
+        // Add sites title
+        this.fakeOS.getActiveApp().addGrid(
+            sites,
+            {
+                columns: 2,
+                rows: 4,
+                offsetY: panel_size_y + sites[0].style.metrics.fontSize,
+                paddingY: 72,
+                y: 1
+            });
+
+        // thumbnail.addChild(stamp);
+
     }
 
     /**
@@ -111,11 +131,7 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
             );
             thumbnail.setScale(scale_y, scale_y);
         }
-
-        // Add last date visited as text below the tab thumbnail
-        // let stamp = this.fakeOS.add.text(0, panel_size_y / 2 + this.textOptions.fontSize, tab.stamp, this.textOptions);
-        // thumbnail.addChild(stamp);
-                
+               
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {

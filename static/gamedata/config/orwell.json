@@ -10,5 +10,11 @@
         "thumbnail" : "gamedata/assets/orwell/thumbnail-rutes.png",
         "stamp" : "22 de març de 2022",
         "condition": null
+    },
+    {
+        "id": "s003",
+        "thumbnail" : "gamedata/assets/orwell/thumbnail-rutes.png",
+        "stamp" : "19 d'abril de 2022",
+        "condition": null
     }
 ]

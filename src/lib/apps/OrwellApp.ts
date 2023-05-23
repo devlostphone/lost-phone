@@ -24,13 +24,13 @@ export default class OrwellApp extends App {
      * @inheritdoc
      */
     public render(): void {
+        this.getActiveLayer().clear();
+
         this.browserGrid = new BrowserGrid(
             this.fakeOS,
             0, 0,
             this.sites
         );
-        this.fakeOS.add.existing(this.browserGrid);
-        this.addElements(this.browserGrid);
         this.setBackground();
     }
 

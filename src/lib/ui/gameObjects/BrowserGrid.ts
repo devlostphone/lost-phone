@@ -50,28 +50,17 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
         }
 
         let thumbnails = this.getAll();
-        console.log(thumbnails);
+        console.info(thumbnails);
 
-        // @TODO: Rewrite grid like App Calendar
-        // custom addGrid doesn't handle containers
         this.fakeOS.getActiveApp().addGrid(
-            this.getAll(),
+            thumbnails,
             {
                 columns: 2,
-                rows: 4
+                rows: 4,
+                paddingX: 16,
+                paddingY: 48,
+                y: 1
             });
-        
-        // Phaser.Actions.GridAlign(thumbnails.getAll(), {
-        //     width: 128,
-        //     height: 128,
-        //     cellWidth: 92,
-        //     cellHeight: 92,
-        //     position: Phaser.Display.Align.BOTTOM_CENTER,
-        //     x: 72, y: 256
-        // });
-
-        // this.getActiveLayer().add(this.container.getAll());
-        
     }
 
     /**
@@ -79,11 +68,9 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
      * @param tab
      * @returns
      */
-    protected displayTab(tab: any): Phaser.GameObjects.Container {
-        let box = new Phaser.GameObjects.Container(this.fakeOS, 0, 0);
+    protected displayTab(tab: any): Phaser.GameObjects.Image {
         let renderArea = this.fakeOS.getUI().getAppRenderSize();
         let thumbnail = this.fakeOS.add.image(0, 0, tab.id).setName(tab.id);
-        box.add(thumbnail);
         let panel_size_x = (renderArea.width / 2);
         let panel_size_y = (renderArea.height / 4);
 
@@ -126,7 +113,8 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
         }
 
         // Add last date visited as text below the tab thumbnail
-        box.add(new Phaser.GameObjects.Text(this.fakeOS, 0, panel_size_y / 2 + this.textOptions.fontSize, tab.stamp, this.textOptions).setOrigin(0.5));
+        // let stamp = this.fakeOS.add.text(0, panel_size_y / 2 + this.textOptions.fontSize, tab.stamp, this.textOptions);
+        // thumbnail.addChild(stamp);
                 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -145,14 +133,14 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
         );
         thumbnail.input.hitArea = rectangle;
 
-        return box;
+        return thumbnail;
     }
 
     /**
      * Opens an image element from the gallery.
      * @param element
      */
-    public openThubmnail(element: Phaser.GameObjects.Image): void {
+    public openThumbnail(element: Phaser.GameObjects.Image): void {
         this.fakeOS.getActiveApp().addLayer('solid-black');
         const area = this.fakeOS.getUI().getAppRenderSize();
 

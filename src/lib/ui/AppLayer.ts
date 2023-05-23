@@ -228,6 +228,14 @@ export default class AppLayer extends Phaser.GameObjects.Container
             options['position'] = Phaser.Display.Align.CENTER;
         }
 
+        if (options['paddingX'] === undefined) {
+            options['paddingX'] = 0;
+        }
+
+        if (options['paddingY'] === undefined) {
+            options['paddingY'] = 0;
+        }
+         
         const colNumber = options['columns'];
         const rowNumber = elements.length / colNumber;
         const cellHeight = (this.area.height / options['rows']) * options['height'];
@@ -237,8 +245,8 @@ export default class AppLayer extends Phaser.GameObjects.Container
             y: this.atRow(this.last_row) + options['offsetY'],
             width: colNumber,
             height: rowNumber,
-            cellWidth: this.area.width / colNumber,
-            cellHeight: cellHeight,
+            cellWidth: this.area.width / colNumber + options['paddingX'],
+            cellHeight: cellHeight + options['paddingY'],
             position: options['position']
         });
 

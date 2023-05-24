@@ -29,6 +29,7 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
         this.tabs = tabs;
         this.fakeOS = scene;
         this.textOptions = { align: "left", fontSize: 24, color: '#fff', fontFamily: 'Roboto', lineSpacing: 5 };
+        this.stampOptions = { align: "left", fontSize: 18, color: '#fff', fontFamily: 'Roboto', lineSpacing: 5 };
         this.showOpenTabs();
     }
 
@@ -53,7 +54,7 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
             this.add(tab);
 
             sites.push(this.fakeOS.add.text(0, 0, this.tabs[i].title, this.textOptions));
-            stamps.push(this.fakeOS.add.text(0, 0, this.tabs[i].stamps, this.textOptions));
+            stamps.push(this.fakeOS.add.text(0, 0, this.tabs[i].stamp, this.stampOptions));
         }
         
         let thumbnails = this.getAll();
@@ -79,8 +80,16 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
                 y: 1
             });
 
-        // thumbnail.addChild(stamp);
-
+        // Add stamps
+        this.fakeOS.getActiveApp().addGrid(
+            stamps,
+            {
+                columns: 2,
+                rows: 4,
+                offsetY: panel_size_y + sites[0].style.metrics.fontSize * 2,
+                paddingY: 72,
+                y: 1
+            });
     }
 
     /**

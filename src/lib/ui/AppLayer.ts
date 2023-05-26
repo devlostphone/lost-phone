@@ -235,7 +235,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
         if (options['paddingY'] === undefined) {
             options['paddingY'] = 0;
         }
-         
+
         const colNumber = options['columns'];
         const rowNumber = elements.length / colNumber;
         const cellHeight = (this.area.height / options['rows']) * options['height'];
@@ -257,7 +257,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
     /**
      * Checks if content is outside boundaries and generates drag area.
      */
-    protected checkBoundaries(): void {
+    public checkBoundaries(): void {
         if (this.last_row > this.bottom_row) {
             this.bottom_row = this.last_row;
         }

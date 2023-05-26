@@ -265,7 +265,8 @@ export default abstract class App {
      * @returns
      */
     public addElements(elements: any): void {
-        return this.getActiveLayer().add(elements);
+        this.getActiveLayer().add(elements);
+        return this.getActiveLayer().checkBoundaries();
     }
 
     /**

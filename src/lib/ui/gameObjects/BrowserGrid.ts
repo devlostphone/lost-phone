@@ -42,7 +42,7 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
         let stamps = [];
         let renderArea = this.fakeOS.getUI().getAppRenderSize();
         let panel_size_y = (renderArea.height / 8);
-        
+
         for (let i = 0; i < this.tabs.length; i++) {
             let tab: any;
 
@@ -56,7 +56,7 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
             sites.push(this.fakeOS.add.text(0, 0, this.tabs[i].title, this.textOptions));
             stamps.push(this.fakeOS.add.text(0, 0, this.tabs[i].stamp, this.stampOptions));
         }
-        
+
         let thumbnails = this.getAll();
 
         this.fakeOS.getActiveApp().addGrid(
@@ -140,7 +140,7 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
             );
             thumbnail.setScale(scale_y, scale_y);
         }
-               
+
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {
@@ -173,7 +173,7 @@ export default class BrowserGrid extends Phaser.GameObjects.Container
 
         // New
         zoomedImage.setOrigin(0);
-        zoomedImage.setScale(area.width / zoomedImage.displayWidth, 1);
+        zoomedImage.setScale(area.width / zoomedImage.displayWidth);
         // End
 
         // let scale_x = area.width / zoomedImage.displayWidth;

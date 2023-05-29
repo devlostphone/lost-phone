@@ -2,36 +2,43 @@
     {
         "id": "s001",
         "thumbnail" : "gamedata/assets/orwell/thumbnail-infok.png",
-        "title" : "Info K",
+        "title" : "INFOK: Especialment assetjament",
         "stamp" : "29 de març de 2022",
         "condition": null
     },
     {
         "id": "s002",
         "thumbnail" : "gamedata/assets/orwell/thumbnail-rutes.png",
-        "title" : "Rutes de Barcelona",
+        "title" : "Ajuntament: rutes de Barcelona",
         "stamp" : "22 de març de 2022",
         "condition": null
     },
     {
         "id": "s003",
         "thumbnail" : "gamedata/assets/orwell/thumbnail-atencio.png",
-        "title" : "Atenció usuari",
+        "title" : "Ajuntament: Atenció en línia",
         "stamp" : "26 de febrer de 2022",
         "condition": null
     },
     {
         "id": "s004",
-        "thumbnail" : "gamedata/assets/orwell/thumbnail-infok.png",
-        "title" : "Info K",
-        "stamp" : "29 de març de 2022",
+        "thumbnail" : "gamedata/assets/orwell/thumbnail-fugir.png",
+        "title" : "Diari de Girona",
+        "stamp" : "17 de juny de 2022",
         "condition": null
     },
     {
         "id": "s005",
-        "thumbnail" : "gamedata/assets/orwell/thumbnail-infok.png",
-        "title" : "Info K",
-        "stamp" : "29 de març de 2022",
+        "thumbnail" : "gamedata/assets/orwell/thumbnail-herbari.png",
+        "title" : "Flora Catalana",
+        "stamp" : "15 de març de 2022",
         "condition": null
-    }
+    },
+    {
+        "id": "s006",
+        "thumbnail" : "gamedata/assets/orwell/thumbnail-insensats.png",
+        "title" : "Botiga insensats.cat",
+        "stamp" : "10 de desembre de 2021",
+        "condition": null
+    }    
 ]

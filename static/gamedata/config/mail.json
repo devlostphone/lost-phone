@@ -20,5 +20,38 @@
         "body" : "La mare i jo hem rebut aquest avís del ??nomdelveí??. Ja n’havíem parlat i no passa res, però, si us plau, Jaume, no t’hi acostis més, a aquest senyor, i deixa estar definitivament la qüestió de les deixalles i les escombraries del nostre carrer.\n\nMentre duri tot això vull que sempre que entris i surtis de casa ho facis acompanyat de l’Armanda.\n\nEstigues tranquil, fill.\n\n[b]Assumpte[/b]: RW: Notificació\nA: [color=blue]sofiavalldaura@mail.cat[/color], [color=blue]jaumefarriols@mail.cat[/color]\n\nFarriols,\nLi faig saber que he interposat denúncia contra vostè pels danys a la meva propietat i per l’assetjament que rebo. Aviat rebrà notícies del meu advocat.\n\nMentrestant, faria bé de mantenir el tanoca del seu fill Jaume allunyat de mi i de casa meva.\n\nÀngel",
         "attachment" : ["gallery:g005"],
         "condition" : null
+    },
+    {
+        "id" : "m003",
+        "from" : "???",
+        "to" : "sofiavalldaura@mail.cat, jaumefarriols@mail.cat",
+        "title" : "RW: Notificació",
+        "subject" : "RW: Notificació",
+        "date" : "???",
+        "body" : "Farriols,\n\nLi faig saber que he interposat denúncia contra vostè pels danys a la meva propietat i per l’assetjament que rebo. Aviat rebrà notícies del meu advocat.\n\nMentrestant, faria bé de mantenir el tanoca del seu fill Jaume allunyat de mi i de casa meva.\n\nA.Malart",
+        "attachment" : [],
+        "condition" : null
+    },
+    {
+        "id" : "m004",
+        "from" : "Lostagram",
+        "to" : "jaumefarriols@mail.cat",
+        "title" : "Benvingut a Lostagram",
+        "subject" : "Benvingut a Lostagram",
+        "date" : "17 de març de 2022",
+        "body" : "Benvingut a [b]Lostagram[/b]! Ens emociona que t’hagis unit a la comunitat Lostagram de persones creatives i apassionades com tu.\n\nAmb [Lostagram], pots compartir moments inoblidables, connectar amb amics i família, i deixar-te inspirar.\n\nT’ajudem a explorar tot allò que Lostagram t’ofereix?\n\n1. Completa el teu perfil\n2. Explora i segueix usuaris\n3. Comparteix moments i experiències\n4. Interactua amb altres usuaris\n5. Utilitza els hashtags\n\nSi tens alguna pregunta o necessites ajuda mentre t'acostumes a Lostagram, no dubtis a contactar amb el nostre equip d'assistència. Som aquí per ajudar-te.\n\nUn cop més, benvingut a Lostagram. Frisem per veure tot el que tens per compartir amb la comunitat. Gaudeix de l'experiència i fes que cada moment sigui únic!\n\nL’equip de Lostagram",
+        "attachment" : [],
+        "condition" : null
+    },
+    {
+        "id" : "m005",
+        "from" : "Lostagram",
+        "to" : "jaumefarriols@mail.cat",
+        "title" : "Nova contrasenya per al teu compte",
+        "subject" : "Nova contrasenya per al teu compte",
+        "date" : "5 de juny de 2022",
+        "body" : "Hola @Torre dels Valldaura,\n\nHem rebut la teva sol·licitud de restabliment de contrasenya.\nA continuació, et proporcionem la nova contrasenya per accedir al teu compte.\nNova contrasenya: Lg123\nRecorda canviar-la un cop hagis iniciat sessió!\nSuport tècnic Lostagram",
+        "attachment" : [],
+        "condition" : null
     }
 ]

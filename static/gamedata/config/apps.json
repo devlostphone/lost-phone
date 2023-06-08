@@ -13,7 +13,8 @@
         "key"  : "ClockApp",
         "icon" : "clock.png",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "wallpaper" : "solid-light-grey"
     },
     {
         "type"   : "gallery",

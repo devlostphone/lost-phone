@@ -87,7 +87,9 @@ export default class ClockApp extends App {
      * @inheritdoc
      */
     public render(): void {
+        this.setBackground();
         this.graphics = this.fakeOS.add.graphics();
+        // @TODO: Add elements doesn't handle Phaser.GameObjects.Graphics
         this.addElements(this.graphics);
     }
 
@@ -170,4 +172,17 @@ export default class ClockApp extends App {
         this.graphics.fillPath();
         this.graphics.closePath();
     }
+
+    /**
+     * Set app background
+     */
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'ClockApp').wallpaper;
+            this.fakeOS.UI.setBackground(background);
+        }
+    }
+
 }

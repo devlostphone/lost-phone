@@ -14,7 +14,7 @@
         "icon" : "clock.png",
         "preInstalled": true,
         "hasNotifications": false,
-        "wallpaper" : "solid-light-grey"
+        "wallpaper" : "solid-black"
     },
     {
         "type"   : "gallery",

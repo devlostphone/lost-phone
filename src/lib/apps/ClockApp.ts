@@ -80,19 +80,42 @@ export default class ClockApp extends App {
         super(fakeOS);
         this.x = this.area.width / 2;
         this.y = this.area.height / 2;
-        this.clockSize = Math.round(this.area.width / 2.5);
+        this.clockSize = Math.round(this.area.width / 1.15);
     }
 
     /**
      * @inheritdoc
      */
     public render(): void {
+        this.getActiveLayer().clear();
         this.setBackground();
-        this.graphics = this.fakeOS.add.graphics();
+        // this.graphics = this.fakeOS.add.graphics();
         // @TODO: Add elements doesn't handle Phaser.GameObjects.Graphics
-        this.addElements(this.graphics);
+        // this.addElements(this.graphics);
+        this.renderClock();
+        this.update();
     }
 
+    protected renderClock(): void {        
+        this.p1 = new Phaser.GameObjects.Line(this.fakeOS, this.x, this.y, 0, 0, 30, 256, 0xff0000).setOrigin(1).setLineWidth(2,8);
+        this.getActiveLayer().add(
+            new Phaser.GameObjects.Ellipse(this.fakeOS, this.x, this.y, this.clockSize, this.clockSize, 0x181818).
+                setStrokeStyle(16, 0x773300)
+        );
+        this.getActiveLayer().add(this.p1);
+        // Draw the hour markers
+        for (let i = 0; i < 12; i++) {
+            const angle = i * (Math.PI / 6);
+            const x = Math.cos(angle) * 256 + this.x;
+            const y = Math.sin(angle) * 256 + this.y;
+            this.getActiveLayer().add(
+                new Phaser.GameObjects.Ellipse(this.fakeOS, x, y, 64, 64, 0xffffff)
+            );
+            console.info("x: " + x + " y: " + y);
+        };
+    }
+
+    
     /**
      * @inheritdoc
      */

@@ -12,15 +12,10 @@ export default class ClockApp extends App {
     clockSize: number;
 
     /**
-     * Graphics object.
+     * Clock size.
      */
-    graphics?: Phaser.GameObjects.Graphics;
-
-    /**
-     * Angle.
-     */
-    angle?: number;
-
+    clockRadius: number;
+    
     /**
      * Size.
      */
@@ -32,44 +27,19 @@ export default class ClockApp extends App {
     dest?: any;
 
     /**
-     * P1.
+     * Hour Hand.
      */
-    p1?: any;
+    hour_hand?: any;
 
     /**
-     * P2.
+     * Minute Hand.
      */
-    p2?: any;
+    minute_hand?: any;
 
     /**
-     * Date.
+     * Hour Hand.
      */
-    date?: Date;
-
-    /**
-     * Hours.
-     */
-    hours?: number;
-
-    /**
-     * Mins.
-     */
-    mins?: number;
-
-    /**
-     * Seconds.
-     */
-    seconds?: number;
-
-    /**
-     * X.
-     */
-    x: number;
-
-    /**
-     * Y.
-     */
-    y: number;
+    second_hand?: any;
 
     /**
      * Class constructor.
@@ -81,6 +51,7 @@ export default class ClockApp extends App {
         this.x = this.area.width / 2;
         this.y = this.area.height / 2;
         this.clockSize = Math.round(this.area.width / 1.15);
+        this.clockRadius = 255;
     }
 
     /**
@@ -89,29 +60,44 @@ export default class ClockApp extends App {
     public render(): void {
         this.getActiveLayer().clear();
         this.setBackground();
-        // this.graphics = this.fakeOS.add.graphics();
-        // @TODO: Add elements doesn't handle Phaser.GameObjects.Graphics
-        // this.addElements(this.graphics);
         this.renderClock();
         this.update();
     }
 
-    protected renderClock(): void {        
-        this.p1 = new Phaser.GameObjects.Line(this.fakeOS, this.x, this.y, 0, 0, 30, 256, 0xff0000).setOrigin(1).setLineWidth(2,8);
+    protected renderClock(): void {
+        // Draw basic case
         this.getActiveLayer().add(
             new Phaser.GameObjects.Ellipse(this.fakeOS, this.x, this.y, this.clockSize, this.clockSize, 0x181818).
-                setStrokeStyle(16, 0x773300)
+                setStrokeStyle(16, 0x181818)
         );
-        this.getActiveLayer().add(this.p1);
-        // Draw the hour markers
+        // Set hour hand
+        this.hour_hand = new Phaser.GameObjects.Line(this.fakeOS, this.x, this.y, 0, 0, 30, 192, 0x00ff00).setOrigin(1).setLineWidth(3,12);
+        // Set minute hand
+        this.minute_hand = new Phaser.GameObjects.Line(this.fakeOS, this.x, this.y, 0, 0, 30, 224, 0xff0000).setOrigin(1).setLineWidth(2,8);
+        // Set second hand
+        this.second_hand = new Phaser.GameObjects.Line(this.fakeOS, this.x, this.y, 0, 0, 30, 256, 0x00ffff).setOrigin(1).setLineWidth(1,5);
+        
+        // Stack based display clock hands
+        this.getActiveLayer().add(this.hour_hand);
+        this.getActiveLayer().add(this.minute_hand);
+        this.getActiveLayer().add(this.second_hand);
+
+        // Draw hour markers
         for (let i = 0; i < 12; i++) {
-            const angle = i * (Math.PI / 6);
-            const x = Math.cos(angle) * 256 + this.x;
-            const y = Math.sin(angle) * 256 + this.y;
-            this.getActiveLayer().add(
-                new Phaser.GameObjects.Ellipse(this.fakeOS, x, y, 64, 64, 0xffffff)
+            let angle: number = (i / 12.0) * 2 * Math.PI; // Calculate the angle for each hour marker
+            let x: number = this.x + this.clockRadius * Math.sin(angle);
+            let y: number = this.y - this.clockRadius * Math.cos(angle);
+            let hour_number: number = i == 0 ? 12 : i; // This is the way
+            this.getActiveLayer().add([
+                new Phaser.GameObjects.Ellipse(this.fakeOS, x, y, 64, 64, 0xffffff),
+                new Phaser.GameObjects.Text(this.fakeOS, x, y, hour_number, {
+                    fontFamily: 'RobotoCondensed',
+                    color: 0x181818,
+                    fontSize: '32px',
+                    fontStyle: '900',
+                    baselineY: 1}).setOrigin(0.5)
+                ]
             );
-            console.info("x: " + x + " y: " + y);
         };
     }
 
@@ -120,80 +106,17 @@ export default class ClockApp extends App {
      * @inheritdoc
      */
     public update(delta: any, time: any): void {
-        super.update(delta, time);
-        let p1;
-        let p2;
+        const now = new Date();
 
-        if (this.graphics === undefined) {
-            return;
-        }
+        // Calculate rotation angles
+        const hours_angle = (now.getHours() % 12 + now.getMinutes() / 60) * (Math.PI / 6);
+        const minutes_angle = (now.getMinutes() + now.getSeconds() / 60) * (Math.PI / 30);
+        const seconds_angle = (now.getSeconds() + now.getMilliseconds() / 1000) * (Math.PI / 30);
 
-        // Clear the graphics every frame
-        this.graphics.clear();
-        // The frame
-        this.graphics.fillStyle(this.fakeOS.colors.blue, 0.5);
-        this.graphics.lineStyle(10, this.fakeOS.colors.white, 0.5);
-        this.graphics.fillCircle(this.x, this.y, this.clockSize);
-        this.graphics.strokeCircle(this.x, this.y, this.clockSize);
-
-        this.date = new Date;
-        this.seconds = this.date.getSeconds() / 60;
-        this.mins = this.date.getMinutes() / 60;
-        // @BUG: No dóna correctament les hores!
-        // @DONE: Recorda que el rellotge no és de 24 hores, sinó de 12!
-        // Aquest bug es compartit amb la font original
-        this.hours = this.date.getHours() / 12;
-
-        //---  The hours hand
-        this.size = this.clockSize * 0.8;
-        this.angle = (360 * this.hours) - 90;
-        this.dest = Phaser.Math.RotateAroundDistance({ x: this.x, y: this.y }, this.x, this.y, Phaser.Math.DegToRad(this.angle), this.size);
-        this.graphics.fillStyle(0xff0000, 0.7);
-        this.graphics.beginPath();
-        this.graphics.moveTo(this.x, this.y);
-        p1 = Phaser.Math.RotateAroundDistance({ x: this.x, y: this.y }, this.x, this.y, Phaser.Math.DegToRad(this.angle - 5), this.size * 0.7);
-        this.graphics.lineTo(p1.x, p1.y);
-        this.graphics.lineTo(this.dest.x, this.dest.y);
-        this.graphics.moveTo(this.x, this.y);
-        p2 = Phaser.Math.RotateAroundDistance({ x: this.x, y: this.y }, this.x, this.y, Phaser.Math.DegToRad(this.angle + 5), this.size * 0.7);
-        this.graphics.lineTo(p2.x, p2.y);
-        this.graphics.lineTo(this.dest.x, this.dest.y);
-        this.graphics.fillPath();
-        this.graphics.closePath();
-
-        //--- The minutes hand
-        this.size = this.clockSize * 0.9;
-        this.angle = (360 * this.mins) - 90;
-        this.dest = Phaser.Math.RotateAroundDistance({ x: this.x, y: this.y }, this.x, this.y, Phaser.Math.DegToRad(this.angle), this.size);
-        this.graphics.fillStyle(0x0000ff, 0.7);
-        this.graphics.beginPath();
-        this.graphics.moveTo(this.x, this.y);
-        p1 = Phaser.Math.RotateAroundDistance({ x: this.x, y: this.y }, this.x, this.y, Phaser.Math.DegToRad(this.angle - 5), this.size * 0.5);
-        this.graphics.lineTo(p1.x, p1.y);
-        this.graphics.lineTo(this.dest.x, this.dest.y);
-        this.graphics.moveTo(this.x, this.y);
-        p2 = Phaser.Math.RotateAroundDistance({ x: this.x, y: this.y }, this.x, this.y, Phaser.Math.DegToRad(this.angle + 5), this.size * 0.5);
-        this.graphics.lineTo(p2.x, p2.y);
-        this.graphics.lineTo(this.dest.x, this.dest.y);
-        this.graphics.fillPath();
-        this.graphics.closePath();
-
-        //--- The seconds hand
-        this.size = this.clockSize * 0.9;
-        this.angle = (360 * this.seconds) - 90;
-        this.dest = Phaser.Math.RotateAroundDistance({ x: this.x, y: this.y }, this.x, this.y, Phaser.Math.DegToRad(this.angle), this.size);
-        this.graphics.fillStyle(0x00ff00, 0.7);
-        this.graphics.beginPath();
-        this.graphics.moveTo(this.x, this.y);
-        p1 = Phaser.Math.RotateAroundDistance({ x: this.x, y: this.y }, this.x, this.y, Phaser.Math.DegToRad(this.angle - 5), this.size * 0.3);
-        this.graphics.lineTo(p1.x, p1.y);
-        this.graphics.lineTo(this.dest.x, this.dest.y);
-        this.graphics.moveTo(this.x, this.y);
-        p2 = Phaser.Math.RotateAroundDistance({ x: this.x, y: this.y }, this.x, this.y, Phaser.Math.DegToRad(this.angle + 5), this.size * 0.3);
-        this.graphics.lineTo(p2.x, p2.y);
-        this.graphics.lineTo(this.dest.x, this.dest.y);
-        this.graphics.fillPath();
-        this.graphics.closePath();
+        // Rotate clock hands
+        this.hour_hand.setRotation(hours_angle);
+        this.minute_hand.setRotation(minutes_angle);
+        this.second_hand.setRotation(seconds_angle);
     }
 
     /**

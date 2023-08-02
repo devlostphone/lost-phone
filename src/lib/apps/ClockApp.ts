@@ -100,7 +100,6 @@ export default class ClockApp extends App {
             );
         };
     }
-
     
     /**
      * @inheritdoc

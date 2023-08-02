@@ -54,10 +54,11 @@
     },
     {
         "type" : "calculator",
-        "key"  : "calculatorApp",
+        "key"  : "CalculatorApp",
         "icon" : "calculator.png",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "wallpaper" : "solid-white"
     },
     {
         "type" : "calendar",

@@ -2,6 +2,7 @@ import BrowserApp from './BrowserApp';
 import CalendarApp from './CalendarApp';
 import ChatApp from './ChatApp';
 import ClockApp from './ClockApp';
+import CalculatorApp from './CalculatorApp';
 import FilesApp from './FilesApp';
 import GalleryApp from './GalleryApp';
 import HomescreenApp from './HomescreenApp';
@@ -24,6 +25,7 @@ const Store: any = {
     CalendarApp,
     ChatApp,
     ClockApp,
+    CalculatorApp,
     FilesApp,
     GalleryApp,
     HomescreenApp,

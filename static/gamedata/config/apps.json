@@ -58,7 +58,7 @@
         "icon" : "calculator.png",
         "preInstalled": true,
         "hasNotifications": false,
-        "wallpaper" : "solid-white"
+        "wallpaper" : "solid-black"
     },
     {
         "type" : "calendar",
@@ -130,7 +130,7 @@
         "preInstalled": true,
         "hasNotifications": false,
         "wallpaper" : "solid-black"
-    },    
+    },
     {
         "type": "todo",
         "key": "ToDoApp",

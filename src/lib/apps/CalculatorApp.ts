@@ -15,6 +15,7 @@ export default class CalculatorApp extends App {
     buttonSize      : number = 128;
     buttonMargin    : number = 32;
     buttonsRow      : number = 4;
+    margin          : number;
     buttons         : string;
     currentInput    : string = '0';
     currentOperator : any    = null;
@@ -31,12 +32,13 @@ export default class CalculatorApp extends App {
         // Set X and Y keyboard position
         // @INFO: You must add the half of button size because its Origin is set to 0.5
         let buttons_row_size = (this.buttonSize * this.buttonsRow) + (this.buttonMargin * (this.buttonsRow - 1));
-        this.x = (this.area.width - buttons_row_size) / 2  + (this.buttonSize / 2) ;
+        this.margin = (this.area.width - buttons_row_size) / 2  + (this.buttonSize / 2);
+        this.x = this.margin;
         this.y = 360;
 
         // Declare which label buttons will define Calculator App
-        this.buttons = "0123456789+-*/%=";
-    }
+        this.buttons = "C±%÷789x456-123+0,=";
+   }
 
     /**
      * @inheritdoc
@@ -50,13 +52,15 @@ export default class CalculatorApp extends App {
     }
 
     protected drawDisplay(): void {
-        this.display = new Phaser.GameObjects.Text(this.fakeOS, this.x + 256, 128, '0', {
-            fontFamily: 'RobotoCondensed',
-            color: "#ffff00",
-            fontSize: '92px',
-            fontStyle: '900',
+        this.display = new Phaser.GameObjects.Text(this.fakeOS, this.area.width - this.margin + 40, 92, '0', {
+            fontFamily: 'Roboto',
+            color: "#fff",
+            fontSize: '160px',
+            fontStyle: '200',
             baselineY: 1,
-            rtl: false}).setOrigin(0.5);
+            rtl: true,
+            align: 'right',
+        });
         this.getActiveLayer().add(this.display);
     }
 
@@ -65,7 +69,7 @@ export default class CalculatorApp extends App {
         let y = this.y
         let x_offset = this.buttonSize + this.buttonMargin;
         let y_offset = this.buttonSize + this.buttonMargin;
-        const rows = 4;
+        const rows = 5;
         const cols = 4;
 
         // Display calculator buttons in a grid of 4x4
@@ -73,13 +77,20 @@ export default class CalculatorApp extends App {
             for (let i = 0; i < cols; i++) {
                 let button = new Phaser.GameObjects.Container(this.fakeOS, 0, 0);
                 let label = this.buttons.charAt(j * cols + i));
+            let colorButton = 0xff00ff;
+            if (label === '+' || label === '-' || label === 'x' || label === '÷') {
+                colorButton = 0xffa500;
+            } else if (label === 'C' || label === '%' || label === '±') {
+                colorButton = 0xafafaf;
+            }
+            
             button.add([
                 new Phaser.GameObjects.Ellipse(this.fakeOS,
                                                x + (i * x_offset),
                                                y + (j * y_offset),
                                                this.buttonSize,
                                                this.buttonSize,
-                                               0xff00ff).setStrokeStyle(3, 0x40E0D0),
+                                               colorButton).setStrokeStyle(3, 0x40E0D0),
                 new Phaser.GameObjects.Text(this.fakeOS,
                                             x + (i * x_offset),
                                             y + (j * y_offset),
@@ -88,7 +99,8 @@ export default class CalculatorApp extends App {
                                                 color: 0x181818,
                                                 fontSize: '64px',
                                                 fontStyle: '900',
-                                                baselineY: 1}).setOrigin(0.5)]);
+                                                baselineY: 1}).setOrigin(0.5)]
+                      );
 
             // Implement button's interaction
             button.setInteractive(
@@ -109,6 +121,10 @@ export default class CalculatorApp extends App {
 }
 
 protected handleButtonClick(button) {
+    let max :number = 9;
+    console.info(this.display.text.length);
+    if (this.display.text.length > max) return;
+    
     // Handle the button click event
     let shapeObject = button.getAt(0);
     let textObject = button.getAt(1);
@@ -116,13 +132,18 @@ protected handleButtonClick(button) {
     shapeObject.setFillStyle(0xffff00);
 
     // Parse input
-    if (label === '+' || label === '-' || label === '*' || label === '/') {
+    if (label === 'C') {
+        this.currentInput = '0';        
+    } else if (label === '±') {
+        let inputNum = parseFloat(this.currentInput);
+        inputNum *= -1;
+        this.currentInput = inputNum.toString();
+    } else if (label === '+' || label === '-' || label === 'x' || label === '÷') {
         this.currentOperator = label;
         this.result = parseFloat(this.currentInput);
         this.currentInput = '0';
-        this.display.text = label;
     } else if (label === '=') {
-        const inputNum = parseFloat(this.currentInput);
+        let inputNum = parseFloat(this.currentInput);
         switch (this.currentOperator) {
             case '+':
                 this.result += inputNum;
@@ -130,22 +151,38 @@ protected handleButtonClick(button) {
             case '-':
                 this.result -= inputNum;
                 break;
-            case '*':
+            case 'x':
                 this.result *= inputNum;
                 break;
-            case '/':
+            case '÷':
                 this.result /= inputNum;
                 break;
         }
         this.currentInput = this.result.toString();
-        this.display.text = this.currentInput;
     } else {
+        if (this.currentInput.length == max - 3) {
+            this.display.setFontSize(145)
+        } else if (this.currentInput.length == max - 2) {
+            this.display.setFontSize(135)
+        } else if (this.currentInput.length == max - 1) {
+            this.display.setFontSize(125)
+        } else if (this.currentInput.length == max) {
+            this.display.setFontSize(115)
+        }
+        
         if (this.currentInput === '0') {
             this.currentInput = label;
-            this.display.text = label;
         } else {
             this.currentInput += label;
-            this.display.text += label;
+        }
+    }
+
+    if (this.currentInput.includes('-')) {
+        let index:number = this.currentInput.indexOf('-');
+        this.display.text += '-';
+    } else {
+        if (this.currentInput.length <= max) {
+            this.display.text = this.currentInput.substring(0,max);
         }
     }
 }

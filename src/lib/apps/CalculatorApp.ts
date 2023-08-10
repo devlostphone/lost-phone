@@ -1,6 +1,13 @@
 import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
 
+const WHITE  = '#ffffff';
+const BLACK  = '#181818';
+const PINK   = '#ff00ff';
+const ORANGE = '#ffa500';
+const GREY   = '#afafaf';
+
+
 /**
  * Calculator app
  */
@@ -21,9 +28,9 @@ export default class CalculatorApp extends App {
     value           : number = 0;
     buffer          : number = 0;
     operator        : any    = null;
+    operator_button : any    = null;
     powerofTen      : number = 1;
     max_digits      : number = 9;
-    operator_button : any    = null;
     display         : Phaser.GameObjects.Text;
 
     /**
@@ -41,8 +48,8 @@ export default class CalculatorApp extends App {
         this.y = 360;
 
         // Declare which label buttons will define Calculator App
-        this.buttons = "C±%÷789x456-123+0,=";
-   }
+        this.buttons = "C±%÷789x456-123+ 0,=";
+    }
 
     /**
      * @inheritdoc
@@ -69,23 +76,28 @@ export default class CalculatorApp extends App {
     }
 
     protected drawKeyboard(): void {
+        const rows = 5;
+        const cols = 4;
         let x = this.x
         let y = this.y
         let x_offset = this.buttonSize + this.buttonMargin;
         let y_offset = this.buttonSize + this.buttonMargin;
-        const rows = 5;
-        const cols = 4;
+        let colorButton: any;
+        let colorLabel: any;
 
         // Display calculator buttons in a grid of 4x4
         for (let j = 0; j < rows; j++) {
             for (let i = 0; i < cols; i++) {
                 let button = new Phaser.GameObjects.Container(this.fakeOS, 0, 0);
                 let label = this.buttons.charAt(j * cols + i));
-            let colorButton = 0xff00ff;
-            if (label === '+' || label === '-' || label === 'x' || label === '÷') {
-                colorButton = 0xffa500;
+
+            if (label === ' ') continue;
+            if (label === '+' || label === '-' || label === 'x' || label === '÷' || label === '=') {
+                colorLabel = ORANGE;
             } else if (label === 'C' || label === '%' || label === '±') {
-                colorButton = 0xafafaf;
+                colorLabel = GREY;
+            } else {
+                colorLabel = WHITE;
             }
 
             button.add([
@@ -94,17 +106,18 @@ export default class CalculatorApp extends App {
                                                y + (j * y_offset),
                                                this.buttonSize,
                                                this.buttonSize,
-                                               colorButton).setStrokeStyle(3, 0x40E0D0),
+                                               0x0).setStrokeStyle(3, 0x40E0D0),
+
                 new Phaser.GameObjects.Text(this.fakeOS,
                                             x + (i * x_offset),
                                             y + (j * y_offset),
                                             label, {
                                                 fontFamily: 'RobotoCondensed',
-                                                color: 0x181818,
+                                                color: colorLabel,
                                                 fontSize: '64px',
                                                 fontStyle: '900',
-                                                baselineY: 1}).setOrigin(0.5)]
-                      );
+                                                baselineY: 1}).setOrigin(0.5)
+            ]);
 
             // Implement button's interaction
             button.setInteractive(
@@ -126,7 +139,6 @@ export default class CalculatorApp extends App {
 
 
 protected handleButtonClick(button) {
-
     // Grab some internal values from button Object
     let shapeObject = button.getAt(0);
     let textObject = button.getAt(1);
@@ -137,10 +149,12 @@ protected handleButtonClick(button) {
         this.value = 0;
         this.buffer = 0;
         this.powerofTen = 1;
+        this.operator = null;
     } else if (label === '±') {
         this.value *= -1;
     } else if (label === '+' || label === '-' || label === 'x' || label === '÷' || label === '%') {
         this.operator = label;
+        this.operator_button = button;
         this.buffer = this.value;
         this.value = 0;
         this.powerofTen = 1;
@@ -168,6 +182,7 @@ protected handleButtonClick(button) {
         }
         this.buffer = 0;
         this.powerofTen = 1;
+        this.operator = null;
     } else if (label === ',') {
         this.powerofTen = -1;
     } else {
@@ -177,147 +192,43 @@ protected handleButtonClick(button) {
         } else {
             this.value = Math.pow(10, this.powerofTen) * this.value + parseInt(label);
         }
+        if (this.operator !== null) {
+            this.operator_button.getAt(0).setFillStyle(0x0);
+        }
     }
 
     // Log value
     console.info("Current Value (number): " + this.value);
     console.info("Current Buffer (number): " + this.buffer);
+    console.info("Current operator: " + this.operator);
     console.info("Power of ten: " + this.powerofTen);
 
-    this.display.text = this.value.toString();
+    // Forgive me oh gosh by this piece of shit
+    if (this.operator !== null && this.value === 0) {
+        this.display.text = this.buffer.toString();
+    } else {
+        this.display.text = this.value.toString();
+    }
+
+    // Set display text size related to its length
+    // @TODO:
+    if (this.display.text.length > 6) {
+        let len = this.display.text.length;
+        this.display.setFontSize(parseInt(this.display.style.fontSize) - ((len - 6) * 10));
+    }
+
     // Add color effect showing button has been clicked
     shapeObject.setFillStyle(0xffff00);
 }
-
-// protected handleButtonClick(button) {
-//     let buffer : number;
-//     // Stop clicking more number than max_digits
-//     if (this.display.text.length > this.max_digits) return;
-
-//     // Handle the button click event
-//     let shapeObject = button.getAt(0);
-//     let textObject = button.getAt(1);
-//     let label = textObject.text;
-
-//     // Add visual color effect to inform button has been clicked
-//     shapeObject.setFillStyle(0xffff00);
-
-//     // Parse input
-//     if (label === 'C') {
-//         // Reset values
-//         this.value = 0;
-//         this.currentInput = '0';
-//         this.currentOperator = null;
-//         // Reset operator button from memory
-//         if (this.operator_button !== null) {
-//             if ("+-x÷".includes(this.operator_button.getAt(1).text)) {
-//                 this.operator_button.getAt(0).setFillStyle(0xffa500);
-//             } else if ("±%".includes(this.operator_button.getAt(1).text)) {
-//                 this.operator_button.getAt(0).setFillStyle(0xafafaf);
-//             }
-//             this.operator_button = null;
-//         }
-//     } else if (label === '±') {
-//         this.value *= -1;
-//     } else if (label === '+' || label === '-' || label === 'x' || label === '÷' || label === '%') {
-//         this.currentOperator = label;
-//         if (this.operator_button !== null) {
-//             // Reset operator button from memory
-//             if ("+-x÷".includes(this.operator_button.getAt(1).text)) {
-//                 this.operator_button.getAt(0).setFillStyle(0xffa500);
-//             } else if ("±%".includes(this.operator_button.getAt(1).text)) {
-//                 this.operator_button.getAt(0).setFillStyle(0xafafaf);
-//             }
-//             this.operator_button = null;
-//         }
-//         this.operator_button = button;
-//         buffer = this.value;
-//     } else if (label === '=') {
-//         switch (this.currentOperator) {
-//             case '+':
-//                 this.value += buffer;
-//                 break;
-//             case '-':
-//                 this.value -= buffer;
-//                 break;
-//             case 'x':
-//                 this.value *= buffer;
-//                 break;
-//             case '÷':
-//                 this.value /= buffer;
-//                 break;
-//             case '%':
-//                 this.value %= buffer;
-//                 break;
-//         }
-//         this.currentOperator = null;
-//         // Reset operator button from memory
-//         if ("+-x÷".includes(this.operator_button.getAt(1).text)) {
-//             this.operator_button.getAt(0).setFillStyle(0xffa500);
-//         } else if ("±%".includes(this.operator_button.getAt(1).text)) {
-//             this.operator_button.getAt(0).setFillStyle(0xafafaf);
-//         }
-//         this.operator_button = null;
-//         // this.currentInput = Intl.NumberFormat().format(this.result);
-//     } else if (label === ',') {
-//         // You can't have more of one comma
-//         if ((this.currentInput.match(/,/g) || []).length > 0) return;
-//         this.currentInput += ',';
-//     } else {
-//         // if (this.currentInput.length == this.max - 3) {
-//         //     this.display.setFontSize(145)
-//         // } else if (this.currentInput.length == this.max - 2) {
-//         //     this.display.setFontSize(135)
-//         // } else if (this.currentInput.length == this.max - 1) {
-//         //     this.display.setFontSize(125)
-//         // } else if (this.currentInput.length == this.max) {
-//         //     this.display.setFontSize(115)
-//         // }
-
-//         if (this.currentInput === '0') {
-//             this.currentInput = label;
-//         } else {
-//             this.currentInput += label;
-//         }
-//     }
-
-//     // if (this.currentInput.length <= max) {
-//     //     this.display.text = this.currentInput.substring(0,max)
-//     // }
-
-//     console.info("Current operator: " + this.currentOperator);
-//     console.info("Current Value (number): " + this.value);
-//     console.info("Current Input (string): " + this.currentInput);
-
-//     // if (this.currentInput.includes('-')) {
-//     //     let index:number = this.currentInput.indexOf('-');
-//     //     this.display.text += '-';
-//     // }
-//     if (this.value < 0) {
-//         this.currentInput = '-' + this.currentInput;
-//     } else if (this.value >= 0 &&  this.currentInput.indexOf('-') == 0) {
-//         this.currentInput.replace("-", '');
-//     }
-
-//     this.value = parseFloat(this.currentInput.replace(",", "."));
-//     let foo = this.value.toString().
-//         replace(".", ",").
-//         replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-
-//     this.display.text = foo;
-
-
-
-// }
 
 protected releaseButtonClick(button) {
     // When release click button
     let shapeObject = button.getAt(0);
     let textObject = button.getAt(1);
     let label = textObject.text;
-    shapeObject.setFillStyle(0xff00ff);
-    if ("±C".includes(label)) shapeObject.setFillStyle(0xafafaf);
-    if (this.currentOperator !== null && "+-x÷%".includes(label)) {
+    shapeObject.setFillStyle(0x0);
+    if ("±C".includes(label)) shapeObject.setFillStyle(GREY);
+    if (this.operator !== null && "+-x÷%".includes(label)) {
         shapeObject.setFillStyle(0xffffff);
     }
 }

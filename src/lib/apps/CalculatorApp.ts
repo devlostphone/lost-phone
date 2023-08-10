@@ -17,11 +17,11 @@ export default class CalculatorApp extends App {
     buttonsRow      : number = 4;
     margin          : number;
     buttons         : string;
-    currentInput    : string = '0';
-    currentOperator : any    = null;
     result          : any    = null;
     value           : number = 0;
+    buffer          : number = 0;
     operator        : any    = null;
+    powerofTen      : number = 1;
     max_digits      : number = 9;
     operator_button : any    = null;
     display         : Phaser.GameObjects.Text;
@@ -87,7 +87,7 @@ export default class CalculatorApp extends App {
             } else if (label === 'C' || label === '%' || label === '±') {
                 colorButton = 0xafafaf;
             }
-            
+
             button.add([
                 new Phaser.GameObjects.Ellipse(this.fakeOS,
                                                x + (i * x_offset),
@@ -124,110 +124,191 @@ export default class CalculatorApp extends App {
     }
 }
 
+
 protected handleButtonClick(button) {
-    let buffer : number;
-    // Stop clicking more number than max_digits
-    if (this.display.text.length > this.max_digits) return;
-    
-    // Handle the button click event
+
+    // Grab some internal values from button Object
     let shapeObject = button.getAt(0);
     let textObject = button.getAt(1);
     let label = textObject.text;
 
-    // Add visual color effect to inform button has been clicked
-    shapeObject.setFillStyle(0xffff00);
-
-    // Parse input
+    // Parse input from keyboard
     if (label === 'C') {
-        // Reset values
         this.value = 0;
-        this.currentInput = '0';
-        this.currentOperator = null;
-        // Reset operator button from memory
-        if (this.operator_button !== null) {
-            if ("+-x÷".includes(this.operator_button.getAt(1).text)) {
-                this.operator_button.getAt(0).setFillStyle(0xffa500);
-            } else if ("±%".includes(this.operator_button.getAt(1).text)) {
-                this.operator_button.getAt(0).setFillStyle(0xafafaf);
-            }
-            this.operator_button = null;
-        }
+        this.buffer = 0;
+        this.powerofTen = 1;
     } else if (label === '±') {
         this.value *= -1;
-    } else if (label === '+' || label === '-' || label === 'x' || label === '÷' || label === '%') {        
-        this.currentOperator = label;
-        if (this.operator_button !== null) {
-            // Reset operator button from memory
-            if ("+-x÷".includes(this.operator_button.getAt(1).text)) {
-                this.operator_button.getAt(0).setFillStyle(0xffa500);
-            } else if ("±%".includes(this.operator_button.getAt(1).text)) {
-                this.operator_button.getAt(0).setFillStyle(0xafafaf);
-            }
-            this.operator_button = null;
-        }
-        this.operator_button = button;
-        buffer = this.value;
+    } else if (label === '+' || label === '-' || label === 'x' || label === '÷' || label === '%') {
+        this.operator = label;
+        this.buffer = this.value;
+        this.value = 0;
+        this.powerofTen = 1;
     } else if (label === '=') {
-        switch (this.currentOperator) {
+        switch(this.operator) {
             case '+':
-                this.value += buffer;
+                this.value += this.buffer;
                 break;
             case '-':
-                this.value -= buffer;
+                this.value = this.buffer - this.value;
                 break;
             case 'x':
-                this.value *= buffer;
+                this.value *= this.buffer;
                 break;
             case '÷':
-                this.value /= buffer;
+                this.value = this.buffer / this.value;
                 break;
             case '%':
-                this.value %= buffer;
+                this.value = this.buffer % this.value;
+                break;
+
+            default:
+                console.info("!!Calculator App Error: Invalid operator!!!");
                 break;
         }
-        this.currentOperator = null;
-        // Reset operator button from memory
-        if ("+-x÷".includes(this.operator_button.getAt(1).text)) {
-            this.operator_button.getAt(0).setFillStyle(0xffa500);
-        } else if ("±%".includes(this.operator_button.getAt(1).text)) {
-            this.operator_button.getAt(0).setFillStyle(0xafafaf);
-        }
-        this.operator_button = null;        
-        // this.currentInput = Intl.NumberFormat().format(this.result);
+        this.buffer = 0;
+        this.powerofTen = 1;
+    } else if (label === ',') {
+        this.powerofTen = -1;
     } else {
-        // if (this.currentInput.length == this.max - 3) {
-        //     this.display.setFontSize(145)
-        // } else if (this.currentInput.length == this.max - 2) {
-        //     this.display.setFontSize(135)
-        // } else if (this.currentInput.length == this.max - 1) {
-        //     this.display.setFontSize(125)
-        // } else if (this.currentInput.length == this.max) {
-        //     this.display.setFontSize(115)
-        // }
-        
-        if (this.currentInput === '0') {
-            this.currentInput = label;
+        if (this.powerofTen < 1) {
+            this.value += parseInt(label) * Math.pow(10, this.powerofTen);
+            this.powerofTen--;
         } else {
-            this.currentInput += label;
+            this.value = Math.pow(10, this.powerofTen) * this.value + parseInt(label);
         }
     }
 
-    // Add custom symbols like:
-    // negative number (-2323)
-    // dot for every three digits (1.000.000)
-    // if (this.currentInput.includes('-')) {
-    //     let index:number = this.currentInput.indexOf('-');
-    //     this.display.text += '-';
-    // }
+    // Log value
+    console.info("Current Value (number): " + this.value);
+    console.info("Current Buffer (number): " + this.buffer);
+    console.info("Power of ten: " + this.powerofTen);
 
-    // if (this.currentInput.length <= max) {
-    //     this.display.text = this.currentInput.substring(0,max)
-    // }
-
-    console.info(this.currentOperator);
-    console.info(this.currentInput);
-    console.info(this.value);
+    this.display.text = this.value.toString();
+    // Add color effect showing button has been clicked
+    shapeObject.setFillStyle(0xffff00);
 }
+
+// protected handleButtonClick(button) {
+//     let buffer : number;
+//     // Stop clicking more number than max_digits
+//     if (this.display.text.length > this.max_digits) return;
+
+//     // Handle the button click event
+//     let shapeObject = button.getAt(0);
+//     let textObject = button.getAt(1);
+//     let label = textObject.text;
+
+//     // Add visual color effect to inform button has been clicked
+//     shapeObject.setFillStyle(0xffff00);
+
+//     // Parse input
+//     if (label === 'C') {
+//         // Reset values
+//         this.value = 0;
+//         this.currentInput = '0';
+//         this.currentOperator = null;
+//         // Reset operator button from memory
+//         if (this.operator_button !== null) {
+//             if ("+-x÷".includes(this.operator_button.getAt(1).text)) {
+//                 this.operator_button.getAt(0).setFillStyle(0xffa500);
+//             } else if ("±%".includes(this.operator_button.getAt(1).text)) {
+//                 this.operator_button.getAt(0).setFillStyle(0xafafaf);
+//             }
+//             this.operator_button = null;
+//         }
+//     } else if (label === '±') {
+//         this.value *= -1;
+//     } else if (label === '+' || label === '-' || label === 'x' || label === '÷' || label === '%') {
+//         this.currentOperator = label;
+//         if (this.operator_button !== null) {
+//             // Reset operator button from memory
+//             if ("+-x÷".includes(this.operator_button.getAt(1).text)) {
+//                 this.operator_button.getAt(0).setFillStyle(0xffa500);
+//             } else if ("±%".includes(this.operator_button.getAt(1).text)) {
+//                 this.operator_button.getAt(0).setFillStyle(0xafafaf);
+//             }
+//             this.operator_button = null;
+//         }
+//         this.operator_button = button;
+//         buffer = this.value;
+//     } else if (label === '=') {
+//         switch (this.currentOperator) {
+//             case '+':
+//                 this.value += buffer;
+//                 break;
+//             case '-':
+//                 this.value -= buffer;
+//                 break;
+//             case 'x':
+//                 this.value *= buffer;
+//                 break;
+//             case '÷':
+//                 this.value /= buffer;
+//                 break;
+//             case '%':
+//                 this.value %= buffer;
+//                 break;
+//         }
+//         this.currentOperator = null;
+//         // Reset operator button from memory
+//         if ("+-x÷".includes(this.operator_button.getAt(1).text)) {
+//             this.operator_button.getAt(0).setFillStyle(0xffa500);
+//         } else if ("±%".includes(this.operator_button.getAt(1).text)) {
+//             this.operator_button.getAt(0).setFillStyle(0xafafaf);
+//         }
+//         this.operator_button = null;
+//         // this.currentInput = Intl.NumberFormat().format(this.result);
+//     } else if (label === ',') {
+//         // You can't have more of one comma
+//         if ((this.currentInput.match(/,/g) || []).length > 0) return;
+//         this.currentInput += ',';
+//     } else {
+//         // if (this.currentInput.length == this.max - 3) {
+//         //     this.display.setFontSize(145)
+//         // } else if (this.currentInput.length == this.max - 2) {
+//         //     this.display.setFontSize(135)
+//         // } else if (this.currentInput.length == this.max - 1) {
+//         //     this.display.setFontSize(125)
+//         // } else if (this.currentInput.length == this.max) {
+//         //     this.display.setFontSize(115)
+//         // }
+
+//         if (this.currentInput === '0') {
+//             this.currentInput = label;
+//         } else {
+//             this.currentInput += label;
+//         }
+//     }
+
+//     // if (this.currentInput.length <= max) {
+//     //     this.display.text = this.currentInput.substring(0,max)
+//     // }
+
+//     console.info("Current operator: " + this.currentOperator);
+//     console.info("Current Value (number): " + this.value);
+//     console.info("Current Input (string): " + this.currentInput);
+
+//     // if (this.currentInput.includes('-')) {
+//     //     let index:number = this.currentInput.indexOf('-');
+//     //     this.display.text += '-';
+//     // }
+//     if (this.value < 0) {
+//         this.currentInput = '-' + this.currentInput;
+//     } else if (this.value >= 0 &&  this.currentInput.indexOf('-') == 0) {
+//         this.currentInput.replace("-", '');
+//     }
+
+//     this.value = parseFloat(this.currentInput.replace(",", "."));
+//     let foo = this.value.toString().
+//         replace(".", ",").
+//         replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+//     this.display.text = foo;
+
+
+
+// }
 
 protected releaseButtonClick(button) {
     // When release click button

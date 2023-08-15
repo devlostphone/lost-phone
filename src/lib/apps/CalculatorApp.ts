@@ -7,7 +7,6 @@ const PINK   = '#ff00ff';
 const ORANGE = '#ffa500';
 const GREY   = '#afafaf';
 
-
 /**
  * Calculator app
  */
@@ -70,7 +69,7 @@ export default class CalculatorApp extends App {
             fontStyle: '200',
             baselineY: 1,
             rtl: true,
-            align: 'right',
+            align: 'right'
         });
         this.getActiveLayer().add(this.display);
     }
@@ -171,6 +170,7 @@ protected handleButtonClick(button) {
                 break;
             case '÷':
                 this.value = this.buffer / this.value;
+                this.value.toFixed(4)
                 break;
             case '%':
                 this.value = this.buffer % this.value;
@@ -197,24 +197,36 @@ protected handleButtonClick(button) {
         }
     }
 
-    // Log value
-    console.info("Current Value (number): " + this.value);
-    console.info("Current Buffer (number): " + this.buffer);
-    console.info("Current operator: " + this.operator);
-    console.info("Power of ten: " + this.powerofTen);
+    // Display value or buffer
+    let nf = new Intl.NumberFormat('es-ES', {
+        notation: "scientific",
+        signDisplay : 'negative',
+        notation : 'standard',
+        maximumFractionDigits: 4,
+    })
 
-    // Forgive me oh gosh by this piece of shit
+    let display : String = nf.format(this.value);
     if (this.operator !== null && this.value === 0) {
-        this.display.text = this.buffer.toString();
-    } else {
-        this.display.text = this.value.toString();
+        display = nf.format(this.buffer);
     }
 
-    // Set display text size related to its length
-    // @TODO:
-    if (this.display.text.length > 6) {
-        let len = this.display.text.length;
-        this.display.setFontSize(parseInt(this.display.style.fontSize) - ((len - 6) * 10));
+    // Log value
+    console.info("Current Value (number): " + this.value);
+    console.info("Value lenght (number): " + Math.ceil(Math.log10(this.value + 1)));
+    console.info("Current Buffer (number): " + this.buffer);
+    // console.info("Current operator: " + this.operator);
+    // console.info("Power of ten: " + this.powerofTen);
+
+    // @PHASER3-FEATURE-REQUEST:
+    // Add CSS property 'unicode-bidi' to text style #6581
+    // https://stackoverflow.com/questions/29074287/how-to-change-negative-sign-position-css
+    // https://github.com/photonstorm/phaser/issues/6581
+
+    // @TODO: Limit number of display number digits
+    if (display.length < 9)  {
+        this.display.setText(display)
+        // let len = this.display.text.length;
+        // this.display.setFontSize(parseInt(this.display.style.fontSize) - ((len - 6) * 10));
     }
 
     // Add color effect showing button has been clicked
@@ -231,13 +243,6 @@ protected releaseButtonClick(button) {
     if (this.operator !== null && "+-x÷%".includes(label)) {
         shapeObject.setFillStyle(0xffffff);
     }
-}
-
-/**
- * @inheritdoc
- */
-public update(delta: any, time: any): void {
-    // pass
 }
 
 /**

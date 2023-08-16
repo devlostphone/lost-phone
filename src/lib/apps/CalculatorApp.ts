@@ -186,14 +186,21 @@ protected handleButtonClick(button) {
     } else if (label === ',') {
         this.powerofTen = -1;
     } else {
-        // @BUG: Add new digit to negative numbers are not work properly
-        // Expects (1)+(0)+(±) -> -10 -> (3) -> -103
-        // Result  (1)+(0)+(±) -> -10 -> (3) -> -97
+        // @BUG: Add decimals to result number are not showing right
+        // It forgets the value of poweroften!
         if (this.powerofTen < 1) {
-            this.value += parseInt(label) * Math.pow(10, this.powerofTen);
+            if (this.value < 0) {
+                this.value -= parseInt(label) * Math.pow(10, this.powerofTen);
+            } else {
+                this.value += parseInt(label) * Math.pow(10, this.powerofTen);
+            }
             this.powerofTen--;
         } else {
-            this.value = Math.pow(10, this.powerofTen) * this.value + parseInt(label);
+            if (this.value < 0) {
+                this.value = Math.pow(10, this.powerofTen) * this.value - parseInt(label);
+            } else {
+                this.value = Math.pow(10, this.powerofTen) * this.value + parseInt(label);
+            }
         }
         if (this.operator !== null) {
             this.operator_button.getAt(0).setFillStyle(0x0);
@@ -227,6 +234,8 @@ protected handleButtonClick(button) {
     // Closed because Canvas API (Not implemented)
     //
     let len : number = display.length;
+
+    // @TODO: Fix negative number when operand is clicked
     if (this.value < 0 && display.charAt(len-1) != '-') {
         console.info("Match");
         display = display.slice(1);

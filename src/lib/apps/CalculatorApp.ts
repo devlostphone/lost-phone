@@ -186,6 +186,9 @@ protected handleButtonClick(button) {
     } else if (label === ',') {
         this.powerofTen = -1;
     } else {
+        // @BUG: Add new digit to negative numbers are not work properly
+        // Expects (1)+(0)+(±) -> -10 -> (3) -> -103
+        // Result  (1)+(0)+(±) -> -10 -> (3) -> -97
         if (this.powerofTen < 1) {
             this.value += parseInt(label) * Math.pow(10, this.powerofTen);
             this.powerofTen--;
@@ -221,6 +224,16 @@ protected handleButtonClick(button) {
     // Add CSS property 'unicode-bidi' to text style #6581
     // https://stackoverflow.com/questions/29074287/how-to-change-negative-sign-position-css
     // https://github.com/photonstorm/phaser/issues/6581
+    // Closed because Canvas API (Not implemented)
+    //
+    let len : number = display.length;
+    if (this.value < 0 && display.charAt(len-1) != '-') {
+        console.info("Match");
+        display = display.slice(1);
+        display += '-';
+    }
+    ////////////////////////////////////////////////////
+
 
     // @TODO: Limit number of display number digits
     if (display.length < 9)  {

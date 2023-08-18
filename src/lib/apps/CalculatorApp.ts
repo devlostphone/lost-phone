@@ -235,8 +235,7 @@ protected handleButtonClick(button) {
     //
     let len : number = display.length;
 
-    // @TODO: Fix negative number when operand is clicked
-    if (this.value < 0 && display.charAt(len-1) != '-') {
+    if ((this.value || this.buffer) < 0 && display.charAt(len-1) != '-') {
         console.info("Match");
         display = display.slice(1);
         display += '-';

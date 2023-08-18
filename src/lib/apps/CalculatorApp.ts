@@ -6,7 +6,7 @@ const BLACK  = '#181818';
 const PINK   = '#ff00ff';
 const ORANGE = '#ffa500';
 const GREY   = '#afafaf';
-
+const MAX_FRACTION_DIGITS = 4;
 /**
  * Calculator app
  */
@@ -181,13 +181,18 @@ protected handleButtonClick(button) {
                 break;
         }
         this.buffer = 0;
-        this.powerofTen = 1;
         this.operator = null;
+        // Set poweroften related to number of decimals
+        let precision = this.precision(this.value);
+        if (precision > 0) {
+            this.powerofTen += Math.min(precision, MAX_FRACTION_DIGITS);
+            this.powerofTen *= -1;
+        } else {
+            this.powerofTen = 1;
+        }
     } else if (label === ',') {
         this.powerofTen = -1;
     } else {
-        // @BUG: Add decimals to result number are not showing right
-        // It forgets the value of poweroften!
         if (this.powerofTen < 1) {
             if (this.value < 0) {
                 this.value -= parseInt(label) * Math.pow(10, this.powerofTen);
@@ -212,7 +217,7 @@ protected handleButtonClick(button) {
         notation: "scientific",
         signDisplay : 'negative',
         notation : 'standard',
-        maximumFractionDigits: 4,
+        maximumFractionDigits: MAX_FRACTION_DIGITS,
     })
 
     let display : String = nf.format(this.value);
@@ -222,7 +227,6 @@ protected handleButtonClick(button) {
 
     // Log value
     console.info("Current Value (number): " + this.value);
-    console.info("Value lenght (number): " + Math.ceil(Math.log10(this.value + 1)));
     console.info("Current Buffer (number): " + this.buffer);
     // console.info("Current operator: " + this.operator);
     // console.info("Power of ten: " + this.powerofTen);
@@ -264,6 +268,13 @@ protected releaseButtonClick(button) {
     if (this.operator !== null && "+-x÷%".includes(label)) {
         shapeObject.setFillStyle(0xffffff);
     }
+}
+
+protected precision(num) {
+    if (isNaN(+num)) return 0;
+    const decimals = (num + '').split('.')[1];
+    if (decimals) return decimals.length;
+    return 0;
 }
 
 /**

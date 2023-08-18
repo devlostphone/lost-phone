@@ -6,7 +6,9 @@ const BLACK  = '#181818';
 const PINK   = '#ff00ff';
 const ORANGE = '#ffa500';
 const GREY   = '#afafaf';
-const MAX_FRACTION_DIGITS = 4;
+const MAX_FRACTION_DIGITS = 6;
+const MAX_DISPLAY_DIGITS  = 11;
+const DISPLAY_FONT_SIZE = 160;
 /**
  * Calculator app
  */
@@ -65,7 +67,7 @@ export default class CalculatorApp extends App {
         this.display = new Phaser.GameObjects.Text(this.fakeOS, this.area.width - this.margin + 40, 92, '0', {
             fontFamily: 'Roboto',
             color: "#fff",
-            fontSize: '160px',
+            fontSize: DISPLAY_FONT_SIZE + "px",
             fontStyle: '200',
             baselineY: 1,
             rtl: true,
@@ -220,6 +222,7 @@ protected handleButtonClick(button) {
         maximumFractionDigits: MAX_FRACTION_DIGITS,
     })
 
+
     let display : String = nf.format(this.value);
     if (this.operator !== null && this.value === 0) {
         display = nf.format(this.buffer);
@@ -231,6 +234,7 @@ protected handleButtonClick(button) {
     // console.info("Current operator: " + this.operator);
     // console.info("Power of ten: " + this.powerofTen);
 
+    ////////////////////////////////////////////////////
     // @PHASER3-FEATURE-REQUEST:
     // Add CSS property 'unicode-bidi' to text style #6581
     // https://stackoverflow.com/questions/29074287/how-to-change-negative-sign-position-css
@@ -238,22 +242,32 @@ protected handleButtonClick(button) {
     // Closed because Canvas API (Not implemented)
     //
     let len : number = display.length;
-
     if ((this.value || this.buffer) < 0 && display.charAt(len-1) != '-') {
         console.info("Match");
         display = display.slice(1);
         display += '-';
     }
     ////////////////////////////////////////////////////
-
-
-    // @TODO: Limit number of display number digits
-    if (display.length < 9)  {
-        this.display.setText(display)
-        // let len = this.display.text.length;
-        // this.display.setFontSize(parseInt(this.display.style.fontSize) - ((len - 6) * 10));
+    // Display area
+    if (display.length <= MAX_DISPLAY_DIGITS) {
+        if (display.length > 7) {
+            let oldfontSize = parseInt(this.display.style.fontSize);
+            // @TODO: Need to improve this and fix display text position after its size has changed
+            let newfontSize = oldfontSize - ((display.length - 7) * (10 - (display.length - 6)));
+            this.display.setFontSize(newfontSize);
+        } else {
+            this.display.setFontSize(DISPLAY_FONT_SIZE);
+        }
+    } else {
+        // Sure there's a better way to improve this
+        if (this.operator !== null) {
+            display = this.buffer.toExponential(0).toString().replace('+','');
+        } else {
+            display = this.value.toExponential(0).toString().replace('+','');
+        }
     }
 
+    this.display.setText(display)
     // Add color effect showing button has been clicked
     shapeObject.setFillStyle(0xffff00);
 }
@@ -270,6 +284,7 @@ protected releaseButtonClick(button) {
     }
 }
 
+// Stolen from https://stackoverflow.com/questions/9553354/how-do-i-get-the-decimal-places-of-a-floating-point-number-in-javascript
 protected precision(num) {
     if (isNaN(+num)) return 0;
     const decimals = (num + '').split('.')[1];

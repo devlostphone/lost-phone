@@ -15,8 +15,8 @@ export default class ChatApp extends App {
     protected contacts: any;
     protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto', lineSpacing: 5 };
     protected choiceTextOptions: any = { align: "left", fontSize: "12px", color: '#000' };
-    protected newRowOptions = { autoscroll: true };
-    protected rowOptions = { autoscroll: 'fast' };
+    protected newRowOptions = { autoscroll: true , offsetY: 40};
+    protected rowOptions = { autoscroll: 'fast' , offsetY: 40};
     protected activeContact: number;
     protected lastMessage?: string;
     protected header?: Phaser.GameObjects.Text;

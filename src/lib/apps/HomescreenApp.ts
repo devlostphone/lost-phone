@@ -104,7 +104,7 @@ export default class HomescreenApp extends App {
         this.addGrid(favs, {
             columns: 4,
             rows: 1 ,
-            y: 9,
+            y: 4,
             offsetY: this.fakeOS.getUI().getAppRenderSize().height * 0.05
         });
 

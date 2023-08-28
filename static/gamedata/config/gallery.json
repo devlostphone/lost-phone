@@ -60,14 +60,6 @@
         "source": "gamedata/assets/pictures/torre.jpg",
         "condition": null
     },
-
-    {
-        "id": "v001",
-        "type": "video",
-        "source": "gamedata/assets/videos/v001.mp4",
-        "condition": null,
-        "password": 1234
-    },
     {
         "id": "v002",
         "type": "video",

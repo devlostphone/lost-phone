@@ -76,8 +76,10 @@ export default class PicGrid extends Phaser.GameObjects.Container
                     element = this.printImage(this.media[i]);
                     break;
                 case 'video':
-                    element = this.printVideo(this.media[i]);
-                    break;
+                    // TO DO: change this
+                    //element = this.printVideo(this.media[i]);
+                    //break;
+                    continue;
                 case 'file':
                     element = this.printFile(this.media[i]);
                     break;
@@ -160,7 +162,10 @@ export default class PicGrid extends Phaser.GameObjects.Container
             },
             element
         );
-        element.input.hitArea = rectangle;
+
+        if (element.input !== undefined) {
+            element.input.hitArea = rectangle;
+        }
 
         return element;
     }

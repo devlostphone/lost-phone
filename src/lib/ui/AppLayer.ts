@@ -145,6 +145,10 @@ export default class AppLayer extends Phaser.GameObjects.Container
             elements = [elements];
         }
 
+        if (options['offsetY'] === undefined) {
+            options['offsetY'] = 0;
+        }
+
         // Check defaults
         if (options['height'] === undefined) {
             options['height'] = 1;
@@ -163,11 +167,11 @@ export default class AppLayer extends Phaser.GameObjects.Container
             this.last_row = options['y'];
             y = this.atRow(this.last_row);
         } else {
-            y = Math.ceil(bounds.height) + this.area.y + 20;
+            y = Math.ceil(bounds.height) + options['offsetY'];
         }
 
         Phaser.Actions.GridAlign(elements, {
-            x: this.area.width / elements.length / 2,
+            x: 0,
             y: y,
             width: -1,
             height: 1,
@@ -241,7 +245,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
         const cellHeight = (this.area.height / options['rows']) * options['height'];
 
         Phaser.Actions.GridAlign(elements, {
-            x: (this.area.width / options['columns']) / 2,
+            x: 0,
             y: this.atRow(this.last_row) + options['offsetY'],
             width: colNumber,
             height: rowNumber,
@@ -315,7 +319,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
         if (rowNumber < 0) {
           rowNumber = this.rows + rowNumber;
         }
-        return this.area.y * 2 + Math.floor((this.rowHeight() * rowNumber));
+        return this.rowHeight() * rowNumber;
     }
 
     /**

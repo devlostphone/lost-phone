@@ -186,10 +186,11 @@ export default class Preloader extends FakeOSScene {
                     break;
                 case 'video':
                     this.load.video(media[i].id, media[i].source);
+                    break;
             }
         }
     }
-    
+
     /**
      * Preloads orwell thubnails and sites.
      */
@@ -201,7 +202,7 @@ export default class Preloader extends FakeOSScene {
         }
     }
 
-    
+
     /**
      * Preloads contact images.
      */

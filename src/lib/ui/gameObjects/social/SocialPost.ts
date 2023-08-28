@@ -74,7 +74,7 @@ export default class SocialPost extends Phaser.GameObjects.Container
         };
 
         this.background = this.fakeOS.add.rectangle(
-            0, 0, this.fakeOS.getActiveApp().area.width
+            0, 30, this.fakeOS.getActiveApp().area.width
         );
         this.avatar = this.fakeOS.add.image(
             -this.fakeOS.getActiveApp().area.width / 2 + 30,

@@ -154,7 +154,8 @@ export default class CalendarApp extends App {
             this.container.add(new Phaser.GameObjects.Text(this.fakeOS, 0, 0, this.fakeOS.getString('daysweekshort')[j], {
                 fontFamily: 'RobotoCondensed',
                 fontSize: '24px',
-                color: new Date().getHours() >= 9 && new Date().getHours() <= 20 ? '#000' : '#fff'
+                // color: new Date().getHours() >= 9 && new Date().getHours() <= 20 ? '#000' : '#fff'
+                color: '#000'
             }).setName('labelDay'));
         }
 
@@ -300,13 +301,16 @@ export default class CalendarApp extends App {
             cellWidth: 92,
             cellHeight: 92,
             position: Phaser.Display.Align.BOTTOM_CENTER,
-            x: 72, y: 256
+            // This seems incredibly random at first sight. BUT
+            // In fact, 92 belongs to cellWidth/cellHeight, 7 is the width/height
+            // and 210 is well... the y-axis start position of the grid
+            x:  (this.fakeOS.width / 2) - (92 * 7 / 2), y: 210 + 92
         });
 
         this.getActiveLayer().add(this.container.getAll());
     }
 
-    // TODO: Remove this if this doesn't mean anything
+    // @TODO: Remove this if this doesn't mean anything
     private callbackTest = (day : any) => {
         console.log(day);
     }

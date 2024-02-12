@@ -182,7 +182,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
 
         if (options['y'] !== undefined) {
             this.last_row = previousY;
-        } else {
+        } else {
             this.last_row += options['height'];
         }
 

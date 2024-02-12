@@ -31,8 +31,8 @@
         "parcel-config-pwa-manifest": "^0.1.2",
         "parcel-reporter-clean-dist": "^1.0.4",
         "parcel-reporter-static-files-copy": "^1.5.2",
-        "phaser": "^3.60.0",
-        "phaser3-rex-plugins": "^1.60.4",
+        "phaser": "^3.70.0",
+        "phaser3-rex-plugins": "^1.60.10",
         "process": "^0.11.10",
         "qrcode": "^1.5.3",
         "typescript": "^5.1.6"
@@ -54,5 +54,8 @@
     },
     "dependencies": {
         "phaser3-rex-plugins": "^1.60.4"
+    },
+    "overrides": {
+        "@parcel/watcher": "2.1.0"
     }
 }

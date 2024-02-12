@@ -125,7 +125,7 @@
     {
         "type": "orwell",
         "key": "OrwellApp",
-        "icon": "orwell.png",
+        "icon": "cercaweb.png",
         "configFile" : "orwell.json",
         "preInstalled": true,
         "hasNotifications": false,

@@ -35,7 +35,7 @@
         "options": {
           "c000-ans0004": {
             "id": "c000-ans0004",
-            "text": "I ara àvia! Ara ja et podré enviar fotos de les flors del jardí i no te m'enyoraràs tant",
+            "text": "I ara àvia! Ara ja et podré enviar fotos de les flors del jardí i no te m'enyoraràs tant.",
             "next": "c000-0005",
             "condition": null
           }
@@ -53,7 +53,7 @@
         "options": {
           "c000-ans0006": {
             "id": "c000-ans0006",
-            "text": "Àvia, el vidre del mòbil! Està trencat, de segur que me l’han trencat ells! Puc venir a veure’t? No hi ha dret, àvia, sempre estan igual; és nou, ara el papa i la mama s’enfadaran",
+            "text": "Àvia, el vidre del mòbil! Està trencat, de segur que me l’han trencat ells! Puc venir a veure’t? No hi ha dret, àvia, sempre estan igual; és nou, ara el papà i la mamà s’enfadaran.",
             "next": "c000-0007",
             "condition": null
           }
@@ -79,7 +79,7 @@
       },
       "c000-0009": {
         "id": "c000-0009",
-        "text": "Vine, fill, que l’àvia t’estima molt",
+        "text": "Vine, fill, que l’àvia t’estima molt.",
         "time": "9:56",
         "next": "c000-0010",
         "condition": null
@@ -103,7 +103,7 @@
         "options": {
           "c000-ans0012": {
             "id": "c000-ans0012",
-            "text": "Hola, àvia! Digues!",
+            "text": "Hola, àvia!",
             "next": "c000-0013",
             "condition": null
           }
@@ -111,7 +111,7 @@
       },
       "c000-0013": {
         "id": "c000-0013",
-        "text": "Que vindràs a veure’m avui?",
+          "text": "Que vindràs a veure’m avui, senyor Jaume?",
         "time": "13:12",
         "next": "c000-0014",
         "condition": null
@@ -129,7 +129,7 @@
       },
       "c000-0015": {
         "id": "c000-0015",
-        "text": "I tant, t’esperaré a la saleta, com sempre.",
+        "text": "I tant, seré a la saleta, com sempre.",
         "time": "13:14",
         "next": "c000-0016",
         "condition": null
@@ -139,7 +139,7 @@
         "options": {
           "c000-ans0016": {
             "id": "c000-ans0016",
-            "text": "Un petó",
+            "text": "Un petó.",
             "next": "c000-0017",
             "condition": null
           }
@@ -147,7 +147,7 @@
       },
       "c000-0017": {
         "id": "c000-0017",
-        "text": "Un petó, rei meu",
+        "text": "Un petó, rei meu.",
         "time": "13:16",
         "next": "c000-0018",
         "condition": null
@@ -188,6 +188,14 @@
         "id": "c000-0022",
         "text": "Aquesta és la darrera copa d’un joc que l’avi havia comprat a Viena. N’és l’última i és per a vostè!",
         "time": "9:14",
+        "next": "c000-0023a",
+        "condition": null
+      },
+      "c000-0023a": {
+        "id": "m75",
+        "author": "Àvia",
+        "text": "gallery:g015",
+        "time": "9:14",
         "next": "c000-0023",
         "condition": null
       },
@@ -221,7 +229,7 @@
         "options": {
           "c000-ans0026": {
             "id": "c000-ans0026",
-            "text": "Síii",
+            "text": "Síii.",
             "next": "c000-0027",
             "condition": null
           }
@@ -257,7 +265,7 @@
         "options": {
           "c000-ans0030": {
             "id": "c000-ans0030",
-            "text": "He estat a punt de caure a la piscina, quin ensurt, àvia.",
+            "text": "He estat a punt de caure a la bassa, quin ensurt, àvia.",
             "next": "c000-0031",
             "condition": null
           }
@@ -265,7 +273,7 @@
       },
       "c000-0031": {
         "id": "c000-0031",
-        "text": "Tu tens, teu, ben teu, un àngel de la guarda",
+        "text": "Tu tens, teu, ben teu, un àngel de la guarda.",
         "time": "20:20",
         "next": "c000-0032",
         "condition": null
@@ -275,7 +283,7 @@
         "options": {
           "c000-ans0032": {
             "id": "c000-ans0032",
-            "text": "Haha, segur que t’ho inventes, això",
+            "text": "Ha ha, segur que t’ho inventes, això.",
             "next": "c000-0033",
             "condition": null
           }
@@ -283,7 +291,7 @@
       },
       "c000-0033": {
         "id": "c000-0033",
-        "text": "De petita, jo en tenia un, era invisible però sé que tenia ales, era ros i li brillaven dos ulls blaus",
+        "text": "De petita, jo en tenia un, era invisible però sé que tenia ales, era ros i li brillaven dos ulls blaus.",
         "time": "20:26",
         "next": "c000-0034",
         "condition": null
@@ -341,11 +349,22 @@
           "c000-ans0039": {
             "id": "c000-ans0039",
             "text": "Perquè això ells no ho han vist ni ho veuran.",
-            "next": "c000-0040",
+            "next": "c000-0039a",
             "condition": null
           }
         }
       },
+        "c000-0039a": {
+            "time": "7:03",
+            "options": {
+                "1": {
+                    "id": "1",
+                    "text": "gallery:g014",
+                    "next": "c000-0040",
+                    "condition": null
+                }
+            }
+        },
       "c000-0040": {
         "id": "c000-0040",
         "text": "Sí que em fa quedar parada, senyor Jaume…",
@@ -355,14 +374,14 @@
       },
       "c000-0041": {
         "id": "c000-0041",
-        "text": "Les teulades són per estar-hi a sota",
+        "text": "Les teulades són per estar-hi a sota.",
         "time": "7:04",
         "next": "c000-0042",
         "condition": null
       },
       "c000-0042": {
         "id": "c000-0042",
-        "text": "No hi vagi mai, vostè",
+        "text": "No hi vagi mai, vostè.",
         "time": "7:07",
         "next": "c000-0043",
         "condition": null
@@ -383,7 +402,7 @@
       },
       "c000-0045": {
         "id": "c000-0045",
-        "text": "Senyor Jaume, vingui que compartirem un glopet dolç i li deixaré tocar-ho tot, no em faci patir",
+        "text": "Senyor Jaume, vingui que compartirem un glopet dolç i li deixaré tocar-ho tot, no em faci patir.",
         "time": "19:01",
         "next": "c000-0046",
         "condition": null
@@ -404,14 +423,14 @@
       },
       "c000-0048": {
         "id": "c000-0048",
-        "text": "Què passa, Jaume? Ara he vist la Maria, amb cara blanca i trista com una aparició",
+        "text": "Què ha passat? Ara he vist la Maria, amb cara blanca i trista com una aparició.",
         "time": "20:53",
         "next": "c000-0049",
         "condition": null
       },
       "c000-0049": {
         "id": "c000-0049",
-        "text": "Jaume, la casa és tota fressa! Fill meu, que això no fa per tu; ja en tenim prou del Ramon! Vine, vine a casa que soparàs amb l’Armanda i dormiràs al teu llitet i demà serà un altre dia",
+        "text": "La casa és tota fressa! Fill meu, que això no fa per tu; ja en tenim prou del Ramon! Vine, vine a casa que soparàs amb l’Armanda i dormiràs al teu llit i demà serà un altre dia.",
         "time": "21:01",
         "next": "c000-0050",
         "condition": null
@@ -420,21 +439,21 @@
   },
   {
     "id": "contact002",
-    "contactName": "Família Farriols Valldaura ",
+    "contactName": "Família Farriols Valldaura",
     "contactPic": "gamedata/assets/profiles/familia.png",
     "lastMessage": "c59-60",
     "conversation": {
       "c00-01": {
         "id": "c00-01",
         "notification": true,
-        "text": "Mama t’ha afegit al grup Família Farriols Valldaura",
+        "text": "Mamà t’ha afegit al grup Família Farriols Valldaura.",
         "time": "22 de juny de 2021",
         "next": "c01-02",
         "condition": null
       },
       "c01-02": {
         "id": "c01-02",
-        "author": "Papa",
+        "author": "Papà",
         "text": "Benvingut al grup, Jaume!",
         "time": "20:38",
         "next": "c02-03",
@@ -442,7 +461,7 @@
       },
       "c02-03": {
         "id": "c02-03",
-        "author": "Papa",
+        "author": "Papà",
         "text": "Ja tens mòbil, eh? Era el que volies!",
         "time": "20:39",
         "next": "c03-04",
@@ -450,7 +469,7 @@
       },
       "c03-04": {
         "id": "c03-04",
-        "author": "Mama",
+        "author": "Mamà",
         "text": "Sí, te l’has ben guanyat!",
         "time": "20:39",
         "next": "c04-05",
@@ -469,7 +488,7 @@
       },
       "c05-06": {
         "id": "c05-06",
-        "author": "Ramón",
+        "author": "Ramon",
         "text": "Ui, sí, acabar sisè…",
         "time": "20:42",
         "next": "c06-07",
@@ -478,15 +497,15 @@
       "c06-07": {
         "id": "c06-07",
         "author": "Maria",
-        "text": "Hehehe, vegem quan li dura…",
+        "text": "He he he, vegem quan li dura…",
         "time": "20:44",
         "next": "c07-08",
         "condition": null
       },
       "c07-08": {
         "id": "c07-08",
-        "author": "Papa",
-        "text": "No hi haurà mòbils nous per a ningú fins que no acabeu l’ESO",
+        "author": "Papà",
+        "text": "No hi haurà mòbils nous per a ningú fins que no acabeu l’ESO.",
         "time": "20:46",
         "next": "c08-09",
         "condition": null
@@ -528,7 +547,7 @@
       },
       "c12-13": {
         "id": "c12-13",
-        "author": "Mama",
+        "author": "Mamà",
         "text": "Fill, has de trobar claus més difícils d’endevinar; pensa que el mòbil ara és com un calaixet només per tu i que has de vetllar que no te l’obrin…",
         "time": "20:52",
         "next": "c13-14",
@@ -539,7 +558,7 @@
         "options": {
           "c0-ans2": {
             "id": "c0-ans2",
-            "text": "En canvio l’ordre, doncs",
+            "text": "En canvio l’ordre, doncs!",
             "next": "c14-15",
             "condition": null
           }
@@ -558,7 +577,7 @@
         "options": {
           "c0-ans3": {
             "id": "c0-ans3",
-            "text": "Ja està! Ja tinc contrasenya per a tot",
+            "text": "Ja està! Ja tinc contrasenya per a tot 🔐",
             "next": "c16-17",
             "condition": null
           }
@@ -582,7 +601,7 @@
       "c18-19": {
         "id": "c18-19",
         "author": "Maria",
-        "text": "Papa, ho veus? Mòbil del Jaume… 🙄",
+        "text": "Papà, ho veus? Mòbil del Jaume… 🙄",
         "time": "10:29",
         "next": "c19-20",
         "condition": null
@@ -598,7 +617,7 @@
       "c20-21": {
         "id": "c20-21",
         "author": "Maria",
-        "text": "I ara diu que som en Ramon i jo que l’hem esberlat!",
+        "text": "I ara diu que som en Ramon i jo que l’hem trencat!",
         "time": "10:29",
         "next": "c21-22",
         "condition": null
@@ -683,14 +702,14 @@
       "c31-32": {
         "id": "c31-32",
         "author": "Maria",
-        "text": "Passa un bon dia, germanet",
+        "text": "Passa un bon dia, germanet.",
         "time": "12:15",
         "next": "c32-33",
         "condition": null
       },
       "c32-33": {
         "id": "c32-33",
-        "author": "Jaume",
+        "author": "Ramon",
         "text": "Felicitats",
         "time": "12:15",
         "next": "c33-34",
@@ -717,7 +736,7 @@
       "c35-36": {
         "id": "c35-36",
         "author": "Papà",
-        "text": "Nois, la Rosa m’ha explicat que no troba l’agulla que li vam regalar",
+        "text": "Nois, la Rosa m’ha explicat que no troba l’agulla que li vam regalar.",
         "time": "17:00",
         "next": "c36-37",
         "condition": null
@@ -725,7 +744,7 @@
       "c36-37": {
         "id": "c36-37",
         "author": "Mamà",
-        "text": "Que li vas regalar tu, Eladi",
+        "text": "Que li vas regalar tu, Eladi.",
         "time": "17:03",
         "next": "c37-38",
         "condition": null
@@ -733,7 +752,7 @@
       "c37-38": {
         "id": "c37-38",
         "author": "Papà",
-        "text": "Sofia, va ser un obsequi d’agraïment de part de tota la família",
+        "text": "Sofia, va ser un obsequi d’agraïment de part de tota la família.",
         "time": "17:03",
         "next": "c38-39",
         "condition": null
@@ -749,7 +768,7 @@
       "c39-40": {
         "id": "c39-40",
         "author": "Ramon",
-        "text": "hehe",
+        "text": "Ha ha",
         "time": "17:03",
         "next": "c40-41",
         "condition": null
@@ -808,7 +827,7 @@
       "c46-47": {
         "id": "c46-47",
         "author": "Sofia",
-        "text": "En això tens raó, Eladi. A banda de cara, l’agulla és perillosa",
+        "text": "En això tens raó, Eladi. A banda de cara, l’agulla és perillosa.",
         "time": "17:07",
         "next": "c47-48",
         "condition": null
@@ -816,7 +835,7 @@
       "c47-48": {
         "id": "c47-48",
         "author": "Eladi",
-        "text": "Prou, tinc feina ara. En parlarem a l’hora de sopar",
+        "text": "Prou, tinc feina ara. En parlarem a l’hora de sopar.",
         "time": "17:08",
         "next": "c49-50",
         "condition": null
@@ -863,7 +882,7 @@
       "c54-55": {
         "id": "c54-55",
         "author": "Maria",
-        "text": "Ø aquest missatge s’ha suprimit",
+        "text": "Ø aquest missatge s’ha suprimit.",
         "time": "20:29",
         "next": "c55-56",
         "condition": null
@@ -895,7 +914,7 @@
       "c58-59": {
         "id": "c58-59",
         "author": "Mamà",
-        "text": "Vaig cap a la bassa, és ben capaç d’estar jugant encara amb el vaixell.. O mirant les musaranyes…",
+        "text": "Vaig cap a la bassa, és ben capaç d’estar-hi jugant encara amb el vaixell… O mirant les musaranyes… ",
         "time": "20:51",
         "next": "c59-60",
         "condition": null
@@ -903,7 +922,7 @@
       "c59-60": {
         "id": "c59-60",
         "author": "Mamà",
-        "text": "Ai, aquests fills meus… I, a tu, Maria, d’això d’avui no te’n lliura ni el teu pare ni l’àvia",
+        "text": "I, a tu, Maria, d’això d’avui no te’n lliura ni el teu pare ni l’àvia.",
         "time": "20:52",
         "next": "000000",
         "condition": null
@@ -919,7 +938,7 @@
       "m0": {
         "id": "m0",
         "notification": true,
-        "text": "Has creat el grup de germans",
+        "text": "Has creat el grup de germans.",
         "time": "22 de juny de 2021",
         "next": "m1",
         "condition": null
@@ -972,7 +991,7 @@
       "m6": {
         "id": "m6",
         "author": "Ramon",
-        "text": "Ets un bleda, noi",
+        "text": "Ets un bleda, noi.",
         "time": "10:23",
         "next": "m7",
         "condition": null
@@ -988,7 +1007,7 @@
       "m8": {
         "id": "m8",
         "author": "Ramon",
-        "text": "A mi, no, però passo",
+        "text": "A mi, no, però passo.",
         "time": "10:25",
         "next": "m9",
         "condition": null
@@ -996,7 +1015,7 @@
       "m9": {
         "id": "m9",
         "author": "Ramon",
-        "text": "Jaume, vigila, que si el papa em castiga per culpa teva a l’estiu, te’n penediràs, tros d’ase!",
+        "text": "Jaume, vigila, que si el papà em castiga per culpa teva a l’estiu, te’n penediràs, tros d’ase!",
         "time": "10:26",
         "next": "m10",
         "condition": null
@@ -1012,7 +1031,7 @@
       "m11": {
         "id": "m11",
         "author": "Maria",
-        "text": "Ben mirat, Ramon, el papa em creurà només a mi 😜",
+        "text": "Ben mirat, Ramon, el papà em creurà només a mi 😜",
         "time": "10:28",
         "next": "m12",
         "condition": null
@@ -1101,7 +1120,7 @@
       "m20": {
         "id": "m20",
         "author": "Ramon",
-        "text": "Segur que l’ha feta l’Armanda, aquesta vela 🙄",
+        "text": "Segur que l’ha fet l’Armanda, aquesta vela 🙄",
         "time": "15:11",
         "next": "m21",
         "condition": null
@@ -1234,7 +1253,7 @@
       "m35": {
         "id": "m35",
         "author": "Ramon",
-        "text": "El nen de la iaia, hahaha",
+        "text": "El nen de la iaia, ha ha ha.",
         "time": "15:37",
         "next": "m36",
         "condition": null
@@ -1244,7 +1263,7 @@
         "options": {
           "1": {
             "id": "1",
-            "text": "No em provoquis, Maria. No deus voler que li digui a l’àvia qui li has furtat l’agulla a la Rosa",
+              "text": "No em provoquis, Maria. No deus voler que li digui a l’àvia qui li has furtat l’agulla a la Rosa, oi?",
             "next": "m37",
             "condition": null
           }
@@ -1381,7 +1400,7 @@
         "options": {
           "1": {
             "id": "1",
-            "text": "No ho sé. Ell mai no m’explica res a mi",
+            "text": "No ho sé. Ell mai no m’explica res a mi.",
             "next": "m52",
             "condition": null
           }
@@ -1398,7 +1417,7 @@
       "m53": {
         "id": "m53",
         "author": "Maria",
-        "text": "Perquè només m’estima a mi! Em diu t’estàs convertint en una criatura preciosa",
+          "text": "Perquè només m’estima a mi! Em diu:\"t’estàs convertint en una criatura preciosa.\"",
         "time": "18:49",
         "next": "m54",
         "condition": null
@@ -1493,7 +1512,7 @@
       "m64": {
         "id": "m64",
         "author": "Ramon",
-        "text": "Deixa’l,  que reflexioni per burro. Que això dels residus del barri no és cosa seva i que ja està bé de fer-nos quedar malament a tot arreu",
+        "text": "Deixa’l, que reflexioni per burro. Que això dels residus del barri no és cosa seva i que ja està bé de fer-nos quedar malament a tot arreu.",
         "time": "16:44",
         "next": "m65",
         "condition": null
@@ -1517,7 +1536,7 @@
       "m67": {
         "id": "m67",
         "author": "Maria",
-        "text": "Ui sí! Però les orellotes que té són més d’elefant que no d’ase",
+        "text": "Ui sí! Però les orellotes que té són més d’elefant que no d’ase.",
         "time": "16:46",
         "next": "m68",
         "condition": null
@@ -1541,7 +1560,7 @@
       "m70": {
         "id": "m70",
         "author": "Ramon",
-        "text": "Sí, amb aquelles cames. I al final gairebé s’ofega, el nyicris",
+        "text": "Sí, amb aquelles cames. I al final gairebé s’ofega, el nyicris.",
         "time": "16:47",
         "next": "m71",
         "condition": null
@@ -1549,7 +1568,7 @@
       "m71": {
         "id": "m71",
         "author": "Maria",
-        "text": "Calla! Ens hauria tocat avisar el Doctor Falguera perquè li posés una injecció de les que el mantenen en vida",
+        "text": "Calla! Ens hauria tocat avisar el Doctor Falguera perquè li posés una injecció de les que el mantenen viu.",
         "time": "16:48",
         "next": "m72",
         "condition": null
@@ -1557,7 +1576,7 @@
       "m72": {
         "id": "m72",
         "author": "Ramon",
-        "text": "Estava tan esgotat que no em va costar gens lligar-lo a l’arbre",
+        "text": "Estava tan esgotat que no em va costar gens lligar-lo a l’arbre.",
         "time": "16:49",
         "next": "m73",
         "condition": null
@@ -1573,7 +1592,7 @@
       "m74": {
         "id": "m74",
         "author": "Ramon",
-        "text": "I mort de por que les formigues se’l mengessin",
+        "text": "I mort de por que les formigues se’l mengessin!",
         "time": "16:51",
         "next": "m75",
         "condition": null
@@ -1625,7 +1644,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "Hola Rosa! Ja tinc mòbil! La mamà m’ha donat el teu telèfon i m’ha dit que el curs que ve també seràs la meva profe particular ",
+            "text": "Hola Rosa! Ja tinc mòbil! La mamà m’ha donat el teu telèfon i m’ha dit que el curs que ve també seràs la meva profe particular.",
             "next": "m2",
             "condition": null
           }
@@ -1656,7 +1675,7 @@
       "m5": {
         "id": "m5",
         "author": "Rosa",
-        "text": "Jaume, fa deu minuts que hauríem d’haver començat la classe. He de marxar puntual. Ets a la teva habitació encara?  Vine a la sala ",
+        "text": "Jaume, fa deu minuts que hauríem d’haver començat la classe. He de marxar puntual. Ets a la teva habitació encara? Baixa a la biblioteca.",
         "time": "18:30",
         "next": "m6",
         "condition": null
@@ -1675,7 +1694,7 @@
       "m7": {
         "id": "m7",
         "author": "Rosa",
-        "text": "No, Jaume. Sóc aquí i hem de repassar",
+        "text": "No, Jaume. Sóc aquí i hem de repassar.",
         "time": "18:36",
         "next": "m8",
         "condition": null
@@ -1685,7 +1704,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "Rosa, de debò, no puc.. Avui tinc por de tot",
+            "text": "Rosa, de debò, no puc.. Avui tinc por de tot.",
             "next": "m9",
             "condition": null
           }
@@ -1761,11 +1780,11 @@
         "condition": null
       },
       "m17": {
-        "time": "18:38",
+          "time": "17:41",
         "options": {
           "0": {
             "id": "0",
-            "text": "Ok, però digue-ho tu als meus germans… jo no",
+            "text": "Ok, però digue-ho tu als meus germans… jo no.",
             "next": "m18",
             "condition": null
           }
@@ -1774,7 +1793,7 @@
       "m18": {
         "id": "m18",
         "author": "Rosa",
-        "text": "Ja hi som, Jaume. Fes el favor de no ser tan criatura",
+        "text": "Ja hi som, Jaume. Fes el favor de no ser tan criatura.",
         "time": "17:43",
         "next": "m19",
         "condition": null
@@ -1793,7 +1812,7 @@
       "m20": {
         "id": "m20",
         "author": "Rosa",
-        "text": "Bé, ho faré, però no s’hi avindran… no accepten res que no hagin pensat ells i encara aprofitaran per dir-me també alguna barrabassada",
+        "text": "Bé, ho faré, però no s’hi avindran… no accepten res que no hagin pensat ells i encara aprofitaran per dir-me també alguna barrabassada.",
         "time": "17:45",
         "next": "m21",
         "condition": null
@@ -1836,8 +1855,8 @@
         "time": "21:32",
         "options": {
           "0": {
-            "id": "0",
-            "text": "Armandaaa! Mira, aquest és el meu mòbil! Me l’han regalat el papa i la mama per a celebrar que he acabat la primària!",
+              "id": "0",
+            "text": "Armandaaa! Mira, aquest és el meu mòbil! Me l’han regalat el papà i la mamà per a celebrar que he acabat la primària!",
             "next": "m2",
             "condition": null
           }
@@ -1856,7 +1875,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "hehe",
+            "text": "He he",
             "next": "m4",
             "condition": null
           }
@@ -1890,7 +1909,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "Sóc a la piscina",
+            "text": "Sóc a la bassa.",
             "next": "m8",
             "condition": null
           }
@@ -1909,7 +1928,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "😊 És que a ella li fan falta les fotos del jardí, pobreta, que ja no hi pot sortir",
+            "text": "😊 És que a ella li fan falta les fotos del jardí, pobreta, que ja no hi pot sortir.",
             "next": "m10",
             "condition": null
           }
@@ -1965,7 +1984,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "Sí, m’ha fet passar molta por i quines coses tan horribles que ha dit de mi",
+            "text": "Sí, m’ha fet passar molta por i quines coses tan horribles que ha dit de mi.",
             "next": "m17",
             "condition": null
           }
@@ -1974,7 +1993,7 @@
       "m17": {
         "id": "m17",
         "author": "Armanda",
-        "text": "Mira de no pensar-hi més, Jaume",
+        "text": "Mira de no pensar-hi més, Jaume.",
         "time": "11:07",
         "next": "m18",
         "condition": null
@@ -2012,7 +2031,7 @@
       "m21": {
         "id": "m21",
         "author": "Armanda",
-        "text": "Fes cas del teu pare, que cadascú a casa seva recicli com vulgui.  I ves amb compte que mai no se sap amb gent com ell",
+        "text": "Fes cas del teu pare, que cadascú a casa seva recicli com vulgui. I ves amb compte que mai no se sap amb gent com ell...",
         "time": "11:15",
         "next": "m22",
         "condition": null
@@ -2043,7 +2062,7 @@
       "m25": {
         "id": "m25",
         "author": "Armanda",
-        "text": "On ets? Te les has de prendre mitja hora abans de sopar! I gairebé son dos quarts",
+        "text": "On ets? Te les has de prendre mitja hora abans de sopar! I gairebé son dos quarts!",
         "time": "20:21",
         "next": "m26",
         "condition": null
@@ -2084,7 +2103,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "Àngel! Ja he decidit com faré el projecte de ciències",
+            "text": "Àngel! Ja he decidit com faré el projecte de ciències. I no pensis que m’he copiat.",
             "next": "m2",
             "condition": null
           }
@@ -2103,7 +2122,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "Serà un quadern de camp a Instagram",
+            "text": "Serà un quadern de camp a Lostagram",
             "next": "m4",
             "condition": null
           }
@@ -2114,7 +2133,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "De les plantes i animals que hi ha a la torre",
+            "text": "De les plantes i animals que hi ha a la torre.",
             "next": "m5",
             "condition": null
           }
@@ -2163,7 +2182,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "😅és de l’àvia, m’ajudarà perquè ho sap tot del jardí!",
+            "text": "😅 És de l’àvia, m’ajudarà perquè ho sap tot del jardí!",
             "next": "m10",
             "condition": null
           }
@@ -2201,7 +2220,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "Síiii! Li demanaré a ma mare si pots venir divendres a la tarda",
+            "text": "Síiii! Li demanaré a ma mare si pots venir divendres a la tarda.",
             "next": "m14",
             "condition": null
           }
@@ -2220,7 +2239,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "Parlarem del projecte de ciències",
+            "text": "Parlarem del projecte de ciències.",
             "next": "m16",
             "condition": null
           }
@@ -2281,7 +2300,7 @@
       "m21": {
         "id": "m21",
         "author": "Àngel",
-        "text": "Quina ràbia que fas, Jaumet",
+        "text": "Quina ràbia que fas, Jaumet!",
         "time": "18:33",
         "next": "m22",
         "condition": null
@@ -2307,7 +2326,7 @@
       "m24": {
         "id": "m24",
         "author": "Àngel",
-        "text": "ja hi tens una fotito",
+        "text": "Ja hi tens una fotito.",
         "time": "18:06",
         "next": "m25",
         "condition": null
@@ -2315,7 +2334,7 @@
       "m25": {
         "id": "m25",
         "author": "Àngel",
-        "text": "I a que ja has oblidat la contrasenya?",
+        "text": "I la contrasenya ja la deus haver oblidat, oi? Com sempre…",
         "time": "18:06",
         "next": "m27",
         "condition": null
@@ -2364,7 +2383,7 @@
       "m31": {
         "id": "m31",
         "author": "Àngel",
-        "text": "Va, demà em fas la visita guiada d’aquest marquesat on vius",
+        "text": "Va, demà em fas la visita guiada d’aquest marquesat on vius.",
         "time": "18:08",
         "next": "m32",
         "condition": null
@@ -2390,7 +2409,7 @@
       "m34": {
         "id": "m34",
         "author": "Àngel",
-        "text": "aume, amb una casa com la teva qualsevol fa el projecte de ciències. Ho tens tot a mà…",
+        "text": "Jaume, amb una casa com la teva qualsevol fa el projecte de ciències. Ho tens tot a mà…",
         "time": "15:30",
         "next": "m35",
         "condition": null
@@ -2400,7 +2419,7 @@
         "options": {
           "0": {
             "id": "0",
-            "text": "Però no és només tenir-ho a prop, també s’ha de saber mirar i identificar cada espècie",
+            "text": "Però no és només tenir-ho a prop, també s’ha de saber mirar i identificar cada espècie.",
             "next": "m36",
             "condition": null
           }
@@ -2439,7 +2458,7 @@
       "m39": {
         "id": "m39",
         "author": "Àngel",
-        "text": "A la Maria també me l’enduré",
+        "text": "A la Maria també me l’enduré.",
         "time": "15:32",
         "next": "m40",
         "condition": null

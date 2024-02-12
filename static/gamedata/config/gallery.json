@@ -45,7 +45,7 @@
         {
         "id": "g007",
         "type": "picture",
-        "source": "gamedata/assets/pictures/jaume_lligat.jpg",
+        "source": "gamedata/assets/pictures/jaume-lligat.png",
         "condition": null
         },
     {
@@ -94,6 +94,18 @@
         "id": "g013",
         "type": "picture",
         "source": "gamedata/assets/pictures/note-herbari.png",
+        "condition": null
+    },
+    {
+        "id": "g014",
+        "type": "picture",
+        "source": "gamedata/assets/lostagram/post-3.png",
+        "condition": null
+    },
+    {
+        "id": "g015",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/copa.png",
         "condition": null
     }
 ]

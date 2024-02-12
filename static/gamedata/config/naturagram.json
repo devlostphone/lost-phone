@@ -6,7 +6,7 @@
         "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-1.png",
-        "text": "Animalia, Annelida, Clitellata Lumbricidae\n\n\nCuc de terra\nA l’estiu, quan el nivell de l’aigua de la bassa baixa, el llot de les vores està atapeït de cucs i fulles mortes.\n\n\n#projecteciencies\n#santgervasiverd\n#esgarrifat",
+        "text": "Animalia, Annelida, Clitellata Lumbricidae\nCuc de terra\n\nA l’estiu, quan el nivell de l’aigua de la bassa baixa, el llot de les vores està atapeït de cucs i fulles mortes.\n\n\n#projecteciencies\n#santgervasiverd\n#esgarrifat",
         "likes": "1",
         "comments": [
             {
@@ -27,7 +27,7 @@
         "comments": [
             {
                 "user": "@RamonFValldaura",
-                "comment": "Mira, Maria, com la que ens fregà el front el dia que jugàvem a caminar d’esquena i caiguérem dos, tu i jo, a l’aigua. Com xisclàrem 🤭"
+                "comment": "Mira, Maria, com la que ens fregà el front el dia que jugàvem a caminar d’esquena i caiguérem tots dos, tu i jo, a l’aigua. Com xisclàrem 🤭"
             },
             {
                 "user": "@MariaFarriols",
@@ -42,7 +42,7 @@
         "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-3.png",
-        "text": "Animalia, Pieris, Pieris rapae\n\n\nPapallona blanqueta de la col\nS’empaitaven, entraven i sortien de les branques com si fossin flors que no es poguessin estar quietes.\n\n\n#projecteciencies\n#santgervasiverd\n#extasiat",
+        "text": "Animalia, Pieris, Pieris rapae\nPapallona blanqueta de la col\n\nS’empaitaven, entraven i sortien de les branques com si fossin flors que no es poguessin estar quietes.\n\n#projecteciencies\n#santgervasiverd\n#extasiat",
         "likes": "1",
         "comments": [
             {
@@ -67,7 +67,7 @@
         "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-5.png",
-        "text": "Plantae, Pteridium,Pteridium aquilinum\n\nSota els arbres tot és més fosc. La molsa i les falgueres amb cargolins darrera de les fulles que fan ventall tenen verds profunds\n\n\n#projecteciencies #santgervasiverd #apartat",
+        "text": "Plantae, Pteridium,Pteridium aquilinum\nFalguera\n\nSota els arbres tot és més fosc. La molsa i les falgueres amb cargolins darrera de les fulles que fan ventall tenen verds profunds\n\n\n#projecteciencies #santgervasiverd #apartat",
         "likes": "1",
         "comments": [
             {
@@ -90,7 +90,7 @@
         "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-6.png",
-        "text": "Animalia, Apis, Apis mellifera\n\n\nAvui, una abella morta. M’agrada estar-hi tot sol, al jardí. Sempre hi trobo coses noves\n\n\n#projecteciencies\n#santgervasiverd\n#pensarós",
+        "text": "Animalia, Apis, Apis mellifera\n\n\nAvui, una abella morta. M’agrada estar-hi tot sol, al jardí. Sempre hi trobo coses noves.\n\n\n#projecteciencies\n#santgervasiverd\n#pensarós",
         "likes": "5",
         "comments": [ ]
     },
@@ -132,11 +132,7 @@
         "comments": [
             {
                 "user": "@angel",
-                "comment": "Jaumeeeee! Tu sempre amb el lliri a la mà!"
-            },
-            {
-                "user": "@RamonFValldaura",
-                "comment": "Quines fulles, orelles d’ase"
+                "comment": "Jaumeeeee! Tu sempre amb el lliri a la mà! @RamonFValldaura Quines fulles, orelles d’ase"
             },
             {
                 "user": "@MariaFarriols",
@@ -150,7 +146,7 @@
         "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-9.png",
-        "text": "Animalia, Hymenoptera: Formicidae, Formigues\n\n\nLes agafo d’una a una a la sortida dels caus i les fico en una capsa grossa fins que s’assequen i es tornen una truita negra.\n\n\n#projecteciencies\n#santgervasiverd\n#fascinat",
+        "text": "Animalia, Hymenoptera,\nFormicidae, Formigues\n\nLes agafo d’una a una a la sortida dels caus i les fico en una capsa grossa fins que s’assequen i es tornen una truita negra.\n\n#projecteciencies\n#santgervasiverd\n#fascinat",
         "likes": "2",
         "comments": [
             {
@@ -224,7 +220,7 @@
         "location": "Barcelona, Catalunya",
         "avatar": "gamedata/assets/avatars/torre.png",
         "pic": "gamedata/assets/lostagram/post-14.png",
-        "text": "Plantae, Wisteria, Wisteria sinensis\nGlicina\n\n\nUna glicina de casa meva, al costat dels bancs de pedra\n\n\n#projecteciencies\n#santgervasiverd\n#expectant",
+        "text": "Plantae, Wisteria, Wisteria sinensis\nGlicina\n\n\nUna glicina de casa meva, al costat dels bancs de pedra.\n\n\n#projecteciencies\n#santgervasiverd\n#expectant",
         "likes": "4",
         "comments": []
     }

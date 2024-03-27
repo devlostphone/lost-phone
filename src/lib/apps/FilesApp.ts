@@ -51,7 +51,6 @@ export default class FilesApp extends App {
             this.fakeOS.UI.setBackground(image);
         } else {
             let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'FilesApp').background;
-            console.log(background);
             this.fakeOS.UI.setBackground(background);
         }
     }

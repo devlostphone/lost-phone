@@ -312,7 +312,7 @@ export default class CalendarApp extends App {
 
     // @TODO: Remove this if this doesn't mean anything
     private callbackTest = (day : any) => {
-        console.log(day);
+        this.fakeOS.log(day);
     }
 
     /**

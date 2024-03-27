@@ -56,7 +56,6 @@ export default class NotesApp extends MailApp {
             this.fakeOS.UI.setBackground(image);
         } else {
             let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'NotesApp').background;
-            console.log(background);
             this.fakeOS.UI.setBackground(background);
         }
     }

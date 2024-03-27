@@ -94,7 +94,7 @@
         "preInstalled": true,
         "hasNotifications": false,
         "favourite": true,
-        "background" : "solid-black"
+        "background" : "dark-abstract"
     },
     {
         "type" : "unlock-screen",

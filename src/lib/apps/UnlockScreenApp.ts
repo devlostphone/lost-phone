@@ -57,7 +57,6 @@ export default class UnlockScreenApp extends App {
             d = new Date();
         } else {
             let day = objDate.day;
-            console.log(day);
             let month = objDate.month;
             let year = objDate.year;
             d = new Date(year + '-' + month  + '-' + day);

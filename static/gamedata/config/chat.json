@@ -586,7 +586,7 @@
       "c16-17": {
         "id": "c16-17",
         "author": "Papà",
-        "text": "Demà ens ho mirem, fill, no convé gens, tenir-ne una de sola!",
+        "text": "Demà ens ho mirem, fill, no convé gens, tenir-ne una de sola! En aquesta família es tenen a taula.",
         "time": "20:58",
         "next": "c17-18",
         "condition": null
@@ -775,7 +775,7 @@
       },
       "c40-41": {
         "id": "c40-41",
-        "author": "Eladi",
+        "author": "Papà",
         "text": "Ramon i Maria, en tinc la pipa plena de les vostres gracietes! No deu ser pas una altra de les vostres bromes, oi? Tant és ara que sigui un objecte preuat per a la Rosa, és perillós per a vosaltres!",
         "time": "17:04",
         "next": "c41-42",
@@ -791,7 +791,7 @@
       },
       "c42-43": {
         "id": "c42-43",
-        "author": "Eladi",
+        "author": "Papà",
         "text": "Us podeu fer molt de mal, bonica, amb aquella punta…",
         "time": "17:05",
         "next": "c43-44",
@@ -826,7 +826,7 @@
       },
       "c46-47": {
         "id": "c46-47",
-        "author": "Sofia",
+        "author": "Mamà",
         "text": "En això tens raó, Eladi. A banda de cara, l’agulla és perillosa.",
         "time": "17:07",
         "next": "c47-48",
@@ -834,8 +834,16 @@
       },
       "c47-48": {
         "id": "c47-48",
-        "author": "Eladi",
+        "author": "Papà",
         "text": "Prou, tinc feina ara. En parlarem a l’hora de sopar.",
+        "time": "17:08",
+        "next": "c47b-48b",
+        "condition": null
+      },
+      "c47b-48b": {
+        "id": "c47b-48b",
+        "author": "Ramon",
+        "text": "Sí, perquè “en aquesta família les converses es tenen a taula”...",
         "time": "17:08",
         "next": "c49-50",
         "condition": null

@@ -5,7 +5,7 @@ import BottomMenu from '../ui/gameObjects/BottomMenu';
 /**
  * Phone app.
  */
- export default class PhoneApp extends App {
+export default class PhoneApp extends App {
 
     protected menu: any;
     protected phone_info: any;
@@ -25,31 +25,33 @@ import BottomMenu from '../ui/gameObjects/BottomMenu';
      * @inheritdoc
      */
     public render(): void {
+        this.getActiveLayer().clear();
+        this.setBackground();
         this.showRecent();
     }
 
     public addMenu(): void {
         this.menu = new BottomMenu(this.fakeOS,
-            0,
-            0,
-            [
-                {
-                    icon: '',
-                    text: 'favorites',
-                    launches: this.showFavorites
-                },
-                {
-                    icon: '',
-                    text: 'recent',
-                    launches: this.showRecent
-                },
-                {
-                    icon: '',
-                    text: 'contacts',
-                    launches: this.showContacts
-                }
-            ]
-        );
+                                   0,
+                                   0,
+                                   [
+                                       {
+                                           icon: '',
+                                           text: 'favorites',
+                                           launches: this.showFavorites
+                                       },
+                                       {
+                                           icon: '',
+                                           text: 'recent',
+                                           launches: this.showRecent
+                                       },
+                                       {
+                                           icon: '',
+                                           text: 'contacts',
+                                           launches: this.showContacts
+                                       }
+                                   ]
+                                  );
         this.addRow(this.menu);
     }
 
@@ -60,9 +62,9 @@ import BottomMenu from '../ui/gameObjects/BottomMenu';
 
         if (this.phone_info['favourites'].length == 0) {
             let text = this.fakeOS.add.text(0,0,
-                this.fakeOS.getString('no-favourites'),
-                this.textOptions
-            );
+                                            this.fakeOS.getString('no-favourites'),
+                                            this.textOptions
+                                           );
             this.addRow([text], {y: 1});
         }
     }
@@ -75,19 +77,19 @@ import BottomMenu from '../ui/gameObjects/BottomMenu';
         for (let i = 0; i < this.phone_info['recent'].length; i++) {
             let position = -250;
             let icon = this.fakeOS.add.image(position, 20,
-                'received-call');
+                                             'received-call');
             let caller = this.fakeOS.add.text(position + 50,0,
-                this.phone_info['recent'][i].name,
-                this.textOptions
-            );
+                                              this.phone_info['recent'][i].name,
+                                              this.textOptions
+                                             );
             let date = this.fakeOS.add.text(position + 200,0,
-                this.phone_info['recent'][i].date,
-                this.textOptions
-            );
+                                            this.phone_info['recent'][i].date,
+                                            this.textOptions
+                                           );
             let container = new Phaser.GameObjects.Container(this.fakeOS, 0, 0,
-                [icon, caller, date]);
+                                                             [icon, caller, date]);
 
-            this.addRow([container], {y: i+1});
+            this.addRow([container], {y: i});
         }
 
     }
@@ -99,10 +101,25 @@ import BottomMenu from '../ui/gameObjects/BottomMenu';
 
         if (this.phone_info['contacts'].length == 0) {
             let text = this.fakeOS.add.text(0,0,
-                this.fakeOS.getString('no-contacts'),
-                this.textOptions
-            );
+                                            this.fakeOS.getString('no-contacts'),
+                                            this.textOptions
+                                           );
             this.addRow([text], {y: 1});
+        } else {
+            // TODO:
+            this.fakeOS.log(this.phone_info['contacts']);
+        }
+    }
+
+    /**
+     * Set app background
+     */
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'ClockApp').background;
+            this.fakeOS.UI.setBackground(background);
         }
     }
 }

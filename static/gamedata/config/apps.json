@@ -6,7 +6,8 @@
         "configFile" : "phone.json",
         "preInstalled": true,
         "hasNotifications": true,
-        "favourite": true
+        "favourite": true,
+        "background" : "fog"
     },
     {
         "type" : "clock",

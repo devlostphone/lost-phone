@@ -299,7 +299,7 @@ protected setBackground(image?: string): void {
     if (image !== undefined) {
         this.fakeOS.UI.setBackground(image);
     } else {
-        let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'CalculatorApp').wallpaper;
+        let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'CalculatorApp').background;
         this.fakeOS.UI.setBackground(background);
     }
 }

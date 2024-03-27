@@ -17,6 +17,15 @@ export default class NotesApp extends MailApp {
         this.mails = this.fakeOS.cache.json.get('notes');
     }
 
+    /**
+     * @inheritdoc
+     */
+    public render() {
+        this.getActiveLayer().clear();
+        this.setBackground();
+        this.showHeader();
+        this.showMailList();
+    }
 
     /**
      * Shows the app title.
@@ -36,5 +45,19 @@ export default class NotesApp extends MailApp {
                 this.fakeOS.width - 32, 0,
                 0xefefef
             ).setLineWidth(0.75).setOrigin(0));
+    }
+
+
+    /**
+     * Set app background
+     */
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'NotesApp').background;
+            console.log(background);
+            this.fakeOS.UI.setBackground(background);
+        }
     }
 }

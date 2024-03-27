@@ -2,15 +2,15 @@
     {
         "id": "d001",
         "type": "file",
-        "file": "gamedata/assets/emails/email1.txt",
-        "filename": "Fitxer 1.txt",
+        "file": "gamedata/assets/documents/doc_adjunt_tramit_denuncies.png",
+        "filename": "Denúncia infraccions residus",
         "condition": null
     },
     {
         "id": "d002",
         "type": "file",
-        "file": "gamedata/assets/emails/email1.txt",
-        "filename": "Fitxer 2.pdf",
+        "file": "gamedata/assets/documents/cartell_residuonvas.png",
+        "filename": "Cartell_imprimir",
         "condition": null
     }
 ]

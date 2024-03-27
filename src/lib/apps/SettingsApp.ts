@@ -44,7 +44,7 @@ export default class SettingsApp extends App {
                                           this.textOptions
                                          );
         this.addRow( this.header, {'position': Phaser.Display.Align.TOP_LEFT});
-        this.header.setPadding(30,0,0,0);
+        this.header.setPadding(30,30,0,0);
 
         let line = this.fakeOS.add.line(0, 0, 30, -30, this.fakeOS.width*0.8, -30, 0x808080);
         this.addRow(line, {'position': Phaser.Display.Align.TOP_LEFT});

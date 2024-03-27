@@ -62,7 +62,13 @@ export default class AppInfoBox extends Phaser.GameObjects.Container
         }
 
         let description = app['description'] ? app['description'] : this.fakeOS.getString('no-description');
-        this.description = this.fakeOS.add.text(-100, -60, description, {fontSize: '24px'});
+        this.description = this.fakeOS.add.text(-100, -60, description, {
+            fontSize: "24px",
+            align: "left",
+            color: '#efefef',
+            fontFamily: 'Roboto-Bold',
+            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+        });
         this.downloadButton = new DownloadButton(this.fakeOS, 0, 0, status);
         this.add(this.description);
         this.add(this.downloadButton);

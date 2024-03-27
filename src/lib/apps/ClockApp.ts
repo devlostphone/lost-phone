@@ -15,7 +15,7 @@ export default class ClockApp extends App {
      * Clock size.
      */
     clockRadius: number;
-    
+
     /**
      * Size.
      */
@@ -76,7 +76,7 @@ export default class ClockApp extends App {
         this.minute_hand = new Phaser.GameObjects.Line(this.fakeOS, this.x, this.y, 0, 0, 30, 224, 0xff0000).setOrigin(1).setLineWidth(2,8);
         // Set second hand
         this.second_hand = new Phaser.GameObjects.Line(this.fakeOS, this.x, this.y, 0, 0, 30, 256, 0x00ffff).setOrigin(1).setLineWidth(1,5);
-        
+
         // Stack based display clock hands
         this.getActiveLayer().add(this.hour_hand);
         this.getActiveLayer().add(this.minute_hand);
@@ -100,7 +100,7 @@ export default class ClockApp extends App {
             );
         };
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -125,7 +125,7 @@ export default class ClockApp extends App {
         if (image !== undefined) {
             this.fakeOS.UI.setBackground(image);
         } else {
-            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'ClockApp').wallpaper;
+            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'ClockApp').background;
             this.fakeOS.UI.setBackground(background);
         }
     }

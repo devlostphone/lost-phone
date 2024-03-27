@@ -31,8 +31,11 @@ export default class DownloadButton extends Phaser.GameObjects.Container
         let line_color = Phaser.Display.Color.IntegerToColor(0x0000ff);
 
         this.label = this.fakeOS.add.text(0,0, text, {
-            fontSize: '24px',
-            color: line_color.rgba
+            fontSize: "24px",
+            align: "left",
+            color: '#efefef',
+            fontFamily: 'Roboto-Bold',
+            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
         }).setOrigin(0.5);
         this.add(this.label);
 

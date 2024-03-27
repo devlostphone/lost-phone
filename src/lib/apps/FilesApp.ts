@@ -23,6 +23,8 @@ export default class FilesApp extends App {
      * @inheritdoc
      */
     public render(): void {
+        this.getActiveLayer().clear();
+        this.setBackground();
         this.picGrid = new PicGrid(
             this.fakeOS,
             0, 0,
@@ -39,5 +41,18 @@ export default class FilesApp extends App {
         this.skipLayerChangeAnim = skipLayerChangeAnim;
         this.reRender();
         this.picGrid?.open(id);
+    }
+
+    /**
+     * Set app background
+     */
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'FilesApp').background;
+            console.log(background);
+            this.fakeOS.UI.setBackground(background);
+        }
     }
 }

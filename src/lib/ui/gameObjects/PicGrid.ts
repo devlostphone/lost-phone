@@ -28,9 +28,8 @@ export default class PicGrid extends Phaser.GameObjects.Container
         super(scene, x, y, []);
         this.media = media;
         this.fakeOS = scene;
-
         this.textoptions = {
-            fontSize: "24px",
+            fontSize: "48px",
             align: "left",
             wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
         };
@@ -219,9 +218,14 @@ export default class PicGrid extends Phaser.GameObjects.Container
             renderArea.width / 2,
             renderArea.height / 4);
         let element = this.fakeOS.add.image(0, 0, 'files').setName(file.id);
-        let text = this.fakeOS.add.text(0, 100, file.filename).setOrigin(0.5);
+        let text = this.fakeOS.add.text(0, 100, file.filename).setOrigin(0.5).setStyle({
+            fontSize: "24px",
+            align: "left",
+            color: '#efefef',
+            fontFamily: 'Roboto-Bold',
+            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+        });
         let container = this.fakeOS.add.container(0,0, [rectangle, element, text]).setName(file.id);
-
 
         this.fakeOS.addInputEvent(
             'pointerup',

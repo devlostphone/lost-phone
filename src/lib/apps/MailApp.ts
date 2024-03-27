@@ -51,8 +51,8 @@ export default class MailApp extends App {
         if (image !== undefined) {
             this.fakeOS.UI.setBackground(image);
         } else {
-            let wallpaper = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'MailApp').wallpaper;
-            this.fakeOS.UI.setBackground(wallpaper);
+            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'MailApp').background;
+            this.fakeOS.UI.setBackground(background);
         }
     }
 

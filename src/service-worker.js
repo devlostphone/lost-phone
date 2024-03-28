@@ -1,41 +1,47 @@
-const precacheVersion = self.__precacheManifest
-  .map(p => p.revision)
-  .join('');
-const precacheFiles = self.__precacheManifest.map(p => p.url);
+const PRECACHE = 'precache-v1';
+const RUNTIME = 'runtime';
+const PRECACHE_URLS = [
+  'index.html',
+  './',
+];
 
-self.addEventListener('install', ev => {
-  // Do not finish installing until every file in the app has been cached
-  ev.waitUntil(
-    caches.open(precacheVersion).then(
-      cache => {
-        cache.addAll(precacheFiles);
-      }
-    )
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(PRECACHE)
+      .then(cache => cache.addAll(PRECACHE_URLS))
+      .then(self.skipWaiting())
   );
 });
 
-// Optionally, to clear previous precaches, also use the following:
-self.addEventListener('activate', ev => {
-  ev.waitUntil(
-    caches.keys().then(keys => Promise.all(
-      keys.filter(k => k !== precacheVersion).map(
-        k => caches.delete(k)
-      )
-    ))
+self.addEventListener('activate', event => {
+  const currentCaches = [PRECACHE, RUNTIME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
+    }).then(cachesToDelete => {
+      return Promise.all(cachesToDelete.map(cacheToDelete => {
+        return caches.delete(cacheToDelete);
+      }));
+    }).then(() => self.clients.claim())
   );
 });
 
-
-self.addEventListener('fetch', ev => {
-  ev.respondWith(
-    caches.match(ev.request).then((cachedResponse) => {
-      if (process.env.NODE_ENV === 'production') {
+self.addEventListener('fetch', event => {
+  if (event.request.url.startsWith(self.location.origin)) {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
         if (cachedResponse) {
           return cachedResponse;
         }
-      }
-      return fetch(ev.request);
-    }),
-  );
-});
 
+        return caches.open(RUNTIME).then(cache => {
+          return fetch(event.request).then(response => {
+            return cache.put(event.request, response.clone()).then(() => {
+              return response;
+            });
+          });
+        });
+      })
+    );
+  }
+});

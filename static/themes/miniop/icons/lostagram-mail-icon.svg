@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="177.33333"
+   height="177.33333"
+   viewBox="0 0 177.33333 177.33333"
+   sodipodi:docname="lostagram-mail-icon.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <rect
+       x="-338.49489"
+       y="-88.987532"
+       width="251.56091"
+       height="157.52502"
+       id="rect4" />
+    <rect
+       x="44.409599"
+       y="39.024787"
+       width="69.815755"
+       height="73.624098"
+       id="rect3" />
+    <rect
+       x="223.25808"
+       y="-245.88643"
+       width="567.52326"
+       height="598.01706"
+       id="rect2" />
+    <rect
+       x="44.409599"
+       y="39.024787"
+       width="179.99803"
+       height="155.64537"
+       id="rect7" />
+    <rect
+       x="44.409599"
+       y="39.024787"
+       width="69.815755"
+       height="73.624098"
+       id="rect8" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.3374061"
+     inkscape:cx="197.86891"
+     inkscape:cy="132.41174"
+     inkscape:window-width="1920"
+     inkscape:window-height="1035"
+     inkscape:window-x="0"
+     inkscape:window-y="22"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1"
+     showgrid="false"
+     showguides="true" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1">
+    <rect
+       style="fill:#c83737;stroke-width:12.595"
+       id="rect1"
+       width="177.33331"
+       height="177.33331"
+       x="2.1316282e-14"
+       y="2.1316282e-14"
+       ry="39.740353" />
+    <text
+       xml:space="preserve"
+       id="text7"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:85.3333px;line-height:0.9;font-family:Helvetica-Light;-inkscape-font-specification:Helvetica-Light;white-space:pre;shape-inside:url(#rect8);display:inline;fill:#333333;stroke-width:10"
+       transform="matrix(2.0039782,0,0,2.0039782,-49.219163,-60.580211)"><tspan
+         x="44.410156"
+         y="101.2522"
+         id="tspan2"><tspan
+           style="font-family:Arise;-inkscape-font-specification:Arise"
+           id="tspan1">L</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:85.3333px;line-height:0.9;font-family:Helvetica-Light;-inkscape-font-specification:Helvetica-Light;white-space:pre;shape-inside:url(#rect3);display:inline;fill:#00ffff;stroke-width:10"
+       transform="matrix(2.0039782,0,0,2.0039782,-51.738155,-63.099203)"><tspan
+         x="44.410156"
+         y="101.2522"
+         id="tspan6"><tspan
+           style="font-family:Arise;-inkscape-font-specification:Arise;fill:#f9f9f9"
+           id="tspan5">L</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:85.3333px;line-height:0.9;font-family:FreeMono;-inkscape-font-specification:FreeMono;white-space:pre;shape-inside:url(#rect4);display:inline;fill:#ff00ff;stroke-width:10"><tspan
+         x="-338.49414"
+         y="-24.988309"
+         id="tspan8"><tspan
+           style="font-family:System-ui;-inkscape-font-specification:System-ui"
+           id="tspan7">📸</tspan></tspan></text>
+  </g>
+</svg>

@@ -1,6 +1,7 @@
 import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
 import MailPreview from '../ui/gameObjects/inbox/MailPreview.ts';
+import MailContent from '../ui/gameObjects/inbox/MailContent.ts';
 
 /**
  * Mail app.
@@ -96,9 +97,27 @@ export default class MailApp extends App {
     protected showInbox(): void {
         for (let i=0; i < this.mails.length; i++) {
             this.fakeOS.log(this.mails[i]['date']);
-            let mail = new MailPreview(this.fakeOS, 0, 0, this.mails[i], this.textStyleMailread);
+            var mail: any = new MailPreview(this.fakeOS, 0, 0, this.mails[i], this.textStyleMailread);
+            this.fakeOS.addInputEvent(
+                'pointerup',
+                () => {
+                    this.openMail(this.mails[i])
+                },
+                mail
+            );
             this.addRow(mail);
         }
+    }
+
+    /**
+     * Open and show mail content
+     */
+
+    protected openMail(mail: any): void {
+        this.addLayer();
+        this.fakeOS.log(mail.subject);
+        var content: any = new MailContent(this.fakeOS, 0, 0, mail);
+        this.getActiveLayer().add([content]);
     }
 
     /**

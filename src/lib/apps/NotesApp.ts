@@ -1,11 +1,12 @@
 import { FakeOS } from '../../scenes/FakeOS';
-import MailApp from './MailApp';
-import { PhoneEvents } from '../events/GameEvents';
+import App from '../../lib/apps/App';
 
 /**
  * Notes app.
  */
-export default class NotesApp extends MailApp {
+export default class NotesApp extends App {
+
+    protected notes: any;
 
     /**
      * Class constructor.
@@ -14,7 +15,7 @@ export default class NotesApp extends MailApp {
      */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
-        this.mails = this.fakeOS.cache.json.get('notes');
+        this.notes = this.fakeOS.cache.json.get('notes');
     }
 
     /**
@@ -24,29 +25,39 @@ export default class NotesApp extends MailApp {
         this.getActiveLayer().clear();
         this.setBackground();
         this.showHeader();
-        this.showMailList();
+        this.listNotes();
     }
 
     /**
      * Shows the app title.
      */
     protected showHeader(): void {
-        let title = this.fakeOS.getString('notes');
+        let container : Phaser.GameObjects.Container = this.fakeOS.add.container(0,0);
+        let list : Phaser.GameObjects.Image = this.fakeOS.add.image(-this.fakeOS.getActiveApp().area.width / 2 + 32, 4, 'list-icon').setOrigin(0).setScale(1.25);
+        let title = this.fakeOS.add.text(-this.fakeOS.getActiveApp().area.width / 2 + 300, -8, "Notes", {
+            fontSize: "48px",
+            align: "center",
+            color: '#efefef',
+            fontFamily: 'Roboto-Bold'
+        }).setOrigin(0);
+        let search = this.fakeOS.add.image(-this.fakeOS.getActiveApp().area.width / 2 + 564, 4, 'search-icon').setOrigin(0);
+        let write = this.fakeOS.add.image(-this.fakeOS.getActiveApp().area.width / 2 + 640, 4, 'write-icon').setOrigin(0);
+        let line = this.fakeOS.add.line(
+            0,0,
+            0,48,
+            this.fakeOS.getActiveApp().area.width,48
+        ).setStrokeStyle(100, 0x6f6f6f);
 
-        this.getActiveLayer().add([
-            this.fakeOS.add.text(this.fakeOS.width / 2, 48, title, { color: '#fff', fontFamily: 'Roboto-Bold', fontSize: '28px', align: 'center'}).setOrigin(0.5),
-        ]);
-
-        // Paint a simple horizontal line
-        this.getActiveLayer().add(
-            this.fakeOS.add.line(
-                16, 120,
-                0, 0,
-                this.fakeOS.width - 32, 0,
-                0xefefef
-            ).setLineWidth(0.75).setOrigin(0));
+        container.add([list, title, search, write, line]);
+        this.addRow(container);
     }
 
+    /**
+     * Shows the app title.
+     */
+    protected listNotes(): void {
+        this.fakeOS.log(this.notes);
+    }
 
     /**
      * Set app background

@@ -82,7 +82,7 @@
         "configFile" : "notes.json",
         "preInstalled": true,
         "hasNotifications": false,
-        "background" : "dark-abstract"
+        "background" : "fog"
     },
     {
         "type" : "mail",

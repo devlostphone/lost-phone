@@ -2,7 +2,7 @@ import { FakeOS } from "../../../../scenes/FakeOS";
 
 /**
  * Mail Content
- * @todo: review this.
+ * @todo: add scroll for long emails.
  */
 export default class MailContent extends Phaser.GameObjects.Container
 {
@@ -102,6 +102,24 @@ export default class MailContent extends Phaser.GameObjects.Container
                 },
             }
         );
-
         this.add([subject, line1, icon, from, to, date, line2, body]);
+
+        /**
+         * Attachments
+         * Need to be rewrite: instead of showing thubnail
+         */
+
+        /*
+          let attachment_sz = mail.attachment.length;
+          if (attachment_sz > 0) {
+          for(let i = 0; i < attachment_sz; i++) {
+          this.add([this.fakeOS.add.image(
+          -this.fakeOS.getActiveApp().area.width / 2 + 400,
+          118,
+          mail.attachment[i]).setOrigin(0)
+          ]);
+          }
+          }
+        */
+
 }

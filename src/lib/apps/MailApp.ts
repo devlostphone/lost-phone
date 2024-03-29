@@ -50,7 +50,6 @@ export default class MailApp extends App {
      * @inheritdoc
      */
     public render(): void {
-        this.currentMail = "";
         this.getActiveLayer().clear();
         this.setBackground();
         this.showHeader();

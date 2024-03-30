@@ -1,34 +1,34 @@
 [
   {
     "key" : "track001",
-    "name" : "Enregistrament 001",
+    "name" : "230322_1722h_Secrets_del_jardí#1",
     "url" : "gamedata/assets/audios/track001.mp3",
     "artist" : "Nota de veu",
-    "title" : "Enregistrament 001",
+    "title" : "230322_1722h_Secrets_del_jardí#1",
     "thumbnail" : "gamedata/assets/pictures/note.png",
     "volume" : 1
   },
   {
     "key" : "track002",
-    "name" : "Enregistrament 002",
+    "name" : "220522_16h_Secrets_del_jardí#2",
     "url" : "gamedata/assets/audios/track002.mp3",
     "artist" : "Nota de veu",
-    "title" : "Enregistrament 002",
+    "title" : "220522_16h_Secrets_del_jardí#2",
     "thumbnail" : "gamedata/assets/pictures/note.png",
     "volume" : 1
   },
   {
     "key" : "track003",
-    "name" : "Enregistrament 003",
+    "name" : "080622_11h_Secrets_del_jardí#3",
     "url" : "gamedata/assets/audios/track003.mp3",
     "artist" : "Nota de veu",
-    "title" : "Enregistrament 003",
+    "title" : "080622_11h_Secrets_del_jardí#3",
     "thumbnail" : "gamedata/assets/pictures/note.png",
     "volume" : 1
   },
   {
     "key" : "track004",
-    "name" : "Enregistrament 004",
+    "name" : "180622_18h_Enregistrament_furtiu#1",
     "url" : "gamedata/assets/audios/track004.mp3",
     "artist" : "Nota de veu",
     "title" : "Enregistrament 004",
@@ -37,19 +37,19 @@
   },
   {
     "key" : "track005",
-    "name" : "Enregistrament 005",
+    "name" : "180622_18h_Enregistrament_furtiu#2",
     "url" : "gamedata/assets/audios/track005.mp3",
     "artist" : "Nota de veu",
-    "title" : "Enregistrament 005",
+    "title" : "180622_18h_Enregistrament_furtiu#2",
     "thumbnail" : "gamedata/assets/pictures/note.png",
     "volume" : 1
   },
   {
     "key" : "track006",
-    "name" : "Enregistrament 006",
+    "name" : "190622_0812h_Enregistrament_furtiu#3",
     "url" : "gamedata/assets/audios/track006.mp3",
     "artist" : "Nota de veu",
-    "title" : "Enregistrament 006",
+    "title" : "190622_0812h_Enregistrament_furtiu#3",
     "thumbnail" : "gamedata/assets/pictures/note.png",
     "volume" : 1
   }

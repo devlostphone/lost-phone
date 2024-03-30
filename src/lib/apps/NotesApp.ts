@@ -1,5 +1,6 @@
 import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
+import NoteContent from '../ui/gameObjects/notes/NoteContent.ts'
 
 /**
  * Notes app.
@@ -56,7 +57,16 @@ export default class NotesApp extends App {
      * Shows the app title.
      */
     protected listNotes(): void {
-        this.fakeOS.log(this.notes);
+        for (let i=0; i < this.notes.length; i++) {
+            this.fakeOS.log(this.notes[i].title);
+            let entryNote = this.fakeOS.add.rectangle(
+                0, 0, // x, y
+                this.fakeOS.getActiveApp().area.width - 32, 128, // width, height
+                0xffffff, 0.5);
+            entryNote.setStrokeStyle(2, 0xffffff);
+            entryNote.depth = 1;
+            this.addRow(entryNote, {offsetY : 32});
+        }
     }
 
     /**

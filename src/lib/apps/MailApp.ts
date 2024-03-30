@@ -95,7 +95,6 @@ export default class MailApp extends App {
      */
     protected showInbox(): void {
         for (let i=0; i < this.mails.length; i++) {
-            this.fakeOS.log(this.mails[i]['date']);
             var mail: any = new MailPreview(this.fakeOS, 0, 0, this.mails[i], this.textStyleMailread);
             this.fakeOS.addInputEvent(
                 'pointerup',

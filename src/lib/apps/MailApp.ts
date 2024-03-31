@@ -95,7 +95,7 @@ export default class MailApp extends App {
      */
     protected showInbox(): void {
         for (let i=0; i < this.mails.length; i++) {
-            var mail: any = new MailPreview(this.fakeOS, 0, 0, this.mails[i], this.textStyleMailread);
+            let mail: any = new MailPreview(this.fakeOS, 0, 0, this.mails[i], this.textStyleMailread);
             this.fakeOS.addInputEvent(
                 'pointerup',
                 () => {
@@ -103,7 +103,26 @@ export default class MailApp extends App {
                 },
                 mail
             );
-            this.addRow(mail);
+
+            this.fakeOS.addInputEvent(
+                'pointerover',
+                () => {
+                    for (let i = 1; i < 4; i++)
+                        mail.getAt(i).setColor("#ffff00");
+                },
+                mail
+            );
+
+            this.fakeOS.addInputEvent(
+                'pointerout',
+                () => {
+                    for (let i = 1; i < 4; i++)
+                        mail.getAt(i).setColor("#acacac");
+                },
+                mail
+            );
+
+            this.addRow(mail,  {offsetY : 8});
         }
     }
 
@@ -113,7 +132,6 @@ export default class MailApp extends App {
 
     protected openMail(mail: any): void {
         this.addLayer();
-        this.fakeOS.log(mail.subject);
         var content: any = new MailContent(this.fakeOS, 0, 0, mail);
         this.getActiveLayer().add([content]);
     }

@@ -1,6 +1,5 @@
 import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
-import NoteContent from '../ui/gameObjects/notes/NoteContent.ts'
 
 /**
  * Notes app.
@@ -54,19 +53,110 @@ export default class NotesApp extends App {
     }
 
     /**
-     * Shows the app title.
+     * Shows list all notes
      */
     protected listNotes(): void {
         for (let i=0; i < this.notes.length; i++) {
-            this.fakeOS.log(this.notes[i].title);
-            let entryNote = this.fakeOS.add.rectangle(
-                0, 0, // x, y
-                this.fakeOS.getActiveApp().area.width - 32, 128, // width, height
-                0xffffff, 0.5);
-            entryNote.setStrokeStyle(2, 0xffffff);
-            entryNote.depth = 1;
-            this.addRow(entryNote, {offsetY : 32});
+
+            let note = this.fakeOS.add.container(0, 0);
+            {
+                // set setSize container is mandatory in related to get interaction
+                note.setSize(
+                    this.fakeOS.getActiveApp().area.width,
+                    this.fakeOS.getActiveApp().rowHeight()
+                );
+
+                let entryNote = this.fakeOS.add.rectangle(
+                    0, 0, // x, y
+                    this.fakeOS.getActiveApp().area.width - 32, 128, // width, height
+                    0xffffff);
+                entryNote.setStrokeStyle(2, 0xffffff);
+                entryNote.setAlpha(0.666);
+
+                let titleNote = this.fakeOS.add.text(
+                    -this.fakeOS.getActiveApp().area.width / 2 + 32, -48,
+                    this.notes[i].title,
+                    {
+                        fontSize: "28px",
+                        align: "left",
+                        color: '#1c1c1c',
+                        fontFamily: 'Roboto-Bold'
+                    }
+                );
+
+                let dateNote = this.fakeOS.add.text(
+                    -this.fakeOS.getActiveApp().area.width / 2 + 32, -16,
+                    this.notes[i].date,
+                    {
+                        fontSize: "28px",
+                        align: "left",
+                        color: '#1c1c1c',
+                        fontFamily: 'Roboto'
+                    }
+                );
+
+                note.add([entryNote, titleNote, dateNote]);
+            }
+
+            // Add note interaction
+            this.fakeOS.addInputEvent(
+                'pointerup',
+                () => {
+                    this.openNote(this.notes[i]);
+                },
+                note
+            );
+            this.fakeOS.addInputEvent(
+                'pointerover',
+                () => {
+                    note.getFirst().setAlpha(1);
+                },
+                note
+            );
+
+            this.fakeOS.addInputEvent(
+                'pointerout',
+                () => {
+                    note.getFirst().setAlpha(0.666);
+                },
+                note
+            );
+
+            // Add note to row grid
+            this.addRow(note, {offsetY : 32});
         }
+    }
+
+    /**
+     * Display note's content
+     */
+    protected openNote(note : any): void {
+        this.addLayer();
+        let container = this.fakeOS.add.container(0, 0);
+        {
+            // set setSize container is mandatory in related to get interaction
+            container.setSize(
+                this.fakeOS.getActiveApp().area.width,
+                this.fakeOS.getActiveApp().rowHeight()
+            );
+            let aNote = this.fakeOS.add.rexBBCodeText(
+                32, 56,
+                "[b]" + note.title + "[/b]\n[size=30]" + note.date + "[/size]" + "[/b]\n[size=24]" + note.body + "[/size]",
+                {
+                    fontSize: "42px",
+                    align: "left",
+                    color: '#fff',
+                    fontFamily: 'Roboto',
+                    wordWrap: {
+                        width: this.fakeOS.getActiveApp().area.width - 64,
+                        useAdvancedWrap: true
+                    },
+                }
+            );
+            container.add(aNote);
+        }
+
+        this.getActiveLayer().add(container);
     }
 
     /**

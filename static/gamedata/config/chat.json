@@ -111,7 +111,7 @@
       },
       "c000-0013": {
         "id": "c000-0013",
-          "text": "Que vindràs a veure’m avui, senyor Jaume?",
+        "text": "Que vindràs a veure’m avui, senyor Jaume?",
         "time": "13:12",
         "next": "c000-0014",
         "condition": null
@@ -210,7 +210,6 @@
           }
         }
       },
-
       "c000-00241": {
         "id": "c000-00241",
         "notification": true,
@@ -231,13 +230,11 @@
       },
       "c000-00243": {
         "id": "c000-00243",
-          "text": "Molt bé, senyor Jaume.",
+        "text": "Molt bé, senyor Jaume.",
         "time": "12:47",
         "next": "c000-0024",
         "condition": null
       },
-
-
       "c000-0024": {
         "id": "c000-0024",
         "notification": true,
@@ -276,10 +273,125 @@
           "c000-ans0028": {
             "id": "c000-ans0028",
             "text": ";-)",
-            "next": "c000-0029",
+            "next": "a0",
             "condition": null
           }
         }
+      },
+      "a0": {
+        "id": "a0",
+        "notification": true,
+        "text": "17 març de 2022",
+        "next": "a1",
+        "condition": null
+      },
+      "a1": {
+        "id": "a1",
+        "text": "Fill meu, què us ha dit avui el Dr. Falguera, a la clínica?",
+        "time": "19:45",
+        "next": "a2",
+        "condition": null
+      },
+      "a2": {
+        "time": "19:46",
+        "options": {
+          "a2": {
+            "id": "a2",
+            "text": "Àvia, ja t’ho explicarà la mamà… 😔",
+            "next": "a3",
+            "condition": null
+          }
+        }
+      },
+      "a3": {
+        "time": "19:46",
+        "options": {
+          "a3": {
+            "id": "a3",
+            "text": "…ja saps que no m’agrada gens que en parleu davant meu.",
+            "next": "a4",
+            "condition": null
+          }
+        }
+      },
+      "a4": {
+        "id": "a4",
+        "text": "Molt bé, senyor Jaume, així ja se’n pot anar.",
+        "time": "19:55",
+        "next": "a5",
+        "condition": null
+      },
+      "a5": {
+        "time": "19:55",
+        "options": {
+          "a5": {
+            "id": "a5",
+            "text": "No t’enfadis, si us plau.",
+            "next": "a6",
+            "condition": null
+          }
+        }
+      },
+      "a6": {
+        "time": "19:55",
+        "options": {
+          "a6": {
+            "id": "a6",
+            "text": "Avui la mamà m’ha regalat una làmina antiga, t’agradarà, és preciosa. Un senyal de casa nostra.",
+            "next": "a7",
+            "condition": null
+          }
+        }
+      },
+      "a7": {
+        "id": "a7",
+        "text": "Vostè i els seus misteris, senyor Jaume.",
+        "time": "19:55",
+        "next": "a8",
+        "condition": null
+      },
+      "a8": {
+        "id": "a8",
+        "notification": true,
+        "text": "8 d’abril de 2022",
+        "next": "a9",
+        "condition": null
+      },
+      "a9": {
+        "time": "16:22",
+        "options": {
+          "a9": {
+            "id": "a9",
+            "text": "Àvia, t’he d’explicar què m’han fet aquesta vegada el salvatge del meu germà i la Maria.",
+            "next": "a10",
+            "condition": null
+          }
+        }
+      },
+      "a10": {
+        "id": "a10",
+        "text": "Sembla que a aquest dolent d’en Ramon l’haurem d’escarmentar.",
+        "time": "16:41",
+        "next": "a11",
+        "condition": null
+      },
+      "a11": {
+        "time": "16:42",
+        "options": {
+          "a11": {
+            "id": "a11",
+            "text": "De debò, això d’ara és molt gros. Puc venir?",
+            "next": "a12",
+            "condition": null
+          }
+        }
+      },
+      "a12": {
+        "id": "a12",
+        "text": "Vingui, vingui, sense compliments.",
+        "time": "16:42",
+        "next": "c000-0029",
+        "condition": null
       },
       "c000-0029": {
         "id": "c000-0029",
@@ -382,17 +494,17 @@
           }
         }
       },
-        "c000-0039a": {
-            "time": "7:03",
-            "options": {
-                "1": {
-                    "id": "1",
-                    "text": "gallery:g014",
-                    "next": "c000-0040",
-                    "condition": null
-                }
-            }
-        },
+      "c000-0039a": {
+        "time": "7:03",
+        "options": {
+          "1": {
+            "id": "1",
+            "text": "gallery:g014",
+            "next": "c000-0040",
+            "condition": null
+          }
+        }
+      },
       "c000-0040": {
         "id": "c000-0040",
         "text": "Sí que em fa quedar parada, senyor Jaume…",
@@ -1299,7 +1411,7 @@
         "options": {
           "1": {
             "id": "1",
-              "text": "No em provoquis, Maria. No deus voler que li digui a l’àvia qui li has furtat l’agulla a la Rosa, oi?",
+            "text": "No em provoquis, Maria. No deus voler que li digui a l’àvia qui li has furtat l’agulla a la Rosa, oi?",
             "next": "m37",
             "condition": null
           }
@@ -1453,7 +1565,7 @@
       "m53": {
         "id": "m53",
         "author": "Maria",
-          "text": "Perquè només m’estima a mi! Em diu:\"t’estàs convertint en una criatura preciosa.\"",
+        "text": "Perquè només m’estima a mi! Em diu:\"t’estàs convertint en una criatura preciosa.\"",
         "time": "18:49",
         "next": "m54",
         "condition": null
@@ -1698,8 +1810,83 @@
         "author": "Rosa",
         "text": "Sí, el curs que ve, més, Jaume. Ara gaudeix de l’estiu i de les vacances que te les has ben guanyat amb tant d’esforç. Bona revetlla i bon Sant Joan!",
         "time": "15:36",
-        "next": "m4",
+        "next": "r4",
         "condition": null
+      },
+      "r4": {
+        "id": "r4",
+        "notification": true,
+        "text": "15 de setembre 2021",
+        "next": "r5",
+        "condition": null
+      },
+      "r5": {
+        "id": "r5",
+        "author": "Rosa",
+        "text": "Jaume, primer retard del curs?",
+        "time": "18:26",
+        "next": "r6",
+        "condition": null
+      },
+      "r6": {
+        "time": "18:27",
+        "options": {
+          "r6": {
+            "id": "r6",
+            "text": "Ja vinc, Rosa! 😅",
+            "next": "r8",
+            "condition": null
+          }
+        }
+      },
+      "r8": {
+        "id": "r8",
+        "notification": true,
+        "text": "29 octubre 2021",
+        "next": "r9",
+        "condition": null
+      },
+      "r9": {
+        "id": "r9",
+        "author": "Rosa",
+        "text": "Jaume, tan bé que anàvem. On ets? Ja vens?",
+        "time": "18:28",
+        "next": "r10",
+        "condition": null
+      },
+      "r10": {
+        "id": "r10",
+        "notification": true,
+        "text": "26 gener 2022",
+        "next": "r11",
+        "condition": null
+      },
+      "r11": {
+        "id": "r11",
+        "author": "Rosa",
+        "text": "Sembla mentida que a hores d’ara encara t’hagi d’avisar perquè baixis a l’hora per la classe de repàs.",
+        "time": "18:28",
+        "next": "r12",
+        "condition": null
+      },
+      "r12": {
+        "id": "r12",
+        "author": "Rosa",
+        "text": "Que vens?",
+        "time": "18:29",
+        "next": "r13",
+        "condition": null
+      },
+      "r13": {
+        "time": "18:30",
+        "options": {
+          "r13": {
+            "id": "r13",
+            "text": "Sí 😱",
+            "next": "m4",
+            "condition": null
+          }
+        }
       },
       "m4": {
         "id": "m4",
@@ -1762,6 +1949,40 @@
         "author": "Rosa",
         "text": "Calla, calla, calla … que ja ets massa gran!",
         "time": "18:40",
+        "next": "rr1",
+        "condition": null
+      },
+      "rr1": {
+        "id": "rr1",
+        "notification": true,
+        "text": "20 abril 2022",
+        "next": "rr2",
+        "condition": null
+      },
+      "rr2": {
+        "id": "rr2",
+        "author": "Rosa",
+        "text": "Jaume, arribaré 15 minuts tard. Em sap greu.",
+        "time": "18:10",
+        "next": "rr3",
+        "condition": null
+      },
+      "rr3": {
+        "time": "18:12",
+        "options": {
+          "0": {
+            "id": "0",
+            "text": "No passa res, soc al jardí, tot sol.",
+            "next": "rr4",
+            "condition": null
+          }
+        }
+      },
+      "rr4": {
+        "id": "rr4",
+        "author": "Rosa",
+        "text": "💚",
+        "time": "18:10",
         "next": "m11",
         "condition": null
       },
@@ -1816,7 +2037,7 @@
         "condition": null
       },
       "m17": {
-          "time": "17:41",
+        "time": "17:41",
         "options": {
           "0": {
             "id": "0",
@@ -1869,8 +2090,45 @@
         "author": "Rosa",
         "text": "Sou molt capritxosos tots plegats!",
         "time": "17:48",
-        "next": "m23",
+        "next": "rr23",
         "condition": null
+      },
+      "rr23": {
+        "id": "rr23",
+        "notification": true,
+        "text": "8 juny 2022",
+        "next": "xxx40",
+        "condition": null
+      },
+      "xxx40": {
+        "time": "18:16",
+        "options": {
+          "x0": {
+            "id": "x0",
+            "text": "Ja baixo a classe, Rosa.",
+            "next": "rrr42",
+            "condition": null
+          }
+        }
+      },
+      "rrr42": {
+        "id": "rrr42",
+        "author": "Rosa",
+        "text": "Va, Jaume, que ja queda poquet. Avui per fi em mostraràs el projecte del Lostagram? L’has acabat?",
+        "time": "18:16",
+        "next": "rrr43",
+        "condition": null
+      },
+      "rrr43": {
+        "time": "18:17",
+        "options": {
+          "rrr43": {
+            "id": "rrr43",
+            "text": "Diumenge.",
+            "next": "rrr44",
+            "condition": null
+          }
+        }
       }
     }
   },
@@ -1891,7 +2149,7 @@
         "time": "21:32",
         "options": {
           "0": {
-              "id": "0",
+            "id": "0",
             "text": "Armandaaa! Mira, aquest és el meu mòbil! Me l’han regalat el papà i la mamà per a celebrar que he acabat la primària!",
             "next": "m2",
             "condition": null

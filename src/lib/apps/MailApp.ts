@@ -134,6 +134,8 @@ export default class MailApp extends App {
         this.addLayer();
         var content: any = new MailContent(this.fakeOS, 0, 0, mail);
         this.getActiveLayer().add([content]);
+        // Add scrolling
+        this.addRow(container);
     }
 
     /**

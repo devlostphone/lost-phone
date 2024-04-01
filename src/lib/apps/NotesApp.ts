@@ -157,6 +157,8 @@ export default class NotesApp extends App {
         }
 
         this.getActiveLayer().add(container);
+        // What? is this the f*ck*ng method to get scrolling?
+        this.addRow(container);
     }
 
     /**

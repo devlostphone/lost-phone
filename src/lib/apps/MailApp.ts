@@ -121,8 +121,7 @@ export default class MailApp extends App {
                 },
                 mail
             );
-
-            this.addRow(mail,  {offsetY : 8});
+            this.addRow(mail);
         }
     }
 
@@ -133,8 +132,38 @@ export default class MailApp extends App {
     protected openMail(mail: any): void {
         this.addLayer();
         var content: any = new MailContent(this.fakeOS, 0, 0, mail);
-        this.getActiveLayer().add([content]);
-        // Add scrolling
+        this.getActiveLayer().add(content);
+        this.addRow(content);
+
+        // Add attachments if exists
+        let attachments : Array = [];
+        if (mail.attachment.length != 0) {
+            for (let i = 0; i < mail.attachment.length; i++) {
+                let attachment = this.fakeOS.add.image(0, 0, 'attachment-icon').setOrigin(0);
+                // Add interaction
+                this.fakeOS.addInputEvent(
+                    'pointerup',
+                    () => {
+                        this.openAttachment(mail.attachment[i]);
+                    },
+                    attachment
+                );
+
+                attachments.push(attachment);
+            }
+        }
+        this.addRow(attachments, {'offsetY' : 32});
+    }
+
+    /**
+     * Display attachment
+     */
+    protected openAttachment(attachment): void {
+        this.addLayer();
+        let container = this.fakeOS.add.container(0, 0);
+        let image = this.fakeOS.add.image(0, 0, attachment).setOrigin(0);
+        container.add(image);
+        this.getActiveLayer().add(container);
         this.addRow(container);
     }
 

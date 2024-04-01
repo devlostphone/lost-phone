@@ -159,6 +159,33 @@ export default class NotesApp extends App {
         this.getActiveLayer().add(container);
         // What? is this the f*ck*ng method to get scrolling?
         this.addRow(container);
+
+        // Add attachments if exists
+        if (note.attachment.length != 0) {
+            let attachment = this.fakeOS.add.image(0, -16, 'attachment-icon').setOrigin(0);
+            // Add interaction
+            this.fakeOS.addInputEvent(
+                'pointerup',
+                () => {
+                    this.openAttachment(note.attachment);
+                },
+                attachment
+            );
+            this.addRow(attachment);
+        }
+    }
+
+
+    /**
+     * Display note's attachment
+     */
+    protected openAttachment(attachment): void {
+        this.addLayer();
+        let container = this.fakeOS.add.container(0, 0);
+        let image = this.fakeOS.add.image(0, 0, attachment).setOrigin(0);
+        container.add(image);
+        this.getActiveLayer().add(container);
+        this.addRow(container);
     }
 
     /**

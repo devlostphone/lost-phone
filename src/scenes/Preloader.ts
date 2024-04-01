@@ -134,6 +134,9 @@ export default class Preloader extends FakeOSScene {
         this.load.image('ef-mail-icon', this.get_theme_path('icons/ef-mail-icon.png'));
         this.load.image('lostagram-mail-icon', this.get_theme_path('icons/lostagram-mail-icon.png'));
 
+        // Attachment icon
+        this.load.image('attachment-icon', this.get_theme_path('icons/attachment-icon.png'));
+
         // Lostagram icons
         this.load.image('heart-icon', this.get_theme_path('icons/heart-icon.png'));
         this.load.image('bubble-icon', this.get_theme_path('icons/bubble-icon.png'));

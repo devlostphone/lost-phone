@@ -205,11 +205,39 @@
           "c000-ans0023": {
             "id": "c000-ans0023",
             "text": "Gràcieeeeees!",
-            "next": "c000-0024",
+            "next": "c000-00241",
             "condition": null
           }
         }
       },
+
+      "c000-00241": {
+        "id": "c000-00241",
+        "notification": true,
+        "text": "5 de setembre de 2021",
+        "next": "c000-00242",
+        "condition": null
+      },
+      "c000-00242": {
+        "time": "11:06",
+        "options": {
+          "c000-ans00242": {
+            "id": "c000-ans00242",
+            "text": "He revelat les fotos que he fet amb la Niknox a l’estiu. Quina càmera, àvia, gràciesss! Més tard vindré per mostrar-te-les.",
+            "next": "c000-00243",
+            "condition": null
+          }
+        }
+      },
+      "c000-00243": {
+        "id": "c000-00243",
+          "text": "Molt bé, senyor Jaume.",
+        "time": "12:47",
+        "next": "c000-0024",
+        "condition": null
+      },
+
+
       "c000-0024": {
         "id": "c000-0024",
         "notification": true,

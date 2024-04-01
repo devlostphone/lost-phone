@@ -145,7 +145,13 @@ export default class ChatBubble extends Phaser.GameObjects.Container
             let timeText = this.fakeOS.add.text(
                 left_bound + bubble_text.x,
                 top_bound * 2 + 10,
-                time
+                time,
+                {
+                    align: "left",
+                    color: '#fff',
+                    fontFamily: 'Roboto',
+                    fontSize: "22px"
+                }
             ).setOrigin(1,0);
             this.add(timeText);
         }

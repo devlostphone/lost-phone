@@ -861,10 +861,118 @@
           "ans3": {
             "id": "ans3",
             "text": "Gràcies! 🤸🏻‍♀️🤸🏻🤸🏿‍♂️",
-            "next": "c34-35",
+            "next": "message-00050",
             "condition": null
           }
         }
+      },
+      "message-00050": {
+        "id": "message-00050",
+        "notification": true,
+        "text": "15 d'agrost de 2021",
+        "next": "message-00051",
+        "condition": null
+      },
+      "message-00051": {
+        "id": "message-00051",
+        "author": "Ramon",
+        "time": "7:12",
+        "text": "Felicitas, Maria!",
+        "next": "message-00052",
+        "condition": null
+      },
+      "message-00052": {
+        "id": "message-00052",
+        "author": "Maria",
+        "time": "7:13",
+        "text": "Gràcies, Ramon!",
+        "next": "message-00053",
+        "condition": null
+      },
+      "message-00053": {
+        "time": "7:54",
+        "options": {
+          "message-00053": {
+            "id": "message-00053",
+            "text": "Maria, moltes felicitats!",
+            "next": "message-00054",
+            "condition": null
+          }
+        }
+      },
+      "message-00054": {
+        "id": "message-00054",
+        "author": "Papà",
+        "time": "9:30",
+        "text": "Felicitacions, filla meva.",
+        "next": "message-00055",
+        "condition": null
+      },
+      "message-00055": {
+        "id": "message-00055",
+        "author": "Mamà",
+        "time": "9:32",
+        "text": "Felicitacions",
+        "next": "message-00056",
+        "condition": null
+      },
+      "message-00056": {
+        "id": "message-00056",
+        "notification": true,
+        "text": "31 d'agost de 2021",
+        "next": "message-00057",
+        "condition": null
+      },
+      "message-00057": {
+        "id": "message-00057",
+        "author": "Ramon",
+        "time": "9:00",
+        "text": "Ep! Que avui és el meu sant!",
+        "next": "message-00058b",
+        "condition": null
+      },
+      "message-00058b": {
+        "id": "message-00058b",
+        "author": "Maria",
+        "time": "9:02",
+        "text": "Síiii ! Felicitaaaats!",
+        "next": "message-00058",
+        "condition": null
+      },
+      "message-00058": {
+        "id": "message-00058",
+        "author": "Mamà",
+        "time": "9:30",
+        "text": "Moltes felicitats, estimat.",
+        "next": "message-00059",
+        "condition": null
+      },
+      "message-00059": {
+        "id": "message-00059",
+        "author": "Papà",
+        "time": "9:30",
+        "text": "Felicitats, fill.",
+        "next": "message-00060",
+        "condition": null
+      },
+      "message-00060": {
+        "time": "12:00",
+        "options": {
+          "message-00060": {
+            "id": "message-00060",
+            "text": "Ramon, felicitats també de part de l’àvia.",
+            "next": "message-00061",
+            "condition": null
+          }
+        }
+      },
+      "message-00061": {
+        "id": "message-00061",
+        "author": "Ramon",
+        "time": "12:30",
+        "text": "👍",
+        "next": "c34-35",
+        "condition": null
       },
       "c34-35": {
         "id": "c34-35",
@@ -1567,11 +1675,213 @@
         "author": "Maria",
         "text": "Perquè només m’estima a mi! Em diu:\"t’estàs convertint en una criatura preciosa.\"",
         "time": "18:49",
-        "next": "m54",
+        "next": "message-0001",
         "condition": null
       },
-      "m54": {
-        "id": "m54",
+      "message-0001": {
+        "id": "message-0001",
+        "notification": true,
+        "text": "18 novembre 2021",
+        "next": "message-0002",
+        "condition": null
+      },
+      "message-0002": {
+        "id": "message-0002",
+        "author": "Ramon",
+        "time": "16:36",
+        "text": "Que ho sents, Maria?",
+        "next": "message-0003",
+        "condition": null
+      },
+      "message-0003": {
+        "id": "message-0003",
+        "author": "Maria",
+        "time": "16:36",
+        "text": "Aquests gemecs, oi? Ai! Ai! I tot per una injecció. Hi hi!",
+        "next": "message-0004",
+        "condition": null
+      },
+      "message-0004": {
+        "id": "message-0004",
+        "author": "Ramon",
+        "time": "16:37",
+        "text": "Sí, sí, esblaimat i donant coces amb les cametes de filferro. Quina angúnia! Ecs!",
+        "next": "message-0005",
+        "condition": null
+      },
+      "message-0005": {
+        "id": "message-0005",
+        "author": "Maria",
+        "time": "16:38",
+        "text": "Ja ho diu el papà que aquest nen és un càstig.",
+        "next": "message-0006",
+        "condition": null
+      },
+      "message-0006": {
+        "time": "18:10",
+        "options": {
+          "message-0006": {
+            "id": "message-0006",
+            "text": "Teniu el cor de suro! Quan em provi el tractament del Dr. Falguera, ja no fareu befa de mi.",
+            "next": "message-0007",
+            "condition": null
+          }
+        }
+      },
+      "message-0007": {
+        "id": "message-0007",
+        "notification": true,
+        "text": "19 febrer 2022",
+        "next": "message-0008",
+        "condition": null
+      },
+      "message-0008": {
+        "time": "16:50",
+        "options": {
+          "message-0008": {
+            "id": "message-0008",
+            "text": "La glicina ja treu flor!",
+            "next": "message-0009",
+            "condition": null
+          }
+        }
+      },
+      "message-0009": {
+        "id": "message-0009",
+        "author": "Maria",
+        "time": "16:52",
+        "text": "L’àvia deu estar contenta.",
+        "next": "message-00010",
+        "condition": null
+      },
+      "message-00010": {
+        "time": "16:52",
+        "options": {
+          "message-00010": {
+            "id": "message-00010",
+            "text": "Molt, però també m’ha dit li agradaria veure’t més sovint, baixes poc a la sala.",
+            "next": "message-00011",
+            "condition": null
+          }
+        }
+      },
+      "message-00011": {
+        "id": "message-00011",
+        "time": "16:53",
+        "author": "Maria",
+        "text": "Ai, ja hi aniré. Tu no n’has de fer res!",
+        "next": "message-00012",
+        "condition": null
+      },
+      "message-00012": {
+        "id": "message-00012",
+        "time": "16:53",
+        "author": "Ramon",
+        "text": "La Maria no hi vol anar perquè li fa fàstic veure-li les mans.",
+        "next": "message-00013",
+        "condition": null
+      },
+      "message-00013": {
+        "id": "message-00013",
+        "author": "Ramon",
+        "time": "16:53",
+        "text": "I de mi, l’àvia no te’n diu res, Jaumet?",
+        "next": "message-00014",
+        "condition": null
+      },
+      "message-00014": {
+        "time": "16:54",
+        "options": {
+          "message-00014": {
+            "id": "message-00014",
+            "text": "Ja saps que a tu no et vol veure gaire.",
+            "next": "message-00015",
+            "condition": null
+          }
+        }
+      },
+      "message-00015": {
+        "id": "message-00015",
+        "time": "16:54",
+        "author": "Maria",
+        "text": "Clar, si sempre li fa ganyotes i malmet les plomes del gerro i tots els bibelots de la sala.",
+        "next": "message-00016",
+        "condition": null
+      },
+      "message-00016": {
+        "time": "16:59",
+        "options": {
+          "message-00016": {
+            "id": "message-00016",
+            "text": "Només volia dir que la glicina està maca. Tot ho empastifeu.",
+            "next": "message-00017",
+            "condition": null
+          }
+        }
+      },
+      "message-00017": {
+        "id": "message-00017",
+        "author": "Ramon",
+        "time": "16:59",
+        "text": "🥸",
+        "next": "message-00018",
+        "condition": null
+      },
+      "message-00018": {
+        "id": "message-00018",
+        "author": "Maria",
+        "time": "16:59",
+        "text": "😂",
+        "next": "message-00020",
+        "condition": null
+      },
+      "message-00020": {
+        "id": "message-00020",
+        "notification": true,
+        "text": "13 de març 2022",
+        "next": "message-00021",
+        "condition": null
+      },
+      "message-00021": {
+        "time": "21:10",
+        "options": {
+          "message-00021": {
+            "id": "message-00021",
+            "text": "Maria, quan estrenaràs la samarreta que et vaig regalar per Reis? Ara ja fa bon temps",
+            "next": "message-00022",
+            "condition": null
+          }
+        }
+      },
+      "message-00022": {
+        "id": "message-00022",
+        "author": "Maria",
+        "time": "21:15",
+        "text": "Tens raó, Jaume “les coses importants són les que no ho semblen”",
+        "next": "message-00023",
+        "condition": null
+      },
+      "message-00023": {
+        "time": "21:15",
+        "options": {
+          "message-00023": {
+            "id": "message-00023",
+            "text": "😄",
+            "next": "message-00024",
+            "condition": null
+          }
+        }
+      },
+      "message-00024": {
+        "id": "message-00024",
+        "author": "Ramon",
+        "time": "21:23",
+        "text": "Faràs goig, Maria, com sempre 😍",
+        "next": "message-00025",
+        "condition": null
+      },
+      "message-00025": {
+        "id": "message-00025",
         "notification": true,
         "text": "26 de març 2022",
         "next": "m55",
@@ -1767,10 +2077,31 @@
           "1": {
             "id": "1",
             "text": "Sou horribles I tu, Maria, ets una arreplegada! Ben mirat feu bona parella…",
-            "next": "m78",
+            "next": "message-00030",
             "condition": null
           }
         }
+      },
+      "message-00030": {
+        "id": "message-00030",
+        "notification": true,
+        "text": "6 abril 2022",
+        "next": "message-00031",
+        "condition": null
+      },
+      "message-00031": {
+        "id": "message-00031",
+        "notification": true,
+        "text": "Maria ha sortit del grup",
+        "next": "message-00032",
+        "condition": null
+      },
+      "message-00032": {
+        "id": "message-00032",
+        "notification": true,
+        "text": "Ramon ha sortit del grup",
+        "next": "message-00033",
+        "condition": null
       }
     }
   },

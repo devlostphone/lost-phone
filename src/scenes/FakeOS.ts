@@ -464,6 +464,16 @@ export class FakeOS extends FakeOSScene {
                 event = SystemEvents.ImageClicked;
                 break;
 
+            case /sticker/.test(tag):
+                console.log("TAG: " + tag);
+                matches = tag.match(/sticker:(.*)/i);
+                id = matches ? matches[1] : "";
+                gameobject = new Phaser.GameObjects.Image(
+                    this, 0, 0, id
+                ).setName(id).setScale(0.1);
+                event = SystemEvents.ImageClicked;
+                break;
+
             case /browser/.test(tag):
                 matches = tag.match(/browser:(.*):(.*)/i);
                 id = matches ? matches[1] : "";

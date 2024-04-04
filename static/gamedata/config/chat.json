@@ -1093,9 +1093,132 @@
         "author": "Ramon",
         "text": "Sí, perquè “en aquesta família les converses es tenen a taula”...",
         "time": "17:08",
-        "next": "c49-50",
+        "next": "message-00060",
         "condition": null
       },
+
+        "message-00060": {
+            "id": "message-00060",
+            "notification": true,
+            "text": "18 de febrer de 2022",
+            "next": "message-00061",
+            "condition": null
+        },
+        "message-00061": {
+            "id": "message-00061",
+            "author": "Maria",
+            "time": "8:00",
+            "text": "Moltes felicitats, papà! Avui és el teu sant 😇",
+            "next": "message-00062",
+            "condition": null
+        },
+        "message-00062": {
+            "id": "message-00062",
+            "author": "Ramon",
+            "time": "8:01",
+            "text": "Felicitats!",
+            "next": "message-00063",
+            "condition": null
+        },
+        "message-00063": {
+            "time": "8:03",
+            "options": {
+                "message-00063": {
+                    "id": "message-00063",
+                    "text": "Felicitats!",
+                    "next": "message-00064",
+                    "condition": null
+                }
+            }
+        },
+
+"message-00064": {
+    "id": "message-00064",
+    "author": "Papà",
+    "time": "8:05",
+    "text": "Molts gràcies, fills. Al vespre ho celebrem.",
+    "next": "message-00065",
+    "condition": null
+},
+        "message-00065": {
+            "id": "message-00065",
+            "notification": true,
+            "text": "30 d'abril de 2022",
+            "next": "message-00066",
+            "condition": null
+        },
+
+        "message-00066": {
+            "time": "7:30",
+            "options": {
+                "message-00066": {
+                    "id": "message-00066",
+                    "text": "Moltes felicitats, mamà princesa!",
+                    "next": "message-00067",
+                    "condition": null
+                }
+            }
+        },
+        "message-00067": {
+            "id": "message-00067",
+            "author": "Ramon",
+            "time": "7:40",
+            "text": "Felicitats, mamà!",
+            "next": "message-00068",
+            "condition": null
+        },
+        "message-00068": {
+            "id": "message-00068",
+            "author": "Papà",
+            "time": "10:00",
+            "text": "Felicitacions, Sofia.",
+            "next": "message-00070",
+            "condition": null
+        },
+        "message-00070": {
+            "id": "message-00070",
+            "author": "Maria",
+            "time": "10:01",
+            "text": "Sí, felicitats.",
+            "next": "message-00071",
+            "condition": null
+        },
+
+        "message-00071": {
+            "id": "message-00071",
+            "notification": true,
+            "text": "30 de maig de 2022",
+            "next": "message-00072",
+            "condition": null
+        },
+        "message-00072": {
+            "time": "19:00",
+            "options": {
+                "message-00072": {
+                    "id": "message-00072",
+                    "text": "Papà, què t’agrada més a tu? La fusta o la plata?",
+                    "next": "message-00073",
+                    "condition": null
+                }
+            }
+        },
+        "message-00073": {
+            "id": "message-00073",
+            "author": "Papà",
+            "time": "19:14",
+            "text": "Jaume, a què treu cap això ara? Sigui el que sigui ja m’ho diràs durant el sopar.",
+            "next": "message-00074",
+            "condition": null
+        },
+        "message-00074": {
+            "id": "message-00074",
+            "author": "Ramon",
+            "time": "19:18",
+            "text": "🥣 🥣 🥣 🔪",
+            "next": "c49-50",
+            "condition": null
+        },
+
       "c49-50": {
         "id": "c49-50",
         "notification": true,
@@ -3094,11 +3217,214 @@
           "0": {
             "id": "0",
             "text": "?",
-            "next": "m41",
+            "next": "message-00090",
             "condition": null
           }
         }
       },
+
+"message-00090": {
+    "id": "message-00090",
+    "notification": true,
+    "text": "23 de març de 2022",
+    "next": "message-00091",
+    "condition": null
+},
+        "message-00091": {
+            "time": "17:05",
+            "options": {
+                "message-00091": {
+                    "id": "message-00091",
+                    "text": "Ei! He caçat un espiadimonis!",
+                    "next": "message-00092",
+                    "condition": null
+                }
+            }
+        },
+        "message-00092": {
+            "id": "message-00092",
+            "author": "Àngel",
+            "time": "17:20",
+            "text": "Fascinant, Jaume, deus estar baldat...",
+            "next": "message-00093",
+            "condition": null
+        },
+        "message-00093": {
+            "time": "17:20",
+            "options": {
+                "message-00093": {
+                    "id": "message-00093",
+                    "text": "I l’he guardat en un pot que he reciclat de les escombraries que l’incívic del meu veí escampa per tot arreu.",
+                    "next": "message-00094",
+                    "condition": null
+                }
+            }
+        },
+"message-00094": {
+    "id": "message-00094",
+    "author": "Àngel",
+    "time": "17:31",
+    "text": "😶",
+    "next": "message-00095",
+    "condition": null
+},
+
+"message-00095": {
+    "id": "message-00095",
+    "notification": true,
+    "text": "20 d'abril de 2022",
+    "next": "message-00096",
+    "condition": null
+},
+        "message-00096": {
+            "time": "18:13",
+            "options": {
+                "message-00096": {
+                    "id": "message-00096",
+                    "text": "Àngel, has fet els deures de literatura?",
+                    "next": "message-00097",
+                    "condition": null
+                }
+            }
+        },
+        "message-00097": {
+            "time": "18:14",
+            "options": {
+                "message-00097": {
+                    "id": "message-00097",
+                    "text": "Estic esperant la Rosa que avui arriba tard. ",
+                    "next": "message-00098",
+                    "condition": null
+                }
+            }
+        },
+        "message-00098": {
+            "time": "18:23",
+            "options": {
+                "message-00098": {
+                    "id": "message-00098",
+                    "text": "M’ajudarà amb el conte que havíem de llegir.",
+                    "next": "message-000100",
+                    "condition": null
+                }
+            }
+        },
+        "message-000100": {
+            "id": "message-000100",
+            "author": "Àngel",
+            "time": "18:28",
+            "text": "sticker:mrodoreda",
+            "next": "message-000101",
+            "condition": null
+        },
+
+"message-000101": {
+    "id": "message-000101",
+    "notification": true,
+    "text": "10 de maig de 2022",
+    "next": "message-000102",
+    "condition": null
+},
+
+        "message-000102": {
+            "id": "message-000102",
+            "author": "Àngel",
+            "time": "20:38",
+            "text": "Em passes el telèfon de la teva germana?",
+            "next": "message-000103",
+            "condition": null
+        },
+        "message-000103": {
+            "time": "20:39",
+            "options": {
+                "message-000103": {
+                    "id": "message-000103",
+                    "text": "No és la meva germana.",
+                    "next": "message-000104",
+                    "condition": null
+                }
+            }
+        },
+        "message-000104": {
+            "id": "message-000104",
+            "author": "Àngel",
+            "time": "20:39",
+            "text": "Així: Em  passes el contacte de la Maria? 🙄",
+            "next": "message-000105",
+            "condition": null
+        },
+
+"message-000105": {
+    "time": "20:41",
+    "options": {
+        "message-000105": {
+            "id": "message-000105",
+            "text": "Contacte Compartit",
+            "next": "message-000106",
+            "condition": null
+        }
+    }
+},
+        "message-000106": {
+            "time": "20:42",
+            "options": {
+                "message-000106": {
+                    "id": "message-000106",
+                    "text": "No li diguis que te l’he passat jo.",
+                    "next": "message-000107",
+                    "condition": null
+                }
+            }
+        },
+
+"message-000107": {
+    "id": "message-000107",
+    "author": "Àngel",
+    "time": "20:42",
+    "text": "A la Maria o al Ramon? 🤣🤐",
+    "next": "message-000108",
+    "condition": null
+},
+
+"message-000108": {
+    "id": "message-000108",
+    "notification": true,
+    "text": "18 de juny de 2022",
+    "next": "message-000109",
+    "condition": null
+},
+
+        "message-000109": {
+            "time": "21:11",
+            "options": {
+                "message-000109": {
+                    "id": "message-000109",
+                    "text": "Soc amb la Rosa, que els pares han sortit… Li he mostrat el Lostagram de ciències i li ha encantat.",
+                    "next": "message-000110",
+                    "condition": null
+                }
+            }
+        },
+        "message-000110": {
+            "time": "21:12",
+            "options": {
+                "message-000110": {
+                    "id": "message-000110",
+                    "text": "Diu que vaig tenir una gran idea i que mereixo molt bona nota!",
+                    "next": "message-000111",
+                    "condition": null
+                }
+            }
+        },
+        "message-000111": {
+            "id": "message-000111",
+            "author": "Àngel",
+            "time": "21:12",
+            "text": "😡 🤬 🦂",
+            "next": "m41",
+            "condition": null
+        },
+
       "m41": {
         "id": "m41",
         "notification": true,
@@ -3109,7 +3435,7 @@
       "m42": {
         "id": "m42",
         "author": "Àngel",
-        "text": "Jaume, perdona’m, no he volgut fer-te mal, però la idea d’un Lostagram  d’il·lustració botànica va ser meva.  Estic segur que ara sí que trobaràs el teu món… Molta sort, amic!",
+        "text": "Jaume, perdona’m, no he volgut fer-te mal, però la idea d’un Lostagram d’il·lustració botànica va ser meva. Estic segur que ara sí que trobaràs el teu món… Molta sort, amic!",
         "time": "17:25",
         "next": "m43",
         "condition": null

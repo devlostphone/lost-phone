@@ -53,7 +53,7 @@ export default class Preloader extends FakeOSScene {
         this.preload_track_images();
         this.preload_social_images();
         this.preload_shape_images();
-
+        this.preload_stickers_images();
         // @TODO: Make something more visual specific
         this.progressBar();
     }
@@ -160,6 +160,13 @@ export default class Preloader extends FakeOSScene {
         this.load.image('rect@144', this.get_theme_path('shapes/rect@144.png'));
         this.load.image('rect@96', this.get_theme_path('shapes/rect@96.png'));
         this.load.image('rect@72', this.get_theme_path('shapes/rect@72.png'));
+    }
+
+    /**
+     * Preloads stickers
+     */
+    protected preload_stickers_images(): void {
+        this.load.image('mrodoreda', 'gamedata/assets/stickers/rodoreda.png');
     }
 
     /**

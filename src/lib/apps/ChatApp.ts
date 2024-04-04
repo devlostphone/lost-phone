@@ -130,7 +130,12 @@ export default class ChatApp extends App {
 
         let lastTextId = this.getChatLastMessageId(chat);
         if (lastTextId !== undefined) {
-            lastText = chat.conversation[lastTextId].text;
+            if ('options' in chat.conversation[lastTextId]) {
+                let [first] = Object.keys(chat.conversation[lastTextId]['options']);
+                lastText = chat.conversation[lastTextId]['options'][first].text;
+            } else {
+                lastText = chat.conversation[lastTextId].text;
+            }
         }
 
         if (chatList) {

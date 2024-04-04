@@ -108,6 +108,15 @@ export default class PhoneApp extends App {
         } else {
             // TODO:
             this.fakeOS.log(this.phone_info['contacts']);
+
+            for (let i=0; i<this.phone_info['contacts'].length; i++) {
+                let contact = this.fakeOS.add.text(
+                    0,0,
+                    this.phone_info['contacts'][i],
+                    this.textOptions
+                );
+                this.addRow([contact], {y: i});
+            }
         }
     }
 

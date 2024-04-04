@@ -328,7 +328,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
      * @param height Height of the container area.
      */
      public createDragZone(): void {
-        if (this.hasDragZone) {
+        if (this.hasDragZone && this.input !== null) {
             this.input.hitArea = new Phaser.Geom.Rectangle(
                 0,0,
                 this.area.width,
@@ -387,6 +387,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
         this.add(this.start_point);
         this.last_row = 0;
         this.bottom_row = 0;
+        this.y = 0;
     }
 
     /**

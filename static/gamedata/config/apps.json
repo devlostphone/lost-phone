@@ -34,7 +34,7 @@
         "preInstalled": true,
         "hasNotifications": false,
         "favourite": false,
-        "background" : "fog"
+        "wallpaper" : "fog"
     },
     {
         "type"   : "chat",

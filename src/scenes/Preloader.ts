@@ -48,6 +48,7 @@ export default class Preloader extends FakeOSScene {
         // More specific preloads.
         this.preload_app_icon_images();
         this.preload_gallery_images();
+        this.preload_files_thumbnails();
         this.preload_orwell_thumbnails();
         this.preload_contact_images();
         this.preload_track_images();
@@ -198,6 +199,17 @@ export default class Preloader extends FakeOSScene {
                     this.load.video(media[i].id, media[i].source);
                     break;
             }
+        }
+    }
+
+    /**
+     * Preloads orwell thubnails and sites.
+     */
+    protected preload_files_thumbnails(): void {
+        let thumbnails = this.cache.json.get('files');
+
+        for (let i = 0; i < thumbnails.length; i++) {
+            this.load.image(thumbnails[i].id, thumbnails[i].thumbnail);
         }
     }
 

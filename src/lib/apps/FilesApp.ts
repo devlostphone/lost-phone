@@ -1,22 +1,23 @@
 import { FakeOS } from '../../scenes/FakeOS';
-import App from './App';
-import PicGrid from '../ui/gameObjects/PicGrid';
+import App from '../../lib/apps/App';
+import BrowserGrid from '../../lib/ui/gameObjects/BrowserGrid';
 
 /**
- * Files app
+ * Orwell Browser App
  */
 export default class FilesApp extends App {
 
-    protected media: any;
-    protected picGrid?: PicGrid;
+    protected sites: any;
+    protected browserGrid?: BrowserGrid;
 
     /**
      * Class constructor.
+     *
      * @param fakeOS
      */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
-        this.media = this.fakeOS.cache.json.get('files');
+        this.sites = this.fakeOS.cache.json.get('files');
     }
 
     /**
@@ -24,23 +25,13 @@ export default class FilesApp extends App {
      */
     public render(): void {
         this.getActiveLayer().clear();
-        this.setBackground();
-        this.picGrid = new PicGrid(
+
+        this.browserGrid = new BrowserGrid(
             this.fakeOS,
             0, 0,
-            this.media
+            this.sites
         );
-        this.fakeOS.add.existing(this.picGrid);
-        this.addElements(this.picGrid);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public goToID(id: string, skipLayerChangeAnim = false): void {
-        this.skipLayerChangeAnim = skipLayerChangeAnim;
-        this.reRender();
-        this.picGrid?.open(id);
+        this.setBackground();
     }
 
     /**
@@ -50,8 +41,9 @@ export default class FilesApp extends App {
         if (image !== undefined) {
             this.fakeOS.UI.setBackground(image);
         } else {
-            let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'FilesApp').background;
-            this.fakeOS.UI.setBackground(background);
+            let wallpaper = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'FilesApp').wallpaper;
+            this.fakeOS.UI.setBackground(wallpaper);
         }
     }
+
 }

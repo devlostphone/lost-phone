@@ -32,32 +32,34 @@ export default class PhoneApp extends App {
 
     public addMenu(): void {
         this.menu = new BottomMenu(this.fakeOS,
-                                   0,
-                                   0,
-                                   [
-                                       {
-                                           icon: '',
-                                           text: 'favorites',
-                                           launches: this.showFavorites
-                                       },
-                                       {
-                                           icon: '',
-                                           text: 'recent',
-                                           launches: this.showRecent
-                                       },
-                                       {
-                                           icon: '',
-                                           text: 'contacts',
-                                           launches: this.showContacts
-                                       }
-                                   ]
-                                  );
-        this.addRow(this.menu);
+            this.fakeOS.getUI().getAppRenderSize().width / 2,
+            this.fakeOS.getUI().elements.topBar.height,
+            [
+                {
+                    icon: '',
+                    text: 'favorites',
+                    launches: this.showFavorites
+                },
+                {
+                    icon: '',
+                    text: 'recent',
+                    launches: this.showRecent
+                },
+                {
+                    icon: '',
+                    text: 'contacts',
+                    launches: this.showContacts
+                }
+            ]
+        );
+        this.fakeOS.getUI().fixedElements?.add(this.menu);
     }
 
     public showFavorites(): void {
-        this.getActiveLayer().removeAll(true);
+        this.getActiveLayer().clear();
+        this.fakeOS.getUI().fixedElements?.remove(this.menu);
         this.addMenu();
+        this.getActiveLayer().createDragZone();
         this.fakeOS.log('Show favourites');
 
         if (this.phone_info['favourites'].length == 0) {
@@ -66,15 +68,30 @@ export default class PhoneApp extends App {
                                             this.textOptions
                                            );
             this.addRow([text], {y: 1});
+        } else {
+            let i;
+            for (i=0; i<this.phone_info['favourites'].length; i++) {
+                let contact = this.fakeOS.add.text(
+                    0,0,
+                    this.phone_info['favourites'][i],
+                    this.textOptions
+                );
+                this.addRow([contact]);
+            }
+
+            let padding = this.fakeOS.add.rectangle(0,0, 400, 400);
+            this.addRow(padding);
         }
     }
 
     public showRecent(): void {
-        this.getActiveLayer().removeAll(true);
+        this.getActiveLayer().clear();
+        this.fakeOS.getUI().fixedElements?.remove(this.menu);
         this.addMenu();
+        this.getActiveLayer().createDragZone();
         this.fakeOS.log('Show recent calls');
-
-        for (let i = 0; i < this.phone_info['recent'].length; i++) {
+        let i;
+        for (i = 0; i < this.phone_info['recent'].length; i++) {
             let position = -250;
             let icon = this.fakeOS.add.image(position, 20,
                                              'received-call');
@@ -89,13 +106,18 @@ export default class PhoneApp extends App {
             let container = new Phaser.GameObjects.Container(this.fakeOS, 0, 0,
                                                              [icon, caller, date]);
 
-            this.addRow([container], {y: i});
+            this.addRow([container]);
         }
+
+        let padding = this.fakeOS.add.rectangle(0,0, 400, 400);
+        this.addRow([padding]);
 
     }
 
     public showContacts(): void {
-        this.getActiveLayer().removeAll(true);
+        this.getActiveLayer().clear();
+        this.fakeOS.getUI().fixedElements?.remove(this.menu);
+        this.getActiveLayer().createDragZone();
         this.addMenu();
         this.fakeOS.log('Show contacts');
 
@@ -106,8 +128,20 @@ export default class PhoneApp extends App {
                                            );
             this.addRow([text], {y: 1});
         } else {
-            // TODO:
             this.fakeOS.log(this.phone_info['contacts']);
+
+            let i;
+            for (i=0; i<this.phone_info['contacts'].length; i++) {
+                let contact = this.fakeOS.add.text(
+                    0,0,
+                    this.phone_info['contacts'][i],
+                    this.textOptions
+                );
+                this.addRow([contact]);
+            }
+
+            let padding = this.fakeOS.add.rectangle(0,0, 400, 400);
+            this.addRow([padding]);
         }
     }
 

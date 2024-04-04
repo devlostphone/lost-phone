@@ -2837,7 +2837,7 @@
     "id": "contact006",
     "contactName": "Àngel",
     "contactPic": "gamedata/assets/profiles/angel.png",
-    "lastMessage": "m27",
+    "lastMessage": "m42",
     "conversation": {
       "m0": {
         "id": "m0",
@@ -3437,7 +3437,7 @@
         "author": "Àngel",
         "text": "Jaume, perdona’m, no he volgut fer-te mal, però la idea d’un Lostagram d’il·lustració botànica va ser meva. Estic segur que ara sí que trobaràs el teu món… Molta sort, amic!",
         "time": "17:25",
-        "next": "m43",
+        "next": null,
         "condition": null
       }
     }

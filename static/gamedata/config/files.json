@@ -1,16 +1,14 @@
 [
     {
         "id": "d001",
-        "type": "file",
-        "file": "gamedata/assets/documents/doc_adjunt_tramit_denuncies.png",
-        "filename": "Denúncia infraccions residus",
+        "thumbnail": "gamedata/assets/documents/doc_adjunt_tramit_denuncies.png",
+        "title": "Denúncia infraccions residus",
         "condition": null
     },
     {
         "id": "d002",
-        "type": "file",
-        "file": "gamedata/assets/documents/cartell_residuonvas.png",
-        "filename": "Cartell_imprimir",
+        "thumbnail": "gamedata/assets/documents/cartell_residuonvas.png",
+        "title": "Cartell_imprimir",
         "condition": null
     }
 ]

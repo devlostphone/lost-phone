@@ -10,5 +10,11 @@
         "thumbnail": "gamedata/assets/documents/cartell_residuonvas.png",
         "title": "Cartell_imprimir",
         "condition": null
+    },
+    {
+        "id": "d003",
+        "thumbnail": "gamedata/assets/documents/mapa_guia_2022.png",
+        "title": "Mapa Collserola",
+        "condition": null
     }
 ]

@@ -83,16 +83,7 @@ export default class HomescreenApp extends App {
             app.icon);
 
             this.fakeOS.addInputEvent('pointerup', () => {
-                if (home.fakeOS.apps[index].password !== undefined && !home.fakeOS.checkDone(home.fakeOS.apps[index].key)) {
-                    home.fakeOS.log('App requires password');
-                    home.fakeOS.launchEvent(
-                        SystemEvents.PasswordProtected,
-                        home.fakeOS.apps[index].key,
-                        home.fakeOS.apps[index].password
-                    );
-                } else {
-                    home.fakeOS.launchApp(home.fakeOS.apps[index].key, app);
-                }
+                home.fakeOS.launchApp(home.fakeOS.apps[index].key, app);
             },
             app.icon);
 

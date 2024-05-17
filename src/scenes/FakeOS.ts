@@ -255,6 +255,20 @@ export class FakeOS extends FakeOSScene {
             return;
         }
 
+        for (let index in this.apps) {
+            if (this.apps[index].key == key) {
+                if (this.apps[index].password !== undefined && !this.checkDone(this.apps[index].key)) {
+                    this.log('App requires password');
+                    this.launchEvent(
+                        SystemEvents.PasswordProtected,
+                        this.apps[index].key,
+                        this.apps[index].password
+                    );
+                    return;
+                }
+            }
+        }
+
         this.getUI().fixedElements?.removeAll(true);
         this.input.removeAllListeners();
         this.removePhoneEvents();

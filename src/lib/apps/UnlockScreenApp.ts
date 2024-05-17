@@ -134,7 +134,7 @@ export default class UnlockScreenApp extends App {
 
             // Define button events
             this.fakeOS.addInputEvent(
-                'pointerdown',
+                'pointerup',
                 () => {
                     this.checkPIN(button);
                 },

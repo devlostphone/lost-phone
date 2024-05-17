@@ -152,6 +152,7 @@
         "icon": "lostagram.png",
         "configFile" : "naturagram.json",
         "preInstalled": true,
-        "hasNotifications": true
+        "hasNotifications": true,
+        "password": "1234"
     }
 ]

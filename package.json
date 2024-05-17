@@ -37,21 +37,6 @@
         "qrcode": "^1.5.3",
         "typescript": "^5.1.6"
     },
-    "pwaManifest": {
-        "name": "Lost & Phone",
-        "shortName": "L&P",
-        "startURL": "./index.html",
-        "theme": "#add8e6",
-        "generateIconOptions": {
-            "baseIcon": "./static/themes/default/icons/podcast@133.png",
-            "sizes": [
-                192,
-                384,
-                512
-            ],
-            "genFavicons": true
-        }
-    },
     "dependencies": {
         "phaser3-rex-plugins": "^1.60.4"
     },

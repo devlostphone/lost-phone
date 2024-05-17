@@ -3,13 +3,15 @@
         "id": "g001",
         "type": "picture",
         "source" : "gamedata/assets/pictures/smartphone-broken.jpg",
-        "condition": null
+        "condition": null,
+        "password": 1234
     },
     {
         "id": "g002",
         "type": "picture",
         "source": "gamedata/assets/pictures/bassa.jpg",
-        "condition": null
+        "condition": null,
+        "password": 1234
     },
     {
         "id": "v001",

@@ -5,7 +5,7 @@
         "icon": "phone.png",
         "configFile" : "phone.json",
         "preInstalled": true,
-        "hasNotifications": true,
+        "hasNotifications": false,
         "favourite": true,
         "background" : "fog"
     },
@@ -152,7 +152,7 @@
         "icon": "lostagram.png",
         "configFile" : "naturagram.json",
         "preInstalled": true,
-        "hasNotifications": true,
+        "hasNotifications": false,
         "password": "1234"
     }
 ]

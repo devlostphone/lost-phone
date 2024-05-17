@@ -166,6 +166,10 @@ export default class PicGrid extends Phaser.GameObjects.Container
             element.input.hitArea = rectangle;
         }
 
+        if (image.password !== undefined && !this.fakeOS.checkDone(image.id)) {
+            element.preFX?.addPixelate(10);
+        }
+
         return element;
     }
 

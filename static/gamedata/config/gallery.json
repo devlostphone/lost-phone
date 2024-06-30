@@ -4,21 +4,21 @@
         "type": "picture",
         "source" : "gamedata/assets/pictures/smartphone-broken.jpg",
         "condition": null,
-        "password": 1234
+        "password": "09lloreR"
     },
     {
         "id": "g002",
         "type": "picture",
         "source": "gamedata/assets/pictures/bassa.jpg",
         "condition": null,
-        "password": 1234
+        "password": "09lloreR"
     },
     {
         "id": "v001",
         "type": "video",
         "source": "gamedata/assets/videos/v001.mp4",
         "condition": null,
-        "password": 1234
+        "password": "09lloreR"
     },
     {
         "id": "g003",

@@ -108,7 +108,7 @@
         "type" : "settings",
         "key"  : "SettingsApp",
         "icon" : "settings.png",
-        "background" : "solid-white",
+        "background" : "dramatic",
         "preInstalled": true,
         "hasNotifications": false,
         "favourite": true

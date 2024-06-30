@@ -10,6 +10,23 @@ export default class SettingsApp extends App {
     protected qr: any;
     protected qrtext: any;
     protected header?: Phaser.GameObjects.Text;
+    /**
+     * Text style options.
+     */
+    protected textHeaderStyle: any = {
+        fontSize: "48px",
+        align: "center",
+        color: '#2f2f2f',
+        fontFamily: 'Roboto-Bold'
+    };
+
+    protected textRegularStyle: any = {
+        fontSize: "32px",
+        align: "left",
+        color: '#2f2f2f',
+        fontFamily: 'Roboto-Bold',
+        wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+    };
 
     /**
      * Class constructor.
@@ -30,73 +47,59 @@ export default class SettingsApp extends App {
      * @inheritdoc
      */
     public render(): void {
+        this.getActiveLayer().clear();
         this.setBackground();
-        this.showTitle();
-        this.showOptions();
+        this.showContent();
     }
 
     /**
      * Shows app title.
      */
-    public showTitle(): void {
-        this.header = this.fakeOS.add.text(0, 0,
+
+    public showContent(): void {
+        let container : Phaser.GameObjects.Container = this.fakeOS.add.container(0,0);
+
+        /*
+         * Show Header
+         */
+        let header = this.fakeOS.add.text(-this.fakeOS.getActiveApp().area.width / 2 + 122, 32,
                                           this.fakeOS.getString('settings'),
-                                          this.textOptions
-                                         );
-        this.addRow( this.header, {'position': Phaser.Display.Align.TOP_LEFT});
-        this.header.setPadding(30,30,0,0);
+                                          this.textHeaderStyle).setOrigin(0);
 
-        let line = this.fakeOS.add.line(0, 0, 30, -30, this.fakeOS.width*0.8, -30, 0x808080);
-        this.addRow(line, {'position': Phaser.Display.Align.TOP_LEFT});
-    }
+        let line = this.fakeOS.add.line(
+            0,0,
+            0,111,
+            this.fakeOS.getActiveApp().area.width,111
+        ).setStrokeStyle(100, 0x3f3f3f);
 
-    /**
-     * Shows app options.
-     */
-    public showOptions(): void {
-        this.addRow(this.notificationOption(), {'position': Phaser.Display.Align.TOP_LEFT});
-        this.addRow(this.showResetOption(), {'position': Phaser.Display.Align.TOP_LEFT});
-        this.addRow(this.showQROption(), {'position': Phaser.Display.Align.TOP_LEFT});
-    }
+        /*
+         * Show Notifications
+         */
+        let showNotifications = this.fakeOS.add.text(-this.fakeOS.getActiveApp().area.width / 2 + 122, 122,
+                                                     this.fakeOS.getString('showNotifications') + ":",
+                                                     this.textRegularStyle).setOrigin(0);
 
-    /**
-     * Shows "show notifications" option
-     * @returns Game elements to display
-     */
-    protected notificationOption(): any[] {
-
-        let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('showNotifications'), this.textOptions);
-        text.setFontSize(24);
-        text.setPadding(30,0,0,0);
 
         let notificationSetting = this.fakeOS.getSettings().getSettingValue('notificationPopup');
-        let toggle = this.fakeOS.add.text(0,0, notificationSetting ? 'O' :'X', this.textOptions);
-        toggle.setFontSize(24);
-        toggle.setPadding(18,0,0,0);
-
-        // let line = this.fakeOS.add.line(0, 0, 30, -30, this.fakeOS.width*0.8, -30, 0xc0c0c0);
+        let toggle = this.fakeOS.add.text(-this.fakeOS.getActiveApp().area.width / 2 + 480, 122,
+                                          notificationSetting ? 'SÍ' :'NO',
+                                          this.textRegularStyle).setOrigin(0);
 
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {
-                toggle.text = toggle.text === 'X' ? 'O' : 'X';
+                toggle.text = toggle.text === 'SÍ' ? 'NO' : 'SÍ';
                 this.fakeOS.getSettings().toggleSetting('notificationPopup')
             },
             toggle
         );
 
-        return [text, toggle];
-    }
-
-    /**
-     * Shows "reset to factory settings " option
-     * @returns Game elements to display
-     */
-    protected showResetOption(): any[] {
-        let text = this.fakeOS.add.text(0,0, this.fakeOS.getString('reset-data'), this.textOptions);
-        text.setFontSize(24);
-        text.setPadding(30,0,0,0);
-
+        /*
+         * Show Reset Option
+         */
+        let resetFactory = this.fakeOS.add.text(-this.fakeOS.getActiveApp().area.width / 2 + 122, 182,
+                                                this.fakeOS.getString('reset-data'),
+                                                this.textRegularStyle).setOrigin(0);
         this.fakeOS.addInputEvent(
             'pointerup',
             () => {
@@ -124,20 +127,16 @@ export default class SettingsApp extends App {
                     confirm
                 );
             },
-            text
+            resetFactory
         );
 
-        return [text];
-    }
+        /*
+         * Show QR
+         */
 
-    /**
-     * Shows "show QR" option.
-     * @returns Game elements to display
-     */
-    protected showQROption(): any[] {
-        let text = this.fakeOS.add.text(0,0,this.fakeOS.getString('getQR'), this.textOptions);
-        text.setFontSize(24);
-        text.setPadding(30,0,0,0);
+        let showQR = this.fakeOS.add.text(-this.fakeOS.getActiveApp().area.width / 2 + 122, 242,
+                                                this.fakeOS.getString('getQR'),
+                                          this.textRegularStyle).setOrigin(0);
 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -147,26 +146,28 @@ export default class SettingsApp extends App {
                     this.fakeOS.getURL(),
                     this.fakeOS.getState()
                 ))
-                .then(url => {
-                    this.fakeOS.log('Generating QR');
-                    if (this.qr !== undefined) {
-                        this.qr.destroy();
-                        this.qrtext.destroy();
-                    }
-                    if (this.fakeOS.textures.exists('url')) {
-                        this.fakeOS.textures.remove('url');
-                    }
-                    this.fakeOS.textures.addBase64('url', url);
-                    this.fakeOS.textures.on('onload', () => this.showQR());
-                })
-                .catch(err => {
-                    console.error(err);
-                });
+                    .then(url => {
+                        this.fakeOS.log('Generating QR');
+                        if (this.qr !== undefined) {
+                            this.qr.destroy();
+                            this.qrtext.destroy();
+                        }
+                        if (this.fakeOS.textures.exists('url')) {
+                            this.fakeOS.textures.remove('url');
+                        }
+                        this.fakeOS.textures.addBase64('url', url);
+                        this.fakeOS.textures.on('onload', () => this.showQR());
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
             },
-            text
+            showQR
         );
 
-        return [text];
+        /* End of settings*/
+        container.add([header, line, showNotifications, toggle, resetFactory, showQR]);
+        this.addRow(container);
     }
 
     /**
@@ -182,8 +183,9 @@ export default class SettingsApp extends App {
 
         this.qrtext = this.fakeOS.add.text(
             0,0,
-            this.fakeOS.getString('copy-to-clipboard')
-        );
+            this.fakeOS.getString('copy-to-clipboard'),
+            this.textRegularStyle
+        ).setOrigin(0);
         this.addRow(this.qrtext);
 
         this.fakeOS.addInputEvent('pointerup', () => {
@@ -201,7 +203,7 @@ export default class SettingsApp extends App {
         if (image !== undefined) {
             this.fakeOS.UI.setBackground(image);
         } else {
-            let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'SettingsApp').background;
+            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'SettingsApp').background;
             this.fakeOS.UI.setBackground(background);
         }
     }

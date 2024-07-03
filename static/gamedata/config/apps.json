@@ -7,7 +7,8 @@
         "preInstalled": true,
         "hasNotifications": false,
         "favourite": true,
-        "background" : "fog"
+        "background" : "fog",
+        "store" : true
     },
     {
         "type" : "clock",
@@ -15,7 +16,8 @@
         "icon" : "clock.png",
         "preInstalled": true,
         "hasNotifications": false,
-        "background" : "fog"
+        "background" : "fog",
+        "store" : true
     },
     {
         "type"   : "gallery",
@@ -24,7 +26,8 @@
         "configFile" : "gallery.json",
         "preInstalled": true,
         "hasNotifications": false,
-        "background" : "dramatic"
+        "background" : "dramatic",
+        "store" : true
     },
     {
         "type"   : "files",
@@ -34,7 +37,8 @@
         "preInstalled": true,
         "hasNotifications": false,
         "favourite": false,
-        "wallpaper" : "fog"
+        "wallpaper" : "fog",
+        "store" : true
     },
     {
         "type"   : "chat",
@@ -44,7 +48,8 @@
         "wallpaper" : "solid-white",
         "preInstalled": true,
         "hasNotifications": false,
-        "favourite": true
+        "favourite": true,
+        "store" : true
     },
     {
         "type" : "podcast",
@@ -54,7 +59,8 @@
         "configFile" : "podcast.json",
         "preInstalled": false,
         "hasNotifications": false,
-        "background" : "fog"
+        "background" : "fog",
+        "store" : true
     },
     {
         "type" : "calculator",
@@ -62,7 +68,8 @@
         "icon" : "calculator.png",
         "preInstalled": true,
         "hasNotifications": false,
-        "background" : "fog"
+        "background" : "fog",
+        "store" : true
     },
     {
         "type" : "calendar",
@@ -70,7 +77,8 @@
         "icon" : "calendar.png",
         "configFile"  : "calendar.json",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "store" : true
     },
     {
         "type" : "notes",
@@ -82,7 +90,8 @@
         "configFile" : "notes.json",
         "preInstalled": true,
         "hasNotifications": false,
-        "background" : "fog"
+        "background" : "fog",
+        "store" : true
     },
     {
         "type" : "mail",
@@ -94,7 +103,8 @@
         "preInstalled": true,
         "hasNotifications": false,
         "favourite": true,
-        "background" : "solid-black"
+        "background" : "solid-black",
+        "store" : true
     },
     {
         "type" : "unlock-screen",
@@ -102,7 +112,8 @@
         "icon" : "clock.png",
         "configFile" : "unlock-screen.json",
         "preInstalled": false,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "store" : false
     },
     {
         "type" : "settings",
@@ -111,7 +122,8 @@
         "background" : "dramatic",
         "preInstalled": true,
         "hasNotifications": false,
-        "favourite": true
+        "favourite": true,
+        "store" : false
     },
     {
         "type" : "store",
@@ -119,7 +131,8 @@
         "icon" : "store.png",
         "preInstalled": true,
         "hasNotifications": false,
-        "background" : "dark-abstract"
+        "background" : "dark-abstract",
+        "store" : false
     },
     {
         "type": "orwell",
@@ -128,6 +141,7 @@
         "configFile" : "orwell.json",
         "preInstalled": true,
         "hasNotifications": false,
+        "store" : true,
         "wallpaper" : "fog"
     },
     {
@@ -135,6 +149,7 @@
         "key": "ToDoApp",
         "icon": "todo.png",
         "preInstalled": false,
+        "store" : false,
         "hasNotifications": false
     },
     {
@@ -145,6 +160,7 @@
         "configFile" : "naturagram.json",
         "preInstalled": true,
         "hasNotifications": false,
+        "store" : true,
         "password": "Lg123"
     }
 ]

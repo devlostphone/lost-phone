@@ -25,8 +25,10 @@ export default class StoreApp extends App {
         this.getActiveLayer().clear();
         this.setBackground();
         for (let i = 0; i < this.apps.length; i++) {
-            let info_box = new AppInfoBox(this.fakeOS, 0, 0, this.apps[i]);
-            this.addRow(info_box);
+            if (this.apps[i].store) {
+                let info_box = new AppInfoBox(this.fakeOS, 0, 0, this.apps[i]);
+                this.addRow(info_box);
+            }
         }
     }
 

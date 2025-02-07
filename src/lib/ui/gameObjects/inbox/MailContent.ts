@@ -121,5 +121,5 @@ export default class MailContent extends Phaser.GameObjects.Container
           }
           }
         */
-
+    }
 }

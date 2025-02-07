@@ -90,7 +90,7 @@ export default class CalculatorApp extends App {
         for (let j = 0; j < rows; j++) {
             for (let i = 0; i < cols; i++) {
                 let button = new Phaser.GameObjects.Container(this.fakeOS, 0, 0);
-                let label = this.buttons.charAt(j * cols + i));
+                let label = this.buttons.charAt(j * cols + i);
 
             if (label === ' ') continue;
             if (label === '+' || label === '-' || label === 'x' || label === '÷' || label === '=') {

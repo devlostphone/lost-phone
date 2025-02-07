@@ -2,14 +2,14 @@
     {
         "id": "g001",
         "type": "picture",
-        "source" : "gamedata/assets/pictures/smartphone-broken.jpg",
+        "source" : "gamedata/assets/pictures/smartphone-broken.png",
         "condition": null,
         "password": "09lloreR"
     },
     {
         "id": "g002",
         "type": "picture",
-        "source": "gamedata/assets/pictures/bassa.jpg",
+        "source": "gamedata/assets/pictures/bassa.png",
         "condition": null,
         "password": "09lloreR"
     },
@@ -59,19 +59,13 @@
     {
         "id": "g009",
         "type": "picture",
-        "source": "gamedata/assets/pictures/torre.jpg",
+        "source": "gamedata/assets/pictures/recycle.png",
         "condition": null
     },
     {
         "id": "v002",
         "type": "video",
         "source": "gamedata/assets/videos/v002.mp4",
-        "condition": null
-    },
-    {
-        "id": "g009",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic4.jpg",
         "condition": null
     },
     {
@@ -83,13 +77,13 @@
     {
         "id": "g011",
         "type": "picture",
-        "source": "gamedata/assets/pictures/dont-care-meme.jpg",
+        "source": "gamedata/assets/pictures/campfire.png",
         "condition": "c003-0004"
     },
     {
         "id": "g012",
         "type": "picture",
-        "source": "gamedata/assets/pictures/dont-care-meme.jpg",
+        "source": "gamedata/assets/pictures/campfire.png",
         "condition": "m001"
     },
     {

@@ -47,7 +47,7 @@
         {
         "id": "g007",
         "type": "picture",
-        "source": "gamedata/assets/pictures/jaume-lligat.png",
+        "source": "gamedata/assets/pictures/jaume_lligat.png",
         "condition": null
         },
     {
@@ -59,19 +59,13 @@
     {
         "id": "g009",
         "type": "picture",
-        "source": "gamedata/assets/pictures/recycle.png",
+        "source": "gamedata/assets/lostagram/post-7.png",
         "condition": null
     },
     {
         "id": "v002",
         "type": "video",
         "source": "gamedata/assets/videos/v002.mp4",
-        "condition": null
-    },
-    {
-        "id": "g010",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic5.jpg",
         "condition": null
     },
     {
@@ -103,5 +97,12 @@
         "type": "picture",
         "source": "gamedata/assets/pictures/copa.png",
         "condition": null
+    },
+    {
+        "id": "g016",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/agulla.png",
+        "condition": null
     }
+
 ]

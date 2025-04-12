@@ -28,9 +28,8 @@ export default class PicGrid extends Phaser.GameObjects.Container
         super(scene, x, y, []);
         this.media = media;
         this.fakeOS = scene;
-
         this.textoptions = {
-            fontSize: "24px",
+            fontSize: "48px",
             align: "left",
             wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
         };
@@ -76,8 +75,10 @@ export default class PicGrid extends Phaser.GameObjects.Container
                     element = this.printImage(this.media[i]);
                     break;
                 case 'video':
-                    element = this.printVideo(this.media[i]);
-                    break;
+                    // TO DO: change this
+                    //element = this.printVideo(this.media[i]);
+                    //break;
+                    continue;
                 case 'file':
                     element = this.printFile(this.media[i]);
                     break;
@@ -160,7 +161,14 @@ export default class PicGrid extends Phaser.GameObjects.Container
             },
             element
         );
-        element.input.hitArea = rectangle;
+
+        if (element.input !== undefined) {
+            element.input.hitArea = rectangle;
+        }
+
+        if (image.password !== undefined && !this.fakeOS.checkDone(image.id)) {
+            element.preFX?.addPixelate(10);
+        }
 
         return element;
     }
@@ -214,9 +222,14 @@ export default class PicGrid extends Phaser.GameObjects.Container
             renderArea.width / 2,
             renderArea.height / 4);
         let element = this.fakeOS.add.image(0, 0, 'files').setName(file.id);
-        let text = this.fakeOS.add.text(0, 100, file.filename).setOrigin(0.5);
+        let text = this.fakeOS.add.text(0, 100, file.filename).setOrigin(0.5).setStyle({
+            fontSize: "24px",
+            align: "left",
+            color: '#efefef',
+            fontFamily: 'Roboto-Bold',
+            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+        });
         let container = this.fakeOS.add.container(0,0, [rectangle, element, text]).setName(file.id);
-
 
         this.fakeOS.addInputEvent(
             'pointerup',
@@ -243,7 +256,7 @@ export default class PicGrid extends Phaser.GameObjects.Container
      * @param element
      */
     public openImage(element: Phaser.GameObjects.Image): void {
-        this.fakeOS.getActiveApp().addLayer();
+        this.fakeOS.getActiveApp().addLayer('solid-black');
         const area = this.fakeOS.getUI().getAppRenderSize();
 
         let zoomedImage = this.fakeOS.add.image(0, 0, element.texture);

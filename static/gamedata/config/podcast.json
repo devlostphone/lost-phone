@@ -1,29 +1,56 @@
 [
   {
     "key" : "track001",
-    "name" : "Bensound - Cute",
-    "url" : "gamedata/assets/audios/bensound-cute.mp3",
-    "artist" : "Bensound",
-    "title" : "Cute",
-    "thumbnail" : "gamedata/assets/pictures/cute.jpg",
+    "name" : "230322_1722h_Secrets_del_jardí#1",
+    "url" : "gamedata/assets/audios/track001.mp3",
+    "artist" : "Nota de veu",
+    "title" : "230322_1722h_Secrets_del_jardí#1",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
     "volume" : 1
   },
   {
     "key" : "track002",
-    "name" : "Bensound - Tomorrow",
-    "url" : "gamedata/assets/audios/bensound-tomorrow.mp3",
-    "artist" : "Bensound",
-    "title" : "Tomorrow",
-    "thumbnail" : "gamedata/assets/pictures/tomorrow.jpg",
-    "volume" : 0.75
+    "name" : "220522_16h_Secrets_del_jardí#2",
+    "url" : "gamedata/assets/audios/track002.mp3",
+    "artist" : "Nota de veu",
+    "title" : "220522_16h_Secrets_del_jardí#2",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
   },
   {
     "key" : "track003",
-    "name" : "Bensound - Birth of a Hero",
-    "url" : "gamedata/assets/audios/bensound-birthofahero.mp3",
-    "artist" : "Bensound",
-    "title" : "Birth of a Hero",
-    "thumbnail" : "gamedata/assets/pictures/birthofahero.jpg",
-    "volume" : 0.75
+    "name" : "080622_11h_Secrets_del_jardí#3",
+    "url" : "gamedata/assets/audios/track003.mp3",
+    "artist" : "Nota de veu",
+    "title" : "080622_11h_Secrets_del_jardí#3",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
+  },
+  {
+    "key" : "track004",
+    "name" : "180622_18h_Enregistrament_furtiu#1",
+    "url" : "gamedata/assets/audios/track004.mp3",
+    "artist" : "Nota de veu",
+    "title" : "Enregistrament 004",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
+  },
+  {
+    "key" : "track005",
+    "name" : "180622_18h_Enregistrament_furtiu#2",
+    "url" : "gamedata/assets/audios/track005.mp3",
+    "artist" : "Nota de veu",
+    "title" : "180622_18h_Enregistrament_furtiu#2",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
+  },
+  {
+    "key" : "track006",
+    "name" : "190622_0812h_Enregistrament_furtiu#3",
+    "url" : "gamedata/assets/audios/track006.mp3",
+    "artist" : "Nota de veu",
+    "title" : "190622_0812h_Enregistrament_furtiu#3",
+    "thumbnail" : "gamedata/assets/pictures/note.png",
+    "volume" : 1
   }
 ]

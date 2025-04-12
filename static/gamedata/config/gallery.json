@@ -2,57 +2,64 @@
     {
         "id": "g001",
         "type": "picture",
-        "source" : "gamedata/assets/pictures/pic1.jpg",
-        "condition": null
+        "source" : "gamedata/assets/pictures/smartphone-broken.png",
+        "condition": null,
+        "password": "09lloreR"
     },
     {
         "id": "g002",
         "type": "picture",
-        "source": "gamedata/assets/pictures/pic2.jpg",
-        "condition": null
+        "source": "gamedata/assets/pictures/bassa.png",
+        "condition": null,
+        "password": "09lloreR"
     },
     {
         "id": "v001",
         "type": "video",
         "source": "gamedata/assets/videos/v001.mp4",
         "condition": null,
-        "password": 1234
+        "password": "09lloreR"
     },
     {
         "id": "g003",
         "type": "picture",
-        "source": "gamedata/assets/pictures/pic3.jpg",
-        "condition": null,
-        "password": 1234
+        "source": "gamedata/assets/pictures/vaixell.png",
+        "condition": null
     },
     {
         "id": "g004",
         "type": "picture",
-        "source": "gamedata/assets/pictures/pic4.jpg",
+        "source": "gamedata/assets/pictures/maria.png",
         "condition": null
     },
     {
         "id": "g005",
         "type": "picture",
-        "source": "gamedata/assets/pictures/homescreen.jpg",
+        "source": "gamedata/assets/pictures/pare.png",
         "condition": null
     },
-    {
+     {
         "id": "g006",
         "type": "picture",
-        "source" : "gamedata/assets/pictures/pic1.jpg",
+        "source" : "gamedata/assets/pictures/maria-espiadimoni.png",
         "condition": null
-    },
-    {
+     },
+        {
         "id": "g007",
         "type": "picture",
-        "source": "gamedata/assets/pictures/pic2.jpg",
+        "source": "gamedata/assets/pictures/jaume_lligat.png",
         "condition": null
-    },
+        },
     {
         "id": "g008",
         "type": "picture",
-        "source": "gamedata/assets/pictures/pic3.jpg",
+        "source": "gamedata/assets/pictures/germans.png",
+        "condition": null
+    },
+    {
+        "id": "g009",
+        "type": "picture",
+        "source": "gamedata/assets/lostagram/post-7.png",
         "condition": null
     },
     {
@@ -62,27 +69,39 @@
         "condition": null
     },
     {
-        "id": "g009",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic4.jpg",
-        "condition": null
-    },
-    {
-        "id": "g010",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/pic5.jpg",
-        "condition": null
-    },
-    {
-        "id": "g011",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/dont-care-meme.jpg",
-        "condition": "c003-0004"
-    },
-    {
         "id": "g012",
         "type": "picture",
-        "source": "gamedata/assets/pictures/pic6.jpg",
+        "source": "gamedata/assets/pictures/campfire.png",
+        "condition": "m001"
+    },
+    {
+        "id": "g013",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/note-herbari.png",
+        "condition": null
+    },
+    {
+        "id": "g014",
+        "type": "picture",
+        "source": "gamedata/assets/lostagram/post-3.png",
+        "condition": null
+    },
+    {
+        "id": "g015",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/copa.png",
+        "condition": null
+    },
+    {
+        "id": "g016",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/agulla.png",
+        "condition": null
+    },
+    {
+        "id": "g017",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/recycle.png",
         "condition": null
     }
 ]

@@ -1,9 +1,16 @@
+/**
+ * @TODO: see below
+ * - Change background wallpaper to solid color (black)
+ * - overall UI overhaul needed (clonify iPhone calendar)
+ * - Work on UI date events
+ */
+
 import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
 import Button from '../../lib/ui/gameObjects/Button';
 
 /**
- * Calendar app.
+ * Calendar App
  */
 
 export default class CalendarApp extends App {
@@ -50,6 +57,7 @@ export default class CalendarApp extends App {
      * @inheritdoc
      */
     public render(): void {
+        // Clear layer
         this.getActiveLayer().clear();
         this.setBackground();
         this.addGeometry();
@@ -146,7 +154,8 @@ export default class CalendarApp extends App {
             this.container.add(new Phaser.GameObjects.Text(this.fakeOS, 0, 0, this.fakeOS.getString('daysweekshort')[j], {
                 fontFamily: 'RobotoCondensed',
                 fontSize: '24px',
-                color: new Date().getHours() >= 9 && new Date().getHours() <= 20 ? '#000' : '#fff'
+                // color: new Date().getHours() >= 9 && new Date().getHours() <= 20 ? '#000' : '#fff'
+                color: '#000'
             }).setName('labelDay'));
         }
 
@@ -190,7 +199,7 @@ export default class CalendarApp extends App {
 
                             // Show event details
                             container2.setInteractive(new Phaser.Geom.Circle(0, 0, 32), Phaser.Geom.Circle.Contains).on('pointerup', () => {
-                                this.addLayer();
+                                this.addLayer(0xff0000);
                                 this.setBackground();
 
                                 // Simple header text
@@ -292,15 +301,18 @@ export default class CalendarApp extends App {
             cellWidth: 92,
             cellHeight: 92,
             position: Phaser.Display.Align.BOTTOM_CENTER,
-            x: 72, y: 256
+            // This seems incredibly random at first sight. BUT
+            // In fact, 92 belongs to cellWidth/cellHeight, 7 is the width/height
+            // and 210 is well... the y-axis start position of the grid
+            x:  (this.fakeOS.width / 2) - (92 * 7 / 2), y: 210 + 92
         });
 
         this.getActiveLayer().add(this.container.getAll());
     }
 
-    // TODO: Remove this if this doesn't mean anything
+    // @TODO: Remove this if this doesn't mean anything
     private callbackTest = (day : any) => {
-        console.log(day);
+        this.fakeOS.log(day);
     }
 
     /**
@@ -312,11 +324,11 @@ export default class CalendarApp extends App {
         switch(typeOfBackground) {
             case 'solid': {
                 let hours = new Date().getHours();
-                if ( hours >= 9 && hours <= 20 ) {
+                //if ( hours >= 9 && hours <= 20 ) {
                     this.background = this.fakeOS.add.image(0, 0, 'solid-white-background', 0);
-                } else {
-                    this.background = this.fakeOS.add.image(0, 0, 'solid-black-background', 0);
-                }
+                //} else {
+                    //this.background = this.fakeOS.add.image(0, 0, 'solid-black-background', 0);
+                //}
                 this.background.setOrigin(0, 0);
                 this.background.setScale(
                     this.fakeOS.width / this.background.width,

@@ -2,6 +2,7 @@ import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
 import AppIcon from '../../lib/ui/gameObjects/AppIcon';
 import { PhoneEvents } from '../../lib/events/GameEvents';
+import { SystemEvents } from "../../lib/events/GameEvents";
 
 /**
  * Homescreen app.
@@ -36,7 +37,7 @@ export default class HomescreenApp extends App {
      */
     protected setBackground(): void {
         let answer = this.fakeOS.cache.json.get('config').homescreenBackground;
-        this.fakeOS.log("Homescreen Background: " + answer);
+        console.info("Homescreen Background: " + answer);
         this.fakeOS.UI.setBackground(answer);
     }
 
@@ -104,7 +105,7 @@ export default class HomescreenApp extends App {
         this.addGrid(favs, {
             columns: 4,
             rows: 1 ,
-            y: 9,
+            y: 4,
             offsetY: this.fakeOS.getUI().getAppRenderSize().height * 0.05
         });
 
@@ -143,5 +144,12 @@ export default class HomescreenApp extends App {
      */
     public getIconByAppName(appName: any): any {
         return this.icons[appName];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public goToID(id: string, skipLayerChangeAnim = false): void {
+        this.fakeOS.launchApp(id);
     }
 }

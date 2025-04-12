@@ -12,7 +12,13 @@ import { PhoneEvents } from '../events/GameEvents';
  export default class PodcastApp extends App {
 
     protected tracks: any;
-    protected textOptions: any = { align: "left", fontSize: "24px" };
+    protected textOptions: any = {
+            fontSize: "24px",
+            align: "left",
+            color: '#efefef',
+            fontFamily: 'Roboto-Bold',
+            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+    };
     protected currentTrack: any;
 
     /**
@@ -29,7 +35,8 @@ import { PhoneEvents } from '../events/GameEvents';
      * @inheritdoc
      */
     public render() {
-
+        this.getActiveLayer().clear();
+        this.setBackground();
         this.currentTrack = undefined;
         for (let i=0; i < this.tracks.length; i++) {
             this.fakeOS.sound.add(this.tracks[i].key, this.tracks[i]);
@@ -52,7 +59,8 @@ import { PhoneEvents } from '../events/GameEvents';
     /**
      * @inheritdoc
      */
-    public update(): void {
+    public update(delta: any, time: any): void {
+        super.update(delta, time);
         if (this.currentTrack !== undefined) {
             let current_track = this.fakeOS.sound.get(this.currentTrack.key);
             if (current_track instanceof Phaser.Sound.WebAudioSound) {
@@ -206,5 +214,18 @@ import { PhoneEvents } from '../events/GameEvents';
      */
     protected mod(n: number, m: number): number {
         return ((n % m) + m) % m;
+    }
+
+     /**
+     * Set app background
+     */
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find(app => app.key == 'PodcastApp').background;
+            console.log(background);
+            this.fakeOS.UI.setBackground(background);
+        }
     }
 }

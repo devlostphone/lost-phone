@@ -71,7 +71,7 @@ export default class Button extends Phaser.GameObjects.Container implements IBut
                     this.bg = this.arc;
                     break;
                 case "rect":
-                    this.rect = new Phaser.GameObjects.Image(scene, 0, 0, 'rect@1' + shapeSize);
+                    this.rect = new Phaser.GameObjects.Image(scene, 0, 0, 'rect@' + shapeSize);
                     this.add(this.rect);
                     break;
                 case "capsule":

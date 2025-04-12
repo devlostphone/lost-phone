@@ -1,5 +1,5 @@
 import { FakeOS } from '../../../../scenes/FakeOS';
-import phoneUI from '../../PhoneUI';
+import phoneUI from '../../phoneUI';
 import NotificationList from './NotificationList';
 import { PhoneEvents } from '../../../events/GameEvents';
 /**
@@ -59,16 +59,15 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         // Create drawer area, off camera
         this.drawerArea = this.fakeOS.add.container(
             0, -this.fakeOS.height
-        ).setDepth(100)
-        .setSize(this.fakeOS.width, this.fakeOS.height)
-        .setDepth(1001);
+        ).setSize(this.fakeOS.width, this.fakeOS.height)
+        .setDepth(1200);
 
         this.drawerBox = this.fakeOS.add.rectangle(
             0, 0,
             this.fakeOS.width, this.fakeOS.height,
             0x333333
         ).setOrigin(0,0)
-        .setDepth(1001);
+        .setDepth(1200);
 
         // Stops events from going below the box
         this.drawerBox.setInteractive();
@@ -171,7 +170,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             this.fakeOS,
             0,
             this.UI.elements.topBar.height
-        ).setDepth(1001);
+        ).setDepth(1200);
         this.drawerArea?.add(this.notificationList);
         this.drawerArea?.moveDown(this.notificationList);
 
@@ -220,6 +219,8 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
     public showDrawer(): void {
         this.fakeOS.log('Launching drawer');
         this.iframe_visibility(false);
+        this.refreshNotifications();
+        this.UI.fixedElements?.setVisible(false);
 
         this.UI.isDrawerOpen = true;
         this.fakeOS.tweens.add({
@@ -254,6 +255,8 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             },
             onComplete: () => {
                 this.iframe_visibility(true);
+                this.notificationList?.removeAll(true);
+                this.UI.fixedElements?.setVisible(true);
             }
         });
     }
@@ -325,7 +328,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
             this.drawerArea.x,
             this.drawerArea.y,
             this.drawerArea.width,
-            this.drawerArea.height
+            this.notificationList.getBounds().height
         ), Phaser.Geom.Rectangle.Contains);
         this.fakeOS.input.setDraggable(this.notificationList);
 
@@ -383,7 +386,7 @@ export default class NotificationDrawer extends Phaser.GameObjects.Container
         // TO DO: change min
         this.notificationList.y = Math.round(Phaser.Math.Clamp(
             this.notificationList.y - deltaY,
-            -(this.notificationList.getBounds().height),
+            -(this.notificationList.getBounds().height) + this.fakeOS.height - 200,
             this.UI.elements.topBar.height
         ));
     }

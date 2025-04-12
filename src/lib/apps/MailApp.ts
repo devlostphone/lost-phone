@@ -1,27 +1,40 @@
-import { FakeOS } from '../../scenes/FakeOS'
+import { FakeOS } from '../../scenes/FakeOS';
 import App from '../../lib/apps/App';
-import { PhoneEvents } from '../events/GameEvents';
+import MailPreview from '../ui/gameObjects/inbox/MailPreview.ts';
+import MailContent from '../ui/gameObjects/inbox/MailContent.ts';
 
 /**
  * Mail app.
  */
 export default class MailApp extends App {
-
     /**
      * Mail list.
      */
     protected mails: any;
+    /**
+     * Text style options.
+     */
+    protected textHeaderStyle: any = {
+        fontSize: "32px",
+        align: "center",
+        color: '#efefef',
+        fontFamily: 'Roboto-Bold'
+    };
 
-    protected currentMail: string = "";
-
-    protected textoptions = {
-        fontFamily: 'Roboto',
+    protected textRegularStyle: any = {
         fontSize: "24px",
         align: "left",
+        color: '#efefef',
+        fontFamily: 'Roboto-Bold',
         wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
     };
 
-    protected unread_size: number = 0;
+    protected textStyleMailread: any = {
+        fontSize: "24px",
+        align: "left",
+        color: '#6f6f6f',
+        fontFamily: 'Roboto'
+    };
 
     /**
      * Class constructor.
@@ -37,210 +50,132 @@ export default class MailApp extends App {
      * @inheritdoc
      */
     public render(): void {
-        this.currentMail = "";
         this.getActiveLayer().clear();
         this.setBackground();
         this.showHeader();
-        this.showMailList();
+        this.showInbox();
     }
 
     /**
-     * Set app wallpaper
-     */
-    protected setBackground(image?: string): void {
-        if (image !== undefined) {
-            this.fakeOS.UI.setBackground(image);
-        } else {
-            let wallpaper = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'MailApp').wallpaper;
-            this.fakeOS.UI.setBackground(wallpaper);
-        }
-    }
-
-    /**
-     * Shows the app title.
+     * Show header at top
      */
     protected showHeader(): void {
-        let title = this.fakeOS.getString('mail');
+        let container : Phaser.GameObjects.Container = this.fakeOS.add.container(0,0);
+        let list : Phaser.GameObjects.Image = this.fakeOS.add.image(-this.fakeOS.getActiveApp().area.width / 2 + 32, -32, 'list-icon').setOrigin(0).setScale(1.25);
+        let inbox = this.fakeOS.add.text(-this.fakeOS.getActiveApp().area.width / 2 + 248, -32, "Safata d'entrada", this.textHeaderStyle).setOrigin(0);
+        let search = this.fakeOS.add.image(-this.fakeOS.getActiveApp().area.width / 2 + 564, -32, 'search-icon').setOrigin(0);
+        let write = this.fakeOS.add.image(-this.fakeOS.getActiveApp().area.width / 2 + 640, -32, 'write-icon').setOrigin(0);
 
-        // Check for unread messages
-        for (let i=0; i < this.mails.length; i++) {
-            let id = this.mails[i]['id'];
-            // Check if can be shown
-            if (!this.fakeOS.checkDone(this.mails[i]['condition'])) continue;
-            if (!this.fakeOS.checkDone(id)) this.unread_size += 1;
-        }
+        let updateNow = this.fakeOS.add.text(-this.fakeOS.getActiveApp().area.width / 2, 64, "Actualitzat ara mateix", {
+            fontSize: "24px",
+            align: "left",
+            color: '#8f8f8f',
+            fontFamily: 'Roboto-Bold'
+        }).setOrigin(0);
 
-        // Display header mail info
-        let unread = this.unread_size + " no llegits";
-        this.getActiveLayer().add([
-            this.fakeOS.add.text(this.fakeOS.width / 2, 48, title, { color: '#fff', fontFamily: 'Roboto-Bold', fontSize: '28px', align: 'center'}).setOrigin(0.5),
-            this.fakeOS.add.text(16, 82, "Actualitzat ara mateix" , { color: '#aaa', fontFamily: 'Roboto', fontSize: '22px', align: 'left'}),
-            this.fakeOS.add.text(this.fakeOS.width - (unread.length * 9) - 16 , 82, unread , { color: '#c0c', fontFamily: 'Roboto', fontSize: '22px', align: 'right'})
-        ]);
+        let inboxZero = this.fakeOS.add.text(-this.fakeOS.getActiveApp().area.width / 2 + 456, 64, "0 missatges no llegits", {
+            fontSize: "24px",
+            align: "right",
+            color: '#6A1B9A',
+            fontFamily: 'Roboto-Bold'
+        }).setOrigin(0);
 
-        // Paint a simple horizontal line
-        this.getActiveLayer().add(
-            this.fakeOS.add.line(
-                16, 120,
-                0, 0,
-                this.fakeOS.width - 32, 0,
-                0xefefef
-            ).setLineWidth(0.75).setOrigin(0));
+        let line = this.fakeOS.add.line(
+            0,0,
+            0,111,
+            this.fakeOS.getActiveApp().area.width,111
+        ).setStrokeStyle(100, 0x6f6f6f);
+
+        container.add([list, inbox, search, write, updateNow, inboxZero, line]);
+        this.addRow(container);
     }
 
     /**
-     * Prints the mail list.
+     * Show list of mails from Inbox
      */
-    protected showMailList(): void {
-        let style = { color: '#F00' };
-
+    protected showInbox(): void {
         for (let i=0; i < this.mails.length; i++) {
-            let id = this.mails[i]['id'];
-
-            // Check if can be shown
-            if (!this.fakeOS.checkDone(this.mails[i]['condition'])) {
-                continue;
-            }
-
-            // Check if already read
-            if(this.fakeOS.checkDone(id)) {
-                style = { color: '#8c8c8c' };
-            } else {
-                style = { color: '#fff' };
-                this.unread_size += 1;
-            }
-            // @TODO: Rewrite this way of mail positioning
-            let title = this.fakeOS.add.text(16, i * 72 + 158,
-                                             this.mails[i]['date'] + ' - ' +this.mails[i]['title'],
-                                             {...style, ...this.textoptions}
-                                            );
+            let mail: any = new MailPreview(this.fakeOS, 0, 0, this.mails[i], this.textStyleMailread);
             this.fakeOS.addInputEvent(
                 'pointerup',
                 () => {
                     this.openMail(this.mails[i])
                 },
-                title
+                mail
             );
 
-            // Paint a simple horizontal line
-            let hl = this.fakeOS.add.line(
-                16, i * 72 + 198,
-                0, 0,
-                this.fakeOS.width - 32, 0,
-                0xacacac
-            ).setLineWidth(0.35).setOrigin(0);
+            this.fakeOS.addInputEvent(
+                'pointerover',
+                () => {
+                    for (let i = 1; i < 4; i++)
+                        mail.getAt(i).setColor("#ffff00");
+                },
+                mail
+            );
 
-            this.getActiveLayer().add(title);
-            this.getActiveLayer().add(hl);
+            this.fakeOS.addInputEvent(
+                'pointerout',
+                () => {
+                    for (let i = 1; i < 4; i++)
+                        mail.getAt(i).setColor("#acacac");
+                },
+                mail
+            );
+            this.addRow(mail);
         }
     }
 
     /**
-     * Opens the mail contents.
-     *
-     * @param mail
+     * Open and show mail content
      */
+
     protected openMail(mail: any): void {
-        // Change wallpaper for better mail reading
-        this.setBackground('solid-white');
-
-        // Reset unread_size
-        this.unread_size = 0;
-
-        this.currentMail = mail['id'];
-
-        // Adding a new layer for displaying mail contents.
         this.addLayer();
+        var content: any = new MailContent(this.fakeOS, 0, 0, mail);
+        this.getActiveLayer().add(content);
+        this.addRow(content);
 
-        // Paint header, subject and other contextual information inside dark grey box
-        this.getActiveLayer().add(
-            new Phaser.GameObjects.Rectangle(this.fakeOS,
-                                             0, 0,
-                                             this.fakeOS.width, 192,
-                                             0x1c1c1c
-                                            ).setOrigin(0)
-        );
+        // Add attachments if exists
+        let attachments : Array = [];
+        if (mail.attachment.length != 0) {
+            for (let i = 0; i < mail.attachment.length; i++) {
+                let attachment = this.fakeOS.add.image(0, 0, 'attachment-icon').setOrigin(0);
+                // Add interaction
+                this.fakeOS.addInputEvent(
+                    'pointerup',
+                    () => {
+                        this.openAttachment(mail.attachment[i]);
+                    },
+                    attachment
+                );
 
-        let subject = this.fakeOS.add.text(this.fakeOS.width / 2, 52, mail['subject'], {
-            fontFamily: 'Roboto',
-            fontSize: "32px",
-            color: '#fff'
-        }).setOrigin(0.5);
-        let from_user = this.fakeOS.add.text(16, 92, mail['from'], {
-            fontFamily: 'Roboto',
-            fontSize: "24px",
-            align: "left"
-        });
-        let date  = this.fakeOS.add.text(this.fakeOS.width - 16 - (mail['date'].length * 12), 92, mail['date'], {
-            fontFamily: 'Roboto',
-            fontSize: "24px",
-            align: "right",
-            color: '#ccc'
-        });
-        let to_user = this.fakeOS.add.rexBBCodeText(16, 132, '[b]' + this.fakeOS.getString('to') + '[/b]: [color=blue]' + mail['to'] + '[/color]', {
-            fontFamily: 'Roboto',
-            fontSize: "24px",
-            align: "right",
-            color: '#ccc'
-});
-        this.getActiveLayer().add([subject, from_user, date, to_user]);
-
-        let txt;
-        if (mail['file']) {
-            fetch(mail['file'])
-                .then((response) => response.text())
-                .then((mailText) => {
-                    txt = this.fakeOS.add.rexBBCodeText(0, 0,
-                                                        mailText.split("\\n"),
-                                                        {
-                                                            fontFamily: 'Serif',
-                                                            fontSize: '24px',
-                                                            color: '#1c1c1c',
-                                                            align: "left",
-                                                            lineSpacing: 12,
-                                                            wrap: { mode : 1, width: this.fakeOS.width - 72 }
-                                                        });
-                    this.addRow(txt, { y: 1});
-                });
-        } else {
-            txt = this.fakeOS.add.rexBBCodeText(0, 0, mail['body'], {
-                fontFamily: 'Serif',
-                fontSize: '24px',
-                color: '#1c1c1c',
-                align: "left",
-                lineSpacing: 12,
-                wrap: { mode : 1, width: this.fakeOS.width - 72 }
-            });
-            this.addRow(txt, { y: 7 });
-        }
-        let attachments = [];
-        if (mail['attachment'] !== null) {
-            for (let i = 0; i < mail['attachment'].length; i++) {
-                let attachment = this.fakeOS.generateAppLink(mail['attachment'][i]);
-                attachments.push(this.fakeOS.add.existing(attachment));
-                // @TODO: change the way attachments look like
-                attachment.setOrigin(0.5, 1)
-                attachment.setScale(0.5, 0.5);
+                attachments.push(attachment);
             }
         }
-        // @TODO: (picture) attachments are partially visible at the bottom of the screen's boundaries
-        this.addRow(attachments);
-        this.fakeOS.setDone(mail['id']);
+        this.addRow(attachments, {'offsetY' : 32});
     }
 
     /**
-     * @inheritdoc
+     * Display attachment
      */
-    public goToID(id: string, skipLayerChangeAnim = false): void {
-        this.skipLayerChangeAnim = skipLayerChangeAnim;
-        let mail = this.mails.find((o: any) => o.id == id);
-        this.openMail(mail);
+    protected openAttachment(attachment): void {
+        this.addLayer();
+        let container = this.fakeOS.add.container(0, 0);
+        let image = this.fakeOS.add.image(0, 0, attachment).setOrigin(0);
+        container.add(image);
+        this.getActiveLayer().add(container);
+        this.addRow(container);
     }
 
     /**
-     * @inheritdoc
+     * Set app background
      */
-    public getCurrentID(): string {
-        return this.currentMail;
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'MailApp').background;
+            this.fakeOS.UI.setBackground(background);
+        }
     }
 }

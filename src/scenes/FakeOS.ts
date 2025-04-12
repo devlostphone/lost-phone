@@ -51,6 +51,10 @@ export class FakeOS extends FakeOSScene {
      */
     protected isLocked: boolean = false;
 
+    protected frameTime: number = 0;
+
+    public isScreenBroken: boolean = false;
+
     /**
      * Class constructor.
      */
@@ -83,12 +87,14 @@ export class FakeOS extends FakeOSScene {
         this.debug = this.cache.json.get('config').debug;
         this.colors = this.cache.json.get('colors');
         this.apps = this.cache.json.get('apps');
+        this.isScreenBroken = this.cache.json.get('config').isScreenBroken !== false;
+        this.sound.pauseOnBlur = false;
 
         // Load all the App Backgrounds defined at config
         let backgrounds = this.cache.json.get('config').backgrounds;
         for (let i = 0; i < backgrounds.length; i++) {
             this.load.image(backgrounds[i] +  '-background', this.get_theme_path(`backgrounds/${backgrounds[i]}.png`));
-            this.log("Load " + this.get_theme_path(`backgrounds/${backgrounds[i]}.png`));
+            console.info("Load " + this.get_theme_path(`backgrounds/${backgrounds[i]}.png`));
         }
     }
 
@@ -96,7 +102,6 @@ export class FakeOS extends FakeOSScene {
      * Create method.
      */
     public create(): void {
-
         this.input.setTopOnly(false);
         this.input.setGlobalTopOnly(false);
 
@@ -212,9 +217,15 @@ export class FakeOS extends FakeOSScene {
      * @param time
      */
     public update(delta: any, time: any): void {
-        this.UI?.update(delta, time);
-        if (typeof this.activeApp?.update === 'function') {
-            this.activeApp?.update(delta, time);
+        this.frameTime += delta
+
+        if (this.frameTime > 16.5) {
+            this.frameTime = 0;
+            // Code that relies on a consistent 60hz update
+            this.UI?.update(delta, time);
+            if (typeof this.activeApp?.update === 'function') {
+                this.activeApp?.update(delta, time);
+            }
         }
     }
 
@@ -242,6 +253,20 @@ export class FakeOS extends FakeOSScene {
 
         if (previousApp?.getKey() == key) {
             return;
+        }
+
+        for (let index in this.apps) {
+            if (this.apps[index].key == key) {
+                if (this.apps[index].password !== undefined && !this.checkDone(this.apps[index].key)) {
+                    this.log('App requires password');
+                    this.launchEvent(
+                        SystemEvents.PasswordProtected,
+                        this.apps[index].key,
+                        this.apps[index].password
+                    );
+                    return;
+                }
+            }
         }
 
         this.getUI().fixedElements?.removeAll(true);
@@ -453,6 +478,16 @@ export class FakeOS extends FakeOSScene {
                 event = SystemEvents.ImageClicked;
                 break;
 
+            case /sticker/.test(tag):
+                console.log("TAG: " + tag);
+                matches = tag.match(/sticker:(.*)/i);
+                id = matches ? matches[1] : "";
+                gameobject = new Phaser.GameObjects.Image(
+                    this, 0, 0, id
+                ).setName(id).setScale(0.1);
+                event = SystemEvents.ImageClicked;
+                break;
+
             case /browser/.test(tag):
                 matches = tag.match(/browser:(.*):(.*)/i);
                 id = matches ? matches[1] : "";
@@ -488,14 +523,16 @@ export class FakeOS extends FakeOSScene {
         this.getActiveApp().addLayer();
         let text = this.add.text(
             0,0,
-            this.getString('fill-password')
+            this.getString('fill-password'),
+            {fontSize: "32px", fontFamily: 'Roboto'}
         );
         this.getActiveApp().addRow(text, {y: 3});
 
-        let input = this.add.dom(0,0).createFromHTML('<input type="text" name="password" />');
+        let input = this.add.dom(0,0).createFromHTML('<input type="text" style="height:32px;" name="password" />');
         let enter = this.add.text(
             0,0,
-            'ENTER'
+            this.getString('submit'),
+            {fontSize: "32px", fontFamily: 'Roboto'}
         );
         this.getActiveApp().addRow([input, enter], {y: 4});
 

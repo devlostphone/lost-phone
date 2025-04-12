@@ -57,7 +57,6 @@ export default class UnlockScreenApp extends App {
             d = new Date();
         } else {
             let day = objDate.day;
-            console.log(day);
             let month = objDate.month;
             let year = objDate.year;
             d = new Date(year + '-' + month  + '-' + day);
@@ -107,7 +106,7 @@ export default class UnlockScreenApp extends App {
             cellWidth: cell_width,
             cellHeight: 16,
             position: Phaser.Display.Align.CENTER,
-            x: this.fakeOS.width / 2 - ((cell_width * (dots_size - 1)) / 2),
+            x: (this.fakeOS.width / 2) - ((cell_width * dots_size) / 2),
             y: 274
         });
         this.getActiveLayer().add(this.dots);
@@ -135,7 +134,7 @@ export default class UnlockScreenApp extends App {
 
             // Define button events
             this.fakeOS.addInputEvent(
-                'pointerdown',
+                'pointerup',
                 () => {
                     this.checkPIN(button);
                 },
@@ -180,8 +179,8 @@ export default class UnlockScreenApp extends App {
             cellWidth: ellipse_radius + offset,
             cellHeight: ellipse_radius + offset,
             position: Phaser.Display.Align.CENTER,
-            x: this.fakeOS.width / 2 - (ellipse_radius + offset),
-            y: 420
+            x: (this.fakeOS.width / 2) - (((ellipse_radius * 3) + (offset * 3)) / 2),
+            y: 340
         });
         this.getActiveLayer().add(this.numericPad.getAll());
     }

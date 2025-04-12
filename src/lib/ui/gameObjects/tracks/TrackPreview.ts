@@ -42,19 +42,21 @@ export default class TrackPreview extends Phaser.GameObjects.Container
         this.background = this.fakeOS.add.rectangle(
             0, 0,
             this.fakeOS.getActiveApp().area.width + 2,
-            this.fakeOS.getActiveApp().rowHeight()
+            this.fakeOS.getActiveApp().rowHeight(),
+            0x0,
+            0.65
         );
-        this.background.setStrokeStyle(1, 0xffffff);
+        this.background.setStrokeStyle(2, 0xffffff);
 
         this.trackName = this.fakeOS.add.text(
-            - this.fakeOS.getActiveApp().area.width * 0.1,
+            -this.fakeOS.getActiveApp().area.width / 5,
             -this.pic.height / 6,
             track.name,
             textOptions
         );
         let duration = this.fakeOS.sound.get(track.key).totalDuration;
         this.duration = this.fakeOS.add.text(
-            - this.fakeOS.getActiveApp().area.width * 0.1,
+            -this.fakeOS.getActiveApp().area.width / 5,
             10,
             Math.floor(duration / 60) + ':' + Math.round(duration % 60),
             textOptions

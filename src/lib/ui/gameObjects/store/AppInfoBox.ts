@@ -40,12 +40,18 @@ export default class AppInfoBox extends Phaser.GameObjects.Container
         this.add(this.background);
 
         // Create app icon
+        let icon_text;
+        if (typeof app['name'] !== "undefined") {
+            icon_text = app['name'];
+        } else {
+            icon_text = this.fakeOS.getString(app['type']);
+        }
         this.icon = new AppIcon(
             this.fakeOS,
             app,
             - this.fakeOS.getActiveApp().area.width * 0.15, 0,
             app.type
-        ).addLabel(this.fakeOS.getString(app['type']));
+        ).addLabel(icon_text);
         this.add(this.icon);
 
         // Create text
@@ -56,7 +62,13 @@ export default class AppInfoBox extends Phaser.GameObjects.Container
         }
 
         let description = app['description'] ? app['description'] : this.fakeOS.getString('no-description');
-        this.description = this.fakeOS.add.text(-100, -60, description, {fontSize: '24px'});
+        this.description = this.fakeOS.add.text(-100, -60, description, {
+            fontSize: "24px",
+            align: "left",
+            color: '#efefef',
+            fontFamily: 'Roboto-Bold',
+            wordWrap: { width: this.fakeOS.width - 50, useAdvancedWrap: true }
+        });
         this.downloadButton = new DownloadButton(this.fakeOS, 0, 0, status);
         this.add(this.description);
         this.add(this.downloadButton);

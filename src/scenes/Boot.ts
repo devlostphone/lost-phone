@@ -25,7 +25,15 @@ export default class Boot extends FakeOSScene {
     }
 
     public preload(): void {
+        this.preload_os_assets();
         this.preload_app_config();
+    }
+
+    /**
+     * Preloads app-specific config file.
+     */
+    protected preload_os_assets(): void {
+        this.load.image('ioc-os-logo', 'gamedata/assets/os/iocos.png');
     }
 
     /**

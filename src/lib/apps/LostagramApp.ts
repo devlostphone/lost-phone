@@ -8,6 +8,7 @@ import SocialPost from '../ui/gameObjects/social/SocialPost';
 export default class LostagramApp extends App {
 
     protected posts: any;
+    protected socialPosts: any;
 
     /**
      * Class constructor.
@@ -23,12 +24,39 @@ export default class LostagramApp extends App {
      * @inheritdoc
      */
     public render(): void {
+        this.setBackground();
         this.showPosts();
     }
 
     public showPosts(): void {
+        let socialPost;
+        this.socialPosts = [];
         for (let i = 0; i < this.posts.length; i++) {
-            this.addRow(new SocialPost(this.fakeOS, 0, 0, this.posts[i]));
+            socialPost = new SocialPost(this.fakeOS, 0, 0, this.posts[i]);
+            this.socialPosts.push(socialPost);
+            this.addRow(socialPost);
         }
     }
+
+    /**
+     * Set app background
+     */
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let background = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'ChatApp').wallpaper;
+            this.fakeOS.UI.setBackground(background);
+        }
+    }
+
+    public goToID(id: string, skipLayerChangeAnim = false): void {
+        for (let i=0; i<this.posts.length; i++) {
+            if (this.socialPosts[i].id == id) {
+                this.getActiveLayer().y = -this.socialPosts[i].y + 80;
+                break;
+            }
+        }
+    }
+
 }

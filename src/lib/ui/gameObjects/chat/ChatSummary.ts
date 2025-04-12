@@ -40,19 +40,18 @@ export default class ChatSummary extends Phaser.GameObjects.Container
             0,
             contact.id
         );
+
         this.background = this.fakeOS.add.rectangle(
             0, 0,
             this.fakeOS.getActiveApp().area.width - 2,
             this.fakeOS.getActiveApp().rowHeight()
-        );
-        //@TODO: Set color depending of daytime
-        this.background.setStrokeStyle(1, 0x000);
+        ).setStrokeStyle(0.35, 0x3c3c3c);
 
         this.contactName = this.fakeOS.add.text(
             - this.fakeOS.getActiveApp().area.width * 0.15,
             -this.pic.height / 4,
             contact.contactName,
-            textOptions
+            {...textOptions, fontFamily: 'Roboto-Bold'}
         );
 
         if (text.length > 35) {

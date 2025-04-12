@@ -47,7 +47,7 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         let bubble_author = this.fakeOS.add.text(
             0, 0,
             '',
-            textOptions
+            {...textOptions, fontFamily: 'Roboto-Bold'}
         ).setOrigin(0.5, 0);
 
         let applink = this.fakeOS.generateAppLink(text, {
@@ -63,6 +63,14 @@ export default class ChatBubble extends Phaser.GameObjects.Container
                 this.y += 20;
                 bubble_text.displayWidth = this.fakeOS.getActiveApp().getActiveLayer().area.width / 2;
                 bubble_text.scaleY = bubble_text.scaleX;
+
+                // @TODO: NEED TO REWRITE THIS
+                /*
+                if (bubble_text.texture.key === 'mrodoreda') {
+                    bubble_text.setScale(0.65);
+                    }
+                */
+
             }
             if (author !== undefined) {
                 bubble_author.text =  author + ':\n';
@@ -95,12 +103,17 @@ export default class ChatBubble extends Phaser.GameObjects.Container
         }
 
         bubble.fillStyle(color, 1);
-        bubble.fillRoundedRect(
+        if (bubble_text instanceof Phaser.GameObjects.Image) {
+            if (bubble_text.texture.key === 'mrodoreda') {
+                bubble.fillStyle(color, 0);
+            }
+        }
+
+        bubble.fillRect(
             bubble_text.x - bubble_text.width/2 - offsetX,
             text_bounds.top  - offsetY,
             text_bounds.width + (offsetX * 2),
-            text_bounds.height + (offsetY * 2) + timeOffset,
-            16
+            text_bounds.height + (offsetY * 2) + timeOffset
         );
 
         const left_bound = bubble_text.getBounds().width / 2;
@@ -146,7 +159,13 @@ export default class ChatBubble extends Phaser.GameObjects.Container
             let timeText = this.fakeOS.add.text(
                 left_bound + bubble_text.x,
                 top_bound * 2 + 10,
-                time
+                time,
+                {
+                    align: "left",
+                    color: '#fff',
+                    fontFamily: 'Roboto',
+                    fontSize: "22px"
+                }
             ).setOrigin(1,0);
             this.add(timeText);
         }

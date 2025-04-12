@@ -1,43 +1,49 @@
 import { FakeOS } from '../../scenes/FakeOS';
-import App from './App';
-import PicGrid from '../ui/gameObjects/PicGrid';
+import App from '../../lib/apps/App';
+import BrowserGrid from '../../lib/ui/gameObjects/BrowserGrid';
 
 /**
- * Files app
+ * Orwell Browser App
  */
 export default class FilesApp extends App {
 
-    protected media: any;
-    protected picGrid?: PicGrid;
+    protected sites: any;
+    protected browserGrid?: BrowserGrid;
 
     /**
      * Class constructor.
+     *
      * @param fakeOS
      */
     public constructor(fakeOS: FakeOS) {
         super(fakeOS);
-        this.media = this.fakeOS.cache.json.get('files');
+        this.sites = this.fakeOS.cache.json.get('files');
     }
 
     /**
      * @inheritdoc
      */
     public render(): void {
-        this.picGrid = new PicGrid(
+        this.getActiveLayer().clear();
+
+        this.browserGrid = new BrowserGrid(
             this.fakeOS,
             0, 0,
-            this.media
+            this.sites
         );
-        this.fakeOS.add.existing(this.picGrid);
-        this.addElements(this.picGrid);
+        this.setBackground();
     }
 
     /**
-     * @inheritdoc
+     * Set app background
      */
-    public goToID(id: string, skipLayerChangeAnim = false): void {
-        this.skipLayerChangeAnim = skipLayerChangeAnim;
-        this.reRender();
-        this.picGrid?.open(id);
+    protected setBackground(image?: string): void {
+        if (image !== undefined) {
+            this.fakeOS.UI.setBackground(image);
+        } else {
+            let wallpaper = this.fakeOS.cache.json.get('apps').find((app: any) => app.key == 'FilesApp').wallpaper;
+            this.fakeOS.UI.setBackground(wallpaper);
+        }
     }
+
 }

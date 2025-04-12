@@ -1,6 +1,6 @@
 {
     "nom": "Llegir en xarxa",
-    "theme": "default",
+    "theme": "miniop",
     "language": "ca",
     "preloader":
     {
@@ -27,7 +27,8 @@
         "numberPad_delete" : "0xff5624",
         "numberPad_numbers" : "0x361f2e"
     },
-    "backgrounds" : ["default", "solid-black", "solid-white", "solid-dark-grey", "solid-light-grey", "dramatic", "fog", "miro", "homescreen", "chat"],
+    "backgrounds" : ["default", "solid-black", "solid-white", "solid-dark-grey", "solid-light-grey", "dramatic", "fog", "miro", "homescreen", "chat", "dark-abstract"],
     "homescreenBackground" : "homescreen",
-    "wallpaper" : "0x0"
+    "wallpaper" : "0x0",
+    "isScreenBroken": "glass.png"
 }

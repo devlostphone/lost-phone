@@ -5,15 +5,19 @@
         "icon": "phone.png",
         "configFile" : "phone.json",
         "preInstalled": true,
-        "hasNotifications": true,
-        "favourite": true
+        "hasNotifications": false,
+        "favourite": true,
+        "background" : "fog",
+        "store" : true
     },
     {
         "type" : "clock",
         "key"  : "ClockApp",
         "icon" : "clock.png",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "background" : "fog",
+        "store" : true
     },
     {
         "type"   : "gallery",
@@ -21,7 +25,9 @@
         "icon"   : "gallery.png",
         "configFile" : "gallery.json",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "background" : "dramatic",
+        "store" : true
     },
     {
         "type"   : "files",
@@ -30,32 +36,40 @@
         "configFile" : "files.json",
         "preInstalled": true,
         "hasNotifications": false,
-        "favourite": false
+        "favourite": false,
+        "wallpaper" : "fog",
+        "store" : true
     },
     {
         "type"   : "chat",
         "key"    : "ChatApp",
         "icon"   : "chat.png",
         "configFile" : "chat.json",
-        "wallpaper" : "solid-light-grey",
+        "wallpaper" : "solid-white",
         "preInstalled": true,
         "hasNotifications": false,
-        "favourite": true
+        "favourite": true,
+        "store" : true
     },
     {
         "type" : "podcast",
         "key"  : "PodcastApp",
         "icon" : "podcast.png",
+        "name" : "Notes de veu",
         "configFile" : "podcast.json",
         "preInstalled": false,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "background" : "fog",
+        "store" : true
     },
     {
         "type" : "calculator",
-        "key"  : "calculatorApp",
+        "key"  : "CalculatorApp",
         "icon" : "calculator.png",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "background" : "fog",
+        "store" : true
     },
     {
         "type" : "calendar",
@@ -63,14 +77,21 @@
         "icon" : "calendar.png",
         "configFile"  : "calendar.json",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "store" : true
     },
     {
         "type" : "notes",
-        "key"  : "notesApp",
+        "key"  : "NotesApp",
         "icon" : "notes.png",
+        "wallpaper" : "solid-black",
+        "name" : "Notes",
+        "description": "Aplicació de notes",
+        "configFile" : "notes.json",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "background" : "fog",
+        "store" : true
     },
     {
         "type" : "mail",
@@ -81,7 +102,9 @@
         "configFile" : "mail.json",
         "preInstalled": true,
         "hasNotifications": false,
-        "favourite": true
+        "favourite": true,
+        "background" : "solid-black",
+        "store" : true
     },
     {
         "type" : "unlock-screen",
@@ -89,35 +112,44 @@
         "icon" : "clock.png",
         "configFile" : "unlock-screen.json",
         "preInstalled": false,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "store" : false
     },
     {
         "type" : "settings",
         "key"  : "SettingsApp",
         "icon" : "settings.png",
+        "background" : "dramatic",
         "preInstalled": true,
         "hasNotifications": false,
-        "favourite": true
+        "favourite": true,
+        "store" : false
     },
     {
         "type" : "store",
         "key"  : "StoreApp",
         "icon" : "store.png",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "background" : "dark-abstract",
+        "store" : false
     },
     {
-        "type": "browser",
-        "key": "BrowserApp",
-        "icon": "browser.png",
+        "type": "orwell",
+        "key": "OrwellApp",
+        "icon": "cercaweb.png",
+        "configFile" : "orwell.json",
         "preInstalled": true,
-        "hasNotifications": false
+        "hasNotifications": false,
+        "store" : true,
+        "wallpaper" : "fog"
     },
     {
         "type": "todo",
         "key": "ToDoApp",
         "icon": "todo.png",
         "preInstalled": false,
+        "store" : false,
         "hasNotifications": false
     },
     {
@@ -127,6 +159,8 @@
         "icon": "lostagram.png",
         "configFile" : "naturagram.json",
         "preInstalled": true,
-        "hasNotifications": true
+        "hasNotifications": false,
+        "store" : true,
+        "password": "Lg123"
     }
 ]

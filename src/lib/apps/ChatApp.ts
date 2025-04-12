@@ -13,12 +13,13 @@ export default class ChatApp extends App {
 
     protected chat: any;
     protected contacts: any;
-    protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto-Bold', lineSpacing: 5 };
+    protected textOptions: any = { align: "left", fontSize: "24px", color: '#000', fontFamily: 'Roboto', lineSpacing: 5 };
     protected choiceTextOptions: any = { align: "left", fontSize: "12px", color: '#000' };
-    protected newRowOptions = { autoscroll: true };
-    protected rowOptions = { autoscroll: 'fast' };
+    protected newRowOptions = { autoscroll: true , offsetY: 40};
+    protected rowOptions = { autoscroll: 'fast' , offsetY: 40};
     protected activeContact: number;
     protected lastMessage?: string;
+    protected header?: Phaser.GameObjects.Text;
 
     public rows = 24;
 
@@ -48,6 +49,16 @@ export default class ChatApp extends App {
     public render(): void {
 
         this.setBackground();
+
+        // Add header
+        this.header = this.fakeOS.add.text(
+            0, 0,
+            this.fakeOS.getString('chats'),
+            { align: "left", fontSize: "64px", color: '#000', fontFamily: 'Roboto-Bold' }
+        );
+
+        this.addRow(this.header, {'position': Phaser.Display.Align.TOP_LEFT});
+        this.header.setPadding(30,40,0,20);
 
         for (let i = 0; i < this.chat.length; i++) {
 
@@ -119,7 +130,12 @@ export default class ChatApp extends App {
 
         let lastTextId = this.getChatLastMessageId(chat);
         if (lastTextId !== undefined) {
-            lastText = chat.conversation[lastTextId].text;
+            if ('options' in chat.conversation[lastTextId]) {
+                let [first] = Object.keys(chat.conversation[lastTextId]['options']);
+                lastText = chat.conversation[lastTextId]['options'][first].text;
+            } else {
+                lastText = chat.conversation[lastTextId].text;
+            }
         }
 
         if (chatList) {
@@ -198,8 +214,8 @@ export default class ChatApp extends App {
     protected createTopBar(conversation: any) {
         let topBar = new ChatTopBar(
             this.fakeOS,
-            300,
-            20,
+            280,
+            this.fakeOS.getUI().elements.topBar.height + 30,
             conversation
         );
         this.fakeOS.getUI().fixedElements?.add(topBar);

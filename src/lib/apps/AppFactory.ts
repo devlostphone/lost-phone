@@ -2,11 +2,14 @@ import BrowserApp from './BrowserApp';
 import CalendarApp from './CalendarApp';
 import ChatApp from './ChatApp';
 import ClockApp from './ClockApp';
+import CalculatorApp from './CalculatorApp';
 import FilesApp from './FilesApp';
 import GalleryApp from './GalleryApp';
 import HomescreenApp from './HomescreenApp';
 import LostagramApp from './LostagramApp';
 import MailApp from './MailApp';
+import NotesApp from './NotesApp';
+import OrwellApp from './OrwellApp';
 import PhoneApp from './PhoneApp';
 import PodcastApp from './PodcastApp';
 import SettingsApp from './SettingsApp';
@@ -22,11 +25,14 @@ const Store: any = {
     CalendarApp,
     ChatApp,
     ClockApp,
+    CalculatorApp,
     FilesApp,
     GalleryApp,
     HomescreenApp,
     LostagramApp,
     MailApp,
+    NotesApp,
+    OrwellApp,
     PhoneApp,
     PodcastApp,
     SettingsApp,

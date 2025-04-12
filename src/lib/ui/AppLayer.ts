@@ -145,6 +145,10 @@ export default class AppLayer extends Phaser.GameObjects.Container
             elements = [elements];
         }
 
+        if (options['offsetY'] === undefined) {
+            options['offsetY'] = 0;
+        }
+
         // Check defaults
         if (options['height'] === undefined) {
             options['height'] = 1;
@@ -163,11 +167,11 @@ export default class AppLayer extends Phaser.GameObjects.Container
             this.last_row = options['y'];
             y = this.atRow(this.last_row);
         } else {
-            y = Math.ceil(bounds.height) + this.area.y + 20;
+            y = Math.ceil(bounds.height) + options['offsetY'];
         }
 
         Phaser.Actions.GridAlign(elements, {
-            x: this.area.width / elements.length / 2,
+            x: 0,
             y: y,
             width: -1,
             height: 1,
@@ -178,7 +182,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
 
         if (options['y'] !== undefined) {
             this.last_row = previousY;
-        } else {
+        } else {
             this.last_row += options['height'];
         }
 
@@ -228,17 +232,25 @@ export default class AppLayer extends Phaser.GameObjects.Container
             options['position'] = Phaser.Display.Align.CENTER;
         }
 
+        if (options['paddingX'] === undefined) {
+            options['paddingX'] = 0;
+        }
+
+        if (options['paddingY'] === undefined) {
+            options['paddingY'] = 0;
+        }
+
         const colNumber = options['columns'];
         const rowNumber = elements.length / colNumber;
         const cellHeight = (this.area.height / options['rows']) * options['height'];
 
         Phaser.Actions.GridAlign(elements, {
-            x: (this.area.width / options['columns']) / 2,
+            x: 0,
             y: this.atRow(this.last_row) + options['offsetY'],
             width: colNumber,
             height: rowNumber,
-            cellWidth: this.area.width / colNumber,
-            cellHeight: cellHeight,
+            cellWidth: this.area.width / colNumber + options['paddingX'],
+            cellHeight: cellHeight + options['paddingY'],
             position: options['position']
         });
 
@@ -249,7 +261,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
     /**
      * Checks if content is outside boundaries and generates drag area.
      */
-    protected checkBoundaries(): void {
+    public checkBoundaries(): void {
         if (this.last_row > this.bottom_row) {
             this.bottom_row = this.last_row;
         }
@@ -307,7 +319,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
         if (rowNumber < 0) {
           rowNumber = this.rows + rowNumber;
         }
-        return this.area.y * 2 + Math.floor((this.rowHeight() * rowNumber));
+        return this.rowHeight() * rowNumber;
     }
 
     /**
@@ -316,7 +328,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
      * @param height Height of the container area.
      */
      public createDragZone(): void {
-        if (this.hasDragZone) {
+        if (this.hasDragZone && this.input !== null) {
             this.input.hitArea = new Phaser.Geom.Rectangle(
                 0,0,
                 this.area.width,
@@ -375,6 +387,7 @@ export default class AppLayer extends Phaser.GameObjects.Container
         this.add(this.start_point);
         this.last_row = 0;
         this.bottom_row = 0;
+        this.y = 0;
     }
 
     /**

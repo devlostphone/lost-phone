@@ -1,32 +1,170 @@
 {
-    "background": {
+    "background" : {
         "type": "solid"
     },
     "start-date": {
-        "day": 1,
-        "month": 1,
-        "year": 2023
+        "day": 19,
+        "month": 7,
+        "year": 2022
     },
     "events": [
         {
-            "id" : "cal001",
-            "title" : "Inici miniop",
-            "day": 14,
-            "month": 1,
-            "year": 2022,
-            "description": "Description of Lorem Ipsum dolor",
+            "title": "Botiga de fotografia 📷",
+            "day": 3,
+            "month": 7,
+            "year": 2021,
+            "description": "La Niknox D3500 🔥 🙌",
             "color": "0xffff00",
             "condition": null,
             "delay": 0
         },
         {
-            "id" : "cal002",
-            "title" : "Final miniop",
-            "day": 23,
-            "month": 2,
+            "title": "El meu sant",
+            "day": 25,
+            "month": 7,
+            "year": 2021,
+            "description": "El meu sant! 🤸",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Sant de la Maria",
+            "day": 15,
+            "month": 8,
+            "year": 2021,
+            "description": "15 agost 21 Sant de la Maria 🌘",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Sant del Ramon",
+            "day": 31,
+            "month": 8,
+            "year": 2021,
+            "description": "31 d’agost 21: Sant del Ramon 😈",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Sant de l'àvia",
+            "day": 13,
+            "month": 9,
+            "year": 2021,
+            "description": "13 de setembre 21: Sant de l’àvia 🦚",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Festa de la mamà",
+            "day": 15,
+            "month": 10,
+            "year": 2021,
+            "description": "15 d’octubre 21: Festa de la mamà 👸",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Dr. Falguera 👨🏽‍⚕️",
+            "day": 18,
+            "month": 11,
+            "year": 2021,
+            "description": "Sense descripció",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Reis!",
+            "day": 6,
+            "month": 1,
             "year": 2022,
-            "description": "Description of dolor est",
-            "color": "0xff00ff",
+            "description": "“Les coses importants són les que no ho semblen.” Vegem quina cara fa la Maria!",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Dr. Falguera 👨🏽‍⚕️",
+            "day": 20,
+            "month": 1,
+            "year": 2022,
+            "description": "Sense descripció",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Excursió Jardí botànic (Montjuïc)",
+            "day": 16,
+            "month": 3,
+            "year": 2022,
+            "description": "Sense descripció",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Dr. Falguera 👨🏽‍⚕️ (clínica)",
+            "day": 17,
+            "month": 3,
+            "year": 2022,
+            "description": "Sense descripció",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "L'Àngel ve a casa",
+            "day": 18,
+            "month": 3,
+            "year": 2022,
+            "description": "18 de març 22: l’Àngel ve a casa  🎭",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Fotògraf 📷",
+            "day": 30,
+            "month": 5,
+            "year": 2022,
+            "description": "Sense descripció",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Aniversari del papa",
+            "day": 20,
+            "month": 6,
+            "year": 2022,
+            "description": "20 de juny 22: Aniversari del papà  🦁",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Dr. Falguera 👨🏽‍⚕️",
+            "day": 14,
+            "month": 7,
+            "year": 2022,
+            "description": "Sense descripció",
+            "color": "0xffff00",
+            "condition": null,
+            "delay": 0
+        },
+        {
+            "title": "Viatge dels pares a Mallorca 🛫",
+            "day": 15,
+            "month": 7,
+            "year": 2022,
+            "description": "Sense descripció",
+            "color": "0x00ff00",
             "condition": null,
             "delay": 0
         }

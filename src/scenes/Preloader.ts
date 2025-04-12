@@ -48,11 +48,13 @@ export default class Preloader extends FakeOSScene {
         // More specific preloads.
         this.preload_app_icon_images();
         this.preload_gallery_images();
+        this.preload_files_thumbnails();
+        this.preload_orwell_thumbnails();
         this.preload_contact_images();
         this.preload_track_images();
         this.preload_social_images();
         this.preload_shape_images();
-
+        this.preload_stickers_images();
         // @TODO: Make something more visual specific
         this.progressBar();
     }
@@ -112,17 +114,38 @@ export default class Preloader extends FakeOSScene {
         // is more than one images.
         // @TODO: Add support for multiple format images (png, webp, jpeg...)
 
-        this.load.image('guide', this.get_theme_path('shaders/720x1280-guide.png'));
+        // OS icons and other related stuff
+        this.load.image('button-homescreen', this.get_theme_path('os/button-homescreen.png'));
+        this.load.image('back-button', this.get_theme_path('os/back.png'));
+        this.load.image('signal', this.get_theme_path('os/signal.png'));
+        this.load.image('wifi', this.get_theme_path('os/wifi.png'));
+        this.load.image('battery', this.get_theme_path('os/battery.png'));
+        this.load.image('play-button', this.get_theme_path('os/play-button.png'));
 
-        this.load.image('lorem-appsum', this.get_theme_path('shaders/iconApp-@2.png'));
-        this.load.image('button-homescreen', this.get_theme_path('shaders/button-homescreen.png'));
-
-        this.load.image('play-button', this.get_theme_path('shaders/play-button.png'));
-        this.load.image('back-button', this.get_theme_path('shaders/back.png'));
+        // Phone app icons
+        this.load.image('received-call', this.get_theme_path('icons/received-call.png'));
 
         this.load.image('default-avatar', this.get_theme_path('shaders/default-avatar.png'));
         this.load.spritesheet('typing', this.get_theme_path('sprites/typing-spritesheet.png'), { frameWidth: 77, frameHeight: 38});
 
+        // Mail icons
+        this.load.image('list-icon', this.get_theme_path('icons/list.png'));
+        this.load.image('search-icon', this.get_theme_path('icons/search.png'));
+        this.load.image('write-icon', this.get_theme_path('icons/pencil-square.png'));
+        this.load.image('ef-mail-icon', this.get_theme_path('icons/ef-mail-icon.png'));
+        this.load.image('lostagram-mail-icon', this.get_theme_path('icons/lostagram-mail-icon.png'));
+
+        // Attachment icon
+        this.load.image('attachment-icon', this.get_theme_path('icons/attachment-icon.png'));
+
+        // Lostagram icons
+        this.load.image('heart-icon', this.get_theme_path('icons/heart-icon.png'));
+        this.load.image('bubble-icon', this.get_theme_path('icons/bubble-icon.png'));
+        this.load.image('share-icon', this.get_theme_path('icons/shareit-icon.png'));
+        this.load.image('bookmark-icon', this.get_theme_path('icons/bookmark-icon.png'));
+
+        let config = this.cache.json.get('config');
+        this.load.image('broken-screen', this.get_theme_path('backgrounds/' + config.isScreenBroken));
     }
 
     /**
@@ -134,6 +157,17 @@ export default class Preloader extends FakeOSScene {
         this.load.image('arc@144', this.get_theme_path('shapes/arc@144.png'));
         this.load.image('arc@96', this.get_theme_path('shapes/arc@96.png'));
         this.load.image('arc@72', this.get_theme_path('shapes/arc@72.png'));
+
+        this.load.image('rect@144', this.get_theme_path('shapes/rect@144.png'));
+        this.load.image('rect@96', this.get_theme_path('shapes/rect@96.png'));
+        this.load.image('rect@72', this.get_theme_path('shapes/rect@72.png'));
+    }
+
+    /**
+     * Preloads stickers
+     */
+    protected preload_stickers_images(): void {
+        this.load.image('mrodoreda', 'gamedata/assets/stickers/rodoreda.png');
     }
 
     /**
@@ -170,9 +204,33 @@ export default class Preloader extends FakeOSScene {
                     break;
                 case 'video':
                     this.load.video(media[i].id, media[i].source);
+                    break;
             }
         }
     }
+
+    /**
+     * Preloads orwell thubnails and sites.
+     */
+    protected preload_files_thumbnails(): void {
+        let thumbnails = this.cache.json.get('files');
+
+        for (let i = 0; i < thumbnails.length; i++) {
+            this.load.image(thumbnails[i].id, thumbnails[i].thumbnail);
+        }
+    }
+
+    /**
+     * Preloads orwell thubnails and sites.
+     */
+    protected preload_orwell_thumbnails(): void {
+        let thumbnails = this.cache.json.get('orwell');
+
+        for (let i = 0; i < thumbnails.length; i++) {
+            this.load.image(thumbnails[i].id, thumbnails[i].thumbnail);
+        }
+    }
+
 
     /**
      * Preloads contact images.
@@ -222,15 +280,6 @@ export default class Preloader extends FakeOSScene {
         let theme = 'themes/' + this.cache.json.get('config')['theme']+'/';
         let defaultTheme = 'themes/default/';
 
-        /*let http = new XMLHttpRequest();
-        http.open('HEAD', theme+path, false);
-        http.send();
-
-        if (http.status != 404) {
-            return theme+path;
-        } else {
-            return defaultTheme+path;
-        }*/
         return theme+path;
     }
 
@@ -249,7 +298,12 @@ export default class Preloader extends FakeOSScene {
      * Prints a progress bar.
      */
     public progressBar(): void {
-        // simple preload again
+        let iocosLogo = this.add.image(
+            this.canvasWidth / 2,
+            this.canvasHeight / 2 - 64,
+            'ioc-os-logo'
+        ).setOrigin(0.5, 0.5);
+
         let progressBox = this.add.graphics();
         progressBox.fillStyle(0x0, 0.8);
         progressBox.fillRect(
@@ -272,6 +326,7 @@ export default class Preloader extends FakeOSScene {
         });
 
         this.load.on('complete', () => {
+            iocosLogo.destroy();
             progressBar.destroy();
             progressBox.destroy();
             this.time.addEvent({

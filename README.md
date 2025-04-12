@@ -1,7 +1,3 @@
-# Miniop Llegir en xarxa
+# Lost&Phone
 
- Espai de desenvolupament miniop **Llegir en xarxa**. Inclou tant el disseny de miniop "tradicional" com la part de "lost&phone".
-
-## Referències
-
-- [Lost Phone Project Template](https://github.com/devlostphone/lost-phone)
+ Espai de desenvolupament miniop [Lectura en joc](https://miniops.ioc.cat/15/index.html). Inclou únicament el disseny del "lost&phone".

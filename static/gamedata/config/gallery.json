@@ -69,12 +69,6 @@
         "condition": null
     },
     {
-        "id": "g011",
-        "type": "picture",
-        "source": "gamedata/assets/pictures/campfire.png",
-        "condition": "c003-0004"
-    },
-    {
         "id": "g012",
         "type": "picture",
         "source": "gamedata/assets/pictures/campfire.png",
@@ -103,6 +97,11 @@
         "type": "picture",
         "source": "gamedata/assets/pictures/agulla.png",
         "condition": null
+    },
+    {
+        "id": "g017",
+        "type": "picture",
+        "source": "gamedata/assets/pictures/recycle.png",
+        "condition": null
     }
-
 ]
